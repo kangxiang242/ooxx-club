@@ -500,6 +500,7 @@ header{
                 position: relative;
                 width: calc(50% - 100px);
                 margin-bottom: 50px;
+                
                 @media screen and (max-width: 768px) {
                     width: calc(50% - 6px);
                     margin-bottom: 24px;
@@ -558,7 +559,7 @@ header{
                     width: 100%;
                     border-radius: 12px 12px 0 0;
                     overflow: hidden;
-
+                    
 
                     .serve{
                         position: absolute;
@@ -629,7 +630,11 @@ header{
                         }
                     }
                     img{
+                        transition: all 0.3s ease-in-out;
                         width: 100%;
+                    }
+                    video{
+                        transition: all 0.3s ease-in-out;
                     }
                 }
                 .message{
@@ -701,6 +706,20 @@ header{
 
                     }
 
+                }
+                &:hover{
+                    
+                    .cover{
+                        
+                        img{
+                            transform: scale(1.1);
+                       }
+                       video{
+                            
+                            transform: scale(1.1);
+                       }
+                    }
+                   
                 }
 
             }

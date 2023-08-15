@@ -619,7 +619,11 @@ header .wrapper-top {
   }
 }
 .pc .goodpart .goods-section .goods .cover img {
+  transition: all 0.3s ease-in-out;
   width: 100%;
+}
+.pc .goodpart .goods-section .goods .cover video {
+  transition: all 0.3s ease-in-out;
 }
 .pc .goodpart .goods-section .goods .message {
   padding: 8px;
@@ -697,5 +701,11 @@ header .wrapper-top {
 }
 .pc .goodpart .goods-section .goods .message .pricebox .price .up {
   font-size: 12px;
+}
+.pc .goodpart .goods-section .goods:hover .cover img {
+  transform: scale(1.1);
+}
+.pc .goodpart .goods-section .goods:hover .cover video {
+  transform: scale(1.1);
 }
 /*# sourceMappingURL=index.css.map */

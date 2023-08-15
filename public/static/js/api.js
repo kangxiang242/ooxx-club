@@ -50,6 +50,9 @@ function getGoods2(filter=false,is_append= true,data={},reset_page = false){
         if(reset_page == true){
             current_page = 0;
         }
+        if(!is_append){
+            $('.goods-section').empty().height(0)
+        }
 
         if(current_page < last_page){
             if(filter){
