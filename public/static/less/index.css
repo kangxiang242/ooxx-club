@@ -547,6 +547,7 @@ header .wrapper-top {
   left: 4px;
   display: flex;
   flex-direction: column;
+  z-index: 1;
 }
 @media screen and (min-width: 768px) {
   .pc .goodpart .goods-section .goods .cover .serve {
@@ -577,6 +578,7 @@ header .wrapper-top {
   width: 21px;
   height: 14px;
   overflow: hidden;
+  z-index: 1;
 }
 @media screen and (min-width: 768px) {
   .pc .goodpart .goods-section .goods .cover .flag {
@@ -597,6 +599,7 @@ header .wrapper-top {
   border-radius: 6px;
   bottom: 4px;
   right: 4px;
+  z-index: 1;
 }
 @media screen and (min-width: 768px) {
   .pc .goodpart .goods-section .goods .cover .wh {
@@ -706,6 +709,6 @@ header .wrapper-top {
   transform: scale(1.1);
 }
 .pc .goodpart .goods-section .goods:hover .cover video {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 /*# sourceMappingURL=index.css.map */

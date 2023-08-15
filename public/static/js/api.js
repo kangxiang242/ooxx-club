@@ -210,7 +210,9 @@ function CalibrationQuantity(){
         delete filter['county'];
         delete filter['age'];
         delete filter['height'];
+        delete filter['price'];
         $.each(filter,function (index,value) {
+
             if(typeof value == 'object'){
                 count +=value.length;
             }else{
@@ -218,6 +220,7 @@ function CalibrationQuantity(){
             }
         });
     }
+
     localStorage.setItem(filter_count_key,count);
 }
 
@@ -239,6 +242,8 @@ function initialize(){
         addFilterFind('quick',[quick])
     }
 
+    var selected_type = $.cookie('selected_type')?$.cookie('selected_type'):1;
+    $('input[name="tabs2"][value="'+selected_type+'"]').prop('checked',true)
 
     var filter = localStorage.getItem(filter_key);
 
@@ -403,4 +408,6 @@ $(document).ready(function(){
 $('#radio-1,#radio-2').click(function () {
     var tab = $(this).val();
     getGoods2(false,false,{tab:tab},true);
+    $.cookie('selected_type',tab);
+    addFilterFind('tab',tab)
 });

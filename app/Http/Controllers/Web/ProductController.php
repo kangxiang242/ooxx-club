@@ -10,6 +10,7 @@ use App\Models\ProductQuick;
 use App\Models\ProductWithServe;
 use App\Repositories\FaqRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 
 class ProductController extends Controller
@@ -217,16 +218,19 @@ class ProductController extends Controller
             $product = $product->whereIn('birthplace_id',$birthplace);
         }
 
+
+        $tab = 0;
         if($request->tab){
-
-            if($request->tab == 1){
-                $product = $product->where('outgoing',1);
-            }
-
-            if($request->tab == 2){
-                $product = $product->where('fixation',1);
-            }
+            $tab = $request->tab;
+        }else if(Cookie::has('selected_type')){
+            $selected_type = Cookie::get('selected_type');
+            $tab = $selected_type;
         }
+
+        if($tab == 1 || $tab == 2){
+            $product = $tab==1?$product->where('outgoing',1):$product->where('fixation',1);
+        }
+
 
         $product = $product->orderBy('sort')->paginate(20);
 
