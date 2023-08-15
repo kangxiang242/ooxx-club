@@ -1,0 +1,400 @@
+var filter_key = 'filter';
+var filter_count_key = 'filter_count';
+var area_key = 'area';
+
+
+
+function getGoods(data){
+
+    $.ajax({
+        url: '/api/goods',
+        type: 'GET',
+        data : data,
+        dataType: 'html',
+        beforeSend:function () {
+            if(typeof beforeCallback == 'function'){
+                beforeCallback();
+            }
+        },
+        success: function (result) {
+            if(typeof successCallback == 'function'){
+                successCallback(result)
+            }
+        },
+        error: function (XMLHttpRequest) {
+            if(typeof errorCallback == 'function'){
+                errorCallback(XMLHttpRequest)
+            }
+        },
+        complete: function (XMLHttpRequest) {
+            if(typeof completeCallback == 'function'){
+                completeCallback(XMLHttpRequest);
+            }
+
+        },
+    })
+
+}
+
+
+var $grid = $('.goods-section')
+var gutter = window.matchMedia('(max-width: 768px)').matches?24:50
+
+
+
+var current_page = 0;
+var last_page = 1;
+var is_load = false;
+function getGoods2(filter=false,is_append= true,data={},reset_page = false){
+    if(!is_load){
+        if(reset_page == true){
+            current_page = 0;
+        }
+
+        if(current_page < last_page){
+            if(filter){
+                var filter_data = localStorage.getItem(filter_key);
+                if(filter_data){
+                    filter_data = JSON.parse(filter_data);
+                    data = Object.assign(data,filter_data);
+                }
+            }
+
+            is_load = true
+            $.ajax({
+                url: '/api/goods2?page='+ parseInt(current_page+1),
+                type: 'GET',
+                data : data,
+                dataType: 'json',
+                beforeSend:function () {
+                    $('#goods-loading').show();
+                    $('#goods-complete').hide();
+                },
+                success: function (result) {
+
+                    current_page = result.current_page;
+                    last_page = result.last_page;
+
+                    if(is_append){
+                        $('.goods-section').append(result.render);
+
+                    }else{
+                        $('.goods-section').html(result.render)
+
+                    }
+
+                    $grid.masonry({
+                        // options 设置选项
+                        itemSelector : '.goods',//class 选择器
+                        columnWidth :  $('.goods-section').find('.goods .cover').width() ,//一列的宽度 Integer
+                        isAnimated:false,//使用jquery的布局变化  Boolean
+                        gutterWidth:gutter,//列的间隙 Integer
+                        //isFitWidth:true,// 适应宽度   Boolean
+                        isResizableL:true,// 是否可调整大小 Boolean
+                        //isRTL:false,//使用从右到左的布局 Boolean
+                    });
+
+                    if(current_page == last_page){
+                        $('#goods-complete').show();
+                    }
+                    $grid.imagesLoaded(function () {
+                        $('.goods-section .hide').removeClass('hide')
+                        is_load = false;
+                        $('#goods-loading').hide();
+                        $grid.masonry('reload');
+                    })
+
+                },
+                error: function (XMLHttpRequest) {
+
+                },
+                complete: function (XMLHttpRequest) {
+
+                },
+            })
+        }
+
+    }
+}
+
+
+
+
+
+$('#filter .reset').click(function () {
+    localStorage.removeItem(filter_key);
+    localStorage.removeItem(filter_count_key)
+    $('#partone').find('.item-count').text(0);
+    $("[data-equ]").prop("checked", false);
+    $('#fit-city option:first').attr('selected',true)
+    $('#fit-county option:first').attr('selected',true)
+})
+
+$('#filter .conform').click(function () {
+    var age = $('input[name="age"]').val();
+    var price = $('input[name="price"]').val();
+    var tab = $('input[name="tabs"]:checked').val()
+    var city = $('#fit-city').val();
+    var county = $('#fit-county').val();
+    var filter = {};
+    var filter_count = 0;
+    $("[data-equ]").each(function(){
+        var equ = $(this).attr('data-equ');
+        var val = $(this).val();
+
+        if($(this).prop('checked')){
+
+            if(filter){
+                if(filter[equ]){
+                    if (!filter[equ].includes(val)){
+                        filter[equ].push(val)
+                    }
+                }else{
+                    filter[equ] = [val];
+                }
+            }else{
+                var new_data = {};
+                new_data[equ] = [val];
+                filter = new_data;
+            }
+            filter_count++;
+
+        }
+    });
+
+    filter['age'] = age;
+    filter['price'] = price;
+    filter['tab'] = tab;
+    filter['city'] = city;
+    filter['county'] = county;
+    localStorage.setItem(filter_key,JSON.stringify(filter));
+    localStorage.setItem(filter_count_key,filter_count);
+    window.location.href="/product";
+});
+
+function addFilterFind(equ,id){
+    var filter = {};
+    filter[equ] = id;
+    localStorage.setItem(filter_key,JSON.stringify(filter));
+}
+
+function deleteFilterFind(equ,id){
+    var filter = localStorage.getItem(filter_key);
+    if(filter){
+        filter = JSON.parse(filter);
+        if(filter[equ]){
+            if (filter[equ].includes(id)){
+                delete filter[equ].splice(filter[equ].indexOf(id),1);
+                localStorage.setItem(filter_key,JSON.stringify(filter));
+                var filter_count = localStorage.getItem(filter_count_key)?localStorage.getItem(filter_count_key):0;
+                filter_count = filter_count<1?0:filter_count-1;
+                localStorage.setItem(filter_count_key,filter_count)
+                $('#partone').find('.item-count').text(filter_count);
+
+                $('[data-equ="'+equ+'"][value="'+id+'"]').prop("checked", false);
+
+            }
+        }
+    }
+
+}
+
+function CalibrationQuantity(){
+    var filter = localStorage.getItem(filter_key);
+    var count = 0;
+    if(filter){
+        filter = JSON.parse(filter);
+        delete filter['tab'];
+        delete filter['city'];
+        delete filter['county'];
+        delete filter['age'];
+        delete filter['height'];
+        $.each(filter,function (index,value) {
+            if(typeof value == 'object'){
+                count +=value.length;
+            }else{
+                count++;
+            }
+        });
+    }
+    localStorage.setItem(filter_count_key,count);
+}
+
+
+var factor_html = '';
+var city_id = 0;
+var county_id = 0;
+var filterInitializeCallback = function (elem,equ,id) {
+    var tip = elem.attr('data-tips');
+    factor_html += '<p class="factor" data-equ="'+equ+'" data-id="'+id+'">'+tip+'\n' +
+        '                <svg t="1690789204748" class="factorclose" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9156" width="200" height="200"><path d="M512 102.4a409.6 409.6 0 1 0 409.6 409.6 409.6 409.6 0 0 0-409.6-409.6z m181.248 518.144a51.2 51.2 0 0 1-72.704 72.704L512 584.192l-108.544 109.056a51.2 51.2 0 0 1-72.704-72.704L439.808 512 330.752 403.456a51.2 51.2 0 0 1 72.704-72.704L512 439.808l108.544-109.056a51.2 51.2 0 0 1 72.704 72.704L584.192 512z" fill="" p-id="9157"></path></svg>\n' +
+        '            </p>';
+}
+
+initialize()
+function initialize(){
+    var quick = getQueryString('quick');
+    if(quick){
+        addFilterFind('quick',[quick])
+    }
+
+
+    var filter = localStorage.getItem(filter_key);
+
+    if(filter){
+        filter = JSON.parse(filter);
+
+        $.each(filter,function(index,element){
+
+            if(typeof element == 'object'){
+                $.each(element,function(l,v){
+                    var elem = $("[data-equ='"+index+"'][value='"+v+"']");
+                    elem.prop("checked", true)
+                    if(typeof filterInitializeCallback == 'function'){
+
+                        filterInitializeCallback(elem,index,v)
+                    }
+                });
+            }else{
+                if(index == 'tab'){
+                    $('input[name="tabs"][value="'+element+'"]').prop('checked',true)
+                }else if(index == 'city'){
+                    city_id = element
+                }else if(index == 'county'){
+                    county_id = element;
+                }else{
+                    $('.'+index+'-range-slider').jRange('setValue', element);
+                }
+
+            }
+
+
+        })
+    }
+
+    CalibrationQuantity();
+
+    var filter_count = localStorage.getItem(filter_count_key);
+    $('#partone').find('.item-count').text(filter_count?filter_count:0);
+
+
+
+    var selected_type = $.cookie('selected_type')?$.cookie('selected_type'):1;
+    if(selected_type){
+        $('input[name="tabs"][value="'+selected_type+'"]').prop('checked',true)
+    }
+}
+
+$('.factorbox').html(factor_html);
+$('body').on('click','.factor .factorclose',function () {
+    var elem = $(this).parent();
+    var equ = elem.attr('data-equ');
+    var id = elem.attr('data-id');
+    deleteFilterFind(equ,id)
+    elem.remove();
+    getGoods2(true,false,{},true);
+
+});
+
+
+function getFilterGoods(){
+    var filter = localStorage.getItem(filter_key);
+    if(filter){
+        filter = JSON.parse(filter);
+        getGoods(filter);
+    }else{
+        getGoods();
+    }
+}
+
+
+
+/**
+ * 地区
+ * @type {string}
+ */
+let areas = localStorage.getItem(area_key);
+if(!areas){
+    $.ajax({
+        url: '/api/area',
+        type: 'GET',
+        dataType: 'json',
+        success: function (result) {
+            localStorage.setItem(area_key,JSON.stringify(result));
+            setArea(result);
+
+        }
+    })
+}
+if(areas){
+    setArea(JSON.parse(areas));
+}
+
+function setArea(data){
+    $.area({
+        data:data,
+        city:{
+            element:'#fil-city',
+            default:0,
+            change:function (city) {
+                getGoods2(false,false,{'city':city},true)
+            }
+        },
+        county:{
+            element:'#fil-county',
+            default:0,
+            change:function (city,county) {
+                getGoods2(false,false,{'city':city,'county':county},true)
+            }
+        },
+    })
+
+    $.area({
+        data:data,
+        city:{
+            element:'#fit-city',
+            default:city_id,
+            change:function (city) {
+
+            }
+        },
+        county:{
+            element:'#fit-county',
+            default:county_id,
+            change:function (city,county) {
+
+            }
+        },
+    })
+}
+
+function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return decodeURI(r[2]);
+    return null;
+}
+
+
+
+/**
+ * 下拉刷新
+ */
+$(document).ready(function(){
+    var is_index = location.pathname == '/'?true:false;
+
+    $(window).scroll(function(){
+        var scrollTop = $(this).scrollTop(); //获取当前页面滚动距离
+        var scrollHeight = $(document).height(); //获取页面总高度
+        var windowHeight = $(this).height(); //获取当前窗口高度
+        if(Math.ceil(scrollTop + windowHeight) >= scrollHeight){ //判断是否到达页面底部
+            if(is_index){
+                getGoods2(false,true);
+            }else{
+                getGoods2(true,true);
+            }
+
+
+        }
+    });
+});

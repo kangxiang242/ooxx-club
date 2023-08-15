@@ -1,0 +1,158 @@
+.prescribe-container {
+  margin-top: 4rem;
+}
+.prescribe-container .toggle-link {
+  padding-left: 2rem;
+}
+.prescribe-container .toggle-link a {
+  color: #D42F1D;
+  text-decoration: underline;
+  font-size: 1.4rem;
+}
+.prescribe-container .prescribe-content {
+  padding: 2rem;
+}
+.prescribe-container .prescribe-content .accordion .accordion-icon:after {
+  content: "+";
+}
+.prescribe-container .prescribe-content .accordion .accordion-header {
+  position: relative;
+  cursor: pointer;
+  height: 3.6rem;
+  line-height: 3.6rem;
+  display: flex;
+  align-items: center;
+}
+.prescribe-container .prescribe-content .accordion .accordion-header .a-title {
+  display: flex;
+  align-items: center;
+}
+.prescribe-container .prescribe-content .accordion .accordion-header .a-title .accordion-icon {
+  display: block;
+  width: 1.1em;
+  height: 1.1em;
+  line-height: 1.1em;
+  font-size: 1.4em;
+  font-family: "Courier New", Courier, monospace;
+  text-align: center;
+  color: #fff;
+  background: #c00;
+  border-radius: 0.8em;
+  font-weight: bold;
+}
+.prescribe-container .prescribe-content .accordion .accordion-header .a-title .text {
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin-left: 0.6rem;
+}
+.prescribe-container .prescribe-content .accordion .accordion-header .a-title:hover .text {
+  text-decoration: underline;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content {
+  height: 0;
+  overflow: hidden;
+  padding: 0 1.6rem;
+  transition: all 0.2s ease-in;
+  opacity: 0;
+  margin-top: 0;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content a {
+  color: #c00;
+  text-decoration: underline;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content font {
+  font-size: 1.4rem;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content div.HighlightSection {
+  margin-top: 1.8ex;
+  padding-bottom: 0.25ex;
+  border-top-style: dashed;
+  border-top-width: thin;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1.2rem;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content h2.Highlights {
+  text-align: center;
+  margin-top: -1.6ex;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content h2.Highlights span {
+  background: white;
+  padding-left: 0.25em;
+  padding-right: 0.25em;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content dl.Footnote {
+  display: flex;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content dl.Footnote dd {
+  margin-left: 0.8rem;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content .Highlighta {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content h3 {
+  font-size: 1.6rem;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content .Section {
+  margin-bottom: 1.8rem;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content .First {
+  margin-top: 1rem;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content .Disc {
+  list-style: disc;
+  padding-left: 2rem;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content .Disc li {
+  list-style: disc;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content .Italics {
+  font-style: italic;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content table {
+  border-collapse: collapse;
+  margin-bottom: 3rem;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content table tbody {
+  border: 0.1rem solid #000;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content table caption {
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 100%;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content table tr {
+  border-bottom: 0.1rem solid #000;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content table tr:nth-of-type(1) {
+  border-top: 0.1rem solid #000;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content table tfoot tr {
+  border-bottom: none;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content table tfoot tr .Footnote {
+  margin-top: 0;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content .hide-link {
+  display: none;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content .HighlightsSeeReference {
+  font-weight: bold;
+  margin-top: 1.2rem;
+}
+.prescribe-container .prescribe-content .accordion .accordion-content .HighlightsRevision {
+  text-align: right;
+  font-weight: bold;
+  margin-bottom: 1ex;
+}
+.prescribe-container .prescribe-content .accordion.open .accordion-content {
+  height: var(--height);
+  opacity: 1;
+}
+.prescribe-container .prescribe-content .accordion.open .accordion-icon:after {
+  content: "-";
+}
+/*# sourceMappingURL=goods.css.map */

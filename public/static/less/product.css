@@ -1,0 +1,255 @@
+.container .main .wrap {
+  /*padding: 80px 6vw 100px;*/
+  width: 95%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+@media screen and (max-width: 1024px) {
+  .container .main .wrap {
+    max-width: 100%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .container .main .wrap {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+.main-content .side {
+  width: 30%;
+  max-width: 260px;
+  background-color: rgba(255, 255, 255, 0.06);
+  padding: 30px 20px;
+  float: left;
+}
+@media screen and (max-width: 768px) {
+  .main-content .side {
+    display: none;
+  }
+}
+.main-content .side .keyword {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.main-content .side .keyword li {
+  padding: 4px;
+}
+.main-content .side .keyword li a {
+  display: inline-block;
+  padding: 5px 8px;
+  background: #292a36;
+  color: #b8babc;
+  font-size: 14px;
+  margin-right: 3px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+.main-content .side .keyword li a.active {
+  background: var(--main-color);
+  color: #fff;
+}
+.main-content .side .keyword li a:hover {
+  opacity: 0.7;
+}
+.main-content .side .category .form-box {
+  border-top: 1px solid #E8E8E8;
+  padding: 20px 0;
+}
+.main-content .side .category .form-box .control-label {
+  font-size: 20px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  color: #edeeef;
+}
+.main-content .side .category .form-box .control-label i {
+  transition: all 0.25s ease;
+  font-size: 18px;
+}
+.main-content .side .category .form-box .control-label.close i {
+  transform: rotate(-90deg);
+}
+.main-content .side .category .form-box .side-toggle {
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  color: #b8babc;
+}
+.main-content .side .category .form-box .side-toggle .checkbox-box {
+  display: flex;
+  flex-direction: column;
+}
+.main-content .side .category .form-box .side-toggle .checkbox-box .form-checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.main-content .side .category .form-box .side-toggle .checkbox-box .form-checkbox input[type="checkbox"] {
+  display: none;
+}
+.main-content .side .category .form-box .side-toggle .checkbox-box .form-checkbox .dress {
+  width: 16px;
+  height: 16px;
+  border-radius: 0px 0px 0px 0px;
+  opacity: 1;
+  border: 1px solid #D1D1D1;
+  margin-right: 6px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-content .side .category .form-box .side-toggle .checkbox-box .form-checkbox .dress i {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  opacity: 0;
+}
+.main-content .side .category .form-box .side-toggle .checkbox-box .form-checkbox input[type="checkbox"]:checked + .dress {
+  background-color: #D51DAF;
+  border-color: #D51DAF;
+}
+.main-content .side .category .form-box .side-toggle .checkbox-box .form-checkbox input[type="checkbox"]:checked + .dress i {
+  opacity: 1;
+}
+.main-content .side .category .form-box .side-toggle .checkbox-box .form-checkbox input[type="checkbox"]:checked + .dress + .text {
+  color: #D51DAF;
+}
+.main-content .side .category .form-box .side-toggle .checkbox-box .form-checkbox:hover .text {
+  opacity: 0.5;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.main-content .m-side {
+  display: none;
+  background-color: rgba(255, 255, 255, 0.06);
+  margin-bottom: 40px;
+}
+@media screen and (max-width: 768px) {
+  .main-content .m-side {
+    display: block;
+  }
+}
+.main-content .m-side .tag {
+  overflow-x: auto;
+}
+.main-content .m-side .tag::-webkit-scrollbar {
+  display: none;
+}
+.main-content .m-side .tag .keyword {
+  display: flex;
+  padding: 20px 0;
+  padding-right: 20px;
+}
+.main-content .m-side .tag .keyword li {
+  margin-right: 12px;
+}
+.main-content .m-side .tag .keyword li:first-child {
+  margin-left: 20px;
+}
+.main-content .m-side .tag .keyword li:last-child {
+  padding-right: 20px;
+}
+.main-content .m-side .tag .keyword li a {
+  display: inline-block;
+  padding: 5px 8px;
+  background: #292a36;
+  color: #b8babc;
+  font-size: 14px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.main-content .m-side .category {
+  padding: 20px 0;
+  border-top: 1px solid #E8E8E8;
+  border-bottom: 1px solid #E8E8E8;
+}
+.main-content .m-side .category .form-box {
+  overflow-x: auto;
+}
+.main-content .m-side .category .form-box::-webkit-scrollbar {
+  display: none;
+}
+.main-content .m-side .category .form-box .filter {
+  display: flex;
+  padding: 10px 0;
+}
+.main-content .m-side .category .form-box .filter li:first-child {
+  margin-left: 16px;
+}
+.main-content .m-side .category .form-box .filter li:last-child {
+  margin-right: 20px;
+}
+.main-content .m-side .category .form-box .filter li a {
+  padding: 4px 8px;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  color: #b8babc;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.1s ease;
+  margin-right: 8px;
+}
+.main-content .m-side .category .form-box .filter li a.active {
+  border-color: var(--main-color);
+  color: var(--main-color);
+}
+.main-content .product-body {
+  width: calc(100% - 260px - 20px);
+  float: right;
+  transition: all 0.5s ease;
+  opacity: 1;
+}
+.main-content .product-body.transparent {
+  opacity: 0;
+  transition: all 0ms ease;
+}
+@media screen and (max-width: 768px) {
+  .main-content .product-body {
+    width: 100%;
+    padding: 0 15px;
+  }
+}
+.main-content .product-body .product-list .item {
+  text-align: center;
+  width: 33%;
+  margin-bottom: 40px;
+  float: left;
+  padding: 0 10px;
+  overflow: hidden;
+}
+@media screen and (max-width: 1024px) {
+  .main-content .product-body .product-list .item {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .main-content .product-body .product-list .item {
+    width: 100%;
+  }
+}
+.main-content .product-body .product-list .item .box {
+  background-color: #fff;
+  padding: 3%;
+}
+.main-content .product-body .product-list .item .pic img {
+  width: 100%;
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.main-content .product-body .product-list .item .name {
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+.main-content .product-body .product-list .item:hover .pic img {
+  transform: scale(1.15);
+}
+/*# sourceMappingURL=product.css.map */

@@ -1,0 +1,548 @@
+<?php
+
+
+namespace App\Combine;
+
+
+use App\Models\Area;
+use App\Models\Audio;
+use App\Models\Birthplace;
+use App\Models\Category;
+use App\Models\Picture;
+use App\Models\Product;
+use App\Models\ProductAddedServe;
+use App\Models\ProductPrice;
+use App\Models\ProductQuick;
+use App\Models\ProductWithServe;
+use App\Models\Quick;
+use App\Models\Serve;
+use App\Models\Video;
+use App\Services\ConfigService;
+
+class Compose
+{
+    protected $nicknames = [];
+
+    protected $comment = [];
+
+    protected $picture;
+
+    protected $video;
+
+    protected $category;
+
+    protected $area;
+
+    protected $comment_picture;
+
+    protected $videos;
+
+    protected $audios;
+
+    protected $outgoing_price;
+
+    protected $fixation_price;
+
+    protected $quicks;
+
+    protected $serves;
+
+    protected $product_ids;
+
+    protected $type;
+
+
+
+    public function __construct()
+    {
+        $nickname = app(ConfigService::class)->get('nickname');
+        $this->nicknames = collect(explode(' ',$nickname));
+
+
+
+        $comment = app(ConfigService::class)->get('comment_picture');
+        $this->comment = collect(explode(',',$comment));
+
+        $this->picture = Picture::get()->shuffle();
+
+        $this->video = Video::where('status',1)->get();
+
+
+        $this->category = Category::with('sub')->where('parent_id',0)->get();
+
+        $this->area = Area::with('sub')->where('parent_id',0)->get();
+
+        $this->comment_picture = collect(array_filter(explode(',',app(ConfigService::class)->get('comment_picture'))));
+
+        $this->videos = Video::where('status',1)->pluck('video')->shuffle();
+
+        $this->audios = Audio::where('status',1)->get()->shuffle();
+
+        $this->fixation_price = collect(explode(',',app(ConfigService::class)->get('fixation_price')));
+
+        $this->outgoing_price = collect(explode(',',app(ConfigService::class)->get('outgoing_price')));
+
+        $this->quicks = Quick::all();
+
+        $this->serves = Serve::all();
+
+        $this->product_ids = Product::where('sham',1)->pluck('id');
+
+
+
+    }
+
+
+    public function start(){
+
+
+        foreach($this->nicknames->shuffle() as $name){
+
+            if($this->picture->count()<=0){ //图片使用完 不再生成
+                break;
+            }
+
+            $outgoing = 0;
+            $fixation = 0;
+            $rand = rand(1,10);
+            switch ($rand){
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                    $outgoing = 1;
+                    break;
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                    $fixation = 1;
+                    break;
+                default:
+                    $outgoing = 1;
+                    $fixation = 1;
+            }
+
+
+            $category_ids = [];
+            foreach($this->category as $cate){
+                $category_ids[] = $cate->id;
+                $category_ids[] = $cate->sub->random()->id;
+            }
+
+
+            $pose = collect($this->rules($category_ids));
+
+            $picture = $this->picture->pop();
+            if(!$picture->image){
+                continue;
+            }
+            $images = collect(explode(',',$picture->image));
+
+
+            $video = $this->videos->pop();
+            $this->videos->prepend($video);
+
+            $audio = $this->audios->pop();
+            $this->audios->prepend($audio);
+
+
+            $comment_picture = [];
+            $comment_count = rand(3,5);
+            for ($i=0;$i<$comment_count;$i++){
+                $temp_image = $this->comment_picture->pop();
+                $comment_picture[] = $temp_image;
+                $this->comment_picture->prepend($temp_image);
+            }
+
+            if($fixation && !$outgoing){
+                $price = $this->fixation_price->random()?:2500;
+            }else{
+                $price = $this->outgoing_price->random()?:3000;
+            }
+
+
+
+            $area = $this->area->random();
+            $data = [
+                'birthplace_id'=>$picture->birthplace_id,
+                'name'=>$name,
+                'cover'=>$images->first(),
+                'age'=>$pose->get('age',$this->getAge()),
+                'height'=>$pose->get('height',$this->getHeight()),
+                'weight'=>$pose->get('weight',$this->getWeight()),
+                'cup'=>$pose->get('cup',$this->getCup()),
+                'area_city'=>$area->id,
+                'area_county'=>$area->sub->random()->id,
+                'price_start'=>$price,
+                'price_end'=>$price*3,
+                'picture'=>$picture->image,
+                'comment_picture'=>implode(',',$comment_picture),
+                'video'=>$video,
+                'audio'=>$audio->audio,
+                'audio_time'=>$audio->duration,
+                'sham'=>1,
+                'outgoing'=>$outgoing,
+                'fixation'=>$fixation,
+            ];
+
+
+
+            if($this->product_ids->count()>0){
+                $product_id = $this->product_ids->shift();
+                Product::where('id',$product_id)->update($data);
+                ProductPrice::where('product_id',$product_id)->delete();
+                ProductQuick::where('product_id',$product_id)->delete();
+                ProductWithServe::where('product_id',$product_id)->delete();
+                ProductAddedServe::where('product_id',$product_id)->delete();
+            }else{
+                $product = Product::create($data);
+                $product_id = $product->id;
+            }
+
+
+            $price_insert = [
+                [
+                    'product_id'=>$product_id,
+                    'text'=>'一節/50min/1S',
+                    'price'=>$price
+                ],
+                [
+                    'product_id'=>$product_id,
+                    'text'=>'兩節/100min/2S',
+                    'price'=>$price*2
+                ],
+                [
+                    'product_id'=>$product_id,
+                    'text'=>'三節送一節/200min/NS',
+                    'price'=>$price*3
+                ],
+            ];
+
+            ProductPrice::insert($price_insert);
+
+            ProductQuick::create([
+                'product_id'=>$product_id,
+                'quick_id'=>$this->quicks->random()->id,
+            ]);
+
+            $serve_count = $this->serves->count();
+
+            $serves = $this->serves->shuffle();
+
+            $with_serve_count = rand(8,$serve_count-8);
+
+            $with_serve = $serves->slice(0,$with_serve_count);
+
+            $with_serves_insert = [];
+            foreach($with_serve as $serve_item){
+                $with_serves_insert[] = [
+                    'product_id'=>$product_id,
+                    'serve_id'=>$serve_item->id,
+                ];
+            }
+            ProductWithServe::insert($with_serves_insert);
+
+
+            $added_serve = $serves->slice($with_serve_count,$serve_count-$with_serve_count);
+
+            $added_serves_insert = [];
+            foreach($added_serve as $serve_item){
+                $serve_price = 0;
+                if($serve_item->price){
+                    $serve_price = collect(explode(',',$serve_item->price))->random();
+                }
+                $added_serves_insert[] = [
+                    'product_id'=>$product_id,
+                    'serve_id'=>$serve_item->id,
+                    'price'=>$serve_price,
+                ];
+            }
+
+            ProductAddedServe::insert($added_serves_insert);
+
+        }
+
+
+    }
+
+
+    /**
+     * 规则匹配
+     * @param array $category_ids
+     * @return array
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    protected function rules($category_ids = []){
+        $pose = [];
+        if($category_ids){
+            $rules = json_decode(app(ConfigService::class)->get('rules'),true);
+
+            foreach($rules as $rule){
+                if(in_array($rule['field'],$category_ids)){
+
+                    if($rule['mate'] == 'height'){
+                        $pose['height'] = $this->RuleHeight($rule['operator'],$rule['value']);
+                    }else if($rule['mate'] == 'weight'){
+                        $pose['weight'] = $this->RuleWeight($rule['operator'],$rule['value']);
+                    }else if($rule['mate'] == 'age'){
+                        $pose['age'] = $this->RuleAge($rule['operator'],$rule['value']);
+                    }else if($rule['mate'] == 'cup'){
+                        $pose['cup'] = $this->RuleCup($rule['operator'],$rule['value']);
+                    }else if($rule['mate'] == 'birthplace'){
+                        $pose['birthplace'] = $this->RuleBirthplace($rule['operator'],$rule['birthplace_value']);
+                    }
+                }
+            }
+        }
+        return $pose;
+
+
+    }
+
+    /**
+     * 获取随机身高
+     *
+     * @param null $start
+     * @param null $end
+     * @return int
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    protected function getHeight($start = null,$end = null){
+        $start = $start?:app(ConfigService::class)->get('height_start');
+        $end = $end?:app(ConfigService::class)->get('height_end');
+        return rand($start,$end);
+    }
+
+    /**
+     * 获取随机体重
+     *
+     * @param null $start
+     * @param null $end
+     * @return int
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    protected function getWeight($start = null,$end = null){
+        $start = $start?:app(ConfigService::class)->get('weight_start');
+        $end = $end?:app(ConfigService::class)->get('weight_end');
+        return rand($start,$end);
+    }
+
+    /**
+     * 获取随机年龄
+     *
+     * @param null $start
+     * @param null $end
+     * @return int
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    protected function getAge($start = null,$end = null){
+        $start = $start?:app(ConfigService::class)->get('age_start');
+        $end = $end?:app(ConfigService::class)->get('age_end');
+        return rand($start,$end);
+    }
+
+    /**
+     * 获取随机罩杯
+     *
+     * @return string
+     */
+    protected function getCup(){
+        return collect(['A','B','C','D','E','F','G'])->random();
+    }
+
+    /**
+     * 根据权重获取茶籍
+     *
+     * @return mixed
+     */
+    protected function getBirthplace(){
+        //$data = \App\Models\Birthplace::where('status',1)->get()->toArray();
+        //return array_get($this->roundWeight($data),'id');
+        return Birthplace::where('status',1)->pluck('id')->random();
+    }
+
+    /**
+     * 多项拆解
+     *
+     * @param $value
+     * @param string $delimiter
+     * @return \Illuminate\Support\Collection|mixed|\Tightenco\Collect\Support\Collection
+     */
+    protected function Disassemble($value,$delimiter='|'){
+        return collect(explode($delimiter,$value));
+    }
+
+
+    /**
+     * 体重规则
+     *
+     * @param $operator
+     * @param $value
+     * @return \Illuminate\Support\Collection|int|mixed|\Tightenco\Collect\Support\Collection
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    protected function RuleHeight($operator,$value){
+        switch ($operator){
+            case ">=":
+                $height = $this->getHeight($value);
+                break;
+            case "<=":
+                $height = $this->getHeight(null,$value);
+                break;
+            case "=":
+                $height = $value;
+                break;
+            case "contain":
+                $height = $this->Disassemble($value)->random();
+                break;
+            case "not_contain":
+                $height = $this->getHeight();
+                break;
+            default:
+                $height = $this->getHeight();
+
+        }
+        return $height;
+    }
+
+
+    /**
+     * 身高规则
+     *
+     * @param $operator
+     * @param $value
+     * @return \Illuminate\Support\Collection|int|mixed|\Tightenco\Collect\Support\Collection
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    protected function RuleWeight($operator,$value){
+        switch ($operator){
+            case ">=":
+                $weight = $this->getWeight($value);
+                break;
+            case "<=":
+                $weight = $this->getWeight(null,$value);
+                break;
+            case "=":
+                $weight = $value;
+                break;
+            case "contain":
+                $weight = $this->Disassemble($value)->random();
+                break;
+            case "not_contain":
+                $weight = $this->getWeight();
+                break;
+            default:
+                $weight = $this->getWeight();
+
+        }
+        return $weight;
+    }
+
+    /**
+     * 年龄规则
+     *
+     * @param $operator
+     * @param $value
+     * @return \Illuminate\Support\Collection|int|mixed|\Tightenco\Collect\Support\Collection
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    protected function RuleAge($operator,$value){
+        switch ($operator){
+            case ">=":
+                $age = $this->getAge($value);
+                break;
+            case "<=":
+                $age = $this->getAge(null,$value);
+                break;
+            case "=":
+                $age = $value;
+                break;
+            case "contain":
+                $age = $this->Disassemble($value)->random();
+                break;
+            case "not_contain":
+                $age = $this->getAge();
+                break;
+            default:
+                $age = $this->getAge();
+
+        }
+        return $age;
+    }
+
+    /**
+     * 罩杯规则
+     *
+     * @param $operator
+     * @param $value
+     * @return \Illuminate\Support\Collection|int|mixed|\Tightenco\Collect\Support\Collection
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    protected function RuleCup($operator,$value){
+        switch ($operator){
+            case "=":
+                $cup = $value;
+                break;
+            case "contain":
+                $cup = $this->Disassemble($value)->random();
+                break;
+            default:
+                $cup = $this->getAge();
+
+        }
+        return $cup;
+    }
+
+    /**
+     * 茶籍规则
+     *
+     * @param $operator
+     * @param $value
+     * @return \Illuminate\Support\Collection|mixed|\Tightenco\Collect\Support\Collection
+     */
+    protected function RuleBirthplace($operator,$value){
+
+        switch ($operator){
+            case "=":
+                $cup = collect($value)->first();
+                break;
+            case "contain":
+                $cup = collect($value)->random();
+                break;
+            default:
+                $cup = $this->getBirthplace();
+
+        }
+        return $cup;
+    }
+
+    /**
+     * 权重分配
+     * @param $data
+     * @return mixed
+     */
+    protected function roundWeight($data){
+        $weight = 0;
+        $tempdata = array ();
+        foreach ($data as $one) {
+            $weight += $one['weight'];
+            for ($i = 0; $i < $one['weight']; $i++) {
+                $tempdata[] = $one;
+            }
+        }
+        $use = rand(0, $weight -1);
+        $one = $tempdata[$use];
+        return $one;
+    }
+
+
+}

@@ -1,0 +1,185 @@
+.prescribe-container{
+    margin-top: 4rem;
+    .toggle-link{
+        padding-left: 2rem;
+        a{
+            color: #D42F1D;
+            text-decoration: underline;
+            font-size: 1.4rem;
+        }
+    }
+    .prescribe-content{
+        padding: 2rem;
+        .accordion{
+            .accordion-icon{
+                &:after{
+                    content: "+";
+                }
+            }
+
+            .accordion-header{
+                position: relative;
+                cursor: pointer;
+                height: 3.6rem;
+                line-height: 3.6rem;
+                display: flex;
+                align-items: center;
+                .a-title{
+                    display: flex;
+                    align-items: center;
+                    .accordion-icon {
+                        display: block;
+                        width: 1.1em;
+                        height: 1.1em;
+                        line-height: 1.1em;
+                        font-size: 1.4em;
+                        font-family: "Courier New", Courier, monospace;
+                        text-align: center;
+                        color: #fff;
+                        background: #c00;
+                        border-radius: 0.8em;
+                        font-weight: bold;
+                    }
+                    .text{
+                        font-weight: bold;
+                        font-size: 1.4rem;
+                        margin-left: 0.6rem;
+
+                    }
+                    &:hover{
+                        .text{
+                            text-decoration: underline;
+
+                        }
+
+                    }
+                }
+
+
+            }
+
+            .accordion-content{
+                height: 0;
+                overflow: hidden;
+                padding: 0 1.6rem;
+                transition: all .2s ease-in;
+                opacity: 0;
+                margin-top: 0;
+                a{
+                    color: #c00;
+                    text-decoration: underline;
+                }
+                font{
+                    font-size: 1.4rem;
+                }
+                div{
+                    &.HighlightSection{
+                        margin-top: 1.8ex;
+                        padding-bottom: .25ex;
+                        border-top-style: dashed;
+                        border-top-width: thin;
+                    }
+                }
+                h2{
+                    font-size: 1.6rem;
+                    margin-bottom: 1.2rem;
+                    &.Highlights{
+                        text-align: center;
+                        margin-top: -1.6ex;
+                        span{
+                            background: white;
+                            padding-left: 0.25em;
+                            padding-right: 0.25em;
+                        }
+                    }
+                }
+                dl.Footnote{
+                    display: flex;
+                    dd{
+                        margin-left: 0.8rem;
+                    }
+                }
+                .Highlighta{
+                    margin-top: 1rem;
+                    margin-bottom: 1rem
+                }
+                h3{
+                    font-size: 1.6rem;
+                }
+                .Section{
+                    margin-bottom: 1.8rem;
+                }
+                .First{
+                    margin-top: 1rem;
+                }
+                .Disc{
+                    list-style: disc;
+                    padding-left: 2rem;
+                    li{
+                        list-style: disc;
+                    }
+                }
+                .Italics{
+                    font-style: italic;
+                }
+                table{
+                    border-collapse: collapse;
+                    margin-bottom: 3rem;
+                    tbody{
+                        border:0.1rem solid #000;
+                    }
+                    caption {
+                        margin-top: 1rem;
+                        text-align: center;
+                        font-weight: bold;
+                        font-size: 100%;
+                    }
+                    tr{
+                        border-bottom: 0.1rem solid #000; // 增加边框
+
+                    }
+                    tr:nth-of-type(1){
+                        border-top: 0.1rem solid #000; // 增加边框
+
+                    }
+                    tfoot{
+                        tr{
+                            border-bottom: none;
+                            .Footnote{
+                                margin-top: 0;
+                            }
+                        }
+                    }
+                }
+                .hide-link{
+                    display: none;
+                }
+
+                .HighlightsSeeReference{
+                    font-weight: bold;
+                    margin-top: 1.2rem;
+                }
+                .HighlightsRevision{
+                    text-align: right;
+                    font-weight: bold;
+                    margin-bottom: 1ex;
+                }
+            }
+
+            &.open{
+
+                .accordion-content{
+                    height: var(--height);
+                    opacity: 1;
+
+                }
+                .accordion-icon{
+                    &:after{
+                        content: "-";
+                    }
+                }
+            }
+
+        }
+    }
+}

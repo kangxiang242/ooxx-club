@@ -1,0 +1,44 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+.pagination .page-item {
+  width: 3.2rem;
+  height: 3.2rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  color: var(--main-color);
+  margin-right: 1rem;
+}
+.pagination .page-item a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  color: var(--main-color);
+}
+.pagination .page-item:first-child,
+.pagination .page-item:last-child {
+  font-size: 2.6rem;
+}
+.pagination .page-item:first-child span,
+.pagination .page-item:last-child span {
+  transform: translateY(-0.3rem);
+}
+.pagination .page-item:first-child a,
+.pagination .page-item:last-child a {
+  transform: translateY(-0.3rem);
+}
+.pagination .active {
+  background-color: var(--main-color);
+  color: #fff;
+}
+.pagination .disabled {
+  color: #a3a3a3;
+}
+/*# sourceMappingURL=pagination.css.map */

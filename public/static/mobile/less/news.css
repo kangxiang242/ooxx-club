@@ -1,0 +1,101 @@
+.breadcrumb {
+  width: 100%;
+}
+.main {
+  padding-bottom: 6rem;
+}
+.main .news {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+.main .news .item {
+  background-color: #fff;
+  box-shadow: 0 0.3rem 0.8rem rgba(33, 33, 33, 0.2);
+  margin-bottom: 3rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  width: 100%;
+  overflow: hidden;
+}
+.main .news .item .img-wrapper {
+  width: 100%;
+  min-height: 15rem;
+  background-color: #ccc;
+  overflow: hidden;
+}
+.main .news .item .img-wrapper img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.main .news .item .info {
+  width: 100%;
+  text-align: center;
+  padding: 2rem 1.5rem;
+}
+.main .news .item .info .new-title {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+.main .news .item .info .new-desc {
+  font-size: 1.4rem;
+  color: #A1A1A1;
+  margin-bottom: 1.5rem;
+}
+.main .news .item .info .go {
+  text-align: center;
+  font-size: 1.4rem;
+}
+.main .news .item .info .go a {
+  color: #0078A3;
+  text-decoration: underline;
+}
+.popularity {
+  width: 280px;
+}
+.popularity .popularity-row {
+  width: 280px;
+  border-radius: 6px;
+  margin-bottom: 60px;
+}
+.popularity .popularity-row .box-header {
+  margin-bottom: 15px;
+}
+.popularity .popularity-row .box-header .title {
+  font-size: 20px;
+  color: #000;
+}
+.popularity .popularity-row .popularity-product {
+  background: #fff;
+  padding: 32px 16px;
+  border-radius: 20px;
+}
+.popularity .popularity-row .popularity-product .list-item {
+  margin-bottom: 32px;
+}
+.popularity .popularity-row .popularity-product .list-item a {
+  color: #000;
+  font-size: 14px;
+}
+.popularity .popularity-row .popularity-product .list-item:last-child {
+  margin-bottom: 0;
+}
+.popularity .popularity-row .popularity-product .popularity-item {
+  margin-bottom: 32px;
+}
+.popularity .popularity-row .popularity-product .popularity-item .product {
+  display: flex;
+}
+.popularity .popularity-row .popularity-product .popularity-item .product .popularity-item-img {
+  float: left;
+}
+.popularity .popularity-row .popularity-product .popularity-item .product .popularity-item-img img {
+  width: 80px;
+}
+.popularity .popularity-row .popularity-product .popularity-item .product .new-name {
+  align-self: center;
+  margin-left: 8px;
+}
+/*# sourceMappingURL=news.css.map */

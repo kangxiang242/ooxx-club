@@ -1,0 +1,16 @@
+
+html{
+    height: 100% !important;
+}
+
+
+img{
+    display: block;
+}
+
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+}

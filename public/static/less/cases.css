@@ -1,0 +1,85 @@
+.cases {
+  margin-top: 120px;
+}
+.cases .cases-title {
+  font-size: 35px;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+.cases .list {
+  display: flex;
+  justify-content: space-between;
+}
+@media screen and (max-width: 768px) {
+  .cases .list {
+    flex-direction: column;
+  }
+}
+.cases .list .item {
+  width: 30%;
+  max-width: 300px;
+  outline: none;
+  user-select: none;
+  flex-shrink: 0;
+}
+@media screen and (max-width: 768px) {
+  .cases .list .item {
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+  }
+}
+.cases .list .item .photo {
+  width: 100%;
+  padding-bottom: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.cases .list .item .info {
+  margin-top: 10px;
+  text-align: center;
+}
+.cases .list .item .info .text {
+  color: #000;
+  margin-top: 6px;
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cases .list .item .info .text .proper {
+  width: 24px;
+  height: 24px;
+  margin-left: 4px;
+}
+.cases .btn-box {
+  width: 400px;
+  height: 48px;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+@media screen and (max-width: 768px) {
+  .cases .btn-box {
+    width: 100%;
+  }
+}
+.proper {
+  background-color: #00b135;
+  color: #fff;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.proper i {
+  font-size: 10px;
+}
+/*# sourceMappingURL=cases.css.map */

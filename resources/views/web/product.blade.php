@@ -1,0 +1,393 @@
+@extends('web.layout')
+
+@section('style')
+    @parent
+    <link rel="stylesheet" type="text/less" href="{{ asset('static/less/message.less') }}?v={{ app('cache.config')->get('asset_version') }}"/>
+@stop
+
+@section('script')
+    @parent
+    <script src="{{ asset('static/js/jquery.contip.js') }}"></script>
+    <script src="{{ asset('static/js/sweetalert2.js') }}"></script>
+
+    <script>
+
+        var beforeCallback = function(){
+            //获取产品前加载loading
+            $('.goods-section').html($('#loading-template').html());
+
+        }
+
+        var successCallback = function(html){
+            //获取到产品后
+            $('.goods-section').html(html);
+        }
+        window.addEventListener('load', function () {
+            getGoods2(true,false);
+        });
+    </script>
+
+    <script>
+        if(window.matchMedia('(max-width: 768px)').matches){
+
+            $(function () {
+                wrapTop();
+                $(document).scroll(function(){
+                    wrapTop();
+                })
+            })
+
+            function wrapTop(){
+                if($(document).scrollTop() >= 40 ){
+                    $('#phone').addClass('phone-top');
+                    $('#parttwo-show').addClass('parttwo-top').addClass('parttwo-show-top');
+                    $('.partone').addClass('partone-top');
+                    $('.wrapper').addClass('wrapper-top');
+                    $('.factorbox').addClass('factorbox-top');
+                    
+                }else if($(document).scrollTop() < 20 ){
+                    $('#phone').removeClass('phone-top');
+                    $('#parttwo-show').removeClass('parttwo-top').removeClass('parttwo-show-top');
+                    $('.wrapper').removeClass('wrapper-top');
+                    $('.partone').removeClass('partone-top');
+                    $('.factorbox').removeClass('factorbox-top');
+                }
+            }
+        }
+    </script>
+
+    <!-- <script>
+        if(window.matchMedia('(max-width: 768px)').matches){
+            $(function() {
+                let LastScrollTop = 0;
+
+                $(window).scroll(function() {
+                    let NewScrollTop = $(this).scrollTop();
+
+                    if (NewScrollTop >= LastScrollTop) {
+                        $('#phone').addClass('phone-top');
+                        $('#parttwo-show').addClass('parttwo-top');
+                        $('.wrapper').addClass('wrapper-top');
+                    } else {
+                        $('#phone').removeClass('phone-top');
+                        $('#parttwo-show').removeClass('parttwo-top');
+                        $('.wrapper').removeClass('wrapper-top');
+                    }
+
+                    LastScrollTop = NewScrollTop;
+                });
+
+            });
+        }
+    </script> -->
+
+
+    <script>
+        $(function() {
+            $('#search').click(function() {
+                $('#parttwo-show').toggleClass('parttwo-hide');
+                $('body').toggleClass('bodyoverflow');
+                $('.modebox').toggleClass('modebox-open');
+                $('.choose-sec').toggleClass('choose-show');
+                $('#title1').toggleClass('title1hide');
+                $('#title2').toggleClass('title2hide');
+
+            });
+        });
+    </script>
+
+@stop
+
+@section('breadcrumb')
+    <ul class="breadcrumb">
+        <li><a href="{{ url('/') }}">首頁</a></li>
+        <li class="active">聯繫我們</li>
+    </ul>
+@stop
+
+@section('content')
+    <header>
+        <div class="wrapper" id="wrapper">
+            <div class="logo-sec">
+                <a href="{{ url('/') }}">
+                    <div class="logo" id="logo">
+                        <img src="static/img/mclogo2.png" alt="" style="width:100%;">
+                    </div>
+                    <p class="phone" id="phone">
+                    <svg t="1690939117671" class="phoneicon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="18473" width="200" height="200"><path d="M809.669274 830.096535a69.596508 69.596508 0 0 1-14.762896 103.34027L694.940485 1005.142299c-98.278706 71.283696-318.45675-65.800335-492.237123-305.381043S-31.393984 207.945931 66.884722 136.662235l98.700502-71.705494A69.596508 69.596508 0 0 1 268.0819 84.359404l66.222133 126.539106a97.435112 97.435112 0 0 1-5.061565 97.435112l-38.383529 60.316974a97.435112 97.435112 0 0 0 0 102.918472l21.089851 35.43095a1072.208025 1072.208025 0 0 0 109.667226 151.42513l26.995009 31.21298a97.435112 97.435112 0 0 0 98.700503 30.369385l68.331117-18.137272a97.435112 97.435112 0 0 1 94.060735 25.729619z m-87.73378-371.181377a54.833613 54.833613 0 0 0 70.440102-32.478371 166.188026 166.188026 0 0 0-153.112318-223.974217 54.833613 54.833613 0 0 0 0 109.667225 56.520801 56.520801 0 0 1 52.302831 76.34526 54.833613 54.833613 0 0 0 30.369385 70.440103z m207.102337-299.054087A385.100679 385.100679 0 0 0 620.704209 0a54.833613 54.833613 0 0 0 0 109.667225 278.386033 278.386033 0 0 1 256.452588 375.399348 54.833613 54.833613 0 1 0 102.918473 37.961732 388.053258 388.053258 0 0 0-51.037439-363.167234z" p-id="18474"></path></svg>
+                        客服 09-8765-4321
+                    </p>
+                </a>
+            </div>
+            <div class="m-nav">
+                <div>
+                    <a href="{{ url('/') }}" class="base">
+                        <svg t="1690532729137" class="baseicon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="16557" width="200" height="200"><path d="M793.5 800.6H130c-16.6 0-30 13.4-30 30s13.4 30 30 30h663.5c8 0 15.6-3.2 21.2-8.8 5.6-5.6 8.8-13.3 8.8-21.2 0-8-3.2-15.6-8.8-21.2-5.7-5.7-13.3-8.8-21.2-8.8z m-110.9-56.7h-479C140.9 629.1 71.1 339.9 62.7 163h760.7c-8.3 176.9-78.1 466.1-140.8 580.9zM823.4 485c20.1-84.4 36.1-170.2 45.5-247.8C938.1 257.7 986 305.3 986 356.7c0 63.6-71.8 118.2-162.6 128.3z" p-id="16558"></path></svg>
+                        <p>首頁選茶</p>
+                    </a>
+
+                </div>
+
+
+                <div>
+                    <a href="{{ url('blog') }}" class="base">
+                        <svg t="1690532865213" class="baseicon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8240" width="200" height="200"><path d="M842.7434082 410.03314209c-13.71917724 0-25.21362305 11.4944458-25.21362304 25.21362304v330.74340821c0 13.71917724 11.4944458 25.21362305 25.21362304 25.21362304 13.71917724 0 25.21362305-11.4944458 25.21362305-25.21362304v-330.00183105c0-14.08996583-11.4944458-25.9552002-25.21362305-25.9552002z" p-id="8241"></path><path d="M765.99017334 791.94537354v-559.89074708C765.99017334 190.52630615 731.87762451 156.04296875 689.97851563 156.04296875H232.05462646C190.15551758 156.04296875 156.04296875 190.52630615 156.04296875 232.05462646v559.14916992c0 41.89910888 34.11254883 76.01165771 76.01165771 76.01165772h533.93554688c24.10125732 0 48.57330323-4.82025146 69.70825195-12.97760009h-6.30340576c-35.22491455 0.74157715-63.40484619-26.69677734-63.40484619-62.29248047zM308.80786133 258.00982666h76.01165771c28.17993164 0 50.79803467 22.61810302 50.79803468 50.79803467v76.01165771c0 28.17993164-22.61810302 50.79803467-50.79803468 50.79803468H308.80786133c-28.17993164 0-50.79803467-22.61810302-50.79803467-50.79803468V308.80786133c0-28.17993164 22.61810302-50.79803467 50.79803467-50.79803467z m330.37261963 482.76672363h-355.95703125c-13.71917724 0-25.21362305-11.4944458-25.21362305-25.21362305s11.4944458-25.21362305 25.21362305-25.21362304h355.95703125c13.71917724 0 25.21362305 11.4944458 25.21362305 25.21362304s-11.4944458 25.21362305-25.21362305 25.21362305z m0-152.76489258h-355.95703125c-13.71917724 0-25.21362305-11.4944458-25.21362305-25.21362304s11.4944458-25.21362305 25.21362305-25.21362305h355.95703125c13.71917724 0 25.21362305 11.4944458 25.21362305 25.21362305s-11.4944458 25.21362305-25.21362305 25.21362304z" p-id="8242"></path></svg>
+                        <p>最新消息</p>
+                    </a>
+                </div>
+
+                <div class="contect">
+                    <div class="text">
+                        <svg t="1691137092658" class="lineicon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8095" width="200" height="200"><path d="M826.24 420.821333a26.922667 26.922667 0 0 1 0 53.802667H751.36v48h74.88a26.88 26.88 0 1 1 0 53.717333h-101.802667a26.922667 26.922667 0 0 1-26.752-26.837333V345.941333c0-14.72 12.032-26.88 26.88-26.88h101.802667a26.88 26.88 0 0 1-0.128 53.76H751.36v48h74.88z m-164.48 128.682667a26.88 26.88 0 0 1-26.922667 26.752 26.368 26.368 0 0 1-21.76-10.666667l-104.234666-141.525333v125.44a26.88 26.88 0 0 1-53.632 0V345.941333a26.752 26.752 0 0 1 26.624-26.794666c8.32 0 16 4.437333 21.12 10.837333l105.045333 142.08V345.941333c0-14.72 12.032-26.88 26.88-26.88 14.72 0 26.88 12.16 26.88 26.88v203.562667z m-244.949333 0a26.965333 26.965333 0 0 1-26.922667 26.837333 26.922667 26.922667 0 0 1-26.752-26.837333V345.941333c0-14.72 12.032-26.88 26.88-26.88 14.762667 0 26.794667 12.16 26.794667 26.88v203.562667z m-105.216 26.837333H209.792a27.050667 27.050667 0 0 1-26.88-26.837333V345.941333c0-14.72 12.16-26.88 26.88-26.88 14.848 0 26.88 12.16 26.88 26.88v176.682667h74.922667a26.88 26.88 0 0 1 0 53.717333M1024 440.064C1024 210.901333 794.24 24.405333 512 24.405333S0 210.901333 0 440.064c0 205.269333 182.186667 377.258667 428.16 409.941333 16.682667 3.498667 39.381333 11.008 45.141333 25.173334 5.12 12.842667 3.370667 32.682667 1.621334 46.08l-6.997334 43.52c-1.92 12.842667-10.24 50.602667 44.757334 27.52 55.082667-22.997333 295.082667-173.994667 402.602666-297.6C988.842667 614.101333 1024 531.541333 1024 440.064" p-id="8096"></path></svg>
+                        加line預約
+                    </div>
+                </div>
+            </div>
+            <x-filter></x-filter>
+            {{--<div class="filter" id="filter">
+                <div class="partone" id="partone">
+                    <!-- <div class="citybox">
+                        <div class="city">
+                            <div class="arrowicon">
+                                <input type="checkbox" id="city" name="city">
+                                <label class="area" for="city">
+                                    <p class="itemname">台北</p>
+                                    <div class="arrow"></div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="city">
+                            <div class="arrowicon">
+                                <input type="checkbox" id="area" name="area">
+                                <label class="area" for="area">
+                                    <p class="itemname">萬華區</p>
+                                    <div class="arrow"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </div> -->
+                    <input type="checkbox" id="search">
+                    <label for="search" class="search">
+                        <div class="searchbox">
+                            <div class="searchopen">
+                                <span class="item-count">0</span>
+                                <span class="searchtext">進階搜尋</span>
+                            </div>
+                            <div class="searchcancel">
+                                <svg t="1690769505475" class="closeicon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9007" width="200" height="200"><path d="M621.714286 512 1002.057143 131.657143c29.257143-29.257143 29.257143-80.457143 0-109.714286-29.257143-29.257143-80.457143-29.257143-109.714286 0L512 402.285714 131.657143 21.942857c-29.257143-29.257143-80.457143-29.257143-109.714286 0-29.257143 29.257143-29.257143 80.457143 0 109.714286L402.285714 512 21.942857 892.342857c-29.257143 29.257143-29.257143 80.457143 0 109.714286 29.257143 29.257143 80.457143 29.257143 109.714286 0L512 621.714286l380.342857 380.342857c29.257143 29.257143 80.457143 29.257143 109.714286 0 29.257143-29.257143 29.257143-80.457143 0-109.714286L621.714286 512z" p-id="9008"></path></svg>
+                                <span class="searchtext">取消搜尋</span>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+
+                <div class="parttwo-show parttwo-hide" id="parttwo-show">
+                    <div class="choose-sec" id="choose-sec">
+                        <p class="title">茶溫<span class="eng">（Age）</span></p>
+                        <div class="sliderbar"></div>
+                    </div>
+                    <div class="choose-sec" id="choose-sec">
+                        <p class="title">預算<span class="eng">（NT$）</p>
+                        <div class="sliderbar"></div>
+                    </div>
+                    <div class="choose-sec" id="choose-sec">
+                        <p class="title">茶杯<span class="eng">（Cup）</p>
+                        <div class="cupchoose">
+                            <label class="cup"><input type="checkbox" name="1" value="A">A</p></label>
+                            <label class="cup"><input type="checkbox" name="2" value="B"><p class="cupitem">B</p></label>
+                            <label class="cup"><input type="checkbox" name="3" value="C"><p class="cupitem">C</p></label>
+                            <label class="cup"><input type="checkbox" name="4" value="D"><p class="cupitem">D</p></label>
+                            <label class="cup"><input type="checkbox" name="5" value="E"><p class="cupitem">E</p></label>
+                            <label class="cup"><input type="checkbox" name="6" value="F"><p class="cupitem">F</p></label>
+                            <label class="cup"><input type="checkbox" name="7" value="G+"><p class="cupitem">G+</p></label>
+                        </div>
+                    </div>
+                    <div class="choose-sec" id="choose-sec">
+                        <p class="title">身高<span class="eng">（cm）</p>
+                        <div class="bodychoose">
+                            <label class="body"><input type="checkbox" name="1" value="1"><p class="bodyitem">160以下</p></label>
+                            <label class="body"><input type="checkbox" name="2" value="2"><p class="bodyitem">160~170</p></label>
+                            <label class="body"><input type="checkbox" name="3" value="3"><p class="bodyitem">170以上</p></label>
+                        </div>
+                    </div>
+                    <div class="choose-sec" id="choose-sec">
+                        <p class="title">體重<span class="eng">（kg）</p>
+                        <div class="bodychoose">
+                            <label class="body"><input type="checkbox" name="1" value="1">50以下</label>
+                            <label class="body"><input type="checkbox" name="2" value="2">50~60</label>
+                            <label class="body"><input type="checkbox" name="3" value="3">60以上</label>
+                        </div>
+                    </div>
+                    <div class="choose-sec" id="choose-sec">
+                        <p class="title">茶籍</p>
+                        <div class="comechoose">
+                            <label class="come"><input type="checkbox" name="1" value="1">
+                                <div class="flag"><img src="static/img/g6.jpg" alt=""></div>
+                                <p class="flagname">台灣</p>
+                            </label>
+                            <label class="come"><input type="checkbox" name="1" value="1">
+                                <div class="flag"><img src="static/img/g6.jpg" alt=""></div>
+                                <p class="flagname">大陸</p>
+                            </label>
+                            <label class="come"><input type="checkbox" name="1" value="1">
+                                <div class="flag"><img src="static/img/g6.jpg" alt=""></div>
+                                <p class="flagname">日本</p>
+                            </label>
+                            <label class="come"><input type="checkbox" name="1" value="1">
+                                <div class="flag"><img src="static/img/g6.jpg" alt=""></div>
+                                <p class="flagname">越南</p>
+                            </label>
+                            <label class="come"><input type="checkbox" name="1" value="1">
+                                <div class="flag"><img src="static/img/g6.jpg" alt=""></div>
+                                <p class="flagname">泰國</p>
+                            </label>
+                            <label class="come"><input type="checkbox" name="1" value="1">
+                                <div class="flag"><img src="static/img/g6.jpg" alt=""></div>
+                                <p class="flagname">烏克蘭</p>
+                            </label>
+                            <label class="come"><input type="checkbox" name="1" value="1">
+                                <div class="flag"><img src="static/img/g6.jpg" alt=""></div>
+                                <p class="flagname">俄羅斯</p>
+                            </label>
+                            <label class="come"><input type="checkbox" name="1" value="1">
+                                <div class="flag"><img src="static/img/g6.jpg" alt=""></div>
+                                <p class="flagname">美國</p>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="choose-sec" id="choose-sec">
+                        <p class="title">外貌</p>
+                        <div class="outlookchoose">
+                            <label class="outlook"><input type="checkbox" name="1" value="1">長髮</label>
+                            <label class="outlook"><input type="checkbox" name="1" value="1">短髮</label>
+                            <label class="outlook"><input type="checkbox" name="1" value="1">熟女</label>
+                            <label class="outlook"><input type="checkbox" name="1" value="1">輕熟</label>
+                            <label class="outlook"><input type="checkbox" name="1" value="1">氣質</label>
+                            <label class="outlook"><input type="checkbox" name="1" value="1">混血</label>
+                            <label class="outlook"><input type="checkbox" name="1" value="1">妖豔</label>
+                        </div>
+                    </div>
+                    <div class="choose-sec" id="choose-sec">
+                        <p class="title">體型</p>
+                        <div class="sizechoose">
+                            <label class="size"><input type="checkbox" name="1" value="1">蘿莉小只馬</label>
+                            <label class="size"><input type="checkbox" name="1" value="1">美腿長腿</label>
+                            <label class="size"><input type="checkbox" name="1" value="1">巨尻美臀</label>
+                            <label class="size"><input type="checkbox" name="1" value="1">巨奶美乳</label>
+                            <label class="size"><input type="checkbox" name="1" value="1">麻豆身材</label>
+                            <label class="size"><input type="checkbox" name="1" value="1">無毛白虎</label>
+                            <label class="size"><input type="checkbox" name="1" value="1">有刺青</label>
+                        </div>
+                    </div>
+                    <div class="choose-sec" id="choose-sec">
+                        <p class="title">個性</p>
+                        <div class="charchoose">
+                            <label class="char"><input type="checkbox" name="1" value="1">溫柔婉約</label>
+                            <label class="char"><input type="checkbox" name="1" value="1">熱情活潑</label>
+                            <label class="char"><input type="checkbox" name="1" value="1">親和好聊</label>
+                            <label class="char"><input type="checkbox" name="1" value="1">細心體貼</label>
+                            <label class="char"><input type="checkbox" name="1" value="1">服务殷勤</label>
+                            <label class="char"><input type="checkbox" name="1" value="1">喜歡刺激</label>
+                            <label class="char"><input type="checkbox" name="1" value="1">重口變態</label>
+                        </div>
+                    </div>
+                    <div class="choose-sec" id="choose-sec">
+                        <p class="title">職業</p>
+                        <div class="jobchoose">
+                            <label class="job"><input type="checkbox" name="1" value="1">素人</label>
+                            <label class="job"><input type="checkbox" name="1" value="1">JKF女郎</label>
+                            <label class="job"><input type="checkbox" name="1" value="1">JVID女郎</label>
+                            <label class="job"><input type="checkbox" name="1" value="1">日本女优</label>
+                            <label class="job"><input type="checkbox" name="1" value="1">台湾小模</label>
+                            <label class="job"><input type="checkbox" name="1" value="1">日韩小模</label>
+                            <label class="job"><input type="checkbox" name="1" value="1">港澳小模</label>
+                            <label class="job"><input type="checkbox" name="1" value="1">外国小模</label>
+                        </div>
+                    </div>
+                    <div class="choose-sec" id="choose-sec">
+                        <p class="title">可配合</p>
+                        <div class="coopchoose">
+                            <label class="coop"><input type="checkbox" name="1" value="1">
+                            <img src="static/img/nocondom.png" class="coopicon" alt="">全程無套</label>
+                            <label class="coop"><input type="checkbox" name="1" value="1">
+                            <img src="static/img/nocondom.png" class="coopicon" alt="">無套吹</label>
+                            <label class="coop"><input type="checkbox" name="1" value="1">
+                            <img src="static/img/nocondom.png" class="coopicon" alt="">口爆</label>
+                            <label class="coop"><input type="checkbox" name="1" value="1">
+                            <img src="static/img/nocondom.png" class="coopicon" alt="">陪洗</label>
+                            <label class="coop"><input type="checkbox" name="1" value="1">
+                            <img src="static/img/nocondom.png" class="coopicon" alt="">舔蛋</label>
+                            <label class="coop"><input type="checkbox" name="1" value="1">
+                            <img src="static/img/nocondom.png" class="coopicon" alt="">無套中出</label>
+                            <label class="coop"><input type="checkbox" name="1" value="1">
+                            <img src="static/img/nocondom.png" class="coopicon" alt="">遮臉攝影</label>
+                            <label class="coop"><input type="checkbox" name="1" value="1">
+                            <img src="static/img/nocondom.png" class="coopicon" alt="">深喉</label>
+                            <label class="coop"><input type="checkbox" name="1" value="1">
+                            <img src="static/img/nocondom.png" class="coopicon" alt="">車震</label>
+                            <label class="coop"><input type="checkbox" name="1" value="1">
+                            <img src="static/img/nocondom.png" class="coopicon" alt="">走後</label>
+                            <label class="coop"><input type="checkbox" name="1" value="1">
+                            <img src="static/img/nocondom.png" class="coopicon" alt="">顏射</label>
+                            <label class="coop"><input type="checkbox" name="1" value="1">
+                            <img src="static/img/nocondom.png" class="coopicon" alt="">三通</label>
+                        </div>
+                    </div>
+                    <div class="buttonbox">
+                        <button class="reset">
+                            <span>全部清除</span>
+                        </button>
+                        <button class="conform">
+                            <span class="result">查看挑選 200+ 結果</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>--}}
+        </div>
+
+        <div class="factorbox">
+            <p class="factor">台灣
+                <svg t="1690789204748" class="factorclose" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9156" width="200" height="200"><path d="M512 102.4a409.6 409.6 0 1 0 409.6 409.6 409.6 409.6 0 0 0-409.6-409.6z m181.248 518.144a51.2 51.2 0 0 1-72.704 72.704L512 584.192l-108.544 109.056a51.2 51.2 0 0 1-72.704-72.704L439.808 512 330.752 403.456a51.2 51.2 0 0 1 72.704-72.704L512 439.808l108.544-109.056a51.2 51.2 0 0 1 72.704 72.704L584.192 512z" fill="" p-id="9157"></path></svg>
+            </p>
+            <p class="factor">氣質
+                <svg t="1690789204748" class="factorclose" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9156" width="200" height="200"><path d="M512 102.4a409.6 409.6 0 1 0 409.6 409.6 409.6 409.6 0 0 0-409.6-409.6z m181.248 518.144a51.2 51.2 0 0 1-72.704 72.704L512 584.192l-108.544 109.056a51.2 51.2 0 0 1-72.704-72.704L439.808 512 330.752 403.456a51.2 51.2 0 0 1 72.704-72.704L512 439.808l108.544-109.056a51.2 51.2 0 0 1 72.704 72.704L584.192 512z" fill="" p-id="9157"></path></svg>
+            </p>
+            <p class="factor">美腿長腿
+                <svg t="1690789204748" class="factorclose" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9156" width="200" height="200"><path d="M512 102.4a409.6 409.6 0 1 0 409.6 409.6 409.6 409.6 0 0 0-409.6-409.6z m181.248 518.144a51.2 51.2 0 0 1-72.704 72.704L512 584.192l-108.544 109.056a51.2 51.2 0 0 1-72.704-72.704L439.808 512 330.752 403.456a51.2 51.2 0 0 1 72.704-72.704L512 439.808l108.544-109.056a51.2 51.2 0 0 1 72.704 72.704L584.192 512z" fill="" p-id="9157"></path></svg>
+            </p>
+        </div>
+    </header>
+
+
+    <section class="pc">
+        <x-filter></x-filter>
+        <div class="goodpart">
+            <div class="factorbox">
+                <p class="factor">台灣
+                    <svg t="1690789204748" class="factorclose" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9156" width="200" height="200"><path d="M512 102.4a409.6 409.6 0 1 0 409.6 409.6 409.6 409.6 0 0 0-409.6-409.6z m181.248 518.144a51.2 51.2 0 0 1-72.704 72.704L512 584.192l-108.544 109.056a51.2 51.2 0 0 1-72.704-72.704L439.808 512 330.752 403.456a51.2 51.2 0 0 1 72.704-72.704L512 439.808l108.544-109.056a51.2 51.2 0 0 1 72.704 72.704L584.192 512z" fill="" p-id="9157"></path></svg>
+                </p>
+                <p class="factor">氣質
+                    <svg t="1690789204748" class="factorclose" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9156" width="200" height="200"><path d="M512 102.4a409.6 409.6 0 1 0 409.6 409.6 409.6 409.6 0 0 0-409.6-409.6z m181.248 518.144a51.2 51.2 0 0 1-72.704 72.704L512 584.192l-108.544 109.056a51.2 51.2 0 0 1-72.704-72.704L439.808 512 330.752 403.456a51.2 51.2 0 0 1 72.704-72.704L512 439.808l108.544-109.056a51.2 51.2 0 0 1 72.704 72.704L584.192 512z" fill="" p-id="9157"></path></svg>
+                </p>
+                <p class="factor">美腿長腿
+                    <svg t="1690789204748" class="factorclose" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9156" width="200" height="200"><path d="M512 102.4a409.6 409.6 0 1 0 409.6 409.6 409.6 409.6 0 0 0-409.6-409.6z m181.248 518.144a51.2 51.2 0 0 1-72.704 72.704L512 584.192l-108.544 109.056a51.2 51.2 0 0 1-72.704-72.704L439.808 512 330.752 403.456a51.2 51.2 0 0 1 72.704-72.704L512 439.808l108.544-109.056a51.2 51.2 0 0 1 72.704 72.704L584.192 512z" fill="" p-id="9157"></path></svg>
+                </p>
+            </div>
+
+            <div class="goods-container">
+                <section class="goods-section" >
+                    {{-- 產品數據輸出 --}}
+                </section>
+                <div class="goods-loading" id="goods-loading">加载中...</div>
+                <div class="goods-complete" id="goods-complete">已加載完全部產品</div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+@endsection
