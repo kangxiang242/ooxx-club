@@ -20,6 +20,7 @@ class ArticleCateController extends AdminController
      */
     protected function grid()
     {
+        phpinfo();exit;
         $picture = Picture::first();
         $images = explode(',',$picture->image);
         foreach ($images as $item){

@@ -145,9 +145,9 @@
 
             <div class="modebox" id="modebox">
                 <div class="tabs">
-                    <input type="radio" id="radio-1" name="tabs" value="1">
+                    <input type="radio" id="radio-1" name="tabs2" value="1">
                     <label class="tab" for="radio-1">外送</label>
-                    <input type="radio" id="radio-2" name="tabs" value="2">
+                    <input type="radio" id="radio-2" name="tabs2" value="2">
                     <label class="tab" for="radio-2">定點</label>
                     <span class="glider"></span>
                 </div>

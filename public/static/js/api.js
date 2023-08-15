@@ -38,7 +38,7 @@ function getGoods(data){
 
 
 var $grid = $('.goods-section')
-var gutter = window.matchMedia('(max-width: 768px)').matches?24:50
+var gutter = window.matchMedia('(max-width: 768px)').matches?12:50
 
 
 
@@ -89,9 +89,7 @@ function getGoods2(filter=false,is_append= true,data={},reset_page = false){
                         columnWidth :  $('.goods-section').find('.goods .cover').width() ,//一列的宽度 Integer
                         isAnimated:false,//使用jquery的布局变化  Boolean
                         gutterWidth:gutter,//列的间隙 Integer
-                        //isFitWidth:true,// 适应宽度   Boolean
                         isResizableL:true,// 是否可调整大小 Boolean
-                        //isRTL:false,//使用从右到左的布局 Boolean
                     });
 
                     if(current_page == last_page){
@@ -397,4 +395,9 @@ $(document).ready(function(){
 
         }
     });
+});
+
+$('#radio-1,#radio-2').click(function () {
+    var tab = $(this).val();
+    getGoods2(false,false,{tab:tab},true);
 });

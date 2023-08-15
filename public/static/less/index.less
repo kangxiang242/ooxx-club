@@ -293,8 +293,6 @@ header{
 .quicklink-section{
     width: 100%;
     max-width: 1280px;
-    margin: 0 auto;
-    padding-left: 24px;
     @media screen and (min-width: 768px) {
         display: none;
     }
@@ -318,6 +316,9 @@ header{
             @media screen and (max-width: 768px) {
                 width: 72px;
                 margin-right: 10px;
+                &:first-child{
+                    margin-left: 18px;
+                }
             }
             img{
                 width: 100%;
@@ -500,7 +501,7 @@ header{
                 width: calc(50% - 100px);
                 margin-bottom: 50px;
                 @media screen and (max-width: 768px) {
-                    width: calc(50% - 12px);
+                    width: calc(50% - 6px);
                     margin-bottom: 24px;
                 }
                 &.hide{

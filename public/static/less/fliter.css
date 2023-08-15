@@ -467,10 +467,10 @@
 .filter .parttwo-show .choose-sec .modebox input[type="radio"]:checked + label {
   color: #000000;
 }
-.filter .parttwo-show .choose-sec .modebox input[id="radio-1"]:checked ~ .glider {
+.filter .parttwo-show .choose-sec .modebox input[id="fit-tabs-1"]:checked ~ .glider {
   transform: translateX(0);
 }
-.filter .parttwo-show .choose-sec .modebox input[id="radio-2"]:checked ~ .glider {
+.filter .parttwo-show .choose-sec .modebox input[id="fit-tabs-2"]:checked ~ .glider {
   transform: translateX(100%);
 }
 .filter .parttwo-show .choose-sec .modebox .glider {

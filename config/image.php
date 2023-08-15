@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'driver' => 'imagick',
+    'driver' => 'gd',
 
 
     'resizes'=>[
