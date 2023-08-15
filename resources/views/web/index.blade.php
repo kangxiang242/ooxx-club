@@ -1,7 +1,5 @@
 @extends('web.layout')
-@php
-    $home_statistic_content = array_values(json_decode(app('cache.config')->get('home_statistic_content'),true));
-@endphp
+
 @section('style')
     @parent
     <link rel="stylesheet" type="text/css" href="{{ asset('static/swiper4/swiper.min.css') }}"/>
