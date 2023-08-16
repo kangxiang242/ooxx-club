@@ -97,7 +97,7 @@ header .wrapper .m-nav .base {
   display: flex;
   flex-direction: column;
   white-space: nowrap;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s;
 }
 @media screen and (max-width: 768px) {
   header .wrapper .m-nav .base {
