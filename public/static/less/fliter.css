@@ -464,8 +464,10 @@
   -webkit-tap-highlight-color: transparent;
   transition: all 0.15s ease-in;
 }
-.filter .parttwo-show .choose-sec .modebox .tab:hover {
-  background-color: rgba(255, 226, 131, 0.5);
+@media screen and (min-width: 768px) {
+  .filter .parttwo-show .choose-sec .modebox .tab:hover {
+    background-color: rgba(255, 226, 131, 0.5);
+  }
 }
 .filter .parttwo-show .choose-sec .modebox input[type="radio"]:checked + label {
   color: #000000;
@@ -667,8 +669,10 @@
   border: 1px solid #ffcb00;
   transition: all 0.15s ease-in;
 }
-.filter .parttwo-show .choose-sec .cupchoose .cup:hover {
-  background-color: rgba(255, 226, 131, 0.5);
+@media screen and (min-width: 768px) {
+  .filter .parttwo-show .choose-sec .cupchoose .cup:hover {
+    background-color: rgba(255, 226, 131, 0.5);
+  }
 }
 @media screen and (max-width: 768px) {
   .filter .parttwo-show .choose-sec .cupchoose .cup {
@@ -700,8 +704,10 @@
   border: 1px solid #ffcb00;
   transition: all 0.15s ease-in;
 }
-.filter .parttwo-show .choose-sec .bodychoose .body:hover {
-  background-color: rgba(255, 226, 131, 0.5);
+@media screen and (min-width: 768px) {
+  .filter .parttwo-show .choose-sec .bodychoose .body:hover {
+    background-color: rgba(255, 226, 131, 0.5);
+  }
 }
 .filter .parttwo-show .choose-sec .bodychoose .body .bodyitem {
   width: 100%;
@@ -729,16 +735,18 @@
   border: 1px solid #ffcb00;
   transition: all 0.15s ease-in;
 }
-.filter .parttwo-show .choose-sec .comechoose .come:hover {
-  background-color: rgba(255, 226, 131, 0.5);
+@media screen and (min-width: 768px) {
+  .filter .parttwo-show .choose-sec .comechoose .come:hover {
+    background-color: rgba(255, 226, 131, 0.5);
+  }
 }
 .filter .parttwo-show .choose-sec .comechoose .come .flag {
   display: inline-block;
-  border-radius: 50%;
+  border-radius: 2px;
   width: 18px;
-  height: 18px;
+  height: 12px;
   overflow: hidden;
-  margin-right: 3px;
+  margin-right: 6px;
 }
 .filter .parttwo-show .choose-sec .comechoose .come .flag img {
   width: 100%;
@@ -763,8 +771,10 @@
   border: 1px solid #ffcb00;
   transition: all 0.15s ease-in;
 }
-.filter .parttwo-show .choose-sec .outlookchoose .outlook:hover {
-  background-color: rgba(255, 226, 131, 0.5);
+@media screen and (min-width: 768px) {
+  .filter .parttwo-show .choose-sec .outlookchoose .outlook:hover {
+    background-color: rgba(255, 226, 131, 0.5);
+  }
 }
 .filter .parttwo-show .choose-sec .coopchoose {
   width: 100%;
@@ -786,8 +796,10 @@
   border: 1px solid #ffcb00;
   transition: all 0.15s ease-in;
 }
-.filter .parttwo-show .choose-sec .coopchoose .coop:hover {
-  background-color: rgba(255, 226, 131, 0.5);
+@media screen and (min-width: 768px) {
+  .filter .parttwo-show .choose-sec .coopchoose .coop:hover {
+    background-color: rgba(255, 226, 131, 0.5);
+  }
 }
 .filter .parttwo-show .choose-sec .coopchoose .coop .coopicon {
   width: 13px;
@@ -826,8 +838,23 @@
   font-weight: 500;
   width: 100%;
   border: none;
+  display: inline-block;
   background-color: transparent;
   align-items: center;
+  transition: all 0.15s ease-in;
+}
+.filter .parttwo-show .buttonbox .reset:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: #ff0000;
+  transition: width 0.3s ease-in-out;
+}
+.filter .parttwo-show .buttonbox .reset:hover:before {
+  width: 100%;
 }
 .filter .parttwo-show .buttonbox .conform {
   position: relative;

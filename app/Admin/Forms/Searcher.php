@@ -13,7 +13,7 @@ class Searcher extends Config
     {
         $this->tab('Search Console', function () {
             $this->textarea('robots','robots')->rows(10);
-            $this->file('google_verify_file', '验证文件')->autoUpload()->move('google-verify-file');
+            $this->multipleFile('google_verify_file', '验证文件')->autoUpload()->move('google-verify-file');
             $this->textarea('google_ga', 'GA代碼')->rows(10);
             $this->radio('disable_googlebot','谷歌蜘蛛')->options(['0'=> '正常訪問','1' => '禁止訪問',])->default(0);
         })->tab('首页独立版',function (){
