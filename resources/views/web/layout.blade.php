@@ -46,7 +46,7 @@
 <body class="_show_loading">
 
 <div class="global-loading" id="loading">
-    <img width="50" src="{{ asset_upload(app('cache.config')->get('loading_image')) }}" alt="loading">
+    {!! app('cache.config')->get('loading_code') !!}
 </div>
 
 <div class="main-body">

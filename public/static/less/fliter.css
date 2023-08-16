@@ -456,16 +456,16 @@
   justify-content: center;
   height: 32px;
   width: 64px;
+  border-radius: 99px;
   font-size: 16px;
   color: black;
   font-weight: 500;
-  border-radius: 99px;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
-  transition: color 0.15s ease-in;
+  transition: all 0.15s ease-in;
 }
 .filter .parttwo-show .choose-sec .modebox .tab:hover {
-  background-color: #eee;
+  background-color: rgba(255, 226, 131, 0.5);
 }
 .filter .parttwo-show .choose-sec .modebox input[type="radio"]:checked + label {
   color: #000000;
@@ -665,6 +665,10 @@
   height: 40px;
   font-weight: 500;
   border: 1px solid #ffcb00;
+  transition: all 0.15s ease-in;
+}
+.filter .parttwo-show .choose-sec .cupchoose .cup:hover {
+  background-color: rgba(255, 226, 131, 0.5);
 }
 @media screen and (max-width: 768px) {
   .filter .parttwo-show .choose-sec .cupchoose .cup {
@@ -694,6 +698,10 @@
   font-weight: 500;
   font-size: 13px;
   border: 1px solid #ffcb00;
+  transition: all 0.15s ease-in;
+}
+.filter .parttwo-show .choose-sec .bodychoose .body:hover {
+  background-color: rgba(255, 226, 131, 0.5);
 }
 .filter .parttwo-show .choose-sec .bodychoose .body .bodyitem {
   width: 100%;
@@ -719,6 +727,10 @@
   align-items: center;
   justify-content: center;
   border: 1px solid #ffcb00;
+  transition: all 0.15s ease-in;
+}
+.filter .parttwo-show .choose-sec .comechoose .come:hover {
+  background-color: rgba(255, 226, 131, 0.5);
 }
 .filter .parttwo-show .choose-sec .comechoose .come .flag {
   display: inline-block;
@@ -749,6 +761,10 @@
   font-weight: 500;
   font-size: 13px;
   border: 1px solid #ffcb00;
+  transition: all 0.15s ease-in;
+}
+.filter .parttwo-show .choose-sec .outlookchoose .outlook:hover {
+  background-color: rgba(255, 226, 131, 0.5);
 }
 .filter .parttwo-show .choose-sec .coopchoose {
   width: 100%;
@@ -768,6 +784,10 @@
   white-space: nowrap;
   margin: 4px 0;
   border: 1px solid #ffcb00;
+  transition: all 0.15s ease-in;
+}
+.filter .parttwo-show .choose-sec .coopchoose .coop:hover {
+  background-color: rgba(255, 226, 131, 0.5);
 }
 .filter .parttwo-show .choose-sec .coopchoose .coop .coopicon {
   width: 13px;

@@ -21,13 +21,13 @@ class ArticleCateController extends AdminController
     protected function grid()
     {
 
-        $picture = Picture::first();
+        /*$picture = Picture::first();
         $images = explode(',',$picture->image);
         foreach ($images as $item){
             $img = public_path('uploads/'.$item);
             app(ImageService::class)->resize($img,20);
             dd($img);
-        }
+        }*/
 
         return Grid::make(new ArticleCate(), function (Grid $grid) {
             $grid->column('id')->sortable();

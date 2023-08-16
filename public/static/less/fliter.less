@@ -399,6 +399,7 @@
                     border-radius: 99px;
                     padding: 4px;
                     border: 1px solid #ffcb00;
+                    
 
                 }
 
@@ -416,17 +417,16 @@
                 justify-content: center;
                 height: 32px;
                 width: 64px;
+                border-radius: 99px;
                 font-size: 16px;
                 color: black;
                 font-weight: 500;
-                border-radius: 99px;
                 cursor: pointer;
-                
                 -webkit-tap-highlight-color: transparent;
-                transition: color 0.15s ease-in;
-                &:hover{
-                    background-color: #eee;
-                }
+                transition: all 0.15s ease-in;
+                    &:hover{
+                        background-color: rgba(255, 226, 131, 0.5)
+                    }
                 }
 
                 input[type="radio"]:checked + label {
@@ -643,6 +643,10 @@
                     height: 40px;
                     font-weight: 500;
                     border: 1px solid #ffcb00;
+                    transition: all 0.15s ease-in;
+                    &:hover{
+                        background-color: rgba(255, 226, 131, 0.5)
+                    }
                     @media screen and (max-width: 768px) {
                         width: 48px;
                         height: 48px;
@@ -670,6 +674,10 @@
                     font-weight: 500;
                     font-size: 13px;
                     border: 1px solid #ffcb00;
+                    transition: all 0.15s ease-in;
+                    &:hover{
+                        background-color: rgba(255, 226, 131, 0.5)
+                    }
                     .bodyitem{
                         width: 100%;
                     }
@@ -695,14 +703,19 @@
                     align-items: center;
                     justify-content: center;
                     border: 1px solid #ffcb00;
+                    transition: all 0.15s ease-in;
+                    &:hover{
+                        background-color: rgba(255, 226, 131, 0.5)
+                    }
 
                     .flag{
                         display: inline-block;
-                        border-radius: 50%;
+                        border-radius: 2px;
                         width: 18px;
-                        height: 18px;
+                        height: 12px;
                         overflow: hidden;
-                        margin-right: 3px;
+                        margin-right: 6px;
+                        
                         img{
                             width: 100%;
                         }
@@ -726,6 +739,10 @@
                     font-weight: 500;
                     font-size: 13px;
                     border: 1px solid #ffcb00;
+                    transition: all 0.15s ease-in;
+                    &:hover{
+                        background-color: rgba(255, 226, 131, 0.5)
+                    }
                 }
             }
             /* .sizechoose{
@@ -802,6 +819,10 @@
                     white-space: nowrap;
                     margin: 4px 0;
                     border: 1px solid #ffcb00;
+                    transition: all 0.15s ease-in;
+                    &:hover{
+                        background-color: rgba(255, 226, 131, 0.5)
+                    }
                     .coopicon{
                         width: 13px;
                         height: 13px;
