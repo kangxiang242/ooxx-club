@@ -99,4 +99,9 @@ if (! function_exists('template')) {
     }
 }
 
+function is_mobile(){
+    $user_agent = request()->header('user-agent');
+    return preg_match("/(Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini)/i", $user_agent);
+}
+
 

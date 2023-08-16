@@ -44,7 +44,7 @@
                     $('.partone').addClass('partone-top');
                     $('.wrapper').addClass('wrapper-top');
                     $('.factorbox').addClass('factorbox-top');
-                    
+
                 }else if($(document).scrollTop() < 20 ){
                     $('#phone').removeClass('phone-top');
                     $('#parttwo-show').removeClass('parttwo-top').removeClass('parttwo-show-top');
@@ -143,209 +143,9 @@
                     </div>
                 </div>
             </div>
-            <x-filter></x-filter>
-            {{--<div class="filter" id="filter">
-                <div class="partone" id="partone">
-                    <!-- <div class="citybox">
-                        <div class="city">
-                            <div class="arrowicon">
-                                <input type="checkbox" id="city" name="city">
-                                <label class="area" for="city">
-                                    <p class="itemname">台北</p>
-                                    <div class="arrow"></div>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="city">
-                            <div class="arrowicon">
-                                <input type="checkbox" id="area" name="area">
-                                <label class="area" for="area">
-                                    <p class="itemname">萬華區</p>
-                                    <div class="arrow"></div>
-                                </label>
-                            </div>
-                        </div>
-                    </div> -->
-                    <input type="checkbox" id="search">
-                    <label for="search" class="search">
-                        <div class="searchbox">
-                            <div class="searchopen">
-                                <span class="item-count">0</span>
-                                <span class="searchtext">進階搜尋</span>
-                            </div>
-                            <div class="searchcancel">
-                                <svg t="1690769505475" class="closeicon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9007" width="200" height="200"><path d="M621.714286 512 1002.057143 131.657143c29.257143-29.257143 29.257143-80.457143 0-109.714286-29.257143-29.257143-80.457143-29.257143-109.714286 0L512 402.285714 131.657143 21.942857c-29.257143-29.257143-80.457143-29.257143-109.714286 0-29.257143 29.257143-29.257143 80.457143 0 109.714286L402.285714 512 21.942857 892.342857c-29.257143 29.257143-29.257143 80.457143 0 109.714286 29.257143 29.257143 80.457143 29.257143 109.714286 0L512 621.714286l380.342857 380.342857c29.257143 29.257143 80.457143 29.257143 109.714286 0 29.257143-29.257143 29.257143-80.457143 0-109.714286L621.714286 512z" p-id="9008"></path></svg>
-                                <span class="searchtext">取消搜尋</span>
-                            </div>
-                        </div>
-                    </label>
-                </div>
-
-                <div class="parttwo-show parttwo-hide" id="parttwo-show">
-                    <div class="choose-sec" id="choose-sec">
-                        <p class="title">茶溫<span class="eng">（Age）</span></p>
-                        <div class="sliderbar"></div>
-                    </div>
-                    <div class="choose-sec" id="choose-sec">
-                        <p class="title">預算<span class="eng">（NT$）</p>
-                        <div class="sliderbar"></div>
-                    </div>
-                    <div class="choose-sec" id="choose-sec">
-                        <p class="title">茶杯<span class="eng">（Cup）</p>
-                        <div class="cupchoose">
-                            <label class="cup"><input type="checkbox" name="1" value="A">A</p></label>
-                            <label class="cup"><input type="checkbox" name="2" value="B"><p class="cupitem">B</p></label>
-                            <label class="cup"><input type="checkbox" name="3" value="C"><p class="cupitem">C</p></label>
-                            <label class="cup"><input type="checkbox" name="4" value="D"><p class="cupitem">D</p></label>
-                            <label class="cup"><input type="checkbox" name="5" value="E"><p class="cupitem">E</p></label>
-                            <label class="cup"><input type="checkbox" name="6" value="F"><p class="cupitem">F</p></label>
-                            <label class="cup"><input type="checkbox" name="7" value="G+"><p class="cupitem">G+</p></label>
-                        </div>
-                    </div>
-                    <div class="choose-sec" id="choose-sec">
-                        <p class="title">身高<span class="eng">（cm）</p>
-                        <div class="bodychoose">
-                            <label class="body"><input type="checkbox" name="1" value="1"><p class="bodyitem">160以下</p></label>
-                            <label class="body"><input type="checkbox" name="2" value="2"><p class="bodyitem">160~170</p></label>
-                            <label class="body"><input type="checkbox" name="3" value="3"><p class="bodyitem">170以上</p></label>
-                        </div>
-                    </div>
-                    <div class="choose-sec" id="choose-sec">
-                        <p class="title">體重<span class="eng">（kg）</p>
-                        <div class="bodychoose">
-                            <label class="body"><input type="checkbox" name="1" value="1">50以下</label>
-                            <label class="body"><input type="checkbox" name="2" value="2">50~60</label>
-                            <label class="body"><input type="checkbox" name="3" value="3">60以上</label>
-                        </div>
-                    </div>
-                    <div class="choose-sec" id="choose-sec">
-                        <p class="title">茶籍</p>
-                        <div class="comechoose">
-                            <label class="come"><input type="checkbox" name="1" value="1">
-                                <div class="flag"><img src="static/img/g6.jpg" alt=""></div>
-                                <p class="flagname">台灣</p>
-                            </label>
-                            <label class="come"><input type="checkbox" name="1" value="1">
-                                <div class="flag"><img src="static/img/g6.jpg" alt=""></div>
-                                <p class="flagname">大陸</p>
-                            </label>
-                            <label class="come"><input type="checkbox" name="1" value="1">
-                                <div class="flag"><img src="static/img/g6.jpg" alt=""></div>
-                                <p class="flagname">日本</p>
-                            </label>
-                            <label class="come"><input type="checkbox" name="1" value="1">
-                                <div class="flag"><img src="static/img/g6.jpg" alt=""></div>
-                                <p class="flagname">越南</p>
-                            </label>
-                            <label class="come"><input type="checkbox" name="1" value="1">
-                                <div class="flag"><img src="static/img/g6.jpg" alt=""></div>
-                                <p class="flagname">泰國</p>
-                            </label>
-                            <label class="come"><input type="checkbox" name="1" value="1">
-                                <div class="flag"><img src="static/img/g6.jpg" alt=""></div>
-                                <p class="flagname">烏克蘭</p>
-                            </label>
-                            <label class="come"><input type="checkbox" name="1" value="1">
-                                <div class="flag"><img src="static/img/g6.jpg" alt=""></div>
-                                <p class="flagname">俄羅斯</p>
-                            </label>
-                            <label class="come"><input type="checkbox" name="1" value="1">
-                                <div class="flag"><img src="static/img/g6.jpg" alt=""></div>
-                                <p class="flagname">美國</p>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="choose-sec" id="choose-sec">
-                        <p class="title">外貌</p>
-                        <div class="outlookchoose">
-                            <label class="outlook"><input type="checkbox" name="1" value="1">長髮</label>
-                            <label class="outlook"><input type="checkbox" name="1" value="1">短髮</label>
-                            <label class="outlook"><input type="checkbox" name="1" value="1">熟女</label>
-                            <label class="outlook"><input type="checkbox" name="1" value="1">輕熟</label>
-                            <label class="outlook"><input type="checkbox" name="1" value="1">氣質</label>
-                            <label class="outlook"><input type="checkbox" name="1" value="1">混血</label>
-                            <label class="outlook"><input type="checkbox" name="1" value="1">妖豔</label>
-                        </div>
-                    </div>
-                    <div class="choose-sec" id="choose-sec">
-                        <p class="title">體型</p>
-                        <div class="sizechoose">
-                            <label class="size"><input type="checkbox" name="1" value="1">蘿莉小只馬</label>
-                            <label class="size"><input type="checkbox" name="1" value="1">美腿長腿</label>
-                            <label class="size"><input type="checkbox" name="1" value="1">巨尻美臀</label>
-                            <label class="size"><input type="checkbox" name="1" value="1">巨奶美乳</label>
-                            <label class="size"><input type="checkbox" name="1" value="1">麻豆身材</label>
-                            <label class="size"><input type="checkbox" name="1" value="1">無毛白虎</label>
-                            <label class="size"><input type="checkbox" name="1" value="1">有刺青</label>
-                        </div>
-                    </div>
-                    <div class="choose-sec" id="choose-sec">
-                        <p class="title">個性</p>
-                        <div class="charchoose">
-                            <label class="char"><input type="checkbox" name="1" value="1">溫柔婉約</label>
-                            <label class="char"><input type="checkbox" name="1" value="1">熱情活潑</label>
-                            <label class="char"><input type="checkbox" name="1" value="1">親和好聊</label>
-                            <label class="char"><input type="checkbox" name="1" value="1">細心體貼</label>
-                            <label class="char"><input type="checkbox" name="1" value="1">服务殷勤</label>
-                            <label class="char"><input type="checkbox" name="1" value="1">喜歡刺激</label>
-                            <label class="char"><input type="checkbox" name="1" value="1">重口變態</label>
-                        </div>
-                    </div>
-                    <div class="choose-sec" id="choose-sec">
-                        <p class="title">職業</p>
-                        <div class="jobchoose">
-                            <label class="job"><input type="checkbox" name="1" value="1">素人</label>
-                            <label class="job"><input type="checkbox" name="1" value="1">JKF女郎</label>
-                            <label class="job"><input type="checkbox" name="1" value="1">JVID女郎</label>
-                            <label class="job"><input type="checkbox" name="1" value="1">日本女优</label>
-                            <label class="job"><input type="checkbox" name="1" value="1">台湾小模</label>
-                            <label class="job"><input type="checkbox" name="1" value="1">日韩小模</label>
-                            <label class="job"><input type="checkbox" name="1" value="1">港澳小模</label>
-                            <label class="job"><input type="checkbox" name="1" value="1">外国小模</label>
-                        </div>
-                    </div>
-                    <div class="choose-sec" id="choose-sec">
-                        <p class="title">可配合</p>
-                        <div class="coopchoose">
-                            <label class="coop"><input type="checkbox" name="1" value="1">
-                            <img src="static/img/nocondom.png" class="coopicon" alt="">全程無套</label>
-                            <label class="coop"><input type="checkbox" name="1" value="1">
-                            <img src="static/img/nocondom.png" class="coopicon" alt="">無套吹</label>
-                            <label class="coop"><input type="checkbox" name="1" value="1">
-                            <img src="static/img/nocondom.png" class="coopicon" alt="">口爆</label>
-                            <label class="coop"><input type="checkbox" name="1" value="1">
-                            <img src="static/img/nocondom.png" class="coopicon" alt="">陪洗</label>
-                            <label class="coop"><input type="checkbox" name="1" value="1">
-                            <img src="static/img/nocondom.png" class="coopicon" alt="">舔蛋</label>
-                            <label class="coop"><input type="checkbox" name="1" value="1">
-                            <img src="static/img/nocondom.png" class="coopicon" alt="">無套中出</label>
-                            <label class="coop"><input type="checkbox" name="1" value="1">
-                            <img src="static/img/nocondom.png" class="coopicon" alt="">遮臉攝影</label>
-                            <label class="coop"><input type="checkbox" name="1" value="1">
-                            <img src="static/img/nocondom.png" class="coopicon" alt="">深喉</label>
-                            <label class="coop"><input type="checkbox" name="1" value="1">
-                            <img src="static/img/nocondom.png" class="coopicon" alt="">車震</label>
-                            <label class="coop"><input type="checkbox" name="1" value="1">
-                            <img src="static/img/nocondom.png" class="coopicon" alt="">走後</label>
-                            <label class="coop"><input type="checkbox" name="1" value="1">
-                            <img src="static/img/nocondom.png" class="coopicon" alt="">顏射</label>
-                            <label class="coop"><input type="checkbox" name="1" value="1">
-                            <img src="static/img/nocondom.png" class="coopicon" alt="">三通</label>
-                        </div>
-                    </div>
-                    <div class="buttonbox">
-                        <button class="reset">
-                            <span>全部清除</span>
-                        </button>
-                        <button class="conform">
-                            <span class="result">查看挑選 200+ 結果</span>
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>--}}
+            @if(is_mobile())
+                <x-filter></x-filter>
+            @endif
         </div>
 
         <div class="factorbox">
@@ -363,7 +163,7 @@
 
 
     <section class="pc">
-        <x-filter></x-filter>
+        @if(!is_mobile())<x-filter></x-filter>@endif
         <div class="goodpart">
             <div class="factorbox">
                 <p class="factor">台灣

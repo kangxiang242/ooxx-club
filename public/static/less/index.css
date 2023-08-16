@@ -4,7 +4,7 @@
 header {
   width: 100vw;
   position: sticky;
-  z-index: 99;
+  z-index: 98;
   top: 0;
   left: 0;
   background-color: #fff;
@@ -104,10 +104,10 @@ header .wrapper .modebox .tab {
 header .wrapper .modebox input[type="radio"]:checked + label {
   color: #000000;
 }
-header .wrapper .modebox input[id="radio-1"]:checked ~ .glider {
+header .wrapper .modebox input[id="fit-tabs-1"]:checked ~ .glider {
   transform: translateX(0);
 }
-header .wrapper .modebox input[id="radio-2"]:checked ~ .glider {
+header .wrapper .modebox input[id="fit-tabs-2"]:checked ~ .glider {
   transform: translateX(100%);
 }
 header .wrapper .modebox .glider {
@@ -339,7 +339,6 @@ header .wrapper-top {
 .pc .cityboxindex select {
   border: none;
   background-color: transparent;
-  padding: 5px;
   appearance: none;
   -webkit-appearance: none;
   padding: 8px;

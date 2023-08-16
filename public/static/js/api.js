@@ -235,6 +235,7 @@ var filterInitializeCallback = function (elem,equ,id) {
         '            </p>';
 }
 
+
 initialize()
 function initialize(){
     var quick = getQueryString('quick');
@@ -263,6 +264,7 @@ function initialize(){
                 });
             }else{
                 if(index == 'tab'){
+                    $.cookie('selected_type',element);
                     $('input[name="tabs"][value="'+element+'"]').prop('checked',true)
                 }else if(index == 'city'){
                     city_id = element
@@ -405,9 +407,14 @@ $(document).ready(function(){
     });
 });
 
+/**
+ * 定点外送切换
+ */
 $('#radio-1,#radio-2').click(function () {
     var tab = $(this).val();
     getGoods2(false,false,{tab:tab},true);
     $.cookie('selected_type',tab);
     addFilterFind('tab',tab)
+
+    $('input[name="tabs"][value="'+tab+'"]').prop('checked',true)
 });

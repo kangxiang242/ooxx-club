@@ -552,10 +552,10 @@ header .wrapper .filter .parttwo-show .choose-sec .modebox .tab {
 header .wrapper .filter .parttwo-show .choose-sec .modebox input[type="radio"]:checked + label {
   color: #000000;
 }
-header .wrapper .filter .parttwo-show .choose-sec .modebox input[id="radio-1"]:checked ~ .glider {
+header .wrapper .filter .parttwo-show .choose-sec .modebox input[id="fit-tabs-1"]:checked ~ .glider {
   transform: translateX(0);
 }
-header .wrapper .filter .parttwo-show .choose-sec .modebox input[id="radio-2"]:checked ~ .glider {
+header .wrapper .filter .parttwo-show .choose-sec .modebox input[id="fit-tabs-2"]:checked ~ .glider {
   transform: translateX(100%);
 }
 header .wrapper .filter .parttwo-show .choose-sec .modebox .glider {
@@ -575,13 +575,14 @@ header .wrapper .filter .parttwo-show .choose-sec .citybox {
 header .wrapper .filter .parttwo-show .choose-sec .citybox select {
   border: none;
   background-color: transparent;
-  padding: 5px;
   appearance: none;
   -webkit-appearance: none;
   padding: 8px;
   color: #000;
   font-size: 14px;
   font-weight: 500;
+  width: 100%;
+  outline: none;
 }
 header .wrapper .filter .parttwo-show .choose-sec .citybox .city {
   background-color: #ffffff;
@@ -1383,10 +1384,10 @@ header .factorbox .factor .factorclose {
 .pc .filter .parttwo-show .choose-sec .modebox input[type="radio"]:checked + label {
   color: #000000;
 }
-.pc .filter .parttwo-show .choose-sec .modebox input[id="radio-1"]:checked ~ .glider {
+.pc .filter .parttwo-show .choose-sec .modebox input[id="fit-tabs-1"]:checked ~ .glider {
   transform: translateX(0);
 }
-.pc .filter .parttwo-show .choose-sec .modebox input[id="radio-2"]:checked ~ .glider {
+.pc .filter .parttwo-show .choose-sec .modebox input[id="fit-tabs-2"]:checked ~ .glider {
   transform: translateX(100%);
 }
 .pc .filter .parttwo-show .choose-sec .modebox .glider {

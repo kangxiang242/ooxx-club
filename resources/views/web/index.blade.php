@@ -106,6 +106,10 @@
 
         window.addEventListener('load', function () {
             getGoods2(false);
+
+        });
+
+        $(function () {
             new Swiper('#banner-swiper', {
                 autoplay: { // 自动轮播效果
                     delay:3000,
@@ -118,7 +122,7 @@
                 resizeObserver:true,
 
             })
-        });
+        })
 
     </script>
 
@@ -216,12 +220,13 @@
 
     <section class="pc">
         <p class="goodtitle">今日推薦</p>
+
         <div class="cityboxindex">
             <div class="city">
                 <div class="arrowicon">
                     <input type="checkbox" id="city" name="city">
                     <label class="area" for="city">
-                        {{--<p class="itemname">台北</p>--}}
+
                         <select name="city" id="fil-city"></select>
                         <div class="arrow"></div>
                     </label>
@@ -231,15 +236,17 @@
                 <div class="arrowicon">
                     <input type="checkbox" id="area" name="area">
                     <label class="area" for="area">
-                        {{--<p class="itemname">萬華區</p>--}}
+
                         <select name="county" id="fil-county"></select>
                         <div class="arrow"></div>
                     </label>
                 </div>
             </div>
         </div>
+
         <div class="goodpart">
             <x-filter></x-filter>
+
             <div class="goods-container">
                 <section class="goods-section" >
                     {{-- 產品數據輸出 --}}
