@@ -3,7 +3,7 @@
 
 namespace App\Services;
 
-use App\Models\Product;
+use App\Models\Picture;
 use \Image;
 class ImageService
 {
@@ -15,26 +15,27 @@ class ImageService
                     $constraint->aspectRatio();
                 });
 
-                $saveName = $img->filename.'-'.$size.'.'.$img->extension;
+                $saveName = $img->filename.'-small.'.$img->extension;
 
                 $img->save($img->dirname.'/'.$saveName);
             }catch (\Exception $exception){
-                dd($exception->getMessage());
+
             }
 
         }
     }
 
-    public function resize_product(Product $product){
-
-        foreach ($product->img as $img){
-            $path = public_path('uploads/'.ltrim($img,'/'));
-            if(file_exists($path)){
-                $this->resize($path,50);
+    public function picture(){
+        $pictures = Picture::get();
+        foreach($pictures as $pic){
+            $images = explode(',',$pic->image);
+            foreach($images as $item){
+                $path = public_path('uploads/'.ltrim($item,'/'));
+                if(file_exists($path)){
+                    $this->resize($path,40);
+                }
             }
-
         }
-
     }
 
 }

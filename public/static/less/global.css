@@ -39,6 +39,9 @@ body {
         top: 0;
     }*/
 }
+body button {
+  cursor: pointer;
+}
 body.show-mobile-menu {
   overflow: hidden;
 }
@@ -1355,4 +1358,3 @@ footer .copyright {
     height: 300px;
   }
 }
-/*# sourceMappingURL=global.css.map */

@@ -668,6 +668,7 @@
   font-weight: 500;
   border: 1px solid #ffcb00;
   transition: all 0.15s ease-in;
+  cursor: pointer;
 }
 @media screen and (min-width: 768px) {
   .filter .parttwo-show .choose-sec .cupchoose .cup:hover {
@@ -703,6 +704,7 @@
   font-size: 13px;
   border: 1px solid #ffcb00;
   transition: all 0.15s ease-in;
+  cursor: pointer;
 }
 @media screen and (min-width: 768px) {
   .filter .parttwo-show .choose-sec .bodychoose .body:hover {
@@ -734,6 +736,7 @@
   justify-content: center;
   border: 1px solid #ffcb00;
   transition: all 0.15s ease-in;
+  cursor: pointer;
 }
 @media screen and (min-width: 768px) {
   .filter .parttwo-show .choose-sec .comechoose .come:hover {
@@ -770,6 +773,7 @@
   font-size: 13px;
   border: 1px solid #ffcb00;
   transition: all 0.15s ease-in;
+  cursor: pointer;
 }
 @media screen and (min-width: 768px) {
   .filter .parttwo-show .choose-sec .outlookchoose .outlook:hover {
@@ -795,6 +799,7 @@
   margin: 4px 0;
   border: 1px solid #ffcb00;
   transition: all 0.15s ease-in;
+  cursor: pointer;
 }
 @media screen and (min-width: 768px) {
   .filter .parttwo-show .choose-sec .coopchoose .coop:hover {
@@ -857,8 +862,10 @@
   background-color: #ff0000;
   transition: width 0.3s ease-in-out;
 }
-.filter .parttwo-show .buttonbox .reset:hover .resettext:after {
-  width: 100%;
+@media screen and (min-width: 768px) {
+  .filter .parttwo-show .buttonbox .reset:hover .resettext:after {
+    width: 100%;
+  }
 }
 .filter .parttwo-show .buttonbox .conform {
   position: relative;
@@ -872,10 +879,16 @@
   border-radius: 99px;
   border: none;
   overflow: hidden;
+  transition: height 0.3s cubic-bezier(0.75, -1.62, 0.47, 2.27);
 }
 .filter .parttwo-show .buttonbox .conform .result {
   position: relative;
   z-index: 1;
+}
+@media screen and (min-width: 768px) {
+  .filter .parttwo-show .buttonbox .conform:hover {
+    height: 56px;
+  }
 }
 .filter .parttwo-show .buttonbox .conform:after {
   content: "";

@@ -105,8 +105,14 @@ header{
                 display: flex;
                 flex-direction: column;
                 white-space: nowrap;
+                transition: all 0.3s ease-in-out;
                 @media screen and (max-width: 768px) {
                     font-size: 12px;
+                }
+                @media screen and (min-width: 768px) {
+                    &:hover{
+                        font-weight: 500;
+                    }
                 }
                 .baseicon{
                     width: 22px;
@@ -127,11 +133,16 @@ header{
                 justify-content: center;
                 background-color: #000;
                 height: 40px;
-                border-radius: 20px;
+                border-radius: 99px;
                 overflow: hidden;
                 @media screen and (max-width: 768px) {
                     width: 60%;
-
+                }
+                @media screen and (min-width: 768px) {
+                    &:hover{
+                        height: 48px;
+                        transform: scale(1.1);
+                    }
                 }
                 &:after {
                     content: "";

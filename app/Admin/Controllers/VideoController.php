@@ -61,7 +61,7 @@ class VideoController extends AdminController
         return Form::make(new Video(), function (Form $form) {
 
             $form->file('video')->autoUpload()->uniqueName()->retainable()->accept('mp4')->chunked();
-            $form->image('cover')->autoUpload()->uniqueName()->retainable()->thumbnail('small',10,10*1.066);
+            $form->image('cover')->autoUpload()->uniqueName()->retainable();
             $form->hidden('status')->default(1);
         });
     }

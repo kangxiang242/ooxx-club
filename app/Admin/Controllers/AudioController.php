@@ -60,7 +60,7 @@ class AudioController extends AdminController
     {
         return Form::make(new Audio(), function (Form $form) {
 
-            $form->file('audio')->autoUpload()->uniqueName()->retainable()->accept('mp3')->chunkSize(256)->threads(2);
+            $form->file('audio')->autoUpload()->uniqueName()->retainable()->accept('mp3')->chunkSize(256);
             $form->number('duration')->default(15)->help('單位/秒');
             $form->hidden('status')->default(1);
 

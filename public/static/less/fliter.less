@@ -1,3 +1,4 @@
+
 .citybox{
     display: flex;
     .city{
@@ -391,7 +392,7 @@
                 }
             }
             .modebox{
-
+                
                 .tabs {
                     display: flex;
                     position: relative;
@@ -646,6 +647,7 @@
                     font-weight: 500;
                     border: 1px solid #ffcb00;
                     transition: all 0.15s ease-in;
+                    cursor: pointer;
                     @media screen and (min-width: 768px) {
                         &:hover{
                             background-color: rgba(255, 226, 131, 0.5)
@@ -679,6 +681,7 @@
                     font-size: 13px;
                     border: 1px solid #ffcb00;
                     transition: all 0.15s ease-in;
+                    cursor: pointer;
                     @media screen and (min-width: 768px) {
                         &:hover{
                             background-color: rgba(255, 226, 131, 0.5)
@@ -710,6 +713,7 @@
                     justify-content: center;
                     border: 1px solid #ffcb00;
                     transition: all 0.15s ease-in;
+                    cursor: pointer;
                     @media screen and (min-width: 768px) {
                         &:hover{
                             background-color: rgba(255, 226, 131, 0.5)
@@ -748,6 +752,7 @@
                     font-size: 13px;
                     border: 1px solid #ffcb00;
                     transition: all 0.15s ease-in;
+                    cursor: pointer;
                     @media screen and (min-width: 768px) {
                         &:hover{
                             background-color: rgba(255, 226, 131, 0.5)
@@ -830,6 +835,7 @@
                     margin: 4px 0;
                     border: 1px solid #ffcb00;
                     transition: all 0.15s ease-in;
+                    cursor: pointer;
                     @media screen and (min-width: 768px) {
                         &:hover{
                             background-color: rgba(255, 226, 131, 0.5)
@@ -847,6 +853,7 @@
                 display: inline-flex;
                 label{
                     width: 100%;
+                    
                 }
                 input[type=checkbox]:checked + label{
                     background-color:#ffcb00;
@@ -870,7 +877,7 @@
             height: calc(72px + constant(safe-area-inset-bottom));
             height: calc(72px + env(safe-area-inset-bottom));
             @media screen and (min-width: 768px) {
-
+                
             }
             .reset{
                 flex: 1;
@@ -885,7 +892,6 @@
                 cursor: pointer;
                 .resettext{
                     display: inline-block;
-                    
                     &::after {
                         content: "";
                         position: relative;
@@ -899,14 +905,16 @@
                     }
                 }
                 
-                &:hover {
-                    .resettext{
-                        
-                        &:after {
-                            width: 100%;
+                
+                @media screen and (min-width: 768px) {
+                    &:hover {             
+                        .resettext{
+                            &:after {
+                                width: 100%;
+                            }
                         }
                     }
-                }
+                }  
             }
             .conform{
                 position: relative;
@@ -920,10 +928,16 @@
                 border-radius: 99px;
                 border: none;
                 overflow: hidden;
+                transition: height 0.3s cubic-bezier(0.75, -1.62, 0.47, 2.27);
                 .result{
                     position: relative;
                     z-index: 1;
                 }
+                @media screen and (min-width: 768px) {
+                    &:hover {  
+                        height: 56px;
+                    }
+                } 
                 &:after {
                     content: "";
                     position: absolute;

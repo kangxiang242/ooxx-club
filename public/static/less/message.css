@@ -97,10 +97,16 @@ header .wrapper .m-nav .base {
   display: flex;
   flex-direction: column;
   white-space: nowrap;
+  transition: all 0.3s ease-in-out;
 }
 @media screen and (max-width: 768px) {
   header .wrapper .m-nav .base {
     font-size: 12px;
+  }
+}
+@media screen and (min-width: 768px) {
+  header .wrapper .m-nav .base:hover {
+    font-weight: 500;
   }
 }
 header .wrapper .m-nav .base .baseicon {
@@ -123,12 +129,18 @@ header .wrapper .m-nav .contect {
   justify-content: center;
   background-color: #000;
   height: 40px;
-  border-radius: 20px;
+  border-radius: 99px;
   overflow: hidden;
 }
 @media screen and (max-width: 768px) {
   header .wrapper .m-nav .contect {
     width: 60%;
+  }
+}
+@media screen and (min-width: 768px) {
+  header .wrapper .m-nav .contect:hover {
+    height: 48px;
+    transform: scale(1.1);
   }
 }
 header .wrapper .m-nav .contect:after {
@@ -2051,4 +2063,3 @@ header .factorbox .factor .factorclose {
 .pc .goodpart .goods-section .goods .message .pricebox .price .up {
   font-size: 12px;
 }
-/*# sourceMappingURL=message.css.map */
