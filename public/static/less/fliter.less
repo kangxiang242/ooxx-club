@@ -882,11 +882,12 @@
                 background-color: transparent;
                 align-items: center;
                 transition: all 0.15s ease-in;
-                .resttext{
+                .resettext{
                     display: inline-block;
-                    &:before {
+                    &::after {
                         content: "";
-                        position: absolute;
+                        position: relative;
+                        display: inline-block;
                         left: 0;
                         bottom: -2px;
                         width: 0;

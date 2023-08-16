@@ -842,12 +842,13 @@
   align-items: center;
   transition: all 0.15s ease-in;
 }
-.filter .parttwo-show .buttonbox .reset .resttext {
+.filter .parttwo-show .buttonbox .reset .resettext {
   display: inline-block;
 }
-.filter .parttwo-show .buttonbox .reset .resttext:before {
+.filter .parttwo-show .buttonbox .reset .resettext::after {
   content: "";
-  position: absolute;
+  position: relative;
+  display: inline-block;
   left: 0;
   bottom: -2px;
   width: 0;

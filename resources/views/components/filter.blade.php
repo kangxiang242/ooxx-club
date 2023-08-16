@@ -148,7 +148,7 @@
         </div>
         <div class="buttonbox">
             <button class="reset">
-                <p class="resettext">全部清除</p>
+                <span class="resettext">全部清除</span>
             </button>
             <button class="conform">
                 <span class="result">查看挑選 200+ 結果</span>
