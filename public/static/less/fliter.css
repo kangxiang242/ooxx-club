@@ -838,12 +838,14 @@
   font-weight: 500;
   width: 100%;
   border: none;
-  display: inline-block;
   background-color: transparent;
   align-items: center;
   transition: all 0.15s ease-in;
 }
-.filter .parttwo-show .buttonbox .reset:before {
+.filter .parttwo-show .buttonbox .reset .resttext {
+  display: inline-block;
+}
+.filter .parttwo-show .buttonbox .reset .resttext:before {
   content: "";
   position: absolute;
   left: 0;
