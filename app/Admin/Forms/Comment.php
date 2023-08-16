@@ -30,8 +30,13 @@ display:none;
     height: 40px;
     width: 100px;
 }
-
-
+.card .web-uploader{
+    display: flex;
+    flex-direction: column-reverse;
+}
+.card .web-uploader .statusBar{
+    margin-bottom:20px;
+}
 STYLE
 );
         $this->multipleFile('comment_picture','圖片')->limit(1000)->move('comment')->autoUpload()->uniqueName()->saving(function ($paths){

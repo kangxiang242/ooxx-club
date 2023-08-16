@@ -841,6 +841,7 @@
   background-color: transparent;
   align-items: center;
   transition: all 0.15s ease-in;
+  cursor: pointer;
 }
 .filter .parttwo-show .buttonbox .reset .resettext {
   display: inline-block;
@@ -848,15 +849,15 @@
 .filter .parttwo-show .buttonbox .reset .resettext::after {
   content: "";
   position: relative;
-  display: inline-block;
+  display: block;
   left: 0;
-  bottom: -2px;
+  bottom: 1px;
   width: 0;
-  height: 2px;
+  height: 1px;
   background-color: #ff0000;
   transition: width 0.3s ease-in-out;
 }
-.filter .parttwo-show .buttonbox .reset:hover:before {
+.filter .parttwo-show .buttonbox .reset:hover .resettext:after {
   width: 100%;
 }
 .filter .parttwo-show .buttonbox .conform {
