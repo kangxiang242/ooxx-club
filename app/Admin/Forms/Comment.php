@@ -12,7 +12,7 @@ class Comment extends Config
 
     public function form()
     {
-        $this->multipleImage('comment_picture','圖片')->limit(1000)->move('comment')->autoUpload()->uniqueName()->saving(function ($paths){
+        $this->multipleFile('comment_picture','圖片')->limit(1000)->move('comment')->autoUpload()->uniqueName()->saving(function ($paths){
             return implode(',', $paths);
         });
     }
