@@ -413,9 +413,12 @@ $(document).ready(function(){
  */
 $('#radio-1,#radio-2').click(function () {
     var tab = $(this).val();
-    getGoods2(false,false,{tab:tab},true);
-    $.cookie('selected_type',tab);
-    addFilterFind('tab',tab)
+    var origin = $.cookie('selected_type')
+    if(tab != origin){
+        getGoods2(false,false,{tab:tab},true);
+        $.cookie('selected_type',tab);
+        addFilterFind('tab',tab)
+        $('input[name="tabs"][value="'+tab+'"]').prop('checked',true)
+    }
 
-    $('input[name="tabs"][value="'+tab+'"]').prop('checked',true)
 });
