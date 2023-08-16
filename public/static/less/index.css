@@ -104,10 +104,10 @@ header .wrapper .modebox .tab {
 header .wrapper .modebox input[type="radio"]:checked + label {
   color: #000000;
 }
-header .wrapper .modebox input[id="fit-tabs-1"]:checked ~ .glider {
+header .wrapper .modebox input[id="radio-1"]:checked ~ .glider {
   transform: translateX(0);
 }
-header .wrapper .modebox input[id="fit-tabs-2"]:checked ~ .glider {
+header .wrapper .modebox input[id="radio-2"]:checked ~ .glider {
   transform: translateX(100%);
 }
 header .wrapper .modebox .glider {
@@ -710,4 +710,3 @@ header .wrapper-top {
 .pc .goodpart .goods-section .goods:hover .cover video {
   transform: scale(1.2);
 }
-/*# sourceMappingURL=index.css.map */
