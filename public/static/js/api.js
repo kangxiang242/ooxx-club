@@ -95,14 +95,15 @@ function getGoods2(filter=false,is_append= true,data={},reset_page = false){
                         isResizableL:true,// 是否可调整大小 Boolean
                     });
 
-                    if(current_page == last_page){
-                        $('#goods-complete').show();
-                    }
+
                     $grid.imagesLoaded(function () {
                         $('.goods-section .hide').removeClass('hide')
                         is_load = false;
                         $('#goods-loading').hide();
                         $grid.masonry('reload');
+                        if(current_page == last_page){
+                            $('#goods-complete').show();
+                        }
                     })
 
                 },
