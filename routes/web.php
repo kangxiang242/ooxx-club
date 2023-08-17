@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['namespace'=>'Web'],function (){
     Route::get('/google{str}.html', "ApiController@googleVerify");
+    Route::get('/robots.txt', "ApiController@robots");
+    Route::get('/sitemap.xml', "ApiController@sitemap");
     Route::get('/api/area', "AreaController@get");
     Route::get('/api/goods', "ProductController@filter");
     Route::get('/api/goods2', "ProductController@filter2");

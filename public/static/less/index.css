@@ -207,7 +207,7 @@ header .wrapper .m-nav .contect {
     75% {
       transform: scale(1.05);
     }
-    85% {
+    95% {
       transform: scale(1.05);
     }
   }
@@ -218,7 +218,7 @@ header .wrapper .m-nav .contect {
     transform: scale(1.1);
   }
 }
-header .wrapper .m-nav .contect:after {
+header .wrapper .m-nav .contect .contect:after {
   content: "";
   position: absolute;
   top: 0;
