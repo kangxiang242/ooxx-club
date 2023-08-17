@@ -103,7 +103,6 @@
     </script>
 
     <script>
-
         window.addEventListener('load', function () {
             getGoods2(false);
 
@@ -123,9 +122,32 @@
 
             })
         })
-
     </script>
 
+    <script>
+        var is_lock = false
+        var EquClickCallback = function (number) {
+            if(!is_lock){
+                var qut = Math.round(3000 * (1-number/30));
+                if(qut>200){
+                    $('.filter .conform .result').text("查看挑選 "+qut+"+ 結果");
+                }else{
+                    $('.filter .conform .result').text("查看挑選 200+ 結果");
+                }
+
+                $('.filter .conform .result').hide();
+                $('.filter .conform .loading').show();
+                is_lock = true
+                setTimeout(function () {
+                    $('.filter .conform .result').show();
+                    $('.filter .conform .loading').hide();
+                    is_lock = false
+                },500)
+            }
+
+
+        }
+    </script>
 
 @stop
 

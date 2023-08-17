@@ -70,6 +70,7 @@
 <script src="{{ asset('static/js/jquery.cookie.js') }}"></script>
 <script src="{{ asset('static/js/jquery.marquee.min.js') }}"></script>
 <script src="{{ asset('static/js/jquery.masonry.min.js') }}"></script>
+<script src="{{ asset('static/jquery_lazyload/jquery.lazyload.min.js') }}"></script>
 <script src="{{ asset('static/js/api.js') }}?v={{ app('cache.config')->get('asset_version') }}"></script>
 
 {!! \App\Services\ConfigService::get('google_ga') !!}
@@ -145,6 +146,8 @@
     $('[data-trigger].invisible').waypoint(function() {
         $($(this)[0].element).removeClass('invisible').addClass('visible')
     }, { offset: "100%" });
+
+
 </script>
 
 

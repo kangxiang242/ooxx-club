@@ -104,6 +104,11 @@ function getGoods2(filter=false,is_append= true,data={},reset_page = false){
                         if(current_page == last_page){
                             $('#goods-complete').show();
                         }
+                        $('img[data-lazyload]').lazyload({
+                            effect: "fadeIn",
+                            data_attribute:"src",
+                            event:"scroll",
+                        });
                     })
 
                 },
@@ -422,3 +427,22 @@ $('#radio-1,#radio-2').click(function () {
     }
 
 });
+
+
+/**
+ * 建立筛选器点击回调事件
+ * @type {string}
+ */
+var filter_group_count = localStorage.getItem(filter_count_key);
+filter_group_count = parseInt(filter_group_count?filter_group_count:0);
+$('#filter .group input[data-equ]').click(function () {
+    if($(this).prop('checked')){
+        filter_group_count++
+    }else{
+        filter_group_count--
+    }
+    if(typeof EquClickCallback == 'function'){
+        EquClickCallback(filter_group_count);
+    }
+
+})
