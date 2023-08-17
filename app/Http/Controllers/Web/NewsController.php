@@ -38,7 +38,7 @@ class  NewsController extends Controller
 
         }
 
-        $article = $article->where('status',1)->orderBy('sort','asc')->orderBy('created_at','desc')->paginate(8);
+        $article = $article->where('status',1)->orderBy('sort','asc')->orderBy('created_at','desc')->paginate(9);
 
         $cate = ArticleCate::where('status',1)->orderBy('sort','asc')->get();
 
