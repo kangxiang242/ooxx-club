@@ -899,7 +899,7 @@
   width: 100%;
   height: 100%;
   background-image: linear-gradient(-75deg, #000000, #979797, #000000);
-  animation: shinning 5s linear infinite;
+  animation: shin 5s linear infinite;
   z-index: 0;
 }
 @media screen and (min-width: 768px) {
@@ -907,7 +907,7 @@
     display: none;
   }
 }
-@keyframes shinning {
+@keyframes shin {
   0% {
     transform: translateX(-100%);
   }

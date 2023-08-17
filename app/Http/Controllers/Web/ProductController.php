@@ -232,7 +232,7 @@ class ProductController extends Controller
         }
 
 
-        $product = $product->orderBy('sort')->paginate(20);
+        $product = $product->orderBy('sort')->paginate($request->get('limit',20));
 
         $html =  view('render.goods',compact('product'))->render();
 

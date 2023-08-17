@@ -160,8 +160,10 @@ header{
             height: calc(60px + env(safe-area-inset-bottom));
             z-index: 20;
             @media screen and (max-width: 768px) {
+                align-items: flex-start;
                 position: fixed;
                 width: 100%;
+                padding-top: 10px;
 
             }
 
@@ -204,7 +206,7 @@ header{
                 height: 40px;
                 border-radius: 99px;
                 overflow: hidden;
-                /* transition: all 0.3s cubic-bezier(0.75, -1.62, 0.47, 2.27); */
+                transition: all 0.3s cubic-bezier(0.75, -1.62, 0.47, 2.27);
                 @media screen and (max-width: 768px) {
                     width: 60%;
                     animation: bigger 5s cubic-bezier(0.75, -1.62, 0.47, 2.27) infinite;
@@ -212,14 +214,17 @@ header{
                         0%,100% {
                             transform: scale(1);
                         }
-                        65% {
+                        70% {
                             transform: scale(1);
                         }
                         75% {
                             transform: scale(1.05);
                         }
-                        95% {
+                        90% {
                             transform: scale(1.05);
+                        }
+                        95% {
+                            transform: scale(1);
                         }
                         
                     }
@@ -230,7 +235,7 @@ header{
                         transform: scale(1.1);
                     }
                 }
-                .contect:after {
+                &:after {
                     content: "";
                     position: absolute;
                     top: 0;
@@ -244,11 +249,11 @@ header{
                         0% {
                           transform: translateX(-100%);
                         }
-                        15% {
-                            transform: translateX(100%);
+                        75% {
+                            transform: translateX(-100%);
                         }
-                        65% {
-                          transform: translateX(100%);
+                        90% {
+                            transform: translateX(100%);
                         }
                         100% {
                             transform: translateX(100%);

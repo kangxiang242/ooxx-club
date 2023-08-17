@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
     <meta name="format-detection" content="telephone=no" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover minimal-ui">
     @if(isset($layout['seo']))
         <title>{{ isset($layout['seo'])?$layout['seo']->title:"" }}</title>
     @else

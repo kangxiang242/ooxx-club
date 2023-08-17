@@ -30,29 +30,13 @@ class ArticleController extends AdminController
             $grid->column('title');
             $grid->column('img')->image('','100','100');
 
-            $grid->column('status')->using([0 => '不顯示', 1 => '正常顯示',])->label([
-                0 => 'danger',
-                1 => 'success',
-            ]);
+            $grid->column('status')->switch();
             $grid->column('sort')->orderable();
             $grid->column('release_at')->sortable();
             $grid->column('created_at')->sortable();
 
-
-            /*$grid->filter(function (Grid\Filter $filter) {
-                $filter->equal('id');
-            });*/
-
             $grid->quickSearch('title')->placeholder('搜索...');
 
-
-            $grid->actions(function (Grid\Displayers\Actions $actions) {
-                $actions->disableView();
-                if ($this->mode == 1){
-                    $actions->append(ArticleHtmlCode::make()->htmlCodePath($this->html_file));
-                }
-
-            });
             $grid->disableRowSelector();
         });
     }
@@ -96,7 +80,7 @@ class ArticleController extends AdminController
     {
 
 
-        return Form::make(Article::with('tags'), function (Form $form) {
+        return Form::make(new Article, function (Form $form) {
             $form->select('article_cate_id','所屬分類')->options(function($id){
                 $data = ArticleCate::pluck('name','id');
                 return $data;
@@ -104,18 +88,19 @@ class ArticleController extends AdminController
 
             $form->text('title')->required();
 
+            $form->text('author','作者');
+
             $form->image('img')->uniqueName()->autoUpload()->move('article');
             $form->text('img_alt');
             $form->number('read_num')->default(1);
 
-/*            $form->decimal('stars','星星')->default(5)->maxLength(5)->minLength(0);*/
-
             $form->textarea('brief');
-            $form->radio('mode','模式')->options(['在线编辑器','代码上传'])->when(0,function($form){
+            $form->weditor('content','内容')->help('[*BTN*] 短代码插入联络按钮');
+            /*$form->radio('mode','模式')->options(['在线编辑器','代码上传'])->when(0,function($form){
                 $form->weditor('content','内容')->help('[*BTN*] 短代码插入联络按钮');
             })->when(1,function($form){
                 $form->file('html_file','代码上传')->uniqueName()->move('article_html')->autoUpload();
-            })->default(0);
+            })->default(0);*/
 
 
 
@@ -123,12 +108,7 @@ class ArticleController extends AdminController
             $form->hidden('sort');
             $form->radio('status')->options(['1' => '正常', '0'=> '关闭'])->default('1')->required();
             $form->datetime('release_at','發佈時間')->default(date('Y-m-d H:i:s'))->required();
-            /*$form->multipleSelect('tags','标签')->options(Tag::pluck('name','id'))->customFormat(function ($v) {
-                if (! $v) {
-                    return [];
-                }
-                return array_column($v, 'id');
-            });*/
+
             $form->fieldset('SEO', function (Form $form) {
                 $form->text('seo_title');
                 $form->text('seo_keyword');
@@ -136,13 +116,9 @@ class ArticleController extends AdminController
             });
 
 
-            /*$form->saving(function (Form $form) {
-                //生成文章短代码
-                $form->content = app(ArticleAnchorsHandler::class)->relatedArticle($form->content,$form->getKey());
-                $form->content = app(ArticleAnchorsHandler::class)->relatedProduct($form->content);
-            });*/
 
-            $form->uploaded(function (Form $form, UploadFieldInterface $field, UploadedFile $file, $response) {
+
+            /*$form->uploaded(function (Form $form, UploadFieldInterface $field, UploadedFile $file, $response) {
 
                 $response = $response->toArray();
                 // 文件上传成功
@@ -157,7 +133,7 @@ class ArticleController extends AdminController
                     file_put_contents(public_path('uploads/article_html/'.$key.'/index.html'),str_replace('index, follow','noindex',file_get_contents(public_path('uploads/article_html/'.$key.'/index.html'))));
                     file_put_contents(public_path('uploads/article_html/'.$key.'/index.html'),"<script>document.domain='".getMainDomain()."'</script>",FILE_APPEND);
                 }
-            });
+            });*/
 
             $form->disableViewButton();
 

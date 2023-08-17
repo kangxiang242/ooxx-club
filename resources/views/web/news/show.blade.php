@@ -49,19 +49,7 @@
     @parent
     <script src="{{ asset('static/js/jquery-ui-1.9.1.custom.min.js') }}"></script>
     <script src="{{ asset('static/tocify/javascripts/jquery.tocify.js') }}"></script>
-    <script>
-        document.domain = "{{ getMainDomain() }}";
-        function setIframeHeight(iframe) {
-            if (iframe) {
-                var iframeWin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-                if (iframeWin.document.body) {
-                    iframe.height = iframeWin.document.documentElement.scrollHeight || iframeWin.document.body.scrollHeight;
-                }}
-        };
-        window.onload = function () {
-            setIframeHeight(document.getElementById('external-frame'));
-        };
-    </script>
+
 
     <script>
         $(function(){
@@ -160,7 +148,7 @@
         <li class="contect">加line</li>
     </ul>
     <div class="container">
-        
+
         <div class="news-main">
             <div class="news-box">
                 <div class="left">
@@ -171,13 +159,13 @@
                         <img src="{{ asset_upload($news->img) }}" alt="{{ $news->title }}" style="width: 100%;">
                         <h1 class="news-title">{{ $news->title }}</h1>
                         <div class="labelbox">
-                            <p class="time">2023-01-01</p>
+                            <p class="time">{{ $news->release_at->format('Y-m-d') }}</p>
                             <div class="views">
-                                <p class="editor">By.XXXX</p>
+                                @if($news->author)<p class="editor">By.{{ $news->author }}</p>@endif
                                 <svg t="1689216927090" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2591" width="200" height="200"><path d="M132.693333 453.76C235.946667 278.997333 377.6 199.253333 512 199.253333c134.4 0 276.053333 79.786667 379.306667 254.506667 21.162667 35.882667 21.162667 80.597333 0 116.48-103.253333 174.762667-244.906667 254.506667-379.306667 254.506667-134.4 0-276.053333-79.786667-379.306667-254.506667a114.645333 114.645333 0 0 1 0-116.48z m850.432-54.272C865.28 199.978667 692.309333 92.586667 512 92.586667S158.72 199.978667 40.832 399.488a221.312 221.312 0 0 0 0 225.024C158.72 824.021333 331.690667 931.413333 512 931.413333c180.309333 0 353.28-107.392 471.125333-306.901333a221.312 221.312 0 0 0 0-225.024zM437.333333 512a74.666667 74.666667 0 1 1 149.333334 0 74.666667 74.666667 0 0 1-149.333334 0zM512 330.666667a181.333333 181.333333 0 1 0 0 362.666666 181.333333 181.333333 0 0 0 0-362.666666z" p-id="2592"></path></svg>
-                                <p class="num">9341</p>
+                                <p class="num">{{ $news->read_num }}</p>
                             </div>
-                            
+
                         </div>
                         <!-- <div class="tocnav">
                             <p class="tocnavtitle">攻略速覽</p>

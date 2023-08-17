@@ -26,7 +26,7 @@ class SitemapService
         $this->header();
         $this->startUrlSet();
         $this->home();
-        //$this->article();
+        $this->article();
         //$this->product();
         //$this->page();
         $this->endUrlSet();
@@ -63,12 +63,7 @@ class SitemapService
         $this->xml[] = '    <priority>1.0</priority>';
         $this->xml[] = '  </url>';
 
-        $this->xml[] = '  <url>';
-        $this->xml[] = "    <loc>".url('contact')."</loc>";
-        $this->xml[] = "    <lastmod>{$this->last_mod}</lastmod>";
-        $this->xml[] = '    <changefreq>daily</changefreq>';
-        $this->xml[] = '    <priority>1.0</priority>';
-        $this->xml[] = '  </url>';
+
     }
 
     /**

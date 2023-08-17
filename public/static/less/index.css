@@ -142,8 +142,10 @@ header .wrapper .m-nav {
 }
 @media screen and (max-width: 768px) {
   header .wrapper .m-nav {
+    align-items: flex-start;
     position: fixed;
     width: 100%;
+    padding-top: 10px;
   }
 }
 header .wrapper .m-nav .base {
@@ -189,7 +191,7 @@ header .wrapper .m-nav .contect {
   height: 40px;
   border-radius: 99px;
   overflow: hidden;
-  /* transition: all 0.3s cubic-bezier(0.75, -1.62, 0.47, 2.27); */
+  transition: all 0.3s cubic-bezier(0.75, -1.62, 0.47, 2.27);
 }
 @media screen and (max-width: 768px) {
   header .wrapper .m-nav .contect {
@@ -201,14 +203,17 @@ header .wrapper .m-nav .contect {
     100% {
       transform: scale(1);
     }
-    65% {
+    70% {
       transform: scale(1);
     }
     75% {
       transform: scale(1.05);
     }
-    95% {
+    90% {
       transform: scale(1.05);
+    }
+    95% {
+      transform: scale(1);
     }
   }
 }
@@ -218,7 +223,7 @@ header .wrapper .m-nav .contect {
     transform: scale(1.1);
   }
 }
-header .wrapper .m-nav .contect .contect:after {
+header .wrapper .m-nav .contect:after {
   content: "";
   position: absolute;
   top: 0;
@@ -233,10 +238,10 @@ header .wrapper .m-nav .contect .contect:after {
   0% {
     transform: translateX(-100%);
   }
-  15% {
-    transform: translateX(100%);
+  75% {
+    transform: translateX(-100%);
   }
-  65% {
+  90% {
     transform: translateX(100%);
   }
   100% {

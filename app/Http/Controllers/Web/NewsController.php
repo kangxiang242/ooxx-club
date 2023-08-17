@@ -57,8 +57,10 @@ class  NewsController extends Controller
 
         $news->content = app(ArticleAnchorsHandler::class)->btnGeneration($news->content);
         $recommend = $this->newRepository->recommend(4);
-        $tags = Tag::where('status',1)->orderBy('sort','desc')->get();
-        return view('web.news.show',compact('news','tags','recommend'));
+        $news->read_num += 1;
+        $news->real_read_num +=1;
+        $news->save();
+        return view('web.news.show',compact('news','recommend'));
 
     }
 }

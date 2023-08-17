@@ -238,7 +238,11 @@ var filterInitializeCallback = function (elem,equ,id) {
 }
 
 
-initialize()
+
+
+if(location.pathname == '/' || location.pathname == '/product'){
+    initialize()
+}
 function initialize(){
     var quick = getQueryString('quick');
     if(quick){
@@ -294,6 +298,7 @@ function initialize(){
         $('input[name="tabs"][value="'+selected_type+'"]').prop('checked',true)
     }
 }
+
 
 $('.factorbox').html(factor_html);
 $('body').on('click','.factor .factorclose',function () {
@@ -392,21 +397,23 @@ function getQueryString(name) {
  */
 $(document).ready(function(){
     var is_index = location.pathname == '/'?true:false;
+    if(!remove_page){
+        $(window).scroll(function(){
+            var scrollTop = $(this).scrollTop(); //获取当前页面滚动距离
+            var scrollHeight = $(document).height(); //获取页面总高度
+            var windowHeight = $(this).height(); //获取当前窗口高度
+            if(Math.ceil(scrollTop + windowHeight) >= scrollHeight - 50){ //判断是否到达页面底部
+                if(is_index){
+                    getGoods2(false,true);
+                }else{
+                    getGoods2(true,true);
+                }
 
-    $(window).scroll(function(){
-        var scrollTop = $(this).scrollTop(); //获取当前页面滚动距离
-        var scrollHeight = $(document).height(); //获取页面总高度
-        var windowHeight = $(this).height(); //获取当前窗口高度
-        if(Math.ceil(scrollTop + windowHeight) >= scrollHeight - 50){ //判断是否到达页面底部
-            if(is_index){
-                getGoods2(false,true);
-            }else{
-                getGoods2(true,true);
+
             }
+        });
+    }
 
-
-        }
-    });
 });
 
 /**

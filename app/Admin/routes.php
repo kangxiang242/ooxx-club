@@ -40,6 +40,8 @@ Route::group([
 
     $router->resource('faq','FaqController');
 
+    $router->resource('tag','TagController');
+
     $router->resource('seo','SeoController');
 
 
