@@ -94,7 +94,7 @@ class Compose
 
 
     public function start(){
-
+        ConfigService::cache();
 
         foreach($this->nicknames->shuffle() as $name){
 

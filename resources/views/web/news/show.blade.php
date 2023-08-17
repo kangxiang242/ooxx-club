@@ -214,7 +214,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="btnbox">
+                        <!-- <div class="btnbox">
                             <a href="{{ app('cache.config')->get('line_url') }}" target="_blank" class="button ripple" data-inquire="" data-inquire-type="line" data-inquire-position="top">
                                 <div class="btn-bg uwu"></div>
                                 <div class="btn-bg"></div>
@@ -238,7 +238,7 @@
                                     </p>
                                 </div>
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
