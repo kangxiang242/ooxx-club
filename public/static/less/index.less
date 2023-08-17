@@ -196,6 +196,7 @@ header{
             .contect{
                 position: relative;
                 width: 40%;
+                z-index: 20;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -203,9 +204,25 @@ header{
                 height: 40px;
                 border-radius: 99px;
                 overflow: hidden;
-                transition: all 0.3s cubic-bezier(0.75, -1.62, 0.47, 2.27);
+                /* transition: all 0.3s cubic-bezier(0.75, -1.62, 0.47, 2.27); */
                 @media screen and (max-width: 768px) {
                     width: 60%;
+                    animation: bigger 5s cubic-bezier(0.75, -1.62, 0.47, 2.27) infinite;
+                    @keyframes bigger {
+                        0%,100% {
+                            transform: scale(1);
+                        }
+                        65% {
+                            transform: scale(1);
+                        }
+                        75% {
+                            transform: scale(1.05);
+                        }
+                        85% {
+                            transform: scale(1.05);
+                        }
+                        
+                    }
                 }
                 @media screen and (min-width: 768px) {
                     &:hover{
@@ -220,18 +237,21 @@ header{
                     left: 0;
                     width: 100%;
                     height: 100%;
-                    background-image: linear-gradient(-75deg, #000000,#ff0000, #000000);
-                    animation: shinning 10s linear infinite;
+                    background-image: linear-gradient(-75deg, #000000, #979797, #000000);
+                    animation: shinning 5s linear infinite;
                     z-index: 0;
                     @keyframes shinning {
                         0% {
                           transform: translateX(-100%);
                         }
-                        20% {
-                            transform: translateX(-100%);
-                          }
-                        100% {
+                        15% {
+                            transform: translateX(100%);
+                        }
+                        65% {
                           transform: translateX(100%);
+                        }
+                        100% {
+                            transform: translateX(100%);
                         }
                     }
                 }

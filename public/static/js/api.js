@@ -104,11 +104,7 @@ function getGoods2(filter=false,is_append= true,data={},reset_page = false){
                         if(current_page == last_page){
                             $('#goods-complete').show();
                         }
-                        $('img[data-lazyload]').lazyload({
-                            effect: "fadeIn",
-                            data_attribute:"src",
-                            event:"scroll",
-                        });
+                        lazyload();
                     })
 
                 },
@@ -446,3 +442,10 @@ $('#filter .group input[data-equ]').click(function () {
     }
 
 })
+
+function lazyload(){
+    $('img[data-lazyload]').each(function () {
+        $(this).attr('src',$(this).attr('data-src'));
+        $(this).removeAttr('data-lazyload')
+    })
+}
