@@ -19,11 +19,11 @@ trait Resizable
     {
         // Return empty string if the field not found
         if (! isset($this->attributes[$attribute])) {
-            return '';
+            $image = $attribute;
+        }else{
+            // We take image from posts field
+            $image = $this->attributes[$attribute];
         }
-
-        // We take image from posts field
-        $image = $this->attributes[$attribute];
 
         $thumbnail = $this->getThumbnailPath($image, $type);
 

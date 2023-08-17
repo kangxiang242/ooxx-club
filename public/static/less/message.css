@@ -1248,6 +1248,17 @@ header .factorbox .factor .factorclose {
   transition-delay: 0.3s;
   z-index: 0;
 }
+.pc .filter .parttwo-show::-webkit-scrollbar {
+  width: 4px;
+}
+.pc .filter .parttwo-show::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+.pc .filter .parttwo-show::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 10px;
+}
 @media screen and (max-width: 768px) {
   .pc .filter .parttwo-show {
     position: fixed;

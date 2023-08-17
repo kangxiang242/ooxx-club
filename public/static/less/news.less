@@ -369,7 +369,7 @@ header{
                 .right{
                     width: 240px;
                     position: sticky;
-                    top: 20%;
+                    top: 100px;
                     @media screen and (max-width: 1024px) {
                         width: auto;
                         margin: 0 10%;
@@ -387,13 +387,13 @@ header{
                             .hot-news{
                                 margin-bottom: 10px;
                                 background-color: #1a1a1a;
-                                border-radius: 16px;
-
+                                border-radius: 12px;
+                                overflow: hidden;
                                 .hot-news-title{
-                                    font-size: 16px;
+                                    font-size: 15px;
                                     color: #FFF;
                                     font-weight: 700;
-                                    padding: 20px 12px;
+                                    padding: 12px;
                                 }
                             }
 
@@ -486,7 +486,7 @@ header{
 
             @media (max-width: 1024px){
                 flex-direction: column;
-                padding: 2%;
+                padding: 24px 12px;
             }
             .title{
                 text-align: center;
@@ -504,7 +504,7 @@ header{
                         transform: translateY(-20px);
                         .img-wrap{
                             img{
-                                transform: scale(1.1);
+                                transform: scale(1.05);
                             }
                         }
                         .info-wrap{
@@ -518,7 +518,7 @@ header{
                     width: 100%;
                 }
                 .sim{
-                    margin: 30px 15px;
+                    margin: 30px 12px;
                     transition: all 0.3s 0.1s ease-in-out;
                     
                     .img-wrap{
@@ -526,7 +526,7 @@ header{
                         height: auto;
                         overflow: hidden;
                         margin: 0 auto;
-                        border-radius: 30px 30px 0 0;
+                        border-radius: 12px 12px 0 0;
                         img{
                             width: 100%;
                             transition: all 0.3s 0.25s ease-in-out;
@@ -535,8 +535,8 @@ header{
                     .info-wrap{
                         position: relative;
                         background-color: #FFF;
-                        padding: 30px;
-                        border-radius: 0 0 30px 30px;
+                        padding: 24px;
+                        border-radius: 0 0 12px 12px;
                         &::after{
                             position: absolute;
                             content: "";
@@ -556,7 +556,7 @@ header{
                             text-align: center;
                         }
                         .news-title{
-                            margin-bottom: 20px;
+                            margin-bottom: 12px;
                             font-weight: 700;
                             font-size: 24px;
                             color: rgb(0, 0, 0);
@@ -566,7 +566,7 @@ header{
                                 font-size: 14px;
                                 font-weight: 500;
                                 color: #999;
-                                margin-bottom: 20px;
+                                margin-bottom: 12px;
                             }
                             .labelbox{
                                 display: flex;

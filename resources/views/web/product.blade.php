@@ -181,8 +181,34 @@
                 <section class="goods-section" >
                     {{-- 產品數據輸出 --}}
                 </section>
-                <div class="goods-loading" id="goods-loading">加载中...</div>
-                <div class="goods-complete" id="goods-complete">已加載完全部產品</div>
+                <div class="goods-loading" id="goods-loading">
+                    <div class="loader">
+                        <div class="bar1"></div>
+                        <div class="bar2"></div>
+                        <div class="bar3"></div>
+                        <div class="bar4"></div>
+                        <div class="bar5"></div>
+                        <div class="bar6"></div>
+                        <div class="bar7"></div>
+                        <div class="bar8"></div>
+                        <div class="bar9"></div>
+                        <div class="bar10"></div>
+                        <div class="bar11"></div>
+                        <div class="bar12"></div>
+                    </div>
+                    <p class="loadtext">正在努力為你加载...</p>
+                </div>
+                <div class="goods-complete" id="goods-complete">
+                    <div class="spinner">
+                        <span>已</span>
+                        <span>經</span>
+                        <span>到</span>
+                        <span>底</span>
+                        <span>喇</span>
+                        <span>～</span>
+                    </div>
+                    <p class="completetext">老司機還沒挑到合適？請加客服Line解鎖隱藏妹妹！</p>
+                </div>
             </div>
         </div>
 
