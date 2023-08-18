@@ -207,12 +207,12 @@ function CalibrationQuantity(){
     var count = 0;
     if(filter){
         filter = JSON.parse(filter);
-        delete filter['tab'];
-        delete filter['city'];
-        delete filter['county'];
-        delete filter['age'];
-        delete filter['height'];
-        delete filter['price'];
+        //delete filter['tab'];
+        //delete filter['city'];
+        //delete filter['county'];
+        //delete filter['age'];
+        //delete filter['height'];
+        //delete filter['price'];
         $.each(filter,function (index,value) {
 
             if(typeof value == 'object'){
