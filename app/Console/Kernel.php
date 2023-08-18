@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Combine\Compose;
 use App\Console\Commands\RandProduct;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -25,8 +26,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
-        $schedule->command(RandProduct::class)->daily();
+        $schedule->call(function (){
+            app(Compose::class)->start();
+        })->daily();
+
     }
 
     /**

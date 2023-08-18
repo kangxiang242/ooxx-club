@@ -881,6 +881,7 @@
 }
 .filter .parttwo-show .buttonbox .conform {
   position: relative;
+  z-index: 20;
   flex: 3;
   background-color: #000;
   color: #ffcb00;

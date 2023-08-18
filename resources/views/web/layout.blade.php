@@ -46,7 +46,10 @@
 <body class="_show_loading">
 
 <div class="global-loading" id="loading">
-    {!! app('cache.config')->get('loading_code') !!}
+    <img src="/static/img/logo3.webp" class="loadinglogo" alt="">
+    <p class="slogan">給你全台最好的 外送茶&定點茶</p>
+    <div class="circle">{!! app('cache.config')->get('loading_code') !!}</div>
+    
 </div>
 
 <div class="main-body">

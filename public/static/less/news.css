@@ -508,6 +508,11 @@ header .wrapper .m-nav .contect .text .lineicon {
   margin: 30px 12px;
   transition: all 0.3s 0.1s ease-in-out;
 }
+@media screen and (max-width: 768px) {
+  .case-main .case .present .news .sim {
+    margin: 16px 12px;
+  }
+}
 .case-main .case .present .news .sim .img-wrap {
   width: 100%;
   height: auto;
@@ -524,6 +529,11 @@ header .wrapper .m-nav .contect .text .lineicon {
   background-color: #FFF;
   padding: 24px;
   border-radius: 0 0 12px 12px;
+}
+@media screen and (max-width: 768px) {
+  .case-main .case .present .news .sim .info-wrap {
+    padding: 12px;
+  }
 }
 .case-main .case .present .news .sim .info-wrap::after {
   position: absolute;
@@ -548,6 +558,11 @@ header .wrapper .m-nav .contect .text .lineicon {
   font-weight: 700;
   font-size: 24px;
   color: #000000;
+}
+@media screen and (max-width: 768px) {
+  .case-main .case .present .news .sim .info-wrap .news-title {
+    font-size: 22px;
+  }
 }
 .case-main .case .present .news .sim .info-wrap .resolution .describe {
   font-size: 14px;
