@@ -213,6 +213,12 @@ function CalibrationQuantity(){
         //delete filter['age'];
         //delete filter['height'];
         //delete filter['price'];
+        if(filter['city'] == 0){
+            delete filter['city'];
+        }
+        if(filter['county'] == 0){
+            delete filter['county'];
+        }
         $.each(filter,function (index,value) {
 
             if(typeof value == 'object'){
