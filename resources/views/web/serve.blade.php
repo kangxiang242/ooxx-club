@@ -111,13 +111,16 @@
     </script>
 
     <script>
-        var remove_page = "{{ is_mobile()?1:0 }}";
+        var is_mobile = parseInt("{{ is_mobile()?1:0 }}");
+        var is_disable_scroll = is_mobile?false:true;
+
         window.addEventListener('load', function () {
-            if(remove_page){
-                getGoods2(false,false,{limit:4});
-            }else{
+            if(is_mobile){
                 getGoods2(false,false);
+            }else{
+                getGoods2(false,false,{limit:4});
             }
+
             lazyload();
         });
     </script>
@@ -169,7 +172,7 @@
 
 <div class="infobody">
     <div class="pic">
-        <a href="" class="back">
+        <a href="javascript:history.back(-1);" class="back">
             <svg t="1689328151908" class="backicon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8030" width="200" height="200"><path d="M300.303599 490.89725601c-0.486519 0.97303701-1.337926 1.824445-1.702815 2.79748199-8.514075 17.757928-5.716593 39.651265 9.365483 53.881934L651.69165 872.692719c18.730966 17.757928 48.28697 16.90652101 66.044898-1.824445 17.757928-18.730966 16.90652101-48.28697-1.824445-66.044898l-308.452785-291.789524L714.695807 216.987291c18.609336-17.87955801 19.095855-47.435562 1.216296-66.044898-9.122224-9.487112-21.406818-14.352298-33.569783-14.35229801-11.676446 0-23.352892 4.378667-32.353486 13.13600201l-340.563012 328.278418c-0.608148 0.608148-0.851408 1.58118501-1.581185 2.189334-0.486519 0.486519-0.973037 0.851408-1.581185 1.337926C303.46597 484.329255 302.128044 487.734885 300.303599 490.89725601L300.303599 490.89725601zM300.303599 490.89725601" fill="#fff" p-id="8031"></path></svg>
         </a>
         <img id="cover" src="{{ asset_upload($product->thumbnail('small','cover')) }}" data-src="{{ asset_upload($product->cover) }}" data-lazyload alt="{{ $product->name }}" style="width: 100%;    position: relative;z-index: 2;">
@@ -185,7 +188,7 @@
                 <li class="list-vedio">
                     <svg t="1689910278906" class="playicon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4144" width="200" height="200"><path d="M514 114.3c-219.9 0-398.9 178.9-398.9 398.9 0.1 219.9 179 398.8 398.9 398.8 219.9 0 398.8-178.9 398.8-398.8S733.9 114.3 514 114.3z m173 421.9L437.1 680.5c-17.7 10.2-39.8-2.6-39.8-23V368.9c0-20.4 22.1-33.2 39.8-23L687 490.2c17.7 10.2 17.7 35.8 0 46z" p-id="4145"></path></svg>
                     <div class="screen">
-                        <img src="/static/img/screen.jpg" alt="">
+                        <img src="/static/img/screen.jpg" alt="Video">
                     </div>
                 </li>
         </ul>
@@ -236,7 +239,7 @@
                     <span class="voiceline"></span>
                     <span class="voiceline"></span>
                 </div>
-                <span class="timer" id="timer" data-time="{{ $product->audio_time }}">{{ str_pad($product->audio_time,2,'0',STR_PAD_LEFT) }}"</span>
+                <span class="timer" id="timer" data-time="{{ $product->audio_time }}">{{ $product->audio_time }}"</span>
                 <audio src="{{ asset_upload($product->audio) }}" id="voice" style="width:0;"></audio>
             </div>
             @endif
@@ -271,7 +274,7 @@
             <p class="title">全程可配合</p>
             <ul class="cooplist">
                 @foreach($product->withServes as $serve)
-                    <li class="coopitem"><img src="{{ asset_upload($serve->icon) }}" class="coopicon">{{ $serve->name }}</li>
+                    <li class="coopitem"><img src="{{ asset_upload($serve->icon) }}" class="coopicon" alt="{{ $serve->name }}">{{ $serve->name }}</li>
                 @endforeach
             </ul>
         </div>
@@ -279,7 +282,7 @@
             <p class="title">可加值服務</p>
             <ul class="addlist">
                 @foreach($added as $serve)
-                    <li class="additem"><img src="{{ asset_upload($serve->serve->icon) }}" class="coopicon">{{ $serve->serve->name }} {{ $serve->price?"+$".$serve->price:"" }}</li>
+                    <li class="additem"><img src="{{ asset_upload($serve->serve->icon) }}" class="coopicon" alt="{{ $serve->name }}">{{ $serve->serve->name }} {{ $serve->price?"$".$serve->price:"" }}</li>
                 @endforeach
             </ul>
         </div>
@@ -307,7 +310,7 @@
                     @endforeach
                 </ul>
             </div>
-            
+
         </div>
         @endif
         <div class="qabox">

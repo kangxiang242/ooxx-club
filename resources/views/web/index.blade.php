@@ -5,23 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('static/swiper4/swiper.min.css') }}"/>
     <link rel="stylesheet" type="text/less" href="{{ asset('static/less/index.less') }}?v={{ app('cache.config')->get('asset_version') }}"/>
     <link rel="stylesheet" type="text/less" href="{{ asset('static/less/fliter.less') }}?v={{ app('cache.config')->get('asset_version') }}"/>
-    <style>
-        .g-icons li{
-            margin-right: 16px;
-        }
-        @media screen and (max-width: 1024px){
-            .g-icons {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                transform: translateX(-16px);
-            }
-            .g-icons li{
-                margin-right: 0;
-            }
-        }
 
-    </style>
 @stop
 @section('script')
     @parent

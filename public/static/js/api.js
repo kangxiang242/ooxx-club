@@ -396,26 +396,25 @@ function getQueryString(name) {
  * 下拉刷新
  */
 $(document).ready(function(){
-    var is_index = location.pathname == '/'?true:false;
-    if(typeof remove_page == 'undefined'){
+    var is_product = location.pathname == '/product'?true:false;
+
+    if(typeof is_disable_scroll == 'undefined' || !is_disable_scroll){
         $(window).scroll(function(){
 
             var scrollTop = $(this).scrollTop(); //获取当前页面滚动距离
             var scrollHeight = $(document).height(); //获取页面总高度
             var windowHeight = $(this).height(); //获取当前窗口高度
             if(Math.ceil(scrollTop + windowHeight) >= scrollHeight - 50){ //判断是否到达页面底部
-                if(is_index){
-
-                    getGoods2(false,true);
-                }else{
+                if(is_product){
                     getGoods2(true,true);
+                }else{
+                    getGoods2(false,true);
                 }
 
 
             }
         });
     }
-
 });
 
 /**

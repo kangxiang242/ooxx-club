@@ -6,16 +6,10 @@ namespace App\Http\Composers;
 
 
 
-use App\Repositories\ArticleCateRepository2;
-use App\Repositories\BannerRepository;
 
-
-use App\Repositories\ProductRepository2;
 use App\Repositories\SeoRepository2;
-
-
 use App\Services\ConfigService;
-use Illuminate\Support\Str;
+
 use Illuminate\View\View;
 
 class LayoutComposer
@@ -40,13 +34,10 @@ class LayoutComposer
 
         }
 
-        /*$this->seo();
-
-        $this->getArticleCate();*/
+        $this->seo();
 
 
-
-        //$this->view->with('layout',$this->data);
+        $this->view->with('layout',$this->data);
     }
 
     /**
@@ -67,9 +58,6 @@ class LayoutComposer
     }
 
 
-    public function getArticleCate(){
-        $this->data['global-article-cate'] = app(ArticleCateRepository2::class)->getAll();
-    }
 
 
 

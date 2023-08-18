@@ -1263,6 +1263,11 @@ footer .copyright {
   margin-bottom: 100px;
   text-align: center;
 }
+@media screen and (max-width: 768px) {
+  .goods-container {
+    padding: 0 12px;
+  }
+}
 .goods-container .goods-loading {
   display: none;
 }

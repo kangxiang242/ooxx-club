@@ -1024,7 +1024,6 @@ header .wrapper-top {
 }
 .guessbox {
   margin-top: 12px;
-  padding: 0 12px;
 }
 @media screen and (min-width: 768px) {
   .guessbox {
@@ -1070,7 +1069,7 @@ header .wrapper-top {
 }
 @media screen and (max-width: 768px) {
   .guessbox .goods-section .goods {
-    width: calc(50% - 12px);
+    width: calc(50% - 6px);
     margin-bottom: 24px;
   }
 }

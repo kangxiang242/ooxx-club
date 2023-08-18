@@ -23,7 +23,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer(
-            ['web.layout','mobile.layout'],     //模板名
+            ['web.layout'],     //模板名
             'App\Http\Composers\LayoutComposer@all'    //方法名或者类中的方法
         );
 

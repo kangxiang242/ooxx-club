@@ -16,33 +16,7 @@
     @parent
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
     <link rel="stylesheet" type="text/less" href="{{ asset('static/less/shownews.less') }}?v={{ app('cache.config')->get('asset_version') }}"/>
-    <style>
-        .banner-section .banner-content{
-            margin-bottom: 20px;
-        }
-        .breadcrumb{
-            display: flex;
-            justify-content:flex-start;
-            position: relative;
-            margin: 0 auto;
-            width: 85.35871%;
-            max-width: 1400px;
-        }
-        .rep{
-            display: none;
-        }
-        @media screen and (max-width: 1024px) {
-            .breadcrumb{
 
-                margin: 0;
-
-            }
-            .rep{
-                margin-bottom: 0;
-                margin-top: 10px;
-            }
-        }
-    </style>
 @stop
 
 @section('script')
@@ -65,61 +39,7 @@
         })
 
     </script>
-    <script>
-        $(function () {
-            finalArticleTop();
-            $(document).scroll(function(){
-                finalArticleTop();
-            })
-            const btns = document.querySelectorAll('[data-btn-scroll]');
-            btns.forEach((btn, index) => {
-                const nextbtn = btns[index + 1];
-                window.addEventListener('scroll', () => {
-                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-                    if (index >= 0) {
-                        const btnOffsetTop = btn.offsetTop;
-                        if(nextbtn){
-                            const nextbtnOffsetTop = nextbtn.offsetTop;
-                            const heightDiff = nextbtnOffsetTop - btnOffsetTop;
-
-                            if (heightDiff <= window.innerHeight) {
-                                btn.classList.add('position');
-                            } else {
-                                btn.classList.remove('position');
-                            }
-                        }
-
-                    }
-                });
-            });
-        })
-        function finalArticleTop(){
-            if (window.innerWidth > 768) {
-                return false;
-            }
-
-            var top =  $(document).scrollTop();
-            var _this = null;
-            $('div[data-btn-scroll]').each(function(){
-                var btn_peg = $(this).offset().top
-                if(top>=btn_peg-80){
-                    _this = $(this);
-                }
-            });
-            if(_this){
-                _this.addClass('btnbox-top').removeClass('btnbox-article');
-                _this.siblings('div[data-btn-scroll]').removeClass('btnbox-top').addClass('btnbox-article');
-                $('header .icons').addClass('icons-top');
-            }else{
-                $('div[data-btn-scroll]').removeClass('btnbox-top').addClass('btnbox-article');
-                $('header .icons').removeClass('icons-top');
-            }
-
-
-
-        }
-    </script>
 @stop
 
 

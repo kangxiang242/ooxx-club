@@ -210,7 +210,7 @@ class Compose
                 [
                     'product_id'=>$product_id,
                     'text'=>'兩節/100min/2S',
-                    'price'=>$price*2
+                    'price'=>$price*2 - 1000
                 ],
                 [
                     'product_id'=>$product_id,
