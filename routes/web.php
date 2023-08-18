@@ -24,7 +24,7 @@ Route::group(['namespace'=>'Web'],function (){
 });
 
 
-Route::group(['namespace'=>'Web','middleware'=>['redirect.device','googlebot.checked']],function (){
+Route::group(['namespace'=>'Web','middleware'=>['googlebot.checked']],function (){
     Route::get('/', "IndexController@index");
 
     Route::get('/blog', "NewsController@index");

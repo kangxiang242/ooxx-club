@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use App\Models\ProductAddedServe;
 use App\Models\ProductCategory;
 use App\Models\ProductQuick;
 use App\Models\ProductWithServe;
