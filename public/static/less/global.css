@@ -1270,6 +1270,9 @@ footer .copyright {
 }
 .goods-container .goods-loading {
   display: none;
+  position: relative;
+  bottom: 0;
+  left: 0;
 }
 .goods-container .goods-loading .loader {
   position: relative;
@@ -1353,6 +1356,9 @@ footer .copyright {
 }
 .goods-container .goods-complete {
   display: none;
+  position: relative;
+  bottom: 0;
+  left: 0;
 }
 .goods-container .goods-complete .spinner {
   height: 50px;
