@@ -65,7 +65,10 @@
     <script>
         if(window.matchMedia('(max-width: 768px)').matches){
             $(function() {
+
                 $('#search').click(function() {
+
+
                     $('.parttwo-show').toggleClass('parttwo-hide');
                     $('body').toggleClass('bodyoverflow');
                     $('.choose-sec').toggleClass('choose-show');
@@ -80,6 +83,9 @@
                     } else {
                         $('html, body').animate({ scrollTop: '+=410px' }, 40);
                     }
+
+                    var win_height = window.innerHeight - 72 - 60;
+                    $('.choose-box').height(win_height);
 
                 });
             });

@@ -91,7 +91,8 @@
                 $('.choose-sec').toggleClass('choose-show');
                 $('#title1').toggleClass('title1hide');
                 $('#title2').toggleClass('title2hide');
-
+                var win_height = window.innerHeight - $('header .wrapper').height() - $('.buttonbox').height();
+                $('.choose-box').height(win_height);
             });
         });
     </script>

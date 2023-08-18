@@ -436,8 +436,13 @@ header{
                     position: fixed;
                     left: 0;
                     top: 72px;
-                    height: calc(100vh - 72px);
+                    height: 100vh;
+                    .choose-box{
+                        height: calc(100% - 72px - 60px);
+                        overflow: auto;
+                    }
                 }
+
                 .choose-sec{
                     position: relative;
                     width: 100%;
@@ -1312,7 +1317,8 @@ header{
                 position: fixed;
                 left: 0;
                 top: 60px;
-                height: calc(100vh - 60px);
+                height: calc(100vh - 60px - constant(safe-area-inset-bottom));
+                height: calc(100vh - 60px - env(safe-area-inset-bottom));
             }
             .choose-sec{
                 position: relative;
