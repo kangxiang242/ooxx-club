@@ -308,7 +308,7 @@ class Compose
                     }else if($rule['mate'] == 'cup'){
                         $pose['cup'] = $this->RuleCup($rule['operator'],$rule['value']);
                     }else if($rule['mate'] == 'price'){
-                        $pose['birthplace'] = $this->RulePrice($rule['operator'],$rule['birthplace_value']);
+                        $pose['price'] = $this->RulePrice($rule['operator'],$rule['value']);
                     }
                 }
             }
