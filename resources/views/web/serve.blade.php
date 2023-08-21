@@ -188,7 +188,7 @@
                 <li class="list-vedio">
                     <svg t="1689910278906" class="playicon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4144" width="200" height="200"><path d="M514 114.3c-219.9 0-398.9 178.9-398.9 398.9 0.1 219.9 179 398.8 398.9 398.8 219.9 0 398.8-178.9 398.8-398.8S733.9 114.3 514 114.3z m173 421.9L437.1 680.5c-17.7 10.2-39.8-2.6-39.8-23V368.9c0-20.4 22.1-33.2 39.8-23L687 490.2c17.7 10.2 17.7 35.8 0 46z" p-id="4145"></path></svg>
                     <div class="screen">
-                        <img src="/static/img/screen.jpg" alt="Video">
+                        <img src="{{ asset_upload($goods->video_cover) }}" alt="Video">
                     </div>
                 </li>
         </ul>
