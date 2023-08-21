@@ -32,7 +32,7 @@ class Area extends Model implements Sortable
 
     public function sub()
     {
-        return $this->hasMany(Area::class, 'parent_id', 'id')->orderBy('sort','asc');
+        return $this->hasMany(Area::class, 'parent_id', 'id')->where('status',1)->orderBy('sort','asc');
     }
 
     public function parent()

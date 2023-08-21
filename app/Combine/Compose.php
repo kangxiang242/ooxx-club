@@ -18,6 +18,7 @@ use App\Models\Quick;
 use App\Models\Serve;
 use App\Models\Video;
 use App\Services\ConfigService;
+use Illuminate\Support\Facades\Cache;
 
 class Compose
 {
@@ -37,7 +38,9 @@ class Compose
 
     protected $videos;
 
-    protected $audios;
+    protected $audios1;
+
+    protected $audios2;
 
     protected $outgoing_price;
 
@@ -50,6 +53,8 @@ class Compose
     protected $product_ids;
 
     protected $type;
+
+    protected $birthplace;
 
 
 
@@ -70,13 +75,15 @@ class Compose
 
         $this->category = Category::with('sub')->where('parent_id',0)->get();
 
-        $this->area = Area::with('sub')->where('parent_id',0)->get();
+        $this->area = Area::with('sub')->where('status',1)->where('parent_id',0)->get();
 
         $this->comment_picture = collect(array_filter(explode(',',app(ConfigService::class)->get('comment_picture'))));
 
         $this->videos = Video::where('status',1)->pluck('video')->shuffle();
 
-        $this->audios = Audio::where('status',1)->get()->shuffle();
+        $this->audios1 = Audio::where('status',1)->where('type',0)->get()->shuffle();
+
+        $this->audios2 = Audio::where('status',1)->where('type',1)->get()->shuffle();
 
         $this->fixation_price = collect(explode(',',app(ConfigService::class)->get('fixation_price')));
 
@@ -88,6 +95,7 @@ class Compose
 
         $this->product_ids = Product::where('sham',1)->pluck('id');
 
+        $this->birthplace = Birthplace::where('status',1)->get();
 
 
     }
@@ -100,27 +108,6 @@ class Compose
 
             if($this->picture->count()<=0){ //图片使用完 不再生成
                 break;
-            }
-
-            $outgoing = 0;
-            $fixation = 0;
-            $rand = rand(1,10);
-            switch ($rand){
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                    $outgoing = 1;
-                    break;
-                case 5:
-                case 6:
-                case 7:
-                case 8:
-                    $fixation = 1;
-                    break;
-                default:
-                    $outgoing = 1;
-                    $fixation = 1;
             }
 
 
@@ -143,9 +130,6 @@ class Compose
             $video = $this->videos->pop();
             $this->videos->prepend($video);
 
-            $audio = $this->audios->pop();
-            $this->audios->prepend($audio);
-
 
             $comment_picture = [];
             $comment_count = rand(3,5);
@@ -155,17 +139,48 @@ class Compose
                 $this->comment_picture->prepend($temp_image);
             }
 
-            if($fixation && !$outgoing){
-                $price = $this->fixation_price->random()?:2500;
+
+
+            $birthplace = $this->findBirthplaceById($picture->birthplace_id);
+            $outgoing = 0;
+            $fixation = 0;
+            switch ($birthplace->allow_type){
+                case 1:
+                    $outgoing = 1;
+                    break;
+                case 2:
+                    $fixation = 1;
+                    break;
+                default:
+                    rand(1,2) == 1?$outgoing = 1:$fixation = 1;
+            }
+
+            $price = $pose->get('price');
+            if(!$price){
+                if($birthplace->price_range){
+                    $price = collect(explode(',',$birthplace->price_range))->random();
+                }else{
+                    if($fixation && !$outgoing){
+                        $price = $this->fixation_price->random()?:2500;
+                    }else{
+                        $price = $this->outgoing_price->random()?:3000;
+                    }
+                }
+            }
+
+            if($birthplace->use_audio_type == 1){
+                $audio = $this->audios2->pop();
+                $this->audios2->prepend($audio);
             }else{
-                $price = $this->outgoing_price->random()?:3000;
+                $audio = $this->audios1->pop();
+                $this->audios1->prepend($audio);
             }
 
 
 
             $area = $this->area->random();
             $data = [
-                'birthplace_id'=>$picture->birthplace_id,
+                'birthplace_id'=>$birthplace->id,
                 'name'=>$name,
                 'cover'=>$images->first(),
                 'age'=>$pose->get('age',$this->getAge()),
@@ -195,6 +210,7 @@ class Compose
                 ProductQuick::where('product_id',$product_id)->delete();
                 ProductWithServe::where('product_id',$product_id)->delete();
                 ProductAddedServe::where('product_id',$product_id)->delete();
+                Cache::forget('goods-'.$product_id);
             }else{
                 $product = Product::create($data);
                 $product_id = $product->id;
@@ -210,11 +226,11 @@ class Compose
                 [
                     'product_id'=>$product_id,
                     'text'=>'兩節/100min/2S',
-                    'price'=>$price*2 - 1000
+                    'price'=>$price*2
                 ],
                 [
                     'product_id'=>$product_id,
-                    'text'=>'三節送一節/200min/NS',
+                    'text'=>'三節/150min/NS',
                     'price'=>$price*3
                 ],
             ];
@@ -290,8 +306,8 @@ class Compose
                         $pose['age'] = $this->RuleAge($rule['operator'],$rule['value']);
                     }else if($rule['mate'] == 'cup'){
                         $pose['cup'] = $this->RuleCup($rule['operator'],$rule['value']);
-                    }else if($rule['mate'] == 'birthplace'){
-                        $pose['birthplace'] = $this->RuleBirthplace($rule['operator'],$rule['birthplace_value']);
+                    }else if($rule['mate'] == 'price'){
+                        $pose['birthplace'] = $this->RulePrice($rule['operator'],$rule['birthplace_value']);
                     }
                 }
             }
@@ -356,14 +372,13 @@ class Compose
     }
 
     /**
-     * 根据权重获取茶籍
+     * 获取茶籍
      *
+     * @param $id
      * @return mixed
      */
-    protected function getBirthplace(){
-        //$data = \App\Models\Birthplace::where('status',1)->get()->toArray();
-        //return array_get($this->roundWeight($data),'id');
-        return Birthplace::where('status',1)->pluck('id')->random();
+    protected function findBirthplaceById($id){
+        return $this->birthplace->firstWhere('id',$id);
     }
 
     /**
@@ -397,6 +412,9 @@ class Compose
                 break;
             case "=":
                 $height = $value;
+                break;
+            case "random":
+                $height = $this->Disassemble($value,',')->random();
                 break;
             case "contain":
                 $height = $this->Disassemble($value)->random();
@@ -432,6 +450,9 @@ class Compose
             case "=":
                 $weight = $value;
                 break;
+            case "random":
+                $weight = $this->Disassemble($value,',')->random();
+                break;
             case "contain":
                 $weight = $this->Disassemble($value)->random();
                 break;
@@ -465,6 +486,9 @@ class Compose
             case "=":
                 $age = $value;
                 break;
+            case "random":
+                $age = $this->Disassemble($value,',')->random();
+                break;
             case "contain":
                 $age = $this->Disassemble($value)->random();
                 break;
@@ -492,6 +516,9 @@ class Compose
             case "=":
                 $cup = $value;
                 break;
+            case "random":
+                $cup = $this->Disassemble($value,',')->random();
+                break;
             case "contain":
                 $cup = $this->Disassemble($value)->random();
                 break;
@@ -500,6 +527,28 @@ class Compose
 
         }
         return $cup;
+    }
+
+    /**
+     * 价格规则
+     *
+     * @param $operator
+     * @param $value
+     * @return \Illuminate\Support\Collection|int|mixed|\Tightenco\Collect\Support\Collection
+     */
+    protected function RulePrice($operator,$value){
+        switch ($operator){
+            case "=":
+                $price = $value;
+                break;
+            case "random":
+                $price = $this->Disassemble($value,',')->random();
+                break;
+            default:
+                $price = 0;
+
+        }
+        return $price;
     }
 
     /**
@@ -519,7 +568,7 @@ class Compose
                 $cup = collect($value)->random();
                 break;
             default:
-                $cup = $this->getBirthplace();
+               // $cup = $this->getBirthplace();
 
         }
         return $cup;

@@ -40,7 +40,7 @@ class AudioController extends AdminController
             $grid->disableEditButton();
             $grid->enableDialogCreate();
             $grid->selector(function (Grid\Tools\Selector $selector) {
-                $selector->selectOne('type', '音频类型', ['普通音频','叫声音频']);
+                $selector->selectOne('type', '音频类型', ['说话音频','叫声音频']);
             });
         });
     }

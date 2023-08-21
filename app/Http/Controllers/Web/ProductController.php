@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Cache;
 
+
 class ProductController extends Controller
 {
     public function index(Request $request){
@@ -24,6 +25,7 @@ class ProductController extends Controller
         $product = Cache::rememberForever('goods-'.$id, function () use ($id) {
             return Product::with(['birthplace','prices','withServes','city','county'])->find($id);
         });
+
 
         //$added = ProductAddedServe::where('product_id',$id)->get();
         $added = $productAddedServeRepository->getByProductId($id);
@@ -126,6 +128,11 @@ class ProductController extends Controller
 
         if($request->birthplace){
             $birthplace = $request->birthplace;
+            if(in_array('western',$birthplace)){
+                $birthplace = array_diff($birthplace,['western']);
+                $birthplace = array_merge($birthplace,[9,10,11,12]);
+            }
+
             $product = $product->whereIn('birthplace_id',$birthplace);
         }
 

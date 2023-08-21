@@ -44,7 +44,7 @@
                             </label>
                         </div>
                     </div>
-                    <div class="city">
+                    <div class="city county-box">
                         <div class="arrowicon">
                             <input type="checkbox" id="area" name="area">
                             <label class="area" for="area">
@@ -108,14 +108,23 @@
                 <p class="title">茶籍</p>
                 <div class="comechoose">
                     @foreach($birthplace as $item)
+                        @if(!$item->western)
+                            <div class="group">
+                                <input type="checkbox" data-equ="birthplace" data-tips="{{ $item->name }}" name="birthplace[]" value="{{ $item->id }}" id="birthplace-{{ $item->id }}">
+                                <label class="come" for="birthplace-{{ $item->id }}">
+                                    <div class="flag"><img src="{{ asset_upload($item->icon) }}" alt="{{ $item->name }}"></div>
+                                    <p class="flagname">{{ $item->name }}</p>
+                                </label>
+                            </div>
+                        @endif
+                    @endforeach
                         <div class="group">
-                            <input type="checkbox" data-equ="birthplace" data-tips="{{ $item->name }}" name="birthplace[]" value="{{ $item->id }}" id="birthplace-{{ $item->id }}">
-                            <label class="come" for="birthplace-{{ $item->id }}">
-                                <div class="flag"><img src="{{ asset_upload($item->icon) }}" alt="{{ $item->name }}"></div>
-                                <p class="flagname">{{ $item->name }}</p>
+                            <input type="checkbox" data-equ="birthplace" data-tips="歐美" name="birthplace[]" value="western" id="birthplace-western">
+                            <label class="come" for="birthplace-western">
+                                <div class="flag"><img src="/uploads/images/9eb638a067b80d7925197c15210c2ff9.jpg" alt="歐美"></div>
+                                <p class="flagname">歐美</p>
                             </label>
                         </div>
-                    @endforeach
                 </div>
             </div>
             @foreach($category as $item)

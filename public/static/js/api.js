@@ -137,6 +137,7 @@ $('#filter .conform').click(function () {
     var age = $('input[name="age"]').val();
     var price = $('input[name="price"]').val();
     var tab = $('input[name="tabs"]:checked').val()
+    var western = $('input[name="western"]:checked').val()
     var city = $('#fit-city').val();
     var county = $('#fit-county').val();
     var filter = {};
@@ -303,6 +304,13 @@ function initialize(){
     if(selected_type){
         $('input[name="tabs"][value="'+selected_type+'"]').prop('checked',true)
     }
+    if(selected_type == 2){
+        $('.county-box').show();
+    }else {
+        $('.county-box').hide();
+    }
+
+
 }
 
 
@@ -436,7 +444,23 @@ $('#radio-1,#radio-2').click(function () {
         $('input[name="tabs"][value="'+tab+'"]').prop('checked',true)
     }
 
+    if(tab == 2){
+        $('.county-box').show();
+    }else {
+        $('.county-box').hide();
+    }
+
+
 });
+
+$('#fit-tabs-1,#fit-tabs-2').click(function () {
+    var tab = $(this).val();
+    if(tab == 2){
+        $('#filter .county-box').show();
+    }else {
+        $('#filter .county-box').hide();
+    }
+})
 
 
 /**

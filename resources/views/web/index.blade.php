@@ -244,7 +244,7 @@
                     </label>
                 </div>
             </div>
-            <div class="city">
+            <div class="city county-box" style="display: none">
                 <div class="arrowicon">
                     <input type="checkbox" id="area" name="area">
                     <label class="area" for="area">
