@@ -29,7 +29,7 @@
             setCity();
             setCounty(options.city.default)
             function setCity(){
-                var option_html = '<option value="0">全部</option>';
+                var option_html = '<option value="0">全台縣市</option>';
                 $.each(options.data,function (index,value) {
                     var selected = options.city.default == value.id?"selected":""
                     option_html += '<option value="'+value.id+'" '+selected+'>'+value.name+'</option>';
@@ -44,7 +44,7 @@
 
             function setCounty(pid){
 
-                var option_html = '<option value="0">全部</option>';
+                var option_html = '<option value="0">全部地區</option>';
                 if(pid > 0){
                     $.each(options.data,function (index,value) {
                         if(value.id == pid){
