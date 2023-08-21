@@ -11,6 +11,7 @@ use App\Models\Category;
 use App\Models\Picture;
 use App\Models\Product;
 use App\Models\ProductAddedServe;
+use App\Models\ProductCategory;
 use App\Models\ProductPrice;
 use App\Models\ProductQuick;
 use App\Models\ProductWithServe;
@@ -211,6 +212,7 @@ class Compose
                 ProductQuick::where('product_id',$product_id)->delete();
                 ProductWithServe::where('product_id',$product_id)->delete();
                 ProductAddedServe::where('product_id',$product_id)->delete();
+                ProductCategory::where('product_id',$product_id)->delete();
                 Cache::forget('goods-'.$product_id);
             }else{
                 $product = Product::create($data);
@@ -277,6 +279,17 @@ class Compose
             }
 
             ProductAddedServe::insert($added_serves_insert);
+
+
+            $product_category_insert = [];
+            foreach ($category_ids as $item){
+                $product_category_insert[] = [
+                    'product_id'=>$product_id,
+                    'category_id'=>$item,
+                ];
+            }
+
+            ProductCategory::insert($product_category_insert);
 
         }
 
