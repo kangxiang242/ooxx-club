@@ -36,7 +36,7 @@
 
     <script src="{{ asset('static/js/jquery.min.js') }}"></script>
     <script src="{{ asset('static/js/inquiry.js') }}"></script>
-    <script src="{{ asset('static/js/area.js') }}"></script>
+    <script src="{{ asset('static/js/area.js') }}?v={{ app('cache.config')->get('asset_version') }}"></script>
 </head>
 <body class="_show_loading">
 
