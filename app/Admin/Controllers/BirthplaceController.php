@@ -25,6 +25,8 @@ class BirthplaceController extends AdminController
             $grid->column('name');
             $grid->column('icon')->image('',30,30);
             $grid->column('sort')->orderable();
+            $grid->column('price_range','价格范围')->width(600);
+            $grid->column('allow_type','定点/外送')->select(['随机定点外送','仅支持外送','仅支持定点'])->width(200);
             /*$grid->column('weight','權重');*/
             $grid->showQuickEditButton();
             $grid->disableEditButton();
@@ -63,6 +65,8 @@ class BirthplaceController extends AdminController
             $form->text('name');
             $form->image('icon')->uniqueName()->autoUpload();
             $form->hidden('sort');
+            $form->text('price_range','价格范围')->default('使用逗号分开');
+            $form->select('allow_type','定点/外送')->options(['随机定点外送','仅支持外送','仅支持定点']);
             //$form->number('weight','權重')->min(0)->max(100)->default(1);
             $form->saved(function (Form $form, $result) {
                 Cache::forget('birthplace');

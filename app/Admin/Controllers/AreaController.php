@@ -22,6 +22,7 @@ class AreaController extends AdminController
             $grid->model()->orderBy('sort');
             $grid->column('name')->tree(true);
             $grid->column('sort','排序')->orderable();
+            $grid->column('status','狀態')->switch();
             $grid->quickCreate(function (Grid\Tools\QuickCreate $create) {
                 $create->select('parent_id','上級分類')->options(function(){
                     $cate = \App\Models\Area::where('parent_id',0)->pluck('name','id');
@@ -68,14 +69,13 @@ class AreaController extends AdminController
     protected function form()
     {
         return Form::make(new Area(), function (Form $form) {
-            $form->display('id');
+
             $form->text('parent_id');
             $form->text('name');
             $form->text('level');
             $form->text('code');
+            $form->hidden('status')->default(1);
 
-            $form->display('created_at');
-            $form->display('updated_at');
         });
     }
 }
