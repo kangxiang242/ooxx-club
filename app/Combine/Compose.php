@@ -195,7 +195,7 @@ class Compose
                 'picture'=>$picture->image,
                 'comment_picture'=>implode(',',$comment_picture),
                 'video'=>$video->video,
-                'video_cover'=>$video->video_cover,
+                'video_cover'=>$video->cover,
                 'audio'=>$audio->audio,
                 'audio_time'=>$audio->duration,
                 'sham'=>1,
