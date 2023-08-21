@@ -79,7 +79,7 @@ class Compose
 
         $this->comment_picture = collect(array_filter(explode(',',app(ConfigService::class)->get('comment_picture'))));
 
-        $this->videos = Video::where('status',1)->pluck('video')->shuffle();
+        $this->videos = Video::where('status',1)->get()->shuffle();
 
         $this->audios1 = Audio::where('status',1)->where('type',0)->get()->shuffle();
 
@@ -193,7 +193,8 @@ class Compose
                 'price_end'=>$price*3,
                 'picture'=>$picture->image,
                 'comment_picture'=>implode(',',$comment_picture),
-                'video'=>$video,
+                'video'=>$video->video,
+                'video_cover'=>$video->video_cover,
                 'audio'=>$audio->audio,
                 'audio_time'=>$audio->duration,
                 'sham'=>1,

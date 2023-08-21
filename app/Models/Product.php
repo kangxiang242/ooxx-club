@@ -11,7 +11,7 @@ class Product extends Model
     use HasFactory,HasDateTimeFormatter,Resizable;
 
     protected $fillable = [
-        'birthplace_id','name','cover','age','height','weight','cup','area_city','area_county','price_start','price_end','picture','comment_picture','video','audio','audio_time','sort','status','sham','outgoing','fixation','type'
+        'birthplace_id','name','cover','age','height','weight','cup','area_city','area_county','price_start','price_end','picture','comment_picture','video','video_cover','audio','audio_time','sort','status','sham','outgoing','fixation','type'
     ];
 
     /**

@@ -4,6 +4,7 @@
 namespace App\Admin\Controllers;
 
 use App\Models\Config;
+use App\Models\Product;
 use App\Services\ConfigService;
 use App\Services\SitemapService;
 use Dcat\Admin\Http\Controllers\AdminController;
@@ -47,6 +48,10 @@ class SitemapController extends AdminController
 
         Cache::forget('serve');
 
+        $product = Product::all();
+        foreach ($product as $item){
+            Cache::forget('goods-'.$item->id);
+        }
 
         admin_toastr('缓存清除成功', 'success', ['timeOut' => 3000]);
         return redirect(admin_url());

@@ -13,6 +13,7 @@ use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends AdminController
 {
@@ -169,10 +170,11 @@ STYLE
                 if($form->picture){
                     $form->cover = array_get(explode(',',$form->picture),0); //设置第一张为封面
                 }
-
-
             });
 
+            $form->saved(function (Form $form, $result) {
+                Cache::forget('goods-'.$result);
+            });
 
         });
     }
