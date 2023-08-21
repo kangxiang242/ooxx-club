@@ -73,7 +73,7 @@
             <div class="choose-sec" id="choose-sec">
                 <p class="title">預算<span class="eng">（NT$）</span></p>
                 <div class="sliderbar">
-                    <input type="hidden" class="price-range-slider" name="price" value="3000,18000"/>
+                    <input type="hidden" class="price-range-slider" name="price" value="2000,80000"/>
                 </div>
             </div>
             <div class="choose-sec" id="choose-sec">
@@ -209,8 +209,8 @@
 
     var price_pointer;
     $('.price-range-slider').jRange({
-        from: 2500,
-        to: 20000,
+        from: 2000,
+        to: 80000,
         step: 500,
         scale: [],
         format: function (value,pointer) {
@@ -221,7 +221,7 @@
         showLabels: true,
         isRange : true,
         onstatechange:function (value) {
-            var gpa = 5000;
+            var gpa = 25000;
             var split = value.split(',');
             var start = parseInt(split[0]);
             var end = parseInt(split[1]);
@@ -229,8 +229,8 @@
             if(dis<=gpa){
                 if(price_pointer == 'high'){
                     var high_ef = end - gpa;
-                    if(start <= 2500 && end - high_ef <= gpa){
-                        end = 2500+gpa;
+                    if(start <= 2000 && end - high_ef <= gpa){
+                        end = 2000+gpa;
                     }
                     $('.price-range-slider').jRange('setValue', high_ef+','+end);
                 }else{

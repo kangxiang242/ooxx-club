@@ -439,7 +439,8 @@ header{
                     height: 100vh;
                     .choose-box{
                         height: calc(100% - 72px - 60px);
-                        overflow: auto;
+                        overflow-y: auto;
+                        overflow-x: hidden;
                     }
                 }
 
@@ -1309,7 +1310,8 @@ header{
             }
             background-color: #fafafa;
             height: calc(100vh - 110px);
-            overflow: auto;
+            overflow-y: auto;
+            overflow-x: hidden;
             transition: all 1s cubic-bezier(0.8, 0, 0.2, 1);
             transition-delay: 0.3s;
             z-index: 0;
