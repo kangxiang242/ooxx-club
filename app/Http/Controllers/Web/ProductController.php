@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Cache;
 class ProductController extends Controller
 {
     public function index(Request $request){
+
         return view('web.product');
     }
 
