@@ -15,7 +15,7 @@
 @section('style')
     @parent
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-    <link rel="stylesheet" type="text/less" href="{{ asset('static/less/shownews.less') }}?v={{ app('cache.config')->get('asset_version') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('static/less/shownews.css') }}?v={{ app('cache.config')->get('asset_version') }}"/>
 
 @stop
 

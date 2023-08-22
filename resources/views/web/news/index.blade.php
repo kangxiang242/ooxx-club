@@ -2,8 +2,8 @@
 
 @section('style')
     @parent
-    <link rel="stylesheet" type="text/less" href="{{ asset('static/less/news.less') }}?v={{ app('cache.config')->get('asset_version') }}"/>
-    <link rel="stylesheet" type="text/less" href="{{ asset('static/less/pagination.less') }}?v={{ app('cache.config')->get('asset_version') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('static/less/news.css') }}?v={{ app('cache.config')->get('asset_version') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('static/less/pagination.css') }}?v={{ app('cache.config')->get('asset_version') }}"/>
 
 @stop
 

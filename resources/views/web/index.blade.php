@@ -3,8 +3,8 @@
 @section('style')
     @parent
     <link rel="stylesheet" type="text/css" href="{{ asset('static/swiper4/swiper.min.css') }}"/>
-    <link rel="stylesheet" type="text/less" href="{{ asset('static/less/index.less') }}?v={{ app('cache.config')->get('asset_version') }}"/>
-    <link rel="stylesheet" type="text/less" href="{{ asset('static/less/fliter.less') }}?v={{ app('cache.config')->get('asset_version') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('static/less/index.css') }}?v={{ app('cache.config')->get('asset_version') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('static/less/fliter.css') }}?v={{ app('cache.config')->get('asset_version') }}"/>
 
 @stop
 @section('script')

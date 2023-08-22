@@ -30,7 +30,7 @@
 
     @section('style')
         <link rel="stylesheet" type="text/css" href="{{ asset('static/css/style.css') }}?v={{ app('cache.config')->get('asset_version') }}"/>
-        <link rel="stylesheet" type="text/less" href="{{ asset('static/less/global.less') }}?v={{ app('cache.config')->get('asset_version') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ asset('static/less/global.css') }}?v={{ app('cache.config')->get('asset_version') }}"/>
         <link rel="stylesheet" href="{{ asset('static/font_3122894_ix34x1wtlao/iconfont.css') }}?v={{ app('cache.config')->get('asset_version') }}">
     @show
 

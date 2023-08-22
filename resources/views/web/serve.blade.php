@@ -2,7 +2,7 @@
 
 @section('style')
     @parent
-    <link rel="stylesheet" type="text/less" href="{{ asset('static/less/team.less') }}?v={{ app('cache.config')->get('asset_version') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('static/less/team.css') }}?v={{ app('cache.config')->get('asset_version') }}"/>
 
 @stop
 
