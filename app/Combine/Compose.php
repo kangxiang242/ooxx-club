@@ -245,9 +245,12 @@ class Compose
 
             ProductPrice::insert($price_insert);
 
+
+            $quick_ids = $this->quicks->pluck('id');
+            $quick_ids = collect($quick_ids)->except('4');
             ProductQuick::create([
                 'product_id'=>$product_id,
-                'quick_id'=>$pose->get('quick',$this->quicks->random()->id),
+                'quick_id'=>$pose->get('quick',$quick_ids->random()),
             ]);
 
             $serve_count = $this->serves->count();
