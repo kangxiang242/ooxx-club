@@ -35,8 +35,15 @@ class Nahw extends Config
             $this->array('rules','分類匹配規則', function (NestedForm $table) {
                 $table->select('field','字段')->options(Category::where('parent_id','>',0)->pluck('name','id'))->required();
                 $table->select('operator','運算符')->options(['>='=>'>=','<='=>'<=','='=>'=','random'=>'隨機以下各項'])->required();
-                $table->select('mate','匹配项')->options(['height'=>'身高','weight'=>'体重','age'=>'年龄','cup'=>'罩杯','price'=>'價格']);
+                $table->select('mate','匹配项')->options(['height'=>'身高','weight'=>'体重','age'=>'年龄','cup'=>'罩杯','price'=>'價格','quick'=>'快捷']);
                 $table->text('value','值');
+            })->useTable();
+
+
+            $this->array('birthplace_rules','茶籍分類互斥', function (NestedForm $table) {
+                $table->select('field','字段')->options(Birthplace::where('status',1)->pluck('name','id'))->required();
+                $table->select('operator','運算符')->options(['except'=>'排除以下各項'])->required();
+                $table->multipleSelect('value','值')->options(Category::where('parent_id','>',0)->pluck('name','id'));
             })->useTable();
         });
 

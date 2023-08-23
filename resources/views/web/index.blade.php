@@ -116,6 +116,7 @@
 
     <script>
         var is_lock = false
+        var filter_count = localStorage.getItem(filter_count_key);
         var EquClickCallback = function (number) {
             if(!is_lock){
                 var qut = Math.round(3000 * (1-number/30));
@@ -134,9 +135,8 @@
                     is_lock = false
                 },500)
             }
-
-
         }
+        EquClickCallback(filter_count);
     </script>
 
 @stop

@@ -18,8 +18,10 @@ class QuickController extends AdminController
      */
     protected function grid()
     {
+
         return Grid::make(new Quick(), function (Grid $grid) {
             $grid->model()->orderBy('sort');
+            $grid->column('id')->bold();
             $grid->column('text');
             $grid->column('img')->image('',30,30);
             $grid->column('sort')->orderable();

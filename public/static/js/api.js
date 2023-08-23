@@ -299,15 +299,16 @@ function initialize(){
     $('#partone').find('.item-count').text(filter_count?filter_count:0);
 
 
-
     var selected_type = $.cookie('selected_type')?$.cookie('selected_type'):1;
     if(selected_type){
         $('input[name="tabs"][value="'+selected_type+'"]').prop('checked',true)
     }
     if(selected_type == 2){
         $('.county-box').show();
+        updatePriceRange(2000,80000)
     }else {
         $('.county-box').hide();
+        updatePriceRange(6000,80000)
     }
 
 

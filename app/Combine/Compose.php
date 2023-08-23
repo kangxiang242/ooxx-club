@@ -104,6 +104,7 @@ class Compose
 
     public function start(){
         ConfigService::cache();
+        $birthplace_rules = json_decode(app(ConfigService::class)->get('birthplace_rules'),true);
 
         foreach($this->nicknames->shuffle() as $name){
 
@@ -112,14 +113,7 @@ class Compose
             }
 
 
-            $category_ids = [];
-            foreach($this->category as $cate){
-                $category_ids[] = $cate->id;
-                $category_ids[] = $cate->sub->random()->id;
-            }
 
-
-            $pose = collect($this->rules($category_ids));
 
             $picture = $this->picture->pop();
             if(!$picture->image){
@@ -130,6 +124,7 @@ class Compose
 
             $video = $this->videos->pop();
             $this->videos->prepend($video);
+
 
 
             $comment_picture = [];
@@ -155,6 +150,16 @@ class Compose
                 default:
                     rand(1,2) == 1?$outgoing = 1:$fixation = 1;
             }
+
+            $category_ids = [];
+            foreach($this->category as $cate){
+                $res_id = $this->birthplaceRules($birthplace->id,$birthplace_rules,$cate->sub->pluck('id'));
+                if($res_id){
+                    $category_ids[] = $res_id;
+                }
+            }
+
+            $pose = collect($this->rules($category_ids));
 
             $price = $pose->get('price');
             if(!$price){
@@ -242,7 +247,7 @@ class Compose
 
             ProductQuick::create([
                 'product_id'=>$product_id,
-                'quick_id'=>$this->quicks->random()->id,
+                'quick_id'=>$pose->get('quick',$this->quicks->random()->id),
             ]);
 
             $serve_count = $this->serves->count();
@@ -288,7 +293,6 @@ class Compose
                     'category_id'=>$item,
                 ];
             }
-
             ProductCategory::insert($product_category_insert);
 
         }
@@ -299,6 +303,33 @@ class Compose
 
     /**
      * 规则匹配
+     * @param $birthplace_id
+     * @param array $category_ids
+     * @param array $rules
+     * @return array
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \Psr\Container\NotFoundExceptionInterface
+     */
+    protected function birthplaceRules($birthplace_id,$rules,$category_ids = []){
+
+        if($category_ids){
+            foreach($rules as $rule){
+                if($rule['field'] == $birthplace_id){
+                    if($rule['operator'] == 'except'){
+                        $fruits = array_diff($category_ids, $rule['value']);
+                        return collect($fruits)->random();
+                    }
+
+                }else{
+                    return collect($category_ids)->random();
+                }
+            }
+        }
+
+    }
+
+    /**
+     * 茶籍互斥
      * @param array $category_ids
      * @return array
      * @throws \Psr\Container\ContainerExceptionInterface
@@ -322,6 +353,8 @@ class Compose
                         $pose['cup'] = $this->RuleCup($rule['operator'],$rule['value']);
                     }else if($rule['mate'] == 'price'){
                         $pose['price'] = $this->RulePrice($rule['operator'],$rule['value']);
+                    }else if($rule['mate'] == 'quick'){
+                        $pose['quick'] = $this->RuleQuick($rule['operator'],$rule['value']);
                     }
                 }
             }
@@ -563,6 +596,28 @@ class Compose
 
         }
         return $price;
+    }
+
+    /**
+     * 价格规则
+     *
+     * @param $operator
+     * @param $value
+     * @return \Illuminate\Support\Collection|int|mixed|\Tightenco\Collect\Support\Collection
+     */
+    protected function RuleQuick($operator,$value){
+        switch ($operator){
+            case "=":
+                $quick = $value;
+                break;
+            case "random":
+                $quick = $this->Disassemble($value,',')->random();
+                break;
+            default:
+                $quick = 0;
+
+        }
+        return $quick;
     }
 
     /**

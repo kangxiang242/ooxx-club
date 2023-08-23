@@ -23,9 +23,9 @@
                 <p class="title">喝茶方式</p>
                 <div class="modebox" >
                     <div class="tabs">
-                        <input type="radio" id="fit-tabs-1" name="tabs" value="1">
+                        <input type="radio" id="fit-tabs-1" name="tabs" value="1" onclick="updatePriceRange(6000,80000)">
                         <label class="tab" for="fit-tabs-1">外送</label>
-                        <input type="radio" id="fit-tabs-2" name="tabs" value="2">
+                        <input type="radio" id="fit-tabs-2" name="tabs" value="2" onclick="updatePriceRange(2000,80000)">
                         <label class="tab" for="fit-tabs-2">定點</label>
                         <span class="glider"></span>
                     </div>
@@ -72,7 +72,7 @@
             </div>
             <div class="choose-sec" id="choose-sec">
                 <p class="title">預算<span class="eng">（NT$）</span></p>
-                <div class="sliderbar">
+                <div class="sliderbar" id="price-range-box">
                     <input type="hidden" class="price-range-slider" name="price" value="2000,80000"/>
                 </div>
             </div>
@@ -207,40 +207,47 @@
     $('.age-range-slider').jRange('setValue', '18,26');
 
 
-    var price_pointer;
-    $('.price-range-slider').jRange({
-        from: 2000,
-        to: 80000,
-        step: 500,
-        scale: [],
-        format: function (value,pointer) {
-            price_pointer = pointer;
-            return pointer == 'high' && value>=this.to ? value + '+':value;
-        },
-        width: 300,
-        showLabels: true,
-        isRange : true,
-        onstatechange:function (value) {
-            var gpa = 25000;
-            var split = value.split(',');
-            var start = parseInt(split[0]);
-            var end = parseInt(split[1]);
-            var dis = end - start;
-            if(dis<=gpa){
-                if(price_pointer == 'high'){
-                    var high_ef = end - gpa;
-                    if(start <= 2000 && end - high_ef <= gpa){
-                        end = 2000+gpa;
-                    }
-                    $('.price-range-slider').jRange('setValue', high_ef+','+end);
-                }else{
+    function priceRangeFun(from,to) {
+        var price_pointer;
+        $('.price-range-slider').jRange({
+            from: from?from:2000,
+            to: to?to:80000,
+            step: 500,
+            scale: [],
+            format: function (value,pointer) {
+                price_pointer = pointer;
+                return pointer == 'high' && value>=this.to ? value + '+':value;
+            },
+            width: 300,
+            showLabels: true,
+            isRange : true,
+            onstatechange:function (value) {
+                var gpa = 25000;
+                var split = value.split(',');
+                var start = parseInt(split[0]);
+                var end = parseInt(split[1]);
+                var dis = end - start;
+                if(dis<=gpa){
+                    if(price_pointer == 'high'){
+                        var high_ef = end - gpa;
+                        if(start <= 2000 && end - high_ef <= gpa){
+                            end = 2000+gpa;
+                        }
+                        $('.price-range-slider').jRange('setValue', high_ef+','+end);
+                    }else{
 
-                    var low_ef = end + (start + gpa - end);
-                    $('.price-range-slider').jRange('setValue', start+','+low_ef);
+                        var low_ef = end + (start + gpa - end);
+                        $('.price-range-slider').jRange('setValue', start+','+low_ef);
+                    }
+                    return false;
                 }
-                return false;
-            }
-        },
-    });
+            },
+        });
+    }
+    function updatePriceRange(from,to) {
+        $('#price-range-box').empty();
+        $('#price-range-box').append('<input type="hidden" class="price-range-slider" name="price" value="'+from+','+to+'"/>')
+        priceRangeFun(from,to)
+    }
 
 </script>
