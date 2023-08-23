@@ -27,8 +27,6 @@ class BirthplaceController extends AdminController
             $grid->column('sort')->orderable();
             $grid->column('price_range','价格范围')->width(600);
             $grid->column('allow_type','定点/外送')->select(['随机定点外送','仅支持外送','仅支持定点'])->width(200);
-            $grid->column('use_audio_type','使用音频类型')->select(['说话版','叫声版'])->width(200);
-            /*$grid->column('weight','權重');*/
             $grid->showQuickEditButton();
             $grid->disableEditButton();
             $grid->enableDialogCreate();
