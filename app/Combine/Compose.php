@@ -295,6 +295,8 @@ class Compose
             }
             ProductCategory::insert($product_category_insert);
 
+            dd(123123);
+
         }
 
 
