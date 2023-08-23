@@ -305,13 +305,12 @@ class Compose
 
 
     /**
-     * 规则匹配
+     * 茶籍互斥
+     *
      * @param $birthplace_id
+     * @param $rules
      * @param array $category_ids
-     * @param array $rules
-     * @return array
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \Psr\Container\NotFoundExceptionInterface
+     * @return bool|\Illuminate\Support\Collection|mixed|\Tightenco\Collect\Support\Collection
      */
     protected function birthplaceRules($birthplace_id,$rules,$category_ids = []){
 
@@ -320,7 +319,12 @@ class Compose
                 if($rule['field'] == $birthplace_id){
                     if($rule['operator'] == 'except'){
                         $fruits = array_diff($category_ids, $rule['value']);
-                        return collect($fruits)->random();
+                        if($fruits){
+                            return collect($fruits)->random();
+                        }else{
+                            return false;
+                        }
+
                     }
 
                 }else{
