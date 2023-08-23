@@ -327,7 +327,7 @@ class Compose
                     }
 
                 }else{
-                    return collect($category_ids)->random();
+                    return $category_ids->random();
                 }
             }
         }
