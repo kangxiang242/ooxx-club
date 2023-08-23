@@ -29,7 +29,7 @@ class AudioController extends AdminController
         $type = array_get($_selector,'birthplace_id',1);
         Cookie::queue('selected_audio_birthplace_id',array_get($_selector,'birthplace_id',1));
         return Grid::make(new Audio(), function (Grid $grid) use ($type) {
-            $grid->model()->where('type',$type);
+            $grid->model()->where('birthplace_id',$type);
             $grid->column('audio')->link(function (){
                 return asset_upload($this->audio);
             });
