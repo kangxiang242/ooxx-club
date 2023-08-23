@@ -318,7 +318,9 @@ class Compose
             foreach($rules as $rule){
                 if($rule['field'] == $birthplace_id){
                     if($rule['operator'] == 'except'){
+                        dd($category_ids,$rule['value']);
                         $fruits = array_diff($category_ids, $rule['value']);
+
                         if($fruits){
                             return collect($fruits)->random();
                         }else{
