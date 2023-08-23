@@ -204,7 +204,7 @@ class Compose
                 'outgoing'=>$outgoing,
                 'fixation'=>$fixation,
             ];
-            dd($data);
+
 
 
             if($this->product_ids->count()>0){
@@ -244,7 +244,7 @@ class Compose
 
 
             $quick_ids = $this->quicks->pluck('id');
-            $quick_ids = collect($quick_ids)->except('4');
+            $quick_ids = $quick_ids->except('4');
             ProductQuick::create([
                 'product_id'=>$product_id,
                 'quick_id'=>$pose->get('quick',$quick_ids->random()),
