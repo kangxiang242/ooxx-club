@@ -309,20 +309,18 @@ class Compose
      *
      * @param $birthplace_id
      * @param $rules
-     * @param array $category_ids
+     * @param $category_ids
      * @return bool|\Illuminate\Support\Collection|mixed|\Tightenco\Collect\Support\Collection
      */
-    protected function birthplaceRules($birthplace_id,$rules,$category_ids = []){
+    protected function birthplaceRules($birthplace_id,$rules,$category_ids){
 
         if($category_ids){
             foreach($rules as $rule){
                 if($rule['field'] == $birthplace_id){
                     if($rule['operator'] == 'except'){
-                        dd($category_ids,$rule['value']);
-                        $fruits = array_diff($category_ids, $rule['value']);
-
-                        if($fruits){
-                            return collect($fruits)->random();
+                        $fruits = $category_ids->diff($rule['value']);
+                        if($fruits->isNotEmpty()){
+                            return $fruits->random();
                         }else{
                             return false;
                         }
