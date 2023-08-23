@@ -112,9 +112,6 @@ class Compose
                 break;
             }
 
-
-
-
             $picture = $this->picture->pop();
             if(!$picture->image){
                 continue;
@@ -207,7 +204,7 @@ class Compose
                 'outgoing'=>$outgoing,
                 'fixation'=>$fixation,
             ];
-
+            dd($data);
 
 
             if($this->product_ids->count()>0){
