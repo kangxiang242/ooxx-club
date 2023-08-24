@@ -33,7 +33,7 @@ Admin::navbar(function (Navbar $navbar) {
     $navbar->right(
         <<<HTML
         $product_html
-        <button class="btn btn-primary" onclick="window.location.href='$url'" style="margin-right: 20px"><i class="fa fa-circle-o-notch"></i> 刷新缓存 </button>
+        <button class="btn btn-primary" onclick="window.location.href='$url'" style="margin-right: 20px"><i class="fa fa-circle-o-notch"></i> 清理缓存 </button>
         <button class="btn btn-primary" onclick="window.location.href='$web_url'" style="margin-right: 20px"><i class="fa fa fa-globe"></i> 前往前台 </button>
 HTML
 
