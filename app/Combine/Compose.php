@@ -150,10 +150,17 @@ class Compose
 
             $category_ids = [];
             foreach($this->category as $cate){
-                $res_id = $this->birthplaceRules($birthplace->id,$birthplace_rules,$cate->sub->pluck('id'));
-                if($res_id){
-                    $category_ids[] = $res_id;
+                $is_on = true;
+                if($cate->id == 4 && rand(1,10)>3){
+                    $is_on = false;
                 }
+                if($is_on){
+                    $res_id = $this->birthplaceRules($birthplace->id,$birthplace_rules,$cate->sub->pluck('id'));
+                    if($res_id){
+                        $category_ids = array_merge($category_ids,$res_id);
+                    }
+                }
+
             }
 
             $pose = collect($this->rules($category_ids));
@@ -315,10 +322,11 @@ class Compose
         if($category_ids){
             foreach($rules as $rule){
                 if($rule['field'] == $birthplace_id){
+
                     if($rule['operator'] == 'except'){
                         $fruits = $category_ids->diff($rule['value']);
                         if($fruits->isNotEmpty()){
-                            return $fruits->random();
+                            return $fruits->random(1)->toArray();
                         }else{
                             return false;
                         }
@@ -326,7 +334,7 @@ class Compose
                     }
 
                 }else{
-                    return $category_ids->random();
+                    return $category_ids->random(rand(1,$category_ids->count()))->toArray();
                 }
             }
         }
