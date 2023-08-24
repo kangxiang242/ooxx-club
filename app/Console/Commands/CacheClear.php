@@ -54,6 +54,8 @@ class CacheClear extends Command
 
         Cache::forget('serve');
 
+        Cache::forget('seo');
+
         $product = Product::all();
         foreach ($product as $item){
             Cache::forget('goods-'.$item->id);
