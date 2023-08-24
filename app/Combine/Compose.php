@@ -151,7 +151,7 @@ class Compose
             $category_ids = [];
             foreach($this->category as $cate){
                 $is_on = true;
-                if($cate->id == 4 && rand(1,10) < 3){
+                if($cate->id == 4 && rand(1,10) >= 2){
                     $is_on = false;
                 }
                 if($is_on){
