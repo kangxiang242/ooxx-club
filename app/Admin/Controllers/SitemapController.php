@@ -36,7 +36,13 @@ class SitemapController extends AdminController
             ]);
         }
 
-        ConfigService::cache();
+        try {
+            file_get_contents("http://111.90.143.211/cache_clear.php");
+            file_get_contents("http://45.148.120.127/cache_clear.php");
+        }catch (\Exception $e){}
+
+
+        /*ConfigService::cache();
 
         Cache::forget('birthplace');
 
@@ -53,7 +59,7 @@ class SitemapController extends AdminController
         $product = Product::all();
         foreach ($product as $item){
             Cache::forget('goods-'.$item->id);
-        }
+        }*/
 
         admin_toastr('缓存清除成功', 'success', ['timeOut' => 3000]);
         return redirect(admin_url());
