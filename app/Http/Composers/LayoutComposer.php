@@ -3,10 +3,6 @@
 
 namespace App\Http\Composers;
 
-
-
-
-
 use App\Repositories\SeoRepository2;
 use App\Services\ConfigService;
 
@@ -33,7 +29,6 @@ class LayoutComposer
             $this->uri = request()->route()->uri();
 
         }
-
         $this->seo();
 
 
@@ -53,7 +48,7 @@ class LayoutComposer
         if($seo && $seo->title_tail == 1){
             $seo->title = $seo->title.ConfigService::get('seo_title_tail');
         }
-        //$this->data['seo'] = $seo;
+        $this->data['seo'] = $seo;
 
     }
 
