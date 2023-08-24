@@ -318,7 +318,7 @@ class Compose
      * @return bool|\Illuminate\Support\Collection|mixed|\Tightenco\Collect\Support\Collection
      */
     protected function birthplaceRules($birthplace_id,$rules,$category_ids){
-        dd($rules);
+        //dd($rules);
         if($category_ids){
             foreach($rules as $rule){
                 if($rule['field'] == $birthplace_id){
