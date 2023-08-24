@@ -334,7 +334,7 @@ class Compose
                     }
 
                 }else{
-                    return $category_ids->random(rand(1,$category_ids->count()))->toArray();
+                    return $category_ids->random(rand(1,$category_ids->count()-1))->toArray();
                 }
             }
         }
