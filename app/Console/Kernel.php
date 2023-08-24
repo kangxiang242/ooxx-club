@@ -3,7 +3,6 @@
 namespace App\Console;
 
 use App\Combine\Compose;
-use App\Console\Commands\RandProduct;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
