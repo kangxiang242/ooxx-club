@@ -30,6 +30,11 @@ class ProductGroupReset extends RowAction
         set_time_limit(0);
         app(Compose::class)->start();
         //app(Compose::class)->start(2);
+        try {
+            file_get_contents("http://111.90.143.211/cache_clear.php");
+            file_get_contents("http://45.148.120.127/cache_clear.php");
+        }catch (\Exception $e){}
+
         return $this->response()
             ->success('成功')
             ->refresh();
