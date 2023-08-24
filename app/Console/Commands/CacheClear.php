@@ -42,10 +42,7 @@ class CacheClear extends Command
     public function handle()
     {
 
-        exec("/usr/local/sh/rsyncd.sh",$output);
-        dd($output);
-
-        /*ConfigService::cache();
+        ConfigService::cache();
 
         Cache::forget('birthplace');
 
@@ -64,7 +61,7 @@ class CacheClear extends Command
             Cache::forget('goods-'.$item->id);
         }
 
-        $this->info('ok');*/
+        $this->info('ok');
 
     }
 }
