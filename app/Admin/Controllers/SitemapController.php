@@ -36,10 +36,10 @@ class SitemapController extends AdminController
             ]);
         }
 
-        try {
+        //try {
             file_get_contents("http://111.90.143.211/cache_clear.php");
             file_get_contents("http://45.148.120.127/cache_clear.php");
-        }catch (\Exception $e){}
+        //}catch (\Exception $e){}
 
 
         /*ConfigService::cache();
