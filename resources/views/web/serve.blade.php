@@ -247,7 +247,7 @@
         </div>
         <div class="location">
                 <svg t="1689906436933" class="locaicon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2323" width="200" height="200"><path d="M509.76 98.11c-196.74 0-356.22 160.4-356.22 358.36 0 98.93 39.9 188.49 104.32 253.38l192.78 193.91c32.59 32.78 85.64 32.78 118.23 0l192.78-193.91a358.303 358.303 0 0 0 104.32-253.38c0.01-197.96-159.48-358.36-356.21-358.36z m0 517.54a158.759 158.759 0 0 1-112.19-46.83 158.822 158.822 0 0 1-46.18-112.46 158.708 158.708 0 0 1 158.36-159.17 158.782 158.782 0 0 1 158.36 159.28A158.724 158.724 0 0 1 509.75 615.7v-0.05z m0 0" p-id="2324"></path></svg>
-                <span>{{ mb_substr($product->city->name,0,-1) }} {{ $product->county->name }}</span>
+                <span>{{ mb_substr($product->city->name,0,-1) }} @if(!$product->outgoing){{ $product->county->name }}@endif</span>
         </div>
         <ul class="codebox">
             <li class="codeitem"><span class="num">{{ $product->age }}</span>歲</li>
