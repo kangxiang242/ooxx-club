@@ -819,11 +819,11 @@ header .wrapper .filter .parttwo-show .choose-sec .comechoose .come {
 }
 header .wrapper .filter .parttwo-show .choose-sec .comechoose .come .flag {
   display: inline-block;
-  border-radius: 50%;
+  border-radius: 2px;
   width: 18px;
-  height: 18px;
+  height: 12px;
   overflow: hidden;
-  margin-right: 3px;
+  margin-right: 6px;
 }
 header .wrapper .filter .parttwo-show .choose-sec .comechoose .come .flag img {
   width: 100%;
@@ -1663,11 +1663,11 @@ header .factorbox .factor .factorclose {
 }
 .pc .filter .parttwo-show .choose-sec .comechoose .come .flag {
   display: inline-block;
-  border-radius: 50%;
+  border-radius: 2px;
   width: 18px;
-  height: 18px;
+  height: 12px;
   overflow: hidden;
-  margin-right: 3px;
+  margin-right: 6px;
 }
 .pc .filter .parttwo-show .choose-sec .comechoose .come .flag img {
   width: 100%;
