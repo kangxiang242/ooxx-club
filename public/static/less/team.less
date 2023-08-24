@@ -203,6 +203,9 @@ header{
             background-color: rgba(0, 0, 0, 0.3);
             margin: 14px;
             z-index: 3;
+            @media screen and (min-width: 768px) {
+                display: none;
+            }
             .backicon{
                 position: relative;
                 top: 50%;
@@ -287,6 +290,7 @@ header{
         width: 100%;
         padding: 24px;
         flex: 1;
+        max-width: 900px;
         @media screen and (max-width: 768px) {
             position: relative;
             left: 0;

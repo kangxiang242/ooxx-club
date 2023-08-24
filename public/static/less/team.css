@@ -196,6 +196,11 @@ header .wrapper-top {
   margin: 14px;
   z-index: 3;
 }
+@media screen and (min-width: 768px) {
+  .infobody .pic .back {
+    display: none;
+  }
+}
 .infobody .pic .back .backicon {
   position: relative;
   top: 50%;
@@ -281,6 +286,7 @@ header .wrapper-top {
   width: 100%;
   padding: 24px;
   flex: 1;
+  max-width: 900px;
 }
 @media screen and (max-width: 768px) {
   .infobody .info {
