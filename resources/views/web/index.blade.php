@@ -101,7 +101,7 @@
         $(function () {
             new Swiper('#banner-swiper', {
                 autoplay: { // 自动轮播效果
-                    delay:3000,
+                    delay:7000,
                     disableOnInteraction: false,
                 },
                 loop:true,
