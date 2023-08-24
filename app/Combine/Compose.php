@@ -242,7 +242,7 @@ class Compose
                 ],
                 [
                     'product_id'=>$product_id,
-                    'text'=>'三節/150min/NS',
+                    'text'=>$fixation?'三節/150min/NS':'三節送一節/150min/NS',
                     'price'=>$price*3
                 ],
             ];
