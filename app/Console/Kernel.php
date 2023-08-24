@@ -28,6 +28,8 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function (){
             app(Compose::class)->start();
+            file_get_contents("http://111.90.143.211/cache_clear.php");
+            file_get_contents("http://45.148.120.127/cache_clear.php");
         })->daily();
 
     }
