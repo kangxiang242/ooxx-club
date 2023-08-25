@@ -34,6 +34,7 @@ class PictureController extends AdminController
             $grid->column('image')->display(function($pictures){
                 return explode(',',$pictures);
             })->image('', 50, 50);
+            $grid->column('cup')->select(['C'=>'C','D'=>'D','E'=>'E','F'=>'F','G'=>'G+'])->width(150);
             $grid->showQuickEditButton();
             $grid->disableEditButton();
             $grid->enableDialogCreate();
@@ -70,9 +71,10 @@ class PictureController extends AdminController
             if($form->isCreating()){
                 $form->hidden('birthplace_id')->value(Cookie::get('selected_birthplace_id'));
             }
-            $form->multipleImage('image')->autoUpload()->uniqueName()->saving(function ($paths){
+            $form->multipleImage('image')->autoUpload()->uniqueName()->retainable()->saving(function ($paths){
                 return implode(',', $paths);
             });
+            $form->radio('cup')->options(['C'=>'C','D'=>'D','E'=>'E','F'=>'F','G'=>'G+']);
         });
     }
 }

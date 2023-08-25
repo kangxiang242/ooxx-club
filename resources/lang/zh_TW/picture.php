@@ -1,4 +1,4 @@
-<?php 
+<?php
 return [
     'labels' => [
         'Picture' => '相片',
@@ -6,6 +6,7 @@ return [
     ],
     'fields' => [
         'image' => '圖片',
+        'cup'=>'罩杯'
     ],
     'options' => [
     ],

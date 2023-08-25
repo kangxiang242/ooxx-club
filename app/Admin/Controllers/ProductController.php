@@ -48,10 +48,16 @@ class ProductController extends AdminController
                 }
                 return $html;
             });
-
-            $grid->column('is_top','首頁推薦')->switch();
+            $grid->column('sham','產品源')->using(['自建','隨機'])->label([
+                0 => '#5386be',
+                1 => 'primary',
+            ]);
             $grid->column('status')->switch();
             $grid->async();
+
+            $grid->selector(function (Grid\Tools\Selector $selector) {
+                $selector->selectOne('sham', '產品來源', ['自建','隨機']);
+            });
         });
     }
 
