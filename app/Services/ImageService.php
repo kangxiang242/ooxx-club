@@ -33,9 +33,9 @@ class ImageService
                 $path = public_path('uploads/'.ltrim($item,'/'));
                 if(file_exists($path)){
                     $this->resize($path,40);
-                    usleep(500000);
                 }
             }
+            usleep(500000);
         }
     }
 
