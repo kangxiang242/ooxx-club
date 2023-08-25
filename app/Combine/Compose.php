@@ -39,9 +39,7 @@ class Compose
 
     protected $videos;
 
-    protected $audios1;
-
-    protected $audios2;
+    protected $audios;
 
     protected $outgoing_price;
 
@@ -82,9 +80,8 @@ class Compose
 
         $this->videos = Video::where('status',1)->get()->shuffle();
 
-        $this->audios1 = Audio::where('status',1)->where('type',0)->get()->shuffle();
+        $this->audios = Audio::where('status',1)->get()->shuffle()->groupBy('birthplace_id');
 
-        $this->audios2 = Audio::where('status',1)->where('type',1)->get()->shuffle();
 
         $this->fixation_price = collect(explode(',',app(ConfigService::class)->get('fixation_price')));
 
@@ -103,6 +100,7 @@ class Compose
 
 
     public function start(){
+
         ConfigService::cache();
         $birthplace_rules = json_decode(app(ConfigService::class)->get('birthplace_rules'),true);
 
@@ -178,14 +176,11 @@ class Compose
                 }
             }
 
-            if($birthplace->use_audio_type == 1){
-                $audio = $this->audios2->pop();
-                $this->audios2->prepend($audio);
-            }else{
-                $audio = $this->audios1->pop();
-                $this->audios1->prepend($audio);
+            $audio = null;
+            if($this->audios->get($birthplace->id)){
+                $audio = $this->audios->get($birthplace->id)->pop();
+                $this->audios->get($birthplace->id)->prepend($audio);
             }
-
 
 
             $area = $this->area->random();
@@ -205,8 +200,8 @@ class Compose
                 'comment_picture'=>implode(',',$comment_picture),
                 'video'=>$video->video,
                 'video_cover'=>$video->cover,
-                'audio'=>$audio->audio,
-                'audio_time'=>$audio->duration,
+                'audio'=>$audio?$audio->audio:null,
+                'audio_time'=>$audio?$audio->duration:0,
                 'sham'=>1,
                 'outgoing'=>$outgoing,
                 'fixation'=>$fixation,
