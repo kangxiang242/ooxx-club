@@ -4,10 +4,12 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Repositories\Picture;
 use App\Models\Birthplace;
+use App\Services\ImageService;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Redirect;
 
@@ -75,6 +77,19 @@ class PictureController extends AdminController
                 return implode(',', $paths);
             });
             $form->radio('cup')->options(['C'=>'C','D'=>'D','E'=>'E','F'=>'F','G'=>'G+']);
+
+
+            $form->saved(function (Form $form, $result) {
+                $images = explode(',',$form->image);
+                $imageService = app(ImageService::class);
+                foreach($images as $item){
+                    $path = public_path('uploads/'.ltrim($item,'/'));
+                    if(file_exists($path)){
+                        $imageService->resize($path,40);
+                    }
+                }
+            });
+
         });
     }
 }
