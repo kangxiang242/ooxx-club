@@ -442,7 +442,7 @@
 .filter .parttwo-show .choose-sec:nth-child(8) {
   transition-delay: 1.5s;
 }
-.filter .parttwo-show .choose-sec:nth-child(14) {
+.filter .parttwo-show .choose-sec:last-child {
   margin-bottom: 50px;
 }
 .filter .parttwo-show .choose-sec .title {

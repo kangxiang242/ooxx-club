@@ -1377,6 +1377,9 @@ header .factorbox .factor .factorclose {
 .pc .filter .parttwo-show .choose-sec:nth-child(8) {
   transition-delay: 1.5s;
 }
+.pc .filter .parttwo-show .choose-sec:last-child {
+  margin-bottom: 50px;
+}
 .pc .filter .parttwo-show .choose-sec .title {
   font-size: 16px;
   font-weight: 500;
