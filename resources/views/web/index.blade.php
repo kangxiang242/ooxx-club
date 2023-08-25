@@ -85,7 +85,7 @@
                     }
 
                     var win_height = window.innerHeight - 72 - 60;
-                    $('.choose-box').height(win_height);
+                    $('.parttwo-show').css('--height',win_height+'px');
 
                 });
             });

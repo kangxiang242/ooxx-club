@@ -352,7 +352,9 @@
             height: 100vh;
             overflow: hidden;
             .choose-box{
-                height: calc(100% - 72px - 60px);
+                //height: calc(100% - 72px - 60px);
+                height: calc(var(--height) - constant(safe-area-inset-bottom));
+                height: calc(var(--height) - env(safe-area-inset-bottom));
                 overflow-y: auto;
                 overflow-x: hidden;
             }
@@ -899,9 +901,9 @@
             background-color: #FFF;
             align-items: center;
             padding: 0 12px;
-
-            height: calc(72px + constant(safe-area-inset-bottom));
-            height: calc(72px + env(safe-area-inset-bottom));
+            height: 72px;
+            //height: calc(72px + constant(safe-area-inset-bottom));
+            //height: calc(72px + env(safe-area-inset-bottom));
             @media screen and (min-width: 768px) {
 
             }

@@ -333,7 +333,8 @@
     overflow: hidden;
   }
   .filter .parttwo-show .choose-box {
-    height: calc(100% - 72px - 60px);
+    height: calc(var(--height) - constant(safe-area-inset-bottom));
+    height: calc(var(--height) - env(safe-area-inset-bottom));
     overflow-y: auto;
     overflow-x: hidden;
   }
@@ -853,8 +854,7 @@
   background-color: #FFF;
   align-items: center;
   padding: 0 12px;
-  height: calc(72px + constant(safe-area-inset-bottom));
-  height: calc(72px + env(safe-area-inset-bottom));
+  height: 72px;
 }
 .filter .parttwo-show .buttonbox .reset {
   flex: 1;

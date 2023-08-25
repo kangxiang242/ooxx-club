@@ -424,7 +424,8 @@ header .wrapper .filter .parttwo-show {
     height: 100vh;
   }
   header .wrapper .filter .parttwo-show .choose-box {
-    height: calc(100% - 72px - 60px);
+    height: calc(var(--height) - constant(safe-area-inset-bottom));
+    height: calc(var(--height) - env(safe-area-inset-bottom));
     overflow-y: auto;
     overflow-x: hidden;
   }
@@ -893,8 +894,7 @@ header .wrapper .filter .parttwo-show .buttonbox {
   background-color: #FFF;
   align-items: center;
   padding: 0 12px;
-  height: calc(72px + constant(safe-area-inset-bottom));
-  height: calc(72px + env(safe-area-inset-bottom));
+  height: 72px;
 }
 @media screen and (min-width: 768px) {
   header .wrapper .filter .parttwo-show .buttonbox {
