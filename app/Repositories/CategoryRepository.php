@@ -22,7 +22,9 @@ class CategoryRepository extends Repository
     public function all(){
 
         return Cache::rememberForever('category', function () {
-            return Category::with('sub')->where('parent_id',0)->orderBy('sort')->get();
+            return Category::with(['sub'=>function($query){
+                $query->where('status',1);
+            }])->where('parent_id',0)->where('status',1)->orderBy('sort')->get();
         });
     }
 
