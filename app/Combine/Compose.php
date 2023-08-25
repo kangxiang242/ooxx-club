@@ -191,7 +191,7 @@ class Compose
                 'age'=>$pose->get('age',$this->getAge()),
                 'height'=>$pose->get('height',$this->getHeight()),
                 'weight'=>$pose->get('weight',$this->getWeight()),
-                'cup'=>$pose->get('cup',$this->getCup()),
+                'cup'=>$pose->get('cup',$birthplace->cup)?:'C',
                 'area_city'=>$area->id,
                 'area_county'=>$area->sub->random()->id,
                 'price_start'=>$price,
