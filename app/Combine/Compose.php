@@ -242,7 +242,7 @@ class Compose
                 ],
                 [
                     'product_id'=>$product_id,
-                    'text'=>$fixation?'三節/150min/NS':'三節送一節/150min/NS',
+                    'text'=>$fixation?'三節/150min/NS':'三節送一節/200min/NS',
                     'price'=>$price*3
                 ],
             ];
@@ -251,7 +251,7 @@ class Compose
 
 
             $quick_ids = $this->quicks->pluck('id');
-            $quick_ids = $quick_ids->except('4');
+            $quick_ids = $quick_ids->diff([4]);
             ProductQuick::create([
                 'product_id'=>$product_id,
                 'quick_id'=>$pose->get('quick',$quick_ids->random()),
@@ -429,7 +429,7 @@ class Compose
      * @return string
      */
     protected function getCup(){
-        return collect(['A','B','C','D','E','F','G'])->random();
+        return collect(['C','D','E','F','G'])->random();
     }
 
     /**

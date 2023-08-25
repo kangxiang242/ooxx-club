@@ -107,7 +107,7 @@ STYLE
                 $form->number('height')->min(0)->required();
                 $form->number('weight')->min(0)->required();
                 $form->radio('cup')->options([
-                    'A'=>'A','B'=>'B','C'=>'C','D'=>'D','E'=>'E','G'=>'G+'
+                    'C'=>'C','D'=>'D','E'=>'E','G'=>'G+'
                 ])->required();
                 $form->select('birthplace_id')->options(Birthplace::pluck('name','id'))->required();
                 $form->select('area_city','市')->options('/api/get-city')->load('area_county','/api/get-county')->required();

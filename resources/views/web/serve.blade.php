@@ -376,7 +376,7 @@
 
 <ul class="info-nav">
     <li class="base">
-        <a href="{{ url('/') }}">
+        <a href="javascript:history.back(-1);">
             <svg t="1689844099946" class="baseicon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2374" width="200" height="200"><path d="M1004.8 896s-12.8 25.6-25.6 0c0 0-147.2-448-512-332.8V704s-6.4 83.2-76.8 25.6L38.4 422.4S-38.4 384 44.8 326.4L403.2 19.2s51.2-38.4 64 25.6V192s672 32 537.6 704z" fill="#000000" p-id="2375"></path></svg>
             <p>返回</p>
         </a>

@@ -79,8 +79,6 @@
             <div class="choose-sec" id="choose-sec">
                 <p class="title">茶杯<span class="eng">（Cup）</span></p>
                 <div class="cupchoose">
-                    <div class="group"><input data-equ="cup" data-tips="A杯" type="checkbox" name="cup[]" value="A" id="cup-A"><label class="cup" for="cup-A"><p class="cupitem">A</p></label></div>
-                    <div class="group"><input data-equ="cup" data-tips="B杯" type="checkbox" name="cup[]" value="B" id="cup-B"><label class="cup" for="cup-B"><p class="cupitem">B</p></label></div>
                     <div class="group"><input data-equ="cup" data-tips="C杯" type="checkbox" name="cup[]" value="C" id="cup-C"><label class="cup" for="cup-C"><p class="cupitem">C</p></label></div>
                     <div class="group"><input data-equ="cup" data-tips="D杯" type="checkbox" name="cup[]" value="D" id="cup-D"><label class="cup" for="cup-D"><p class="cupitem">D</p></label></div>
                     <div class="group"><input data-equ="cup" data-tips="E杯" type="checkbox" name="cup[]" value="E" id="cup-E"><label class="cup" for="cup-E"><p class="cupitem">E</p></label></div>
