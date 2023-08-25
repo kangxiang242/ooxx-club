@@ -35,7 +35,7 @@ class ImageService
                     $this->resize($path,40);
                 }
             }
-            usleep(500000);
+            usleep(300000);
         }
     }
 
