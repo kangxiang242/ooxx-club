@@ -89,7 +89,18 @@ class AudioController extends AdminController
                 $form->hidden('birthplace_id')->value(Cookie::get('selected_audio_birthplace_id'));
             }
             $form->file('audio')->autoUpload()->move('audio')->uniqueName()->retainable()->accept('mp3')->chunkSize(256);
-            $form->number('duration')->default(15)->help('單位/秒');
+            $form->hidden('duration')->default(0);
+            $form->saving(function (Form $form) {
+
+                $getID3 = new \getID3();
+                $ThisFileInfo = $getID3->analyze(public_path('uploads/'.$form->audio));
+
+                $fileduration = round($ThisFileInfo['playtime_seconds']);
+
+                $form->duration = $fileduration;
+
+            });
+
             $form->hidden('status')->default(1);
         });
     }
