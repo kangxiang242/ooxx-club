@@ -26,9 +26,14 @@ class Nahw extends Config
 
             $this->range('weight_start','weight_end','體重隨機範圍(kg)');
 
-            /*$this->text('fixation_price','定點價格隨機');
+            $this->text('price_tag1','价格标签（低）');
 
-            $this->text('outgoing_price','外送價格隨機');*/
+            $this->text('price_tag2','价格标签（中）');
+
+            $this->text('price_tag3','价格标签（高）');
+
+            $this->text('price_tag4','价格标签（超高）');
+
 
         })->tab('組合規則',function (){
 

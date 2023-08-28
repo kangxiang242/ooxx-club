@@ -2,12 +2,14 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Grid\BatchUploadVideo;
+use App\Admin\Forms\BatchUploadVideoForm;
 use App\Admin\Repositories\Video;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
-
+use Dcat\Admin\Widgets\Modal;
 class VideoController extends AdminController
 {
     /**
@@ -28,6 +30,13 @@ class VideoController extends AdminController
             $grid->showQuickEditButton();
             $grid->disableEditButton();
             $grid->enableDialogCreate();
+            /*$modal = Modal::make()
+                ->lg()
+                ->title('标题')
+                ->body(BatchUploadVideoForm::make())
+                ->button('<div class="pull-right" style="margin-left: 20px"><button class="btn btn-primary">批量上传</button></div>');
+
+            $grid->tools($modal);*/
 
         });
     }

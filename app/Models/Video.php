@@ -9,4 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class Video extends Model
 {
     use HasFactory,HasDateTimeFormatter;
+
+    protected $fillable = [
+        'video','cover','status'
+    ];
 }
