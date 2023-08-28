@@ -37,7 +37,7 @@ class PictureController extends AdminController
                 return explode(',',$pictures);
             })->image('', 50, 50);
             $grid->column('cup')->select(['C'=>'C','D'=>'D','E'=>'E','F'=>'F','G'=>'G+'])->width(150);
-            $grid->column('price_tag','价格标签')->select(['0'=>'无','1'=>'低','2'=>'中','3'=>'高','超高'=>'4'])->width(150);
+            $grid->column('price_tag','价格标签')->select(['0'=>'无','1'=>'低','2'=>'中','3'=>'高','4'=>'超高'])->width(150);
             $grid->showQuickEditButton();
             $grid->disableEditButton();
             $grid->enableDialogCreate();

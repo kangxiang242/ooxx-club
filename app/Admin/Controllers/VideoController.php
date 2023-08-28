@@ -2,7 +2,7 @@
 
 namespace App\Admin\Controllers;
 
-use App\Admin\Actions\Grid\BatchUploadVideo;
+
 use App\Admin\Forms\BatchUploadVideoForm;
 use App\Admin\Repositories\Video;
 use Dcat\Admin\Form;
@@ -30,6 +30,11 @@ class VideoController extends AdminController
             $grid->showQuickEditButton();
             $grid->disableEditButton();
             $grid->enableDialogCreate();
+
+
+
+
+
             /*$modal = Modal::make()
                 ->lg()
                 ->title('标题')
