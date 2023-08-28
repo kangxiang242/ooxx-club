@@ -14,7 +14,7 @@ class AddPriceTagIntoPictures extends Migration
     public function up()
     {
         Schema::table('pictures', function (Blueprint $table) {
-            $table->integer('price_tag')->default(0);
+            $table->integer('price_tag')->default(2);
         });
     }
 
