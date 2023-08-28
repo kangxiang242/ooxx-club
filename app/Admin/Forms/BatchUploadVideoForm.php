@@ -31,7 +31,7 @@ class BatchUploadVideoForm extends Form
     {
         $this->file('file','文件')->required()->autoUpload()->move('video/zip')->name(function ($file) {
             return date('Ymd').'-'.md5 (uniqid ()).'.'.$file->guessExtension();
-        })->help('请上传zip压缩包，最大100M');
+        })->accept('zip')->maxSize(102400)->help('请上传zip压缩包，最大100M');
 
     }
 
