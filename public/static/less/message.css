@@ -978,6 +978,7 @@ header .factorbox {
   background-color: #FFF;
   border-bottom: 1px solid #e5e5e5;
   padding: 12px;
+  overflow-x: auto;
 }
 @media screen and (min-width: 768px) {
   header .factorbox {

@@ -215,7 +215,7 @@ function CalibrationQuantity(){
         //delete filter['age'];
         //delete filter['height'];
         //delete filter['price'];
-        delete filter['tab'];
+        //delete filter['tab'];
         if(filter['city'] == 0){
             delete filter['city'];
         }
@@ -235,8 +235,13 @@ function CalibrationQuantity(){
     localStorage.setItem(filter_count_key,count);
 }
 
+var selected_type = $.cookie('selected_type')?$.cookie('selected_type'):1;
+if(selected_type == 2){
+    var factor_html = '<p class="factor" id="factor-tab">定點</p>';
+}else{
+    var factor_html = '<p class="factor" id="factor-tab">外送</p>';
+}
 
-var factor_html = '';
 var city_id = 0;
 var county_id = 0;
 var filterInitializeCallback = function (elem,equ,id) {
