@@ -62,11 +62,14 @@ class AudioService
 
     public function saveDatabase($data){
         $insert = [];
+        $time = date('Y-m-d H:i:s');
         foreach($data as $item){
             $insert[] = [
                 'birthplace_id'=>$this->birthplace_id,
                 'audio'=>$item['mp3'],
                 'duration'=>$item['playtime_seconds'],
+                'created_at'=>$time,
+                'updated_at'=>$time,
             ];
         }
         if($insert){

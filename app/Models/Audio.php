@@ -9,4 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 class Audio extends Model
 {
     use HasFactory,HasDateTimeFormatter;
+
+    protected $fillable = [
+        'birthplace_id','audio','duration','status'
+    ];
 }

@@ -51,10 +51,13 @@ class VideoService
 
     public function saveDatabase($data){
         $insert = [];
+        $time = date('Y-m-d H:i:s');
         foreach($data as $item){
             $insert[] = [
                 'video'=>$item['mp4'],
                 'cover'=>$item['img'],
+                'created_at'=>$time,
+                'updated_at'=>$time,
             ];
         }
         if($insert){

@@ -2,12 +2,14 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Forms\BatchUploadAudioForm;
 use App\Admin\Repositories\Audio;
 use App\Models\Birthplace;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Dcat\Admin\Widgets\Modal;
 use Illuminate\Support\Facades\Cookie;
 
 class AudioController extends AdminController
@@ -43,7 +45,17 @@ class AudioController extends AdminController
             $grid->selector(function (Grid\Tools\Selector $selector) {
                 $selector->selectOne('birthplace_id', '茶籍', Birthplace::pluck('name','id'));
             });
+
+            $modal = Modal::make()
+                ->lg()
+                ->title('批量导入')
+                ->body(BatchUploadAudioForm::make())
+                ->button('<div class="pull-right" style="margin-left: 20px"><button class="btn btn-primary">批量上传</button></div>');
+
+            //$grid->tools($modal);
+
         });
+
     }
 
     /**

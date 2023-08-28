@@ -18,10 +18,9 @@ class BatchUploadVideoForm extends Form
     public function handle(array $input)
     {
         $data = app(VideoService::class)->decompression($input['file']);
-
         return $this
 				->response()
-				->success('导入成功，共导入：'.count($data))
+				->success('视频导入成功，共导入：'.count($data))
 				->refresh();
     }
 
@@ -30,7 +29,7 @@ class BatchUploadVideoForm extends Form
      */
     public function form()
     {
-        $this->file('file','文件')->required()->move('video/zip')->name(function ($file) {
+        $this->file('file','文件')->required()->autoUpload()->move('video/zip')->name(function ($file) {
             return date('Ymd').'-'.md5 (uniqid ()).'.'.$file->guessExtension();
         })->help('请上传zip压缩包，最大100M');
 

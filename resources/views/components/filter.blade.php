@@ -170,7 +170,7 @@
     var age_pointer;
     $('.age-range-slider').jRange({
         from: 18,
-        to: 35,
+        to: 28,
         step: 1,
         scale: [],
         format: function (value,pointer) {

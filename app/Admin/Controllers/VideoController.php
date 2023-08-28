@@ -35,13 +35,13 @@ class VideoController extends AdminController
 
 
 
-            /*$modal = Modal::make()
+            $modal = Modal::make()
                 ->lg()
-                ->title('标题')
+                ->title('批量导入')
                 ->body(BatchUploadVideoForm::make())
                 ->button('<div class="pull-right" style="margin-left: 20px"><button class="btn btn-primary">批量上传</button></div>');
 
-            $grid->tools($modal);*/
+            $grid->tools($modal);
 
         });
     }
