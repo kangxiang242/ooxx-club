@@ -189,15 +189,16 @@ function deleteFilterFind(equ,id){
         if(filter[equ]){
             if (filter[equ].includes(id)){
                 delete filter[equ].splice(filter[equ].indexOf(id),1);
-                localStorage.setItem(filter_key,JSON.stringify(filter));
-                var filter_count = localStorage.getItem(filter_count_key)?localStorage.getItem(filter_count_key):0;
-                filter_count = filter_count<1?0:filter_count-1;
-                localStorage.setItem(filter_count_key,filter_count)
-                $('#partone').find('.item-count').text(filter_count);
-
                 $('[data-equ="'+equ+'"][value="'+id+'"]').prop("checked", false);
-
+            }else{
+                delete filter[equ];
             }
+
+            localStorage.setItem(filter_key,JSON.stringify(filter));
+            var filter_count = localStorage.getItem(filter_count_key)?localStorage.getItem(filter_count_key):0;
+            filter_count = filter_count<1?0:filter_count-1;
+            localStorage.setItem(filter_count_key,filter_count)
+            $('#partone').find('.item-count').text(filter_count);
         }
     }
 
@@ -214,6 +215,7 @@ function CalibrationQuantity(){
         //delete filter['age'];
         //delete filter['height'];
         //delete filter['price'];
+        delete filter['tab'];
         if(filter['city'] == 0){
             delete filter['city'];
         }
@@ -243,7 +245,11 @@ var filterInitializeCallback = function (elem,equ,id) {
         '                <svg t="1690789204748" class="factorclose" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9156" width="200" height="200"><path d="M512 102.4a409.6 409.6 0 1 0 409.6 409.6 409.6 409.6 0 0 0-409.6-409.6z m181.248 518.144a51.2 51.2 0 0 1-72.704 72.704L512 584.192l-108.544 109.056a51.2 51.2 0 0 1-72.704-72.704L439.808 512 330.752 403.456a51.2 51.2 0 0 1 72.704-72.704L512 439.808l108.544-109.056a51.2 51.2 0 0 1 72.704 72.704L584.192 512z" fill="" p-id="9157"></path></svg>\n' +
         '            </p>';
 }
-
+var filterInitializeCallback2 = function (tip,equ) {
+    factor_html += '<p class="factor" data-equ="'+equ+'">'+tip+'\n' +
+        '                <svg t="1690789204748" class="factorclose" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9156" width="200" height="200"><path d="M512 102.4a409.6 409.6 0 1 0 409.6 409.6 409.6 409.6 0 0 0-409.6-409.6z m181.248 518.144a51.2 51.2 0 0 1-72.704 72.704L512 584.192l-108.544 109.056a51.2 51.2 0 0 1-72.704-72.704L439.808 512 330.752 403.456a51.2 51.2 0 0 1 72.704-72.704L512 439.808l108.544-109.056a51.2 51.2 0 0 1 72.704 72.704L584.192 512z" fill="" p-id="9157"></path></svg>\n' +
+        '            </p>';
+}
 
 
 
@@ -284,7 +290,14 @@ function initialize(){
                 }else if(index == 'county'){
                     county_id = element;
                 }else{
+
                     $('.'+index+'-range-slider').jRange('setValue', element);
+
+                    if(index == 'age'){
+                        filterInitializeCallback2('茶溫: '+element.replace(',','~'),index);
+                    }else{
+                        filterInitializeCallback2('預算: '+element.replace(',','~'),index);
+                    }
                 }
 
             }
@@ -368,6 +381,9 @@ function setArea(data){
             default:0,
             change:function (city) {
                 getGoods2(false,false,{'city':city},true)
+            },
+            init:function (id,text) {
+
             }
         },
         county:{
@@ -384,7 +400,11 @@ function setArea(data){
         city:{
             element:'#fit-city',
             default:city_id,
-            change:function (city) {
+            init:function (id,text) {
+                if (id > 0){
+                    filterInitializeCallback2(text,'city');
+                    $('.factorbox').html(factor_html);
+                }
 
             }
         },
@@ -392,6 +412,13 @@ function setArea(data){
             element:'#fit-county',
             default:county_id,
             change:function (city,county) {
+
+            },
+            init:function (id,text) {
+                if(id > 0){
+                    filterInitializeCallback2(text,'county');
+                    $('.factorbox').html(factor_html);
+                }
 
             }
         },

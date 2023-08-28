@@ -50,7 +50,7 @@ class AudioController extends AdminController
                 ->lg()
                 ->title('批量导入')
                 ->body(BatchUploadAudioForm::make())
-                ->button('<div class="pull-right" style="margin-left: 20px"><button class="btn btn-primary">批量上传</button></div>');
+                ->button('<div class="pull-right" style="margin-left: 20px"><button class="btn btn-primary">批量导入</button></div>');
 
             //$grid->tools($modal);
 
@@ -88,7 +88,7 @@ class AudioController extends AdminController
             if($form->isCreating()){
                 $form->hidden('birthplace_id')->value(Cookie::get('selected_audio_birthplace_id'));
             }
-            $form->file('audio')->autoUpload()->uniqueName()->retainable()->accept('mp3')->chunkSize(256);
+            $form->file('audio')->autoUpload()->move('audio')->uniqueName()->retainable()->accept('mp3')->chunkSize(256);
             $form->number('duration')->default(15)->help('單位/秒');
             $form->hidden('status')->default(1);
         });

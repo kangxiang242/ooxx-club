@@ -39,7 +39,7 @@ class VideoController extends AdminController
                 ->lg()
                 ->title('批量导入')
                 ->body(BatchUploadVideoForm::make())
-                ->button('<div class="pull-right" style="margin-left: 20px"><button class="btn btn-primary">批量上传</button></div>');
+                ->button('<div class="pull-right" style="margin-left: 20px"><button class="btn btn-primary">批量导入</button></div>');
 
             $grid->tools($modal);
 
@@ -74,7 +74,7 @@ class VideoController extends AdminController
     {
         return Form::make(new Video(), function (Form $form) {
 
-            $form->file('video')->autoUpload()->uniqueName()->retainable()->accept('mp4')->chunked();
+            $form->file('video')->move('video')->autoUpload()->uniqueName()->retainable()->accept('mp4')->chunked();
             $form->image('cover')->autoUpload()->uniqueName()->retainable();
             $form->hidden('status')->default(1);
         });
