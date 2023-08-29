@@ -209,7 +209,7 @@
         var price_pointer;
         $('.price-range-slider').jRange({
             from: from?from:2000,
-            to: to?to:80000,
+            to: to?to:30000,
             step: 500,
             scale: [],
             format: function (value,pointer) {
