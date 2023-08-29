@@ -4,7 +4,7 @@
     $current_count = $currentPage*$per_page;
 
 @endphp
-@foreach($product as $key=>$goods)
+@foreach($product->shuffle() as $key=>$goods)
     @php
         $current_count += 1;
     @endphp
