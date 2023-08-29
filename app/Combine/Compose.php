@@ -25,6 +25,8 @@ class Compose
 {
     protected $nicknames = [];
 
+    protected $nicknames_om = [];
+
     protected $comment = [];
 
     protected $picture;
@@ -60,8 +62,10 @@ class Compose
     public function __construct()
     {
         $nickname = app(ConfigService::class)->get('nickname');
-        $this->nicknames = collect(explode(' ',$nickname));
+        $this->nicknames = collect(explode(' ',$nickname))->shuffle();
 
+        $nickname_western = app(ConfigService::class)->get('nickname_western');
+        $this->nicknames_om = collect(explode(' ',$nickname_western))->shuffle();
 
 
         $comment = app(ConfigService::class)->get('comment_picture');
@@ -104,16 +108,25 @@ class Compose
         ConfigService::cache();
         $birthplace_rules = json_decode(app(ConfigService::class)->get('birthplace_rules'),true);
 
-        foreach($this->nicknames->shuffle() as $name){
+        $price_tags[1] = collect(explode(',',app(ConfigService::class)->get('price_tag1')));
+        $price_tags[2] = collect(explode(',',app(ConfigService::class)->get('price_tag2')));
+        $price_tags[3] = collect(explode(',',app(ConfigService::class)->get('price_tag3')));
+        $price_tags[4] = collect(explode(',',app(ConfigService::class)->get('price_tag4')));
 
-            if($this->picture->count()<=0){ //图片使用完 不再生成
+        foreach($this->picture as $picture){
+
+            /*if($this->picture->count()<=0){ //图片使用完 不再生成
                 break;
-            }
+            }*/
 
-            $picture = $this->picture->pop();
+            /*$picture = $this->picture->pop();
             if(!$picture->image){
                 continue;
-            }
+            }*/
+
+
+
+
             $images = collect(explode(',',$picture->image));
 
 
@@ -133,6 +146,18 @@ class Compose
 
 
             $birthplace = $this->findBirthplaceById($picture->birthplace_id);
+
+            if($birthplace->western == 1){
+                $name = $this->nicknames_om->pop();
+            }else{
+                $name = $this->nicknames->pop();
+            }
+
+            if(!$name){
+                continue;
+            }
+
+
             $outgoing = 0;
             $fixation = 0;
             switch ($birthplace->allow_type){
@@ -161,19 +186,31 @@ class Compose
 
             }
 
+
+
+
             $pose = collect($this->rules($category_ids));
 
             $price = $pose->get('price');
             if(!$price){
-                if($birthplace->price_range){
-                    $price = collect(explode(',',$birthplace->price_range))->random();
+
+                if($outgoing == 1 && $picture->price_tag>0){
+
+                    $price = $price_tags[$picture->price_tag]->random();
+
                 }else{
-                    if($fixation && !$outgoing){
-                        $price = $this->fixation_price->random()?:2500;
+                    if($birthplace->price_range){
+                        $price = collect(explode(',',$birthplace->price_range))->random();
                     }else{
-                        $price = $this->outgoing_price->random()?:3000;
+                        if($fixation && !$outgoing){
+                            $price = $this->fixation_price->random()?:2500;
+                        }else{
+                            $price = $this->outgoing_price->random()?:3000;
+                        }
                     }
                 }
+
+
             }
 
             $audio = null;
