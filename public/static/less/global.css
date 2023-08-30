@@ -112,7 +112,8 @@ body a:focus {
   white-space: nowrap;
   font-size: 18px;
   font-weight: 700;
-  margin-top: 60px;
+  margin: 60px auto 0;
+  text-align: center;
   color: #333333;
   animation: sloganup 0.5s 1.2s forwards;
 }

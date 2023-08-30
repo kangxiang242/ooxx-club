@@ -173,7 +173,7 @@ header .wrapper-top {
   display: flex;
   max-width: 1400px;
   margin: 0 auto;
-  gap: 20px;
+  justify-content: space-evenly;
   margin-top: 60px;
 }
 @media screen and (max-width: 768px) {
@@ -186,6 +186,11 @@ header .wrapper-top {
 .infobody .pic {
   position: relative;
   flex: 1;
+}
+@media screen and (min-width: 768px) {
+  .infobody .pic {
+    max-width: 480px;
+  }
 }
 .infobody .pic .back {
   position: absolute;
@@ -286,7 +291,7 @@ header .wrapper-top {
   width: 100%;
   padding: 24px;
   flex: 1;
-  max-width: 900px;
+  max-width: 800px;
 }
 @media screen and (max-width: 768px) {
   .infobody .info {

@@ -17,7 +17,6 @@ Route::group(['namespace'=>'Web'],function (){
     Route::get('/robots.txt', "ApiController@robots");
     Route::get('/sitemap.xml', "ApiController@sitemap");
     Route::get('/api/area', "AreaController@get");
-    Route::get('/api/goods', "ProductController@filter");
     Route::get('/api/goods2', "ProductController@filter2");
     Route::post('take/inquiries', "ApiController@inquiries");
 
@@ -34,21 +33,6 @@ Route::group(['namespace'=>'Web','middleware'=>['googlebot.checked']],function (
     Route::get('/product', "ProductController@index");
 
     Route::get('/product/{id}', "ProductController@show");
-
-
-
-    Route::get('/contact',"ContactController@index");
-
-    Route::post('/contact',"ContactController@store");
-
-    Route::get('/about-us',"PageController@about");
-
-    Route::get('/about-faq',"PageController@about");
-
-
-    Route::get('{uri?}', "NewsController@index");
-
-
 
 });
 

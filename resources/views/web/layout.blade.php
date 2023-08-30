@@ -125,7 +125,7 @@
 <script>
 
     window.addEventListener('load', function () {
-        $('#loading').animate({'visibility':'auto'},1000,function(){
+        $('#loading').animate({'visibility':'auto'},1400,function(){
             loading(0)
         });
     });
