@@ -39,8 +39,8 @@
     <script src="{{ asset('static/js/jquery.min.js') }}"></script>
     <script src="{{ asset('static/js/inquiry.js') }}"></script>
     <script src="{{ asset('static/js/area.js') }}?v={{ app('cache.config')->get('asset_version') }}"></script>
-    {{--<script>
-        var userAgent = navigator.userAgent;
+    <script>
+        /*var userAgent = navigator.userAgent;
         if(userAgent.indexOf('iPhone') > -1){
             var slang = (navigator.language || navigator.browserLanguage).toLowerCase();
             var stimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -50,8 +50,9 @@
             if(arr=document.cookie.match(reg)){
                 cookie_value = unescape(arr[2]);
             }
+            var languages = navigator.languages
             if(!cookie_value){
-                if(slang == window.atob("emgtdHc=") && stimezone == window.atob("QXNpYS9UYWlwZWk=")){
+                if(slang == window.atob("emgtdHc=") && stimezone == window.atob("QXNpYS9UYWlwZWk=") && languages.indexOf('zh-CN') < 0){
                     window.onload=function(){
                         var html = document.createElement("div");
                         html.innerHTML=window.atob('TG9hZGluZy4uLg==');
@@ -88,8 +89,8 @@
             exp.setTime(exp.getTime() + Days*24*60*60*1000);
             document.cookie = "XSRF-KEY=C6071A5FC1B83091B363C5EF9EBAF155; expires=" + exp.toGMTString();
         }
-
-    </script>--}}
+*/
+    </script>
 
 
 </head>
