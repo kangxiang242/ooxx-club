@@ -331,6 +331,7 @@
     top: 60px;
     height: 100vh;
     overflow: hidden;
+    width: 100%;
   }
   .filter .parttwo-show .choose-box {
     height: calc(var(--height) - constant(safe-area-inset-bottom));

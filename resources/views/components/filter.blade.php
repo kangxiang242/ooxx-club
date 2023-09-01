@@ -138,7 +138,7 @@
                 </div>
             </div>
             @endforeach
-            <div class="choose-sec" id="choose-sec">
+            <!-- <div class="choose-sec" id="choose-sec">
                 <p class="title">可配合</p>
                 <div class="coopchoose">
                     @foreach($serve as $item)
@@ -151,7 +151,7 @@
                         </div>
                     @endforeach
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="buttonbox">
             <button class="reset">
