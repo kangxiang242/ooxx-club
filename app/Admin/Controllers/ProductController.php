@@ -58,6 +58,7 @@ class ProductController extends AdminController
             $grid->selector(function (Grid\Tools\Selector $selector) {
                 $selector->selectOne('sham', '產品來源', ['自建','隨機']);
             });
+            $grid->quickSearch(['name']);
         });
     }
 
