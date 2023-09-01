@@ -23,9 +23,9 @@
                 <p class="title">喝茶方式</p>
                 <div class="modebox" >
                     <div class="tabs">
-                        <input type="radio" id="fit-tabs-1" name="tabs" value="1" onclick="updatePriceRange(6000,80000)">
+                        <input type="radio" id="fit-tabs-1" name="tabs" value="1" onclick="updatePriceRange(6000,30000)">
                         <label class="tab" for="fit-tabs-1">外送</label>
-                        <input type="radio" id="fit-tabs-2" name="tabs" value="2" onclick="updatePriceRange(2000,80000)">
+                        <input type="radio" id="fit-tabs-2" name="tabs" value="2" onclick="updatePriceRange(2000,30000)">
                         <label class="tab" for="fit-tabs-2">定點</label>
                         <span class="glider"></span>
                     </div>
@@ -209,7 +209,7 @@
         var price_pointer;
         $('.price-range-slider').jRange({
             from: from?from:2000,
-            to: to?to:30000,
+            to: 30000,
             step: 500,
             scale: [],
             format: function (value,pointer) {
