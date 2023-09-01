@@ -220,7 +220,7 @@
             showLabels: true,
             isRange : true,
             onstatechange:function (value) {
-                var gpa = 25000;
+                var gpa = 8000;
                 var split = value.split(',');
                 var start = parseInt(split[0]);
                 var end = parseInt(split[1]);
@@ -228,8 +228,8 @@
                 if(dis<=gpa){
                     if(price_pointer == 'high'){
                         var high_ef = end - gpa;
-                        if(start <= 2000 && end - high_ef <= gpa){
-                            end = 2000+gpa;
+                        if(start <= from && end - high_ef <= gpa){
+                            end = from+gpa;
                         }
                         $('.price-range-slider').jRange('setValue', high_ef+','+end);
                     }else{
