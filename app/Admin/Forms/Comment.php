@@ -25,7 +25,7 @@ class Comment extends Form
     public function handle(array $input)
     {
 
-        $comment_picture = array_chunk(explode(',',$input['comment_picture']),100);
+        $comment_picture = array_chunk(explode(',',$input['comment_picture']),1000);
         DB::select('TRUNCATE TABLE comments;');
         DB::select('ALTER TABLE comments AUTO_INCREMENT=1;');
         //\App\Models\Comment::delete();
