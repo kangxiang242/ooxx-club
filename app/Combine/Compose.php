@@ -8,6 +8,7 @@ use App\Models\Area;
 use App\Models\Audio;
 use App\Models\Birthplace;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Config;
 use App\Models\Picture;
 use App\Models\Product;
@@ -28,7 +29,7 @@ class Compose
 
     protected $nicknames_om = [];
 
-    protected $comment = [];
+    //protected $comment = [];
 
     protected $picture;
 
@@ -71,8 +72,8 @@ class Compose
         $this->nicknames_om = collect(explode(' ',$nickname_western->content))->shuffle();
 
 
-        $comment = Config::where('name','comment_picture')->first();
-        $this->comment = collect(explode(',',$comment->content));
+        //$comment = Config::where('name','comment_picture')->first();
+       // $this->comment = collect(explode(',',$comment->content));
 
         $this->picture = Picture::get()->shuffle();
 
@@ -84,7 +85,7 @@ class Compose
         $this->area = Area::with('sub')->where('status',1)->where('parent_id',0)->get();
 
 
-        $this->comment_picture = collect(array_filter(explode(',',app(ConfigService::class)->get('comment_picture',null,false))));
+        $this->comment_picture = Comment::pluck('image');
 
         $this->videos = Video::where('status',1)->get()->shuffle();
 

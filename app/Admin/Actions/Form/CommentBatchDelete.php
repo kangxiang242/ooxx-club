@@ -3,6 +3,7 @@
 namespace App\Admin\Actions\Form;
 
 use App\Console\Commands\CacheClear;
+use App\Models\Comment;
 use App\Models\Config;
 use App\Services\CacheService;
 use App\Services\ConfigService;
@@ -12,6 +13,7 @@ use Dcat\Admin\Traits\HasPermissions;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CommentBatchDelete extends AbstractTool
 {
@@ -30,20 +32,16 @@ class CommentBatchDelete extends AbstractTool
     public function handle(Request $request)
     {
 
-
-
-
-        $comment_pictures = Config::where('name','comment_picture')->first();
-        if($comment_pictures){
-            $comment_pictures = explode(',',$comment_pictures->content);
-            foreach ($comment_pictures as $item){
-                $file = public_path('uploads/'.$item);
+        $comment = Comment::get();
+        if($comment){
+            foreach ($comment as $item){
+                $file = public_path('uploads/'.$item->image);
                 if(file_exists($file)){
                     @unlink($file);
                 }
             }
-            Config::where('name','comment_picture')->delete();
-            ConfigService::cache();
+            DB::select('TRUNCATE TABLE comments;');
+            DB::select('ALTER TABLE comments AUTO_INCREMENT=1;');
         }
 
 
