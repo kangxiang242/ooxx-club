@@ -86,12 +86,12 @@ STYLE
      */
     public function default()
     {
-        return ['comment_picture'=>ConfigService::get('comment_picture',null,false)];
+
         $comment = \App\Models\Comment::pluck('image');
         if($comment){
             return ['comment_picture'=>implode(',',$comment->toArray())];
         }
-        return ['comment_picture'=>ConfigService::get('comment_picture',null,false)];
+
         return [];
 
 
