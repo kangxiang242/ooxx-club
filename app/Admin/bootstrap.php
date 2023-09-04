@@ -59,6 +59,8 @@ Form::extend('weditor', \App\Extensions\Form\WangEditor::class);
 
 Form::extend('multipleImage2', \App\Extensions\Form\MultipleImage2::class);
 
+Form::extend('multipleFile2', \App\Extensions\Form\MultipleFile2::class);
+
 Admin::favicon(app('cache.config')->get('favicon')?asset_upload(app('cache.config')->get('favicon')):null);
 
 

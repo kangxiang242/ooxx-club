@@ -39,7 +39,7 @@ display:none;
 }
 STYLE
 );
-        $this->multipleFile('comment_picture','圖片')->limit(3000)->move('comment')->autoUpload()->uniqueName()->saving(function ($paths){
+        $this->multipleFile2('comment_picture','圖片')->limit(3000)->move('comment')->autoUpload()->uniqueName()->saving(function ($paths){
             return implode(',', $paths);
         });
     }
