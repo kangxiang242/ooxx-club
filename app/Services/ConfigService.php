@@ -24,13 +24,14 @@ class ConfigService
      * 获取配置值
      * @param $key
      * @param null $default
+     * @param bool $is_get_cache
      * @return mixed
      */
-    public static function get($key,$default=null){
+    public static function get($key,$default=null,$is_get_cache=true){
 
         $content = Redis::get(self::$key.':'.$key);
 
-        if(is_null($content)){
+        if(is_null($content) || !$is_get_cache){
             $config = Config::where('name',$key)->first();
 
             if($config){

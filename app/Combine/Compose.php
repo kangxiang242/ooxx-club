@@ -8,6 +8,7 @@ use App\Models\Area;
 use App\Models\Audio;
 use App\Models\Birthplace;
 use App\Models\Category;
+use App\Models\Config;
 use App\Models\Picture;
 use App\Models\Product;
 use App\Models\ProductAddedServe;
@@ -61,15 +62,17 @@ class Compose
 
     public function __construct()
     {
-        $nickname = app(ConfigService::class)->get('nickname');
-        $this->nicknames = collect(explode(' ',$nickname))->shuffle();
 
-        $nickname_western = app(ConfigService::class)->get('nickname_western');
-        $this->nicknames_om = collect(explode(' ',$nickname_western))->shuffle();
+        $nickname = Config::where('name','nickname')->first();
+        $this->nicknames = collect(explode(' ',$nickname->content))->shuffle();
 
 
-        $comment = app(ConfigService::class)->get('comment_picture');
-        $this->comment = collect(explode(',',$comment));
+        $nickname_western = Config::where('name','nickname_western')->first();
+        $this->nicknames_om = collect(explode(' ',$nickname_western->content))->shuffle();
+
+
+        $comment = Config::where('name','comment_picture')->first();
+        $this->comment = collect(explode(',',$comment->content));
 
         $this->picture = Picture::get()->shuffle();
 
@@ -80,16 +83,17 @@ class Compose
 
         $this->area = Area::with('sub')->where('status',1)->where('parent_id',0)->get();
 
-        $this->comment_picture = collect(array_filter(explode(',',app(ConfigService::class)->get('comment_picture'))));
+
+        $this->comment_picture = collect(array_filter(explode(',',app(ConfigService::class)->get('comment_picture',null,false))));
 
         $this->videos = Video::where('status',1)->get()->shuffle();
 
         $this->audios = Audio::where('status',1)->get()->shuffle()->groupBy('birthplace_id');
 
 
-        $this->fixation_price = collect(explode(',',app(ConfigService::class)->get('fixation_price')));
+        $this->fixation_price = collect(explode(',',app(ConfigService::class)->get('fixation_price',null,false)));
 
-        $this->outgoing_price = collect(explode(',',app(ConfigService::class)->get('outgoing_price')));
+        $this->outgoing_price = collect(explode(',',app(ConfigService::class)->get('outgoing_price',null,false)));
 
         $this->quicks = Quick::all();
 
@@ -106,12 +110,12 @@ class Compose
     public function start(){
 
         ConfigService::cache();
-        $birthplace_rules = json_decode(app(ConfigService::class)->get('birthplace_rules'),true);
+        $birthplace_rules = json_decode(app(ConfigService::class)->get('birthplace_rules',null,false),true);
 
-        $price_tags[1] = collect(explode(',',app(ConfigService::class)->get('price_tag1')));
-        $price_tags[2] = collect(explode(',',app(ConfigService::class)->get('price_tag2')));
-        $price_tags[3] = collect(explode(',',app(ConfigService::class)->get('price_tag3')));
-        $price_tags[4] = collect(explode(',',app(ConfigService::class)->get('price_tag4')));
+        $price_tags[1] = collect(explode(',',app(ConfigService::class)->get('price_tag1',null,false)));
+        $price_tags[2] = collect(explode(',',app(ConfigService::class)->get('price_tag2',null,false)));
+        $price_tags[3] = collect(explode(',',app(ConfigService::class)->get('price_tag3',null,false)));
+        $price_tags[4] = collect(explode(',',app(ConfigService::class)->get('price_tag4',null,false)));
 
         foreach($this->picture as $picture){
 

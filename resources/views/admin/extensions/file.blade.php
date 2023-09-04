@@ -21,12 +21,29 @@
 
     .reset-btn{
         margin-left: 20px;
+
+        float: left;
+    }
+    .reset-btn a{
         width: 104.211px;
         height: 37.3906px;
-
+        font-size: 14px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff;
+        color: #626262;
+        border-color:#fff;
+    }
+    .reset-btn a:hover{
+        background-color: #fff;
+        color: #333;
+        border-color:#fff;
     }
 </style>
+@php
 
+@endphp
 <div class="{{$viewClass['form-group']}} {{ $class }}">
 
     <label for="{{$column}}" class="{{$viewClass['label']}} control-label">{!! $label !!}</label>
@@ -52,7 +69,7 @@
                 <div class="btns">
 
                     <div class="add-file-button"></div>
-                    <button class="reset-btn btn btn-error">重置</button>
+                    <div class="reset-btn">{!! \App\Admin\Actions\Form\CommentBatchDelete::make() !!}</div>
                     @if($showUploadBtn)
                     &nbsp;
                     <div class="upload-btn btn btn-primary"><i class="feather icon-upload"></i> &nbsp;{{trans('admin.upload')}}</div>
@@ -106,14 +123,6 @@
             }
         }
 
-        $this.find('.reset-btn').click(function(){
-            $this.find('.web-uploader .filelist').empty();
-            $this.find('.web-uploader .placeholder').removeClass('element-invisible');
-            $this.find('.web-uploader .queueList').removeAttr('style');
-            $this.find('.web-uploader .statusBar').hide();
-            $this.find('.file-input').val('');
-
-        });
 
         function resize() {
             setTimeout(function () {
