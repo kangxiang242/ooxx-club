@@ -22,6 +22,10 @@ class CommentBatchDelete extends AbstractTool
      */
 	protected $title = '清空所有';
 
+	protected $style = 'btn btn-danger reset-btn';
+
+
+
     /**
      * Handle the action request.
      *

@@ -2,8 +2,10 @@
 
 namespace App\Admin\Controllers;
 
+use App\Admin\Actions\Form\CommentBatchDelete;
 use App\Admin\Repositories\Comment;
 use App\Combine\Compose;
+use Dcat\Admin\Admin;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
@@ -22,14 +24,24 @@ class CommentController extends AdminController
 
 
         return Grid::make(new Comment(), function (Grid $grid) {
-
+            $grid->model()->orderBy('id','desc')->setPerPage(100);
             $grid->column('image','圖片')->display(function($pictures){
                 return explode(',',$pictures);
             })->image('', 50, 50);
             $grid->showQuickEditButton();
             $grid->disableEditButton();
             $grid->enableDialogCreate();
+            $grid->tools(function (Grid\Tools $tools) {
+                $tools->append(new CommentBatchDelete());
+            });
 
+            Admin::style(<<<STYLE
+.reset-btn{
+    float:right;
+    margin-left:20px;
+}
+STYLE
+);
         });
     }
 
@@ -59,6 +71,25 @@ class CommentController extends AdminController
             $form->multipleImage('image','圖片')->autoUpload()->uniqueName()->saving(function ($paths){
                 return implode(',', $paths);
             });
+
+            $form->saving(function (Form $form) {
+
+                $images = explode(',',$form->image);
+                $form->deleteInput('image');
+                $comment_picture = array_chunk($images,1000);
+                foreach($comment_picture as $image){
+                    $insert = [];
+                    foreach($image as $item){
+                        $insert[] = [
+                            'image'=>$item,
+                        ];
+                    }
+                    \App\Models\Comment::insert($insert);
+                }
+                // 中断后续逻辑
+                return $form->response()->success('操作成功');
+            });
+
         });
     }
 }
