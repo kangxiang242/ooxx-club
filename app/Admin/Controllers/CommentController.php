@@ -24,7 +24,7 @@ class CommentController extends AdminController
 
 
         return Grid::make(new Comment(), function (Grid $grid) {
-            $grid->model()->orderBy('id','desc')->setPerPage(100);
+            $grid->model()->orderBy('id','desc')->setPerPage(50);
             $grid->column('image','圖片')->display(function($pictures){
                 return explode(',',$pictures);
             })->image('', 50, 50);
