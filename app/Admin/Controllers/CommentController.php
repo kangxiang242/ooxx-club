@@ -30,7 +30,7 @@ class CommentController extends AdminController
             })->image('', 50, 50);
             $grid->showQuickEditButton();
             $grid->disableEditButton();
-            $grid->enableDialogCreate();
+            //$grid->enableDialogCreate();
             $grid->tools(function (Grid\Tools $tools) {
                 $tools->append(new CommentBatchDelete());
             });
@@ -67,10 +67,22 @@ STYLE
      */
     protected function form()
     {
+        Admin::style(<<<STYLE
+.card {
+        flex-direction: column-reverse;
+}
+.card .box-header{
+    display:none;
+}
+STYLE
+);
         return Form::make(new Comment(), function (Form $form) {
             $form->multipleImage('image','圖片')->autoUpload()->uniqueName()->saving(function ($paths){
                 return implode(',', $paths);
             });
+
+            $form->disableCreatingCheck();
+
 
             $form->saving(function (Form $form) {
 
@@ -89,6 +101,8 @@ STYLE
                 // 中断后续逻辑
                 return $form->response()->success('操作成功');
             });
+
+
 
         });
     }
