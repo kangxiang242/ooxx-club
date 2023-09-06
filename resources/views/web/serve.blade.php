@@ -279,10 +279,10 @@
             </ul>
         </div>
         <div class="addbox">
-            <p class="title">可加值服務</p>
+            <p class="title">可加值服務（加Line與她洽談）</p>
             <ul class="addlist">
                 @foreach($added as $serve)
-                    <li class="additem"><img src="{{ asset_upload($serve->serve->icon) }}" class="coopicon" alt="{{ $serve->name }}">{{ $serve->serve->name }} {{ $serve->price?"$".$serve->price:"" }}</li>
+                    <li class="additem"><img src="{{ asset_upload($serve->serve->icon) }}" class="coopicon" alt="{{ $serve->name }}">{{ $serve->serve->name }}</li>
                 @endforeach
             </ul>
         </div>

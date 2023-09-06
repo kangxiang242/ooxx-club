@@ -244,7 +244,7 @@
                     </label>
                 </div>
             </div>
-            <div class="city county-box" style="display: none">
+            {{--<div class="city county-box" style="display: none">
                 <div class="arrowicon">
                     <input type="checkbox" id="area" name="area">
                     <label class="area" for="area">
@@ -253,7 +253,7 @@
                         <div class="arrow"></div>
                     </label>
                 </div>
-            </div>
+            </div>--}}
         </div>
 
         <div class="goodpart">

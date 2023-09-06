@@ -322,10 +322,10 @@ function initialize(){
         $('input[name="tabs"][value="'+selected_type+'"]').prop('checked',true)
     }
     if(selected_type == 2){
-        $('.county-box').show();
+        //$('.county-box').show();
         updatePriceRange(2000,80000)
     }else {
-        $('.county-box').hide();
+        //$('.county-box').hide();
         updatePriceRange(6000,80000)
     }
 
@@ -477,23 +477,23 @@ $('#radio-1,#radio-2').click(function () {
         $('input[name="tabs"][value="'+tab+'"]').prop('checked',true)
     }
 
-    if(tab == 2){
+/*    if(tab == 2){
         $('.county-box').show();
     }else {
         $('.county-box').hide();
-    }
+    }*/
 
 
 });
 
-$('#fit-tabs-1,#fit-tabs-2').click(function () {
+/*$('#fit-tabs-1,#fit-tabs-2').click(function () {
     var tab = $(this).val();
     if(tab == 2){
         $('#filter .county-box').show();
     }else {
         $('#filter .county-box').hide();
     }
-})
+})*/
 
 
 /**

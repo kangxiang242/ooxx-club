@@ -44,17 +44,17 @@
                             </label>
                         </div>
                     </div>
-                    <div class="city county-box">
+                    {{--<div class="city county-box">
                         <div class="arrowicon">
                             <input type="checkbox" id="area" name="area">
                             <label class="area" for="area">
-                                {{--<p class="itemname">萬華區</p>--}}
+
                                 <select name="county" id="fit-county" data-abolish="true"></select>
                                 <div class="arrow"></div>
                             </label>
                         </div>
+                    </div>--}}
                 </div>
-            </div>
             </div>
             <div class="choose-sec" id="choose-sec">
                 <p class="title">類型</p>

@@ -51,7 +51,7 @@
             }
 
             $(options.city.element).change(function () {
-                setCounty($(this).val());
+                //setCounty($(this).val());
                 options.city.change($(this).val());
             })
 
