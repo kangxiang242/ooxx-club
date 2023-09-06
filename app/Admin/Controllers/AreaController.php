@@ -19,10 +19,12 @@ class AreaController extends AdminController
     {
 
         return Grid::make(new Area(), function (Grid $grid) {
-            $grid->model()->orderBy('sort');
-            $grid->column('name')->tree(true);
+
+            $grid->model()->where('parent_id',0)->orderBy('sort');
+            $grid->column('name');
             $grid->column('sort','排序')->orderable();
             $grid->column('status','狀態')->switch();
+            $grid->column('weight','权重')->editable();
             $grid->quickCreate(function (Grid\Tools\QuickCreate $create) {
                 $create->select('parent_id','上級分類')->options(function(){
                     $cate = \App\Models\Area::where('parent_id',0)->pluck('name','id');
@@ -40,6 +42,7 @@ class AreaController extends AdminController
 
         });
     }
+
 
     /**
      * Make a show builder.
@@ -74,6 +77,7 @@ class AreaController extends AdminController
             $form->text('name');
             $form->text('level');
             $form->text('code');
+            $form->hidden('weight')->default(1);
             $form->hidden('status')->default(1);
 
         });

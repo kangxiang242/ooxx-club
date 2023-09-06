@@ -225,7 +225,9 @@ class Compose
             }
 
 
-            $area = $this->area->random();
+            //$area = $this->area->random();
+            $area = $this->weightedRoundRobin($this->area);
+
             $data = [
                 'birthplace_id'=>$birthplace->id,
                 'name'=>$name,
@@ -711,6 +713,29 @@ class Compose
         $use = rand(0, $weight -1);
         $one = $tempdata[$use];
         return $one;
+    }
+
+    /**
+     * 权重轮询算法
+     *
+     * @param $servers
+     * @return mixed
+     */
+    function weightedRoundRobin($servers) {
+        $serverList = [];
+
+        // 构建服务器列表
+        foreach ($servers as $server) {
+            for ($i = 0; $i < $server->weight; $i++) {
+                $serverList[] = $server;
+            }
+        }
+
+        // 获取下一个服务器
+        static $currentServer = 0;
+        $currentServer = ($currentServer + 1) % count($serverList);
+        $server = $serverList[$currentServer];
+        return $server;
     }
 
 
