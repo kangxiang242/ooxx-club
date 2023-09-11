@@ -102,12 +102,6 @@ class SitemapService
     public function product(){
         $product = Product::where('status',1)->select(['id'])->get();
 
-        /*$this->xml[] = '  <url>';
-        $this->xml[] = "    <loc>".url('goods')."</loc>";
-        $this->xml[] = "    <lastmod>{$this->last_mod}</lastmod>";
-        $this->xml[] = "    <changefreq>daily</changefreq>";
-        $this->xml[] = '    <priority>0.8</priority>';
-        $this->xml[] = "  </url>";*/
         foreach($product as $item){
             $this->xml[] = '  <url>';
             $this->xml[] = "    <loc>".url('recruit/'.$item->id)."</loc>";
@@ -140,23 +134,6 @@ class SitemapService
         $this->xml[] = '    <priority>0.8</priority>';
         $this->xml[] = "  </url>";
 
-
-        /*$this->xml[] = '  <url>';
-        $this->xml[] = "    <loc>".url('guestbook')."</loc>";
-        $this->xml[] = "    <lastmod>{$this->last_mod}</lastmod>";
-        $this->xml[] = "    <changefreq>daily</changefreq>";
-        $this->xml[] = '    <priority>0.8</priority>';
-        $this->xml[] = "  </url>";
-
-        $pages = Page::where('status',1)->get();
-        foreach($pages as $page){
-            $this->xml[] = '  <url>';
-            $this->xml[] = "    <loc>".url($page->uri)."</loc>";
-            $this->xml[] = "    <lastmod>{$this->last_mod}</lastmod>";
-            $this->xml[] = "    <changefreq>daily</changefreq>";
-            $this->xml[] = '    <priority>0.8</priority>';
-            $this->xml[] = "  </url>";
-        }*/
 
     }
 
