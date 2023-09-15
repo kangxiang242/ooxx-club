@@ -849,12 +849,11 @@ header .wrapper-top {
 }
 .infobody .info .addbox .addlist .additem {
   display: inline-flex;
-  border: 1px solid #ccc;
+  border: 1px solid #ffea98;
   border-radius: 99px;
   padding: 4px 8px;
   margin: 3px;
   align-items: center;
-  opacity: 0.3;
 }
 .infobody .info .addbox .addlist .coopicon {
   width: 14px;
@@ -865,18 +864,12 @@ header .wrapper-top {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fff8dd;
-  height: 40px;
-  border-radius: 99px;
+  background-color: #fff2c3;
+  height: 60px;
+  border-radius: 8px;
   overflow: hidden;
-  width: 80%;
+  width: 100%;
   margin: 10px auto 20px;
-  border: 1px solid #ffcb00;
-}
-@media screen and (min-width: 768px) {
-  .infobody .info .addbox .addlist .contect {
-    width: 40%;
-  }
 }
 .infobody .info .addbox .addlist .contect .text {
   position: relative;
@@ -930,7 +923,7 @@ header .wrapper-top {
   white-space: nowrap;
   text-align: center;
   padding: 10px;
-  background-color: #fff8dd;
+  background-color: #fff2c3;
   margin-right: 10px;
   border-radius: 8px;
   width: 50%;
@@ -1024,7 +1017,7 @@ header .wrapper-top {
   margin-bottom: 16px;
   transition-duration: 0.3s;
   cursor: pointer;
-  background-color: #eee;
+  background-color: #f7f7f7;
   padding: 16px;
   border-radius: 8px;
 }
@@ -1037,7 +1030,8 @@ header .wrapper-top {
 }
 .infobody .info .qabox .qalist .qaitem .q-title .s1 {
   margin-right: 4px;
-  font-weight: 500;
+  font-weight: 700;
+  color: #ffcb00;
 }
 .infobody .info .qabox .qalist .qaitem .q-title .s2 {
   padding-right: 34px;
