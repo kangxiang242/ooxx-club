@@ -85,7 +85,7 @@ class Compose
         $this->area = Area::with('sub')->where('status',1)->where('parent_id',0)->get();
 
 
-        $this->comment_picture = Comment::pluck('image');
+        $this->comment_picture = Comment::pluck('image')->shuffle();
 
         $this->videos = Video::where('status',1)->get()->shuffle();
 
