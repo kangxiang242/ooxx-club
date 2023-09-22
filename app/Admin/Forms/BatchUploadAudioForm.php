@@ -57,7 +57,7 @@ class BatchUploadAudioForm extends Form
      */
     public function form()
     {
-        $this->multipleFile('mp3','文件')->uniqueName()->autoUpload()->move('audio')->maxSize(102400)->help('上傳mp3格式，單次最大100M');
+        $this->multipleFile('mp3','文件')->limit(200)->uniqueName()->autoUpload()->move('audio')->maxSize(102400)->help('上傳mp3格式，單次最大100M');
 
     }
 
