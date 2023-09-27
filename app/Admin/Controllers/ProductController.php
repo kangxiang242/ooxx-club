@@ -177,6 +177,8 @@ STYLE
                 if($form->picture){
                     $form->cover = array_get(explode(',',$form->picture),0); //设置第一张为封面
                 }
+                //price_start
+                $form->price_start = array_get($form->prices,'new_1.price');
             });
 
             $form->saved(function (Form $form, $result) {
