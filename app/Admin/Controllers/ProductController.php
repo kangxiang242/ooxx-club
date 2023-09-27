@@ -137,6 +137,8 @@ STYLE
 
                 $form->switch('outgoing');
                 $form->switch('fixation');
+                $form->hidden('price_start')->default(0);
+                $form->hidden('price_end')->default(0);
                 $form->hidden('status')->default(1);
                 $form->hidden('is_top')->default(0);
             })->tab('定价',function (Form $form){
@@ -177,13 +179,13 @@ STYLE
                 if($form->picture){
                     $form->cover = array_get(explode(',',$form->picture),0); //设置第一张为封面
                 }
-                //price_start
-                $prices = array_values($form->prices);
+                if($form->prices){
+                    $prices = array_values($form->prices);
+                    $form->price_start = array_get($prices,'0.price');
 
+                    $form->price_end = array_get($prices,(count($prices)-1).'.price');
+                }
 
-                $form->price_start = array_get($prices,'0.price');
-
-                $form->price_end = array_get($prices,(count($form->prices)-1).'.price');
 
             });
 
