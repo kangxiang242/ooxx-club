@@ -139,6 +139,7 @@ STYLE
                 $form->switch('fixation');
                 $form->hidden('price_start')->default(0);
                 $form->hidden('price_end')->default(0);
+                $form->hidden('audio_time')->default(0);
                 $form->hidden('status')->default(1);
                 $form->hidden('is_top')->default(0);
             })->tab('定价',function (Form $form){
@@ -193,7 +194,6 @@ STYLE
                     $fileduration = round($ThisFileInfo['playtime_seconds']);
                     $form->audio_time = $fileduration;
                 }
-                dd($form->audio,$ThisFileInfo,$form->audio_time);
 
 
             });
