@@ -187,6 +187,13 @@ STYLE
                     $form->price_end = array_get($prices,(count($prices)-1).'.price');
                 }
 
+                if($form->audio){
+                    $getID3 = new \getID3();
+                    $ThisFileInfo = $getID3->analyze(public_path('uploads/'.$form->audio));
+                    $fileduration = round($ThisFileInfo['playtime_seconds']);
+                    $form->audio_time = $fileduration;
+                }
+
 
             });
 
