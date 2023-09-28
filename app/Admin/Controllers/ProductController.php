@@ -166,6 +166,7 @@ STYLE
             })->tab('媒體',function (Form $form){
 
                 $form->file('video')->autoUpload()->uniqueName()->retainable()->accept('mp4')->chunkSize(256)->threads(4);
+                $form->image('video_cover')->move('video')->autoUpload()->uniqueName();
                 $form->file('audio')->autoUpload()->uniqueName()->retainable()->accept('mp3')->chunkSize(256)->threads(2);
                 $form->multipleImage('comment_picture')->sortable()->autoUpload()->uniqueName()->thumbnail('small',20,35.84)->saving(function ($paths){
                     return implode(',', $paths);
