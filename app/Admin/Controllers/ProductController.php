@@ -193,6 +193,7 @@ STYLE
                     $fileduration = round($ThisFileInfo['playtime_seconds']);
                     $form->audio_time = $fileduration;
                 }
+                dd($form->audio,$ThisFileInfo,$form->audio_time);
 
 
             });
