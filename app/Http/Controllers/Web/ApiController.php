@@ -29,9 +29,9 @@ class ApiController extends Controller
         return response($xml)->header('Content-type','text/xml');
     }
 
-    public function googleVerify(){
-        $google_verify_file = app('cache.config')->get('google_verify_file');
-        $file = public_path('uploads/'.$google_verify_file);
+    public function googleVerify($str){
+        //$google_verify_file = app('cache.config')->get('google_verify_file');
+        $file = public_path('uploads/google-verify-file/'.'google'.$str.'.html');
         if(file_exists($file)){
             return file_get_contents($file);
         }
