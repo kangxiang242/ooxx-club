@@ -50,7 +50,7 @@
 
 
 @section('content')
-    <header>
+    <header style="display: block">
         <div class="wrapper" id="wrapper">
             <div class="logo-sec">
                 <a href="{{ url('/') }}">
