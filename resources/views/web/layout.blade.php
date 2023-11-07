@@ -28,7 +28,7 @@
     <meta name="apple-touch-fullscreen" content="no" />
     <link rel="canonical" href="{{ config('app.url') }}/{{ trim(request()->getBaseUrl(),'/') }}">
     <link rel="alternate" hreflang="zh-TW">
-    <link rel="shortcut icon" href="{{ asset_upload(config('cache.config')->get('favicon')) }}">
+    <link rel="shortcut icon" href="{{ asset_upload(app('cache.config')->get('favicon')) }}">
 
     @section('style')
         <link rel="stylesheet" type="text/css" href="{{ asset('static/css/style.css') }}?v={{ app('cache.config')->get('asset_version') }}"/>
