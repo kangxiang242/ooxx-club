@@ -13,6 +13,7 @@ class Customer extends Config
     {
 
         $this->text('config.line_name', '客服名稱');
+        $this->text('config.customer_phone', '客服電話');
         $this->text('config.line_id', 'LINE ID');
         $this->text('config.line_url', 'LINE鏈接');
         $this->multipleImage('config.line_qrcode', 'LINE二維碼')->autoUpload()->sortable()->uniqueName()->saving(function ($paths){
