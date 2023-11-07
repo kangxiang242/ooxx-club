@@ -95,6 +95,16 @@ class SitemapService
 
         }
 
+        $topic = Topic::where('status',1)->get();
+        foreach($topic as $item){
+            $this->xml[] = '  <url>';
+            $this->xml[] = "    <loc>".url('/'.$item->title)."</loc>";
+            $this->xml[] = "    <lastmod>{$this->last_mod}</lastmod>";
+            $this->xml[] = "    <changefreq>daily</changefreq>";
+            $this->xml[] = '    <priority>0.8</priority>';
+            $this->xml[] = "  </url>";
+        }
+
     }
 
     /**
@@ -135,15 +145,7 @@ class SitemapService
         $this->xml[] = '    <priority>0.8</priority>';
         $this->xml[] = "  </url>";
 
-        $topic = Topic::where('status',1)->get();
-        foreach($topic as $item){
-            $this->xml[] = '  <url>';
-            $this->xml[] = "    <loc>".url('/'.$item->title)."</loc>";
-            $this->xml[] = "    <lastmod>{$this->last_mod}</lastmod>";
-            $this->xml[] = "    <changefreq>daily</changefreq>";
-            $this->xml[] = '    <priority>0.8</priority>';
-            $this->xml[] = "  </url>";
-        }
+
 
 
     }
