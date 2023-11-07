@@ -118,7 +118,7 @@
                                     @foreach($recommend as $item)
                                         <li class="hot-news">
                                             <a href="{{ url('blog/'.$item->id) }}">
-                                                <img src="{{ asset_upload($item->img) }}" alt="{{ $news->title }}">
+                                                <img src="{{ asset_upload($item->img) }}" alt="{{ $item->title }}">
                                                 <p class="hot-news-title">{{ $item->title }}</p>
                                             </a>
                                         </li>
