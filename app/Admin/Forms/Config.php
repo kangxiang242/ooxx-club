@@ -2,6 +2,7 @@
 
 namespace App\Admin\Forms;
 
+use App\Services\ConfigService;
 use Dcat\Admin\Widgets\Form;
 
 class Config extends Form
@@ -41,6 +42,7 @@ class Config extends Form
             }
 
         }
+        ConfigService::cache();
         return $this
 				->response()
 				->success('Processed successfully.')
