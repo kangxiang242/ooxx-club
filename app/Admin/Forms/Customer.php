@@ -12,11 +12,11 @@ class Customer extends Config
     public function form()
     {
 
-        $this->text('config.line_name', '客服名稱');
-        $this->text('config.customer_phone', '客服電話');
-        $this->text('config.line_id', 'LINE ID');
-        $this->text('config.line_url', 'LINE鏈接');
-        $this->multipleImage('config.line_qrcode', 'LINE二維碼')->autoUpload()->sortable()->uniqueName()->saving(function ($paths){
+        $this->text('line_name', '客服名稱');
+        $this->text('customer_phone', '客服電話');
+        $this->text('line_id', 'LINE ID');
+        $this->text('line_url', 'LINE鏈接');
+        $this->multipleImage('line_qrcode', 'LINE二維碼')->autoUpload()->sortable()->uniqueName()->saving(function ($paths){
             return implode(',',$paths);
         })->help('只生效第一張二維碼，其餘二維碼作為備用');
     }
