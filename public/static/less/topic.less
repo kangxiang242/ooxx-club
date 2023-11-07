@@ -1,0 +1,156 @@
+.category{
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 60px;
+    flex-wrap: wrap;
+    gap: 20px;
+    li{
+
+        display: flex;
+
+
+        a{
+            display: flex;
+            align-items: center;
+            background-color: #3a73a6;
+            color: #fff;
+            padding: 10px 16px;
+
+            border-radius: 8px;
+            font-size: 16px;
+        }
+    }
+}
+
+
+.content{
+    margin-top: 40px;
+    a{
+        color: rgb(255, 173, 210);
+        font-weight: 600;
+        font-family: "Meiryo UI", "Microsoft YaHei", sans-serif!important;
+    }
+    p{
+        font-family: "Meiryo UI", "Microsoft YaHei", sans-serif!important;
+    }
+    span{
+        font-family: "Meiryo UI", "Microsoft YaHei", sans-serif!important;
+    }
+    h1{
+        font-size: 48px;
+        text-align: center;
+        margin: 40px 0 60px;
+        background-image: -webkit-linear-gradient(45deg, #1dffef, #c075ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-size: 100%;
+        display: inline-block;
+        font-family: "Meiryo UI", "Microsoft YaHei", sans-serif!important;
+        @media screen and (max-width: 1024px) {
+            font-size: 32px;
+            margin: 0 5% 20px;
+        }
+    }
+    h2{
+        font-size: 28px;
+        background-image: -webkit-linear-gradient(45deg,  #ff9797,#9d76ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-size: 100%;
+        display: inline-block;
+        margin: 10% 10% 5%;
+        font-family: "Meiryo UI", "Microsoft YaHei", sans-serif!important;
+        @media screen and (max-width: 1024px) {
+
+
+        }
+    }
+    h3,h4,h5{
+        margin: 5% 10%;
+        border-left: 6px solid #c766ff;
+        padding-left: 10px;
+        font-family: "Meiryo UI", "Microsoft YaHei", sans-serif!important;
+    }
+
+
+    article{
+        font-size: 17px;
+        letter-spacing: 0.6px;
+        line-height: 1.8;
+        p{
+            margin: 6% 10%;
+            @media screen and (max-width: 1024px) {
+                margin: 10%;
+            }
+            img{
+                width:100%;
+            }
+        }
+
+    }
+    table{
+        width: auto !important;
+        margin: 0 10%;
+        border: 1px solid #4d4d4d;
+        tbody{
+            tr{
+                th{
+                    text-align: center !important;
+                    padding: 20px;
+                }
+                td{
+                    text-align: center !important;
+                    padding: 20px;
+                    border-top: 1px solid #4d4d4d;
+                }
+            }
+        }
+    }
+    .btnbox-article{
+        display: none;
+        @media screen and (max-width: 1024px) {
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            margin: 3% auto 0;
+        }
+
+        .button{
+            @media screen and (max-width: 1024px) {
+                width: calc(50% - 5px);
+                height: 54px;
+            }
+
+            .text{
+                i{
+                    @media screen and (max-width: 1024px) {
+                        margin-right: 4px;
+                    }
+                }
+                .btn-num{
+                    @media screen and (max-width: 1024px) {
+                        font-size: 14px;
+                    }
+
+                }
+            }
+        }
+    }
+    .position{
+        opacity: 0;
+    }
+
+
+}
+.news-title{
+    text-align: center;
+}
+.container .news-main .news-box .left .content article p{
+    margin-left: 0;
+    margin-right: 0;
+}
+@media screen and (max-width: 1024px) {
+    .container .news-main .news-box .left{
+        padding: 0 20px;
+    }
+}

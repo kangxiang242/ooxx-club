@@ -44,6 +44,7 @@ Route::group([
 
     $router->resource('seo','SeoController');
 
+    $router->resource('topic','TopicController');
 
     $router->resource('exception','ExceptionController');
 

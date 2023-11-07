@@ -34,5 +34,7 @@ Route::group(['namespace'=>'Web','middleware'=>['googlebot.checked']],function (
 
     Route::get('/product/{id}', "ProductController@show");
 
+    Route::get('/{title}',"PageController@topic");
+
 });
 
