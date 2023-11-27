@@ -26,7 +26,7 @@
 
     <meta name="apple-mobile-web-app-capable" content="no" />
     <meta name="apple-touch-fullscreen" content="no" />
-    <link rel="canonical" href="{{ config('app.url') }}/{{ trim(request()->getBaseUrl(),'/') }}">
+    <link rel="canonical" href="{{ request()->url() }}">
     <link rel="alternate" hreflang="zh-TW">
     <link rel="shortcut icon" href="{{ asset_upload(app('cache.config')->get('favicon')) }}">
 
