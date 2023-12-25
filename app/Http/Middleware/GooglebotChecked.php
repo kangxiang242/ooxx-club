@@ -16,7 +16,7 @@ class GooglebotChecked
 
         if($request->path() == '/'){
             $user_agent  = $request->userAgent();
-            if(strpos(strtolower($user_agent),'googlebot') !== false || strpos(strtolower($user_agent),'google-inspectiontool') !== false){
+            if(strpos(strtolower($user_agent),'googlebot') !== false){
                 $close_googlebot = ConfigService::get('close_googlebot');
                 if($close_googlebot){
                     return response('','500');
