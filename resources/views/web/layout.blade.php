@@ -113,7 +113,12 @@
 <script src="{{ asset('static/js/jquery.masonry.min.js') }}"></script>
 <script src="{{ asset('static/js/api.js') }}?v={{ app('cache.config')->get('asset_version') }}"></script>
 {!! \App\Services\ConfigService::get('google_ga') !!}
-
+<script>
+    var isChromeOniOS = /CriOS/.test(navigator.userAgent);
+    if (isChromeOniOS) {
+        $('a').removeAttr('target');
+    }
+</script>
 
 <script>
 
