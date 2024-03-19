@@ -141,10 +141,10 @@ class Compose
                 $extension = array_get($path,'extension');
                 if($extension){
                     $new_name = array_get($path,'filename').'.'.$extension;
-                    if(!file_exists(public_path('uploads/watermark/'.$new_name))){
-                        $this->addWatermark(public_path('uploads/'.$v),'watermark/'.$new_name,$extension);
+                    if(!file_exists(public_path('uploads/watermark/images/'.$new_name))){
+                        $this->addWatermark(public_path('uploads/'.$v),'watermark/images/'.$new_name,$extension);
                     }
-                    $images[] = 'watermark/'.$new_name;
+                    $images[] = 'watermark/images/'.$new_name;
                 }
             }
             $images = collect($images);
@@ -166,10 +166,10 @@ class Compose
                 $extension = array_get($path_comment,'extension');
                 if($extension){
                     $new_name = array_get($path_comment,'filename').'.'.$extension;
-                    if(!file_exists(public_path('uploads/watermark/'.$new_name))){
-                        $this->addWatermark(public_path('uploads/'.$temp_image),'watermark/'.$new_name,$extension);
+                    if(!file_exists(public_path('uploads/watermark/comment/'.$new_name))){
+                        $this->addWatermark(public_path('uploads/'.$temp_image),'watermark/comment/'.$new_name,$extension);
                     }
-                    $comment_picture[] = 'watermark/'.$new_name;
+                    $comment_picture[] = 'watermark/comment/'.$new_name;
                 }
             }
 
