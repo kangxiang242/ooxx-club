@@ -162,12 +162,12 @@ class Compose
                 //$comment_picture[] = $temp_image;
                 $this->comment_picture->prepend($temp_image);
 
-                $path = pathinfo($temp_image);
-                $extension = array_get($path,'extension');
+                $path_comment = pathinfo($temp_image);
+                $extension = array_get($path_comment,'extension');
                 if($extension){
-                    $new_name = array_get($path,'filename').'.'.$extension;
+                    $new_name = array_get($path_comment,'filename').'.'.$extension;
                     if(!file_exists(public_path('uploads/watermark/'.$new_name))){
-                        $this->addWatermark(public_path('uploads/'.$v),'watermark/'.$new_name,$extension);
+                        $this->addWatermark(public_path('uploads/'.$temp_image),'watermark/'.$new_name,$extension);
                     }
                     $comment_picture[] = 'watermark/'.$new_name;
                 }
@@ -265,7 +265,7 @@ class Compose
                 'area_county'=>$area->sub->random()->id,
                 'price_start'=>$price,
                 'price_end'=>$price*3,
-                'picture'=>$picture->image,
+                'picture'=>$images->implode(','),
                 'comment_picture'=>implode(',',$comment_picture),
                 'video'=>$video->video,
                 'video_cover'=>$video->cover,
