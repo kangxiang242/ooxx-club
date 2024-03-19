@@ -22,6 +22,8 @@ use App\Models\Serve;
 use App\Models\Video;
 use App\Services\ConfigService;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class Compose
 {
@@ -132,7 +134,20 @@ class Compose
 
 
 
-            $images = collect(explode(',',$picture->image));
+            $pc = collect(explode(',',$picture->image));
+            $images = [];
+            foreach($pc as $v){
+                $path = pathinfo($v);
+                $extension = array_get($path,'extension');
+                if($extension){
+                    $new_name = array_get($path,'filename').'.'.$extension;
+                    if(!file_exists(public_path('uploads/watermark/'.$new_name))){
+                        $this->addWatermark(public_path('uploads/'.$v),'watermark/'.$new_name,$extension);
+                    }
+                    $images[] = 'watermark/'.$new_name;
+                }
+            }
+            $images = collect($images);
 
 
             $video = $this->videos->pop();
@@ -144,8 +159,18 @@ class Compose
             $comment_count = rand(3,5);
             for ($i=0;$i<$comment_count;$i++){
                 $temp_image = $this->comment_picture->pop();
-                $comment_picture[] = $temp_image;
+                //$comment_picture[] = $temp_image;
                 $this->comment_picture->prepend($temp_image);
+
+                $path = pathinfo($temp_image);
+                $extension = array_get($path,'extension');
+                if($extension){
+                    $new_name = array_get($path,'filename').'.'.$extension;
+                    if(!file_exists(public_path('uploads/watermark/'.$new_name))){
+                        $this->addWatermark(public_path('uploads/'.$v),'watermark/'.$new_name,$extension);
+                    }
+                    $comment_picture[] = 'watermark/'.$new_name;
+                }
             }
 
 
@@ -738,5 +763,13 @@ class Compose
         return $server;
     }
 
+
+    public function addWatermark($image,$savePath,$encode='jpg')
+    {
+        // 生成新的图片并添加水印
+        $img = Image::make($image)->insert(public_path('/static/img/fun.png'), 'top-left', 0, 0)->encode($encode);
+        // 将图片保存到存储位置
+        Storage::disk('admin')->put($savePath, $img);
+    }
 
 }
