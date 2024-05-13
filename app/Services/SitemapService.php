@@ -28,7 +28,7 @@ class SitemapService
         $this->startUrlSet();
         $this->home();
         $this->article();
-        //$this->product();
+        $this->product();
         //$this->page();
         $this->endUrlSet();
 
@@ -112,10 +112,15 @@ class SitemapService
      */
     public function product(){
         $product = Product::where('status',1)->select(['id'])->get();
-
+        $this->xml[] = '  <url>';
+        $this->xml[] = "    <loc>".url('product')."</loc>";
+        $this->xml[] = "    <lastmod>{$this->last_mod}</lastmod>";
+        $this->xml[] = "    <changefreq>daily</changefreq>";
+        $this->xml[] = '    <priority>0.8</priority>';
+        $this->xml[] = "  </url>";
         foreach($product as $item){
             $this->xml[] = '  <url>';
-            $this->xml[] = "    <loc>".url('recruit/'.$item->id)."</loc>";
+            $this->xml[] = "    <loc>".url('product/'.$item->id)."</loc>";
             $this->xml[] = "    <lastmod>{$this->last_mod}</lastmod>";
             $this->xml[] = "    <changefreq>daily</changefreq>";
             $this->xml[] = '    <priority>0.8</priority>';
