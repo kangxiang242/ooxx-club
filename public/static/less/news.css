@@ -25,7 +25,7 @@ header .wrapper {
 @media screen and (max-width: 768px) {
   header .wrapper {
     height: 72px;
-    border-bottom: none;
+    justify-content: center;
   }
 }
 header .wrapper .logo-sec {

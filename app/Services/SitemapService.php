@@ -5,8 +5,6 @@ namespace App\Services;
 
 
 use App\Models\ArticleCate;
-use App\Models\Cate;
-use App\Models\Page;
 use App\Models\Product;
 use App\Models\Topic;
 
