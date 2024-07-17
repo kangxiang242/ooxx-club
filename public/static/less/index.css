@@ -145,7 +145,7 @@ header .wrapper .m-nav {
     align-items: flex-start;
     position: fixed;
     width: 100%;
-    padding-top: 8px;
+    padding-top: 6px;
   }
 }
 header .wrapper .m-nav .base {
