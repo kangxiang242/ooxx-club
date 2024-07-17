@@ -76,8 +76,8 @@ header .wrapper .m-nav {
   bottom: 0;
   left: 0;
   height: 66px;
-  height: calc(66px + constant(safe-area-inset-bottom));
-  height: calc(66px + env(safe-area-inset-bottom));
+  height: calc(60px + constant(safe-area-inset-bottom));
+  height: calc(60px + env(safe-area-inset-bottom));
   z-index: 20;
 }
 @media screen and (max-width: 768px) {
@@ -98,6 +98,7 @@ header .wrapper .m-nav .base {
 @media screen and (max-width: 768px) {
   header .wrapper .m-nav .base {
     font-size: 12px;
+    margin-top: 4px;
   }
 }
 header .wrapper .m-nav .base .baseicon {

@@ -156,14 +156,14 @@ header{
             bottom: 0;
             left: 0;
             height: 66px;
-            height: calc(66px + constant(safe-area-inset-bottom));
-            height: calc(66px + env(safe-area-inset-bottom));
+            height: calc(60px + constant(safe-area-inset-bottom));
+            height: calc(60px + env(safe-area-inset-bottom));
             z-index: 20;
             @media screen and (max-width: 768px) {
                 align-items: flex-start;
                 position: fixed;
                 width: 100%;
-                padding-top: 10px;
+                padding-top: 8px;
 
             }
 
@@ -178,6 +178,7 @@ header{
                 transition: all 0.3s;
                 @media screen and (max-width: 768px) {
                     font-size: 12px;
+                    margin-top: 4px;
                 }
                 @media screen and (min-width: 768px) {
                     &:hover{
