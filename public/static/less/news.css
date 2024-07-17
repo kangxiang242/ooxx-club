@@ -29,12 +29,13 @@ header .wrapper {
   }
 }
 header .wrapper .logo-sec {
-  margin-left: 12px;
+  /* margin-left: 12px; */
   font-weight: 500;
   letter-spacing: 0;
 }
 header .wrapper .logo-sec .logo {
   width: 160px;
+  margin: 0 auto;
 }
 header .wrapper .logo-sec .searchtitle {
   font-size: 24px;
@@ -45,7 +46,7 @@ header .wrapper .logo-sec .phone {
   left: 0;
   top: 6px;
   transition: all 0.3s ease-in-out;
-  font-size: 14px;
+  font-size: 16px;
   font-style: italic;
   font-weight: 700;
   display: flex;
@@ -74,9 +75,9 @@ header .wrapper .m-nav {
   width: 40%;
   bottom: 0;
   left: 0;
-  height: 60px;
-  height: calc(60px + constant(safe-area-inset-bottom));
-  height: calc(60px + env(safe-area-inset-bottom));
+  height: 66px;
+  height: calc(66px + constant(safe-area-inset-bottom));
+  height: calc(66px + env(safe-area-inset-bottom));
   z-index: 20;
 }
 @media screen and (max-width: 768px) {
@@ -89,7 +90,7 @@ header .wrapper .m-nav .base {
   position: relative;
   height: 100%;
   font-size: 15px;
-  font-weight: 300;
+  font-weight: 500;
   display: flex;
   flex-direction: column;
   white-space: nowrap;
@@ -118,8 +119,8 @@ header .wrapper .m-nav .contect {
   align-items: center;
   justify-content: center;
   background-color: #000;
-  height: 40px;
-  border-radius: 20px;
+  height: 48px;
+  border-radius: 99px;
   overflow: hidden;
 }
 @media screen and (max-width: 768px) {
@@ -156,13 +157,13 @@ header .wrapper .m-nav .contect .text {
   text-align: center;
   justify-content: center;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 700;
   color: #ffcb00;
   z-index: 1;
 }
 header .wrapper .m-nav .contect .text .lineicon {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   fill: #ffcb00;
   margin-right: 8px;
 }
