@@ -20,6 +20,11 @@
         .header{
             display: block;
         }
+        @media screen and (max-width: 768px) {
+            .container .news-main .news-box{
+                flex-direction: column-reverse;
+            }
+        }
     </style>
 @stop
 
