@@ -26,6 +26,11 @@ header .wrapper {
   box-sizing: content-box;
   overflow: hidden;
 }
+@media screen and (max-width: 768px) {
+  header .wrapper {
+    justify-content: center;
+  }
+}
 header .wrapper .logo-sec {
   margin-left: 12px;
   font-weight: 500;
@@ -39,7 +44,7 @@ header .wrapper .logo-sec .phone {
   left: 0;
   top: 6px;
   transition: all 0.3s ease-in-out;
-  font-size: 14px;
+  font-size: 16px;
   font-style: italic;
   font-weight: 700;
   display: flex;

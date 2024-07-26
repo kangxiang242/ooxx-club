@@ -3,7 +3,10 @@
     margin-top: 20px;
     margin-bottom: 60px;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 12px;
+    @media screen and (max-width: 768px) {
+        gap: 8px 12px;
+    }
     li{
 
         display: flex;
@@ -12,21 +15,83 @@
         a{
             display: flex;
             align-items: center;
-            background-color: #3a73a6;
-            color: #fff;
+            background-color: #ececec;
+            color: #000;
             padding: 10px 16px;
 
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 13px;
+            @media screen and (max-width: 768px) {
+                padding: 6px 14px;
+                border-radius: 4px;
+                font-size: 12px;
+            }
+            i{
+                font-size: 12px;
+            }
         }
     }
+
+    
+}
+
+.quicklink-section{
+    width: 100%;
+    max-width: 1280px;
+    margin-top: 30px;
+    @media screen and (min-width: 768px) {
+        display: none;
+    }
+    .quick{
+        position: relative;
+        display: flex;
+        overflow-y: auto;
+        /* justify-content: space-around; */
+        @media screen and (max-width: 768px) {
+            /* justify-content: flex-start; */
+        }
+        .quicklink{
+            display: flex;
+            width: 100px;
+            flex-direction: column;
+            text-align: center;
+            flex-shrink: 0;
+            /* &:nth-child(n+5){
+                display: none;
+            } */
+            @media screen and (max-width: 768px) {
+                width: 72px;
+                margin-right: 10px;
+                &:first-child{
+                    margin-left: 18px;
+                }
+            }
+            img{
+                width: 100%;
+            }
+            .quicktitle{
+                font-size: 16px;
+                font-weight: 500;
+                @media screen and (max-width: 768px) {
+                    font-size: 13px;
+                    position: relative;
+                    top: -14px;
+                    color: #000000;
+                    border: 2px solid #ffcb00;
+                    border-radius: 19px;
+                    background-color: #ffcb00;
+                }
+            }
+        }
+    }
+
 }
 
 
 .content{
     margin-top: 40px;
     a{
-        color: rgb(255, 173, 210);
+        color: #ffcb00;
         font-weight: 600;
         font-family: "Meiryo UI", "Microsoft YaHei", sans-serif!important;
     }
@@ -40,10 +105,7 @@
         font-size: 48px;
         text-align: center;
         margin: 40px 0 60px;
-        background-image: -webkit-linear-gradient(45deg, #1dffef, #c075ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        -webkit-background-size: 100%;
+        color: #000;
         display: inline-block;
         font-family: "Meiryo UI", "Microsoft YaHei", sans-serif!important;
         @media screen and (max-width: 1024px) {
@@ -52,11 +114,8 @@
         }
     }
     h2{
-        font-size: 28px;
-        background-image: -webkit-linear-gradient(45deg,  #ff9797,#9d76ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        -webkit-background-size: 100%;
+        font-size: 19px;
+        color: #000;
         display: inline-block;
         margin: 10% 10% 5%;
         font-family: "Meiryo UI", "Microsoft YaHei", sans-serif!important;
@@ -72,6 +131,8 @@
         font-family: "Meiryo UI", "Microsoft YaHei", sans-serif!important;
     }
 
+
+    
 
     article{
         font-size: 17px;
