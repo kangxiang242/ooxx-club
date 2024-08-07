@@ -56,7 +56,7 @@
         </div>
     </header>
     <div class="container">
-        <div class="main case-main">
+        <div class="main case-main" style="margin-bottom: 80px">
             <div class="case">
                 <div class="so" id="so" >
                     <div class="present">
