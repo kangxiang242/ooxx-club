@@ -1270,10 +1270,10 @@ footer .copyright {
   }
 }
 .goods-container .goods-loading {
-  display: none;
   position: relative;
   bottom: 0;
   left: 0;
+  z-index: 99;
 }
 .goods-container .goods-loading .loader {
   position: relative;

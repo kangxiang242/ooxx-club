@@ -23,3 +23,4 @@ dcat-admin-extensions
 /public/page-cache
 _ide_helper.php
 /public/data
+.DS_Store

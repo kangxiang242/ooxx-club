@@ -95,6 +95,10 @@ function getGoods2(filter=false,is_append= true,data={},reset_page = false){
                         isResizableL:true,// 是否可调整大小 Boolean
                     });
 
+                    if(current_page == 1){
+                        $('.goods-section').height(0)
+                    }
+
 
                     $grid.imagesLoaded(function () {
                         $('.goods-section .hide').removeClass('hide')
