@@ -35,8 +35,8 @@ class HomeController extends Controller
 
                 $row->column(6, function (Column $column) {
 
-                    $column->row(new Dashboard\NewDevices());
-                    $column->row(new Dashboard\AccessPage());
+                    //$column->row(new Dashboard\NewDevices());
+                    //$column->row(new Dashboard\AccessPage());
                     /*$column->row(new Examples\ProductOrders());*/
                 });
             });

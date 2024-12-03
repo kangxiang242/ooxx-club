@@ -11,6 +11,11 @@ class Video extends Model
     use HasFactory,HasDateTimeFormatter;
 
     protected $fillable = [
-        'video','cover','status'
+        'video','cover','status','birthplace_id'
     ];
+
+    public function birthplace()
+    {
+        return $this->belongsTo(Birthplace::class);
+    }
 }

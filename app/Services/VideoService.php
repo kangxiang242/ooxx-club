@@ -8,7 +8,7 @@ use App\Models\Video;
 
 class VideoService
 {
-    public function decompression($pathname){
+    public function decompression($pathname,$birthplace_id){
         $pathinfo = pathinfo($pathname);
         $pathname = public_path('uploads/'.$pathname);
         $extractPath = public_path('uploads/video/'.$pathinfo['filename']);
@@ -22,7 +22,7 @@ class VideoService
             $zip->close();
         }
         $data = $this->scandir($extractPath);
-        $this->saveDatabase($data);
+        $this->saveDatabase($data,$birthplace_id);
         return $data;
     }
 
@@ -49,11 +49,12 @@ class VideoService
         return $data;
     }
 
-    public function saveDatabase($data){
+    public function saveDatabase($data,$birthplace_id){
         $insert = [];
         $time = date('Y-m-d H:i:s');
         foreach($data as $item){
             $insert[] = [
+                'birthplace_id'=>$birthplace_id,
                 'video'=>$item['mp4'],
                 'cover'=>$item['img'],
                 'created_at'=>$time,

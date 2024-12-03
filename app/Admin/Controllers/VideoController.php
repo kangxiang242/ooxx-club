@@ -5,6 +5,7 @@ namespace App\Admin\Controllers;
 
 use App\Admin\Forms\BatchUploadVideoForm;
 use App\Admin\Repositories\Video;
+use App\Models\Birthplace;
 use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
@@ -19,8 +20,10 @@ class VideoController extends AdminController
      */
     protected function grid()
     {
-        return Grid::make(new Video(), function (Grid $grid) {
-
+        return Grid::make(Video::with('birthplace'), function (Grid $grid) {
+            $grid->column('birthplace.name','茶籍')->display(function ($val){
+                return $val ?? "未分類";
+            });
             $grid->column('video')->link(function (){
                 return asset_upload($this->video);
             });
@@ -42,7 +45,9 @@ class VideoController extends AdminController
                 ->button('<div class="pull-right" style="margin-left: 20px"><button class="btn btn-primary">批量导入</button></div>');
 
             $grid->tools($modal);
-
+            $grid->selector(function (Grid\Tools\Selector $selector) {
+                $selector->selectOne('birthplace_id', '茶籍', Birthplace::pluck('name','id'));
+            });
         });
     }
 
@@ -73,7 +78,7 @@ class VideoController extends AdminController
     protected function form()
     {
         return Form::make(new Video(), function (Form $form) {
-
+            $form->select('birthplace_id','茶籍')->options(Birthplace::pluck('name','id'));
             $form->file('video')->move('video')->autoUpload()->uniqueName()->retainable()->accept('mp4')->chunked();
             $form->image('cover')->autoUpload()->uniqueName()->retainable();
             $form->hidden('status')->default(1);
