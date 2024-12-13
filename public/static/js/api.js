@@ -108,7 +108,10 @@ function getGoods2(filter=false,is_append= true,data={},reset_page = false){
                         if(current_page == last_page){
                             $('#goods-complete').show();
                         }
-                        lazyload();
+                        setTimeout(function() {
+                            lazyload();
+                        }, 500);
+
                     })
 
                 },
