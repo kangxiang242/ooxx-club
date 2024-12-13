@@ -42,7 +42,7 @@ class VideoService
                 $name = substr($v,0,strpos($v,"."));
                 $data[] = [
                     'mp4'=>'video/'.$pathname.'/'.$name.'.mp4',
-                    'img'=>'video/'.$pathname.'/'.$name.'.jpg',
+                    'img'=>'video/'.$pathname.'/'.$name.'.webp',
                 ];
             }
         }
