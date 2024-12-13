@@ -85,4 +85,27 @@ class Product extends Model
     {
         return $this->belongsTo(Area::class,'area_county')->where('level',2);
     }
+
+    /**
+     * Method for returning specific thumbnail for model.
+     *
+     * @param  string  $type
+     * @param  string  $attribute
+     * @return string|null
+     */
+    public function thumbnail($type, $attribute = 'image', $disk = null)
+    {
+        // Return empty string if the field not found
+        if (! isset($this->attributes[$attribute])) {
+            $image = $attribute;
+        }else{
+            // We take image from posts field
+            $image = $this->attributes[$attribute];
+        }
+
+        $thumbnail = $this->getThumbnailPath($image, $type);
+        $thumbnail = str_replace('watermark/','',$thumbnail);
+
+        return file_exists(public_path('uploads/'.$thumbnail)) ? $thumbnail : $image;
+    }
 }
