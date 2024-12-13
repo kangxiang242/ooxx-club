@@ -89,7 +89,7 @@ class Compose
 
         $this->comment_picture = Comment::pluck('image')->shuffle();
 
-        $this->videos = Video::where('status',1)->get()->shuffle();
+        $this->videos = Video::where('status',1)->get()->shuffle()->groupBy('birthplace_id');
 
         $this->audios = Audio::where('status',1)->get()->shuffle()->groupBy('birthplace_id');
 
@@ -149,9 +149,17 @@ class Compose
             }
             $images = collect($images);
 
+            $birthplace = $this->findBirthplaceById($picture->birthplace_id);
 
-            $video = $this->videos->pop();
-            $this->videos->prepend($video);
+            //$video = $this->videos->pop();
+            //$this->videos->prepend($video);
+
+            $video = null;
+            if($this->videos->get($birthplace->id)){
+                $video = $this->videos->get($birthplace->id)->pop();
+                $this->videos->get($birthplace->id)->prepend($video);
+            }
+
 
 
 
@@ -175,7 +183,7 @@ class Compose
 
 
 
-            $birthplace = $this->findBirthplaceById($picture->birthplace_id);
+
 
             if($birthplace->western == 1){
                 $name = $this->nicknames_om->pop();
