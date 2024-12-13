@@ -31,7 +31,7 @@ class BatchUploadVideoForm extends Form
     public function form()
     {
         $this->select('birthplace_id','茶籍')->options(Birthplace::pluck('name','id'))->required();
-        $this->file('file','文件')->required()->autoUpload()->move('video/zip')->name(function ($file) {
+        $this->file('file','文件')->required()->autoUpload()->move('videos/zip')->name(function ($file) {
             return date('Ymd').'-'.md5 (uniqid ()).'.'.$file->guessExtension();
         })->accept('zip')->maxSize(102400)->help('请上传zip压缩包，最大100M');
 

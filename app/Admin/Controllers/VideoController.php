@@ -79,7 +79,7 @@ class VideoController extends AdminController
     {
         return Form::make(new Video(), function (Form $form) {
             $form->select('birthplace_id','茶籍')->options(Birthplace::pluck('name','id'));
-            $form->file('video')->move('video')->autoUpload()->uniqueName()->retainable()->accept('mp4')->chunked();
+            $form->file('video')->move('videos')->autoUpload()->uniqueName()->retainable()->accept('mp4')->chunked();
             $form->image('cover')->autoUpload()->uniqueName()->retainable();
             $form->hidden('status')->default(1);
         });
