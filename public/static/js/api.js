@@ -40,6 +40,14 @@ function getGoods(data){
 var $grid = $('.goods-section')
 var gutter = window.matchMedia('(max-width: 768px)').matches?12:50
 
+$grid.masonry({
+    // options 设置选项
+    itemSelector : '.goods',//class 选择器
+    columnWidth :  $('.goods-section').find('.goods .cover').width() ,//一列的宽度 Integer
+    isAnimated:false,//使用jquery的布局变化  Boolean
+    gutterWidth:gutter,//列的间隙 Integer
+    isResizableL:false,// 是否可调整大小 Boolean
+});
 
 
 var current_page = 0;
@@ -80,21 +88,13 @@ function getGoods2(filter=false,is_append= true,data={},reset_page = false){
                     last_page = result.last_page;
 
                     if(is_append){
-                        $('.goods-section').append(result.render);
-
+                        //$('.goods-section').append(result.render);
+                        $grid.append(result.render);
                     }else{
-                        $('.goods-section').html(result.render)
-
+                        //$('.goods-section').html(result.render)
+                        $grid.append(result.render);
                     }
 
-                    $grid.masonry({
-                        // options 设置选项
-                        itemSelector : '.goods',//class 选择器
-                        columnWidth :  $('.goods-section').find('.goods .cover').width() ,//一列的宽度 Integer
-                        isAnimated:false,//使用jquery的布局变化  Boolean
-                        gutterWidth:gutter,//列的间隙 Integer
-                        isResizableL:true,// 是否可调整大小 Boolean
-                    });
 
                     if(current_page == 1){
                         $('.goods-section').height(0)
@@ -109,11 +109,10 @@ function getGoods2(filter=false,is_append= true,data={},reset_page = false){
                         if(current_page == last_page){
                             $('#goods-complete').show();
                         }
-                        setTimeout(function() {
-                            lazyload();
-                        }, 500);
-
                     })
+                    setTimeout(function() {
+                        lazyload();
+                    }, 500);
                 },
                 error: function (XMLHttpRequest) {
 
@@ -472,6 +471,13 @@ $(document).ready(function(){
 
 });
 
+function lazyload(){
+    $('img[data-lazyload]').each(function () {
+        $(this).attr('src',$(this).attr('data-src'));
+        $(this).removeAttr('data-lazyload')
+    })
+}
+
 /**
  * 定点外送切换
  */
@@ -522,9 +528,4 @@ $('#filter .group input[data-equ]').click(function () {
 
 })
 
-function lazyload(){
-    $('img[data-lazyload]').each(function () {
-        $(this).attr('src',$(this).attr('data-src'));
-        $(this).removeAttr('data-lazyload')
-    })
-}
+
