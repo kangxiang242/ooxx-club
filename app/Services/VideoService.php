@@ -11,7 +11,7 @@ class VideoService
     public function decompression($pathname,$birthplace_id){
         $pathinfo = pathinfo($pathname);
         $pathname = public_path('uploads/'.$pathname);
-        $extractPath = public_path('uploads/video/'.$pathinfo['filename']);
+        $extractPath = public_path('uploads/videos/'.$pathinfo['filename']);
         if(!is_dir($extractPath)){
             mkdir($extractPath);
         }
@@ -41,8 +41,8 @@ class VideoService
             if (strpos($v, '.mp4') !== false) {
                 $name = substr($v,0,strpos($v,"."));
                 $data[] = [
-                    'mp4'=>'video/'.$pathname.'/'.$name.'.mp4',
-                    'img'=>'video/'.$pathname.'/'.$name.'.webp',
+                    'mp4'=>'videos/'.$pathname.'/'.$name.'.mp4',
+                    'img'=>'videos/'.$pathname.'/'.$name.'.webp',
                 ];
             }
         }
