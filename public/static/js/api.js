@@ -84,9 +84,9 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
                     last_page = result.last_page;
 
                     if (is_append) {
-                        $('.goods-section').append(result.render);
+                        $grid.append(result.render);
                     } else {
-                        $('.goods-section').html(result.render); // 将新的内容清空并替换
+                        $grid.html(result.render); // 将新的内容清空并替换
                     }
 
                     // 使用 Masonry v4.x 添加新的项并更新布局
@@ -96,15 +96,8 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
                     if (current_page == 1) {
                         $('.goods-section').height(0);
                     }
-                    $('.goods-section .hide').removeClass('hide');
-                    is_load = false;
-                    $('#goods-loading').hide();
 
-
-                    if (current_page == last_page) {
-                        $('#goods-complete').show();
-                    }
-/*                    $grid.imagesLoaded(function () {
+                    $grid.imagesLoaded(function () {
                         $('.goods-section .hide').removeClass('hide');
                         is_load = false;
                         $('#goods-loading').hide();
@@ -116,8 +109,10 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
                         if (current_page == last_page) {
                             $('#goods-complete').show();
                         }
-
-                    });*/
+                    });
+                    setTimeout(function () {
+                        lazyload()
+                    },800);
                 },
                 error: function (XMLHttpRequest) {
                     // 错误处理逻辑
