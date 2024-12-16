@@ -97,7 +97,7 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
                         $('.goods-section').height(0);
                     }
 
-                    $newItems.imagesLoaded().progress(function () {
+                    $newItems.imagesLoaded(function () {
                         $('.goods-section .hide').removeClass('hide');
                         is_load = false;
                         $('#goods-loading').hide();
