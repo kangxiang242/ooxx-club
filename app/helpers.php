@@ -1,7 +1,7 @@
 <?php
 
 function asset_upload($path='',$default=null){
-    //return "https://www.special-fun.com/uploads/".$path;
+    return "https://www.special-fun.com/uploads/".$path;
     return asset('uploads/'.$path);
 
 }

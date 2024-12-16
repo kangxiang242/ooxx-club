@@ -38,7 +38,6 @@ function getGoods(data){
 
 var $grid = $('.goods-section');
 var gutter = window.matchMedia('(max-width: 768px)').matches ? 12 : 50;
-
 $grid.masonry({
     itemSelector: '.goods',           // class 选择器
     columnWidth: $('.goods-section').find('.goods .cover').width(), // 一列的宽度 Integer
@@ -84,20 +83,21 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
                     current_page = result.current_page;
                     last_page = result.last_page;
 
-                    if (is_append) {
-                        $grid.append(result.render);
-                    } else {
-                        $grid.html(result.render); // 将新的内容清空并替换
-                    }
 
                     // 使用 Masonry v4.x 添加新的项并更新布局
                     var $newItems = $(result.render);
                     $grid.masonry('appended', $newItems);
+                    if (is_append) {
+                        $grid.append($newItems).masonry('appended', $newItems);
+                    } else {
+                        $grid.html($newItems).masonry('reloadItems').masonry('layout');
+                    }
 
                     if (current_page == 1) {
                         $('.goods-section').height(0);
                     }
-                    $grid.imagesLoaded().progress(function () {
+
+                    $newItems.imagesLoaded().progress(function () {
                         $('.goods-section .hide').removeClass('hide');
                         is_load = false;
                         $('#goods-loading').hide();
@@ -109,6 +109,12 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
                         if (current_page == last_page) {
                             $('#goods-complete').show();
                         }
+
+                    });
+// 获取所有 .goods 元素并开始观察
+                    const goodsElements = document.querySelectorAll('.goods');
+                    goodsElements.forEach(element => {
+                        observer.observe(element);
                     });
                     setTimeout(function () {
                         lazyload()
@@ -126,6 +132,52 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
     }
 }
 
+// 创建一个 IntersectionObserver 实例
+const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        const goodsElement = entry.target;
+
+        // 判断元素是否进入可见区域
+        if (entry.isIntersecting) {
+            $(goodsElement).css('visibility','visible')
+        } else {
+            $(goodsElement).css('visibility','hidden')
+        }
+    });
+}, {
+    root: null, // 默认为视口
+    threshold: 0 // 元素可见 10% 即为可见
+});
+
+// 获取所有 .goods 元素并开始观察
+const goodsElements = document.querySelectorAll('.goods');
+goodsElements.forEach(element => {
+    observer.observe(element);
+});
+
+
+$(document).ready(function(){
+    var is_product = location.pathname == '/product'?true:false;
+
+
+    if(typeof is_disable_scroll == 'undefined' || !is_disable_scroll){
+        $(window).scroll(function(){
+
+            var scrollTop = $(this).scrollTop(); //获取当前页面滚动距离
+            var scrollHeight = $(document).height(); //获取页面总高度
+            var windowHeight = $(this).height(); //获取当前窗口高度
+            if(scrollTop + windowHeight >= scrollHeight - 400){ //判断是否到达页面底部
+                if(is_product){
+                    getGoods2(true,true);
+                }else{
+                    getGoods2(false,true);
+                }
+            }
+        });
+
+    }
+
+});
 
 
 
@@ -470,6 +522,8 @@ $(document).ready(function(){
         }
 
 });
+
+
 
 /**
  * 定点外送切换
