@@ -35,12 +35,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('static/less/global.css') }}?v={{ app('cache.config')->get('asset_version') }}"/>
         <link rel="stylesheet" href="{{ asset('static/font_3122894_ix34x1wtlao/iconfont.css') }}?v={{ app('cache.config')->get('asset_version') }}">
     @show
-    <style>
-        html, body {
-            overscroll-behavior: none;
-            overflow-x: hidden;
-        }
-    </style>
+
     <script src="{{ asset('static/js/jquery.min.js') }}"></script>
     <script src="{{ asset('static/js/inquiry.js') }}"></script>
     <script src="{{ asset('static/js/area.js') }}?v={{ app('cache.config')->get('asset_version') }}"></script>
@@ -115,7 +110,10 @@
 {{--<script src="{{ asset('static/js/less.min.js') }}"></script>--}}
 <script src="{{ asset('static/js/jquery.cookie.js') }}"></script>
 <script src="{{ asset('static/js/jquery.marquee.min.js') }}"></script>
-<script src="{{ asset('static/js/jquery.masonry.min.js') }}"></script>
+{{--<script src="{{ asset('static/js/jquery.masonry.min.js') }}"></script>--}}
+<script src="{{ asset('static/js/masonry.pkgd.min.js') }}"></script>
+<script src="{{ asset('static/js/imagesloaded.pkgd.min.js') }}"></script>
+
 <script src="{{ asset('static/js/api.js') }}?v={{ app('cache.config')->get('asset_version') }}"></script>
 {!! \App\Services\ConfigService::get('google_ga') !!}
 <script>

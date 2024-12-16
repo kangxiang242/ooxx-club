@@ -36,93 +36,90 @@ function getGoods(data){
 
 }
 
-
-var $grid = $('.goods-section')
-var gutter = window.matchMedia('(max-width: 768px)').matches?12:50
+var $grid = $('.goods-section');
+var gutter = window.matchMedia('(max-width: 768px)').matches ? 12 : 50;
 
 $grid.masonry({
-    // options 设置选项
-    itemSelector : '.goods',//class 选择器
-    columnWidth :  $('.goods-section').find('.goods .cover').width() ,//一列的宽度 Integer
-    isAnimated:false,//使用jquery的布局变化  Boolean
-    gutterWidth:gutter,//列的间隙 Integer
-    isResizableL:false,// 是否可调整大小 Boolean
+    itemSelector: '.goods',           // class 选择器
+    columnWidth: $('.goods-section').find('.goods .cover').width(), // 一列的宽度 Integer
+    isAnimated: false,                // 使用jquery的布局变化 Boolean
+    gutter: gutter,              // 列的间隙 Integer
+    isResizableL: false,              // 是否可调整大小 Boolean
+    transitionDuration: 0,
 });
-
 
 var current_page = 0;
 var last_page = 1;
 var is_load = false;
-function getGoods2(filter=false,is_append= true,data={},reset_page = false){
-    if(!is_load){
-        if(reset_page == true){
+
+function getGoods2(filter = false, is_append = true, data = {}, reset_page = false) {
+    if (!is_load) {
+        if (reset_page == true) {
             current_page = 0;
         }
-        if(!is_append){
-            $('.goods-section').empty().height(0)
+        if (!is_append) {
+            $('.goods-section').empty().height(0);
         }
 
-        if(current_page < last_page){
-            if(filter){
+        if (current_page < last_page) {
+            if (filter) {
                 var filter_data = localStorage.getItem(filter_key);
-                if(filter_data){
+                if (filter_data) {
                     filter_data = JSON.parse(filter_data);
-                    data = Object.assign(data,filter_data);
+                    data = Object.assign(data, filter_data);
                 }
             }
 
-            is_load = true
+            is_load = true;
             $('#goods-loading').show();
             $('#goods-complete').hide();
+
             $.ajax({
-                url: '/api/goods2?page='+ parseInt(current_page+1),
+                url: '/api/goods2?page=' + parseInt(current_page + 1),
                 type: 'GET',
-                data : data,
+                data: data,
                 dataType: 'json',
-                beforeSend:function () {
-
-                },
                 success: function (result) {
-
                     current_page = result.current_page;
                     last_page = result.last_page;
 
-                    if(is_append){
-                        //$('.goods-section').append(result.render);
+                    if (is_append) {
                         $grid.append(result.render);
-                    }else{
-                        //$('.goods-section').html(result.render)
-                        $grid.append(result.render);
+                    } else {
+                        $grid.html(result.render); // 将新的内容清空并替换
                     }
 
+                    // 使用 Masonry v4.x 添加新的项并更新布局
+                    var $newItems = $(result.render);
+                    $grid.masonry('appended', $newItems);
 
-                    if(current_page == 1){
-                        $('.goods-section').height(0)
+                    if (current_page == 1) {
+                        $('.goods-section').height(0);
                     }
-
 
                     $grid.imagesLoaded(function () {
-                        $('.goods-section .hide').removeClass('hide')
+                        $('.goods-section .hide').removeClass('hide');
                         is_load = false;
                         $('#goods-loading').hide();
-                        $grid.masonry('reload');
-                        if(current_page == last_page){
+
+                        // Masonry v4.x 需要使用 reloadItems 和 layout 来更新
+                        $grid.masonry('reloadItems');
+                        $grid.masonry('layout');
+
+                        if (current_page == last_page) {
                             $('#goods-complete').show();
                         }
-                    })
-                    setTimeout(function() {
-                        lazyload();
-                    }, 500);
+
+                    });
                 },
                 error: function (XMLHttpRequest) {
-
+                    // 错误处理逻辑
                 },
                 complete: function (XMLHttpRequest) {
-
+                    // 完成后的操作
                 },
-            })
+            });
         }
-
     }
 }
 
@@ -471,13 +468,6 @@ $(document).ready(function(){
 
 });
 
-function lazyload(){
-    $('img[data-lazyload]').each(function () {
-        $(this).attr('src',$(this).attr('data-src'));
-        $(this).removeAttr('data-lazyload')
-    })
-}
-
 /**
  * 定点外送切换
  */
@@ -528,4 +518,9 @@ $('#filter .group input[data-equ]').click(function () {
 
 })
 
-
+function lazyload(){
+    $('img[data-lazyload]').each(function () {
+        $(this).attr('src',$(this).attr('data-src'));
+        $(this).removeAttr('data-lazyload')
+    })
+}
