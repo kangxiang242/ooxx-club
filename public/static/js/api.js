@@ -454,36 +454,19 @@ $(document).ready(function(){
 
 
         if(typeof is_disable_scroll == 'undefined' || !is_disable_scroll){
-            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-            if(isTouchDevice){
-                $(window).on('touchend', function () {
-                    var scrollTop = $(window).scrollTop();
-                    var scrollHeight = $(document).height();
-                    var windowHeight = $(window).height();
+            $(window).scroll(function(){
 
-                    if (scrollTop + windowHeight >= scrollHeight - 400) {
-                        if (is_product) {
-                            getGoods2(true, true);
-                        } else {
-                            getGoods2(false, true);
-                        }
+                var scrollTop = $(this).scrollTop(); //获取当前页面滚动距离
+                var scrollHeight = $(document).height(); //获取页面总高度
+                var windowHeight = $(this).height(); //获取当前窗口高度
+                if(scrollTop + windowHeight >= scrollHeight - 400){ //判断是否到达页面底部
+                    if(is_product){
+                        getGoods2(true,true);
+                    }else{
+                        getGoods2(false,true);
                     }
-                });
-            }else{
-                $(window).scroll(function(){
-
-                    var scrollTop = $(this).scrollTop(); //获取当前页面滚动距离
-                    var scrollHeight = $(document).height(); //获取页面总高度
-                    var windowHeight = $(this).height(); //获取当前窗口高度
-                    if(scrollTop + windowHeight >= scrollHeight - 400){ //判断是否到达页面底部
-                        if(is_product){
-                            getGoods2(true,true);
-                        }else{
-                            getGoods2(false,true);
-                        }
-                    }
-                });
-            }
+                }
+            });
 
         }
 
