@@ -36,7 +36,7 @@ function getGoods(data){
 
 }
 
-/*var $grid = $('.goods-section');
+var $grid = $('.goods-section');
 var gutter = window.matchMedia('(max-width: 768px)').matches ? 12 : 50;
 
 $grid.masonry({
@@ -46,7 +46,7 @@ $grid.masonry({
     gutter: gutter,              // 列的间隙 Integer
     isResizableL: false,              // 是否可调整大小 Boolean
     transitionDuration: 0,
-});*/
+});
 
 var current_page = 0;
 var last_page = 1;
@@ -85,30 +85,32 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
                     last_page = result.last_page;
 
                     if (is_append) {
-                        $('.goods-section').append(result.render);
+                        $grid.append(result.render);
                     } else {
-                        $('.goods-section').html(result.render); // 将新的内容清空并替换
+                        $grid.html(result.render); // 将新的内容清空并替换
                     }
 
                     // 使用 Masonry v4.x 添加新的项并更新布局
-                    //var $newItems = $(result.render);
-                    //$grid.masonry('appended', $newItems);
+                    var $newItems = $(result.render);
+                    $grid.masonry('appended', $newItems);
 
                     if (current_page == 1) {
                         $('.goods-section').height(0);
                     }
+                    $grid.imagesLoaded().progress(function () {
+                        $('.goods-section .hide').removeClass('hide');
+                        is_load = false;
+                        $('#goods-loading').hide();
 
-                    $('.goods-section .hide').removeClass('hide');
-                    is_load = false;
-                    $('#goods-loading').hide();
+                        // Masonry v4.x 需要使用 reloadItems 和 layout 来更新
+                        $grid.masonry('reloadItems');
+                        $grid.masonry('layout');
 
-                    // Masonry v4.x 需要使用 reloadItems 和 layout 来更新
-                    //$grid.masonry('reloadItems');
-                    //$grid.masonry('layout');
+                        if (current_page == last_page) {
+                            $('#goods-complete').show();
+                        }
+                    });
 
-                    if (current_page == last_page) {
-                        $('#goods-complete').show();
-                    }
                 },
                 error: function (XMLHttpRequest) {
                     // 错误处理逻辑

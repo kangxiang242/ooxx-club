@@ -111,8 +111,8 @@
 <script src="{{ asset('static/js/jquery.cookie.js') }}"></script>
 <script src="{{ asset('static/js/jquery.marquee.min.js') }}"></script>
 {{--<script src="{{ asset('static/js/jquery.masonry.min.js') }}"></script>--}}
-{{--<script src="{{ asset('static/js/masonry.pkgd.min.js') }}"></script>
-<script src="{{ asset('static/js/imagesloaded.pkgd.min.js') }}"></script>--}}
+<script src="{{ asset('static/js/masonry.pkgd.min.js') }}"></script>
+<script src="{{ asset('static/js/imagesloaded.pkgd.min.js') }}"></script>
 
 <script src="{{ asset('static/js/api.js') }}?v={{ app('cache.config')->get('asset_version') }}"></script>
 {!! \App\Services\ConfigService::get('google_ga') !!}
