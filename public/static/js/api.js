@@ -111,14 +111,10 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
                         }
 
                     });
-// 获取所有 .goods 元素并开始观察
-                    const goodsElements = document.querySelectorAll('.goods');
-                    goodsElements.forEach(element => {
-                        observer.observe(element);
-                    });
+
                     setTimeout(function () {
                         lazyload()
-                    },300)
+                    },500)
 
                 },
                 error: function (XMLHttpRequest) {
@@ -132,28 +128,6 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
     }
 }
 
-// 创建一个 IntersectionObserver 实例
-const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        const goodsElement = entry.target;
-
-        // 判断元素是否进入可见区域
-        if (entry.isIntersecting) {
-            $(goodsElement).css('visibility','visible')
-        } else {
-            $(goodsElement).css('visibility','hidden')
-        }
-    });
-}, {
-    root: null, // 默认为视口
-    threshold: 0 // 元素可见 10% 即为可见
-});
-
-// 获取所有 .goods 元素并开始观察
-const goodsElements = document.querySelectorAll('.goods');
-goodsElements.forEach(element => {
-    observer.observe(element);
-});
 
 
 $(document).ready(function(){
