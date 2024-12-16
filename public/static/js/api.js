@@ -64,14 +64,15 @@ function getGoods2(filter=false,is_append= true,data={},reset_page = false){
             }
 
             is_load = true
+            $('#goods-loading').show();
+            $('#goods-complete').hide();
             $.ajax({
                 url: '/api/goods2?page='+ parseInt(current_page+1),
                 type: 'GET',
                 data : data,
                 dataType: 'json',
                 beforeSend:function () {
-                    $('#goods-loading').show();
-                    $('#goods-complete').hide();
+
                 },
                 success: function (result) {
 
@@ -458,7 +459,7 @@ $(document).ready(function(){
             var scrollTop = $(this).scrollTop(); //获取当前页面滚动距离
             var scrollHeight = $(document).height(); //获取页面总高度
             var windowHeight = $(this).height(); //获取当前窗口高度
-            if(Math.ceil(scrollTop + windowHeight) >= scrollHeight - 50){ //判断是否到达页面底部
+            if(Math.ceil(scrollTop + windowHeight) >= scrollHeight - 300){ //判断是否到达页面底部
                 if(is_product){
                     getGoods2(true,true);
                 }else{
