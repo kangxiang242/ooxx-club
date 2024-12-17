@@ -1274,6 +1274,7 @@ footer .copyright {
   bottom: 0;
   left: 0;
   z-index: 99;
+  padding-top: 40px;
 }
 .goods-container .goods-loading .loader {
   position: relative;
