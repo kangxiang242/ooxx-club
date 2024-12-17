@@ -102,9 +102,12 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
                         is_load = false;
                         $('#goods-loading').hide();
 
-                        // Masonry v4.x 需要使用 reloadItems 和 layout 来更新
-                        $grid.masonry('reloadItems');
-                        $grid.masonry('layout');
+                        setTimeout(function () {
+                            // Masonry v4.x 需要使用 reloadItems 和 layout 来更新
+                            $grid.masonry('reloadItems');
+                            $grid.masonry('layout');
+                        },100)
+
 
                         if (current_page == last_page) {
                             $('#goods-complete').show();
