@@ -663,12 +663,12 @@ header .wrapper-top {
 .pc .goodpart .goods-section .goods .cover img {
   transition: all 0.3s ease-in-out;
   width: 100%;
-  min-height: 405px;
 }
-@media screen and (max-width: 768px) {
-  .pc .goodpart .goods-section .goods .cover img {
-    min-height: 201px;
-  }
+.pc .goodpart .goods-section .goods .cover .goods-img {
+  /*min-height: 405px;
+                        @media screen and (max-width: 768px) {
+                            min-height: 201px;
+                        }*/
 }
 .pc .goodpart .goods-section .goods .cover video {
   transition: all 0.3s ease-in-out;
