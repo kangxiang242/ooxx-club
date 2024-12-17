@@ -82,7 +82,9 @@ class Compose
         $this->video = Video::where('status',1)->get();
 
 
-        $this->category = Category::with('sub')->where('parent_id',0)->get();
+        $this->category = Category::with(['sub'=>function($query){
+            $query->where('status',1);
+        }])->where('parent_id',0)->where('status',1)->get();
 
         $this->area = Area::with('sub')->where('status',1)->where('parent_id',0)->get();
 
