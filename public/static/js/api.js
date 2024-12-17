@@ -113,11 +113,13 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
                             $('#goods-complete').show();
                         }
 
+                        setTimeout(function () {
+                            lazyload()
+                        },500)
+
                     });
 
-                    setTimeout(function () {
-                        lazyload()
-                    },500)
+
 
                 },
                 error: function (XMLHttpRequest) {
