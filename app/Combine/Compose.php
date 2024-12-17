@@ -369,6 +369,9 @@ class Compose
 
             $product_category_insert = [];
             foreach ($category_ids as $item){
+                if($item == 28){
+                    continue;
+                }
                 $product_category_insert[] = [
                     'product_id'=>$product_id,
                     'category_id'=>$item,
