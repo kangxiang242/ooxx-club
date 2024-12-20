@@ -128,7 +128,7 @@
 
     <script>
         window.addEventListener('load', function () {
-            $('#cover-video').height($('#cover').height())
+            $('#cover-video').height($('#cover').height()-40)
         });
 
     </script>
