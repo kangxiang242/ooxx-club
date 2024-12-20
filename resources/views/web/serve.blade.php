@@ -88,6 +88,7 @@
                 $('#cover-video').css('z-index',2);
                 $('#cover').css('z-index',0);
                 $(this).addClass('chosen').siblings().removeClass('chosen');
+                $('#cover-video').height($('#cover').height())
             })
 
         });
