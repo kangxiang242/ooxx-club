@@ -125,6 +125,13 @@
         });
     </script>
 
+    <script>
+        window.addEventListener('load', function () {
+            $('#cover-video').height($('#cover').height())
+        });
+
+    </script>
+
 @stop
 
 @section('content')
