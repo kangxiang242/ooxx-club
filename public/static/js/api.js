@@ -51,6 +51,7 @@ var current_page = 0;
 var last_page = 1;
 var is_load = false;
 
+
 function getGoods2(filter = false, is_append = true, data = {}, reset_page = false) {
     if (!is_load) {
 
@@ -115,7 +116,14 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
 
                         setTimeout(function () {
                             lazyload()
-                        },500)
+                            if(window.location.pathname == '/' && current_page%10 != 0){
+                                setTimeout(function () {
+                                    getGoods2();
+                                },500)
+                            }
+                        },200)
+
+
 
                     });
 
