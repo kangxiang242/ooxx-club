@@ -118,9 +118,7 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
                             lazyload()
                         },500)
 
-                        if(window.location.pathname == '/' && current_page%10 != 0){
-                            getGoods2();
-                        }
+
 
                     });
 
