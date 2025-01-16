@@ -116,12 +116,11 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
 
                         setTimeout(function () {
                             lazyload()
-                            if(window.location.pathname == '/' && current_page%10 != 0){
-                                getGoods2();
-                            }
-                        },200)
+                        },500)
 
-
+                        if(window.location.pathname == '/' && current_page%10 != 0){
+                            getGoods2();
+                        }
 
                     });
 
