@@ -117,9 +117,7 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
                         setTimeout(function () {
                             lazyload()
                             if(window.location.pathname == '/' && current_page%10 != 0){
-                                setTimeout(function () {
-                                    getGoods2();
-                                },500)
+                                getGoods2();
                             }
                         },200)
 
