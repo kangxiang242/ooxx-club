@@ -1928,21 +1928,27 @@ header{
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));*/
             max-width: 960px;
             //flex: 3;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
             @media screen and (max-width: 768px) {
-                display: flex;
-                padding: 0;
+                //display: flex;
+                //padding: 0;
                 /*padding: 0 12px;*/
                 //grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
                 /*gap: 12px;*/
-                gap:0;
-                flex-wrap: wrap;
-                justify-content: space-between;
+                //gap:0;
+                //flex-wrap: wrap;
+                //justify-content: space-between;
+                gap: 12px;
+                padding: 0;
             }
 
             .goods{
                 position: relative;
-                width: calc(50% - 100px);
-                margin-bottom: 50px;
+                /*width: calc(50% - 100px);*/
+                margin-bottom: 0;
+                width: 100%;
                 @media screen and (max-width: 768px) {
                     width: calc(50% - 6px);
                     margin-bottom: 24px;

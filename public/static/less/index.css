@@ -522,7 +522,7 @@ header .wrapper-top {
 .pc .goodpart .goods-section .goods {
   position: relative;
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 0x;
   /* &::after{
                     content: "";
                     position: absolute;
