@@ -502,6 +502,9 @@ header .wrapper-top {
             gap: 50px;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));*/
   max-width: 960px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
 }
 @media screen and (max-width: 768px) {
   .pc .goodpart .goods-section {
@@ -512,15 +515,13 @@ header .wrapper-top {
     /* gap:0;
                 flex-wrap: wrap;
                 justify-content: space-between; */
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 12px;
     padding: 0;
   }
 }
 .pc .goodpart .goods-section .goods {
   position: relative;
-  width: calc(50% - 100px);
+  width: 100%;
   margin-bottom: 50px;
   /* &::after{
                     content: "";
