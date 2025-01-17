@@ -1868,6 +1868,19 @@ header .factorbox .factor .factorclose {
   position: relative;
   width: calc(50% - 100px);
   margin-bottom: 50px;
+  /*&::after{
+                    content: "";
+                    position: absolute;
+                    top: 9%;
+                    left: 0;
+                    right: 0;
+                    z-index: -1;
+                    height: 100%;
+                    width: 100%;
+                    transform: scale(0.8);
+                    -webkit-filter: blur(14px);
+                    background-color: #ccc;
+                }*/
 }
 @media screen and (max-width: 768px) {
   .pc .goodpart .goods-section .goods {
@@ -1877,19 +1890,6 @@ header .factorbox .factor .factorclose {
 }
 .pc .goodpart .goods-section .goods.hide {
   display: none;
-}
-.pc .goodpart .goods-section .goods::after {
-  content: "";
-  position: absolute;
-  top: 9%;
-  left: 0;
-  right: 0;
-  z-index: -1;
-  height: 100%;
-  width: 100%;
-  transform: scale(0.8);
-  -webkit-filter: blur(14px);
-  background-color: #ccc;
 }
 .pc .goodpart .goods-section .goods::before {
   content: "";

@@ -1273,8 +1273,8 @@ footer .copyright {
   position: relative;
   bottom: 0;
   left: 0;
-  z-index: 99;
-  padding-top: 40px;
+  z-index: 90;
+  margin-top: 140px;
 }
 .goods-container .goods-loading .loader {
   position: relative;
@@ -1416,6 +1416,6 @@ footer .copyright {
 }
 @media screen and (max-width: 768px) {
   .goods-section .goods .cover .have-video video {
-    height: 300px;
+    height: 100%;
   }
 }

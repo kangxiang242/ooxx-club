@@ -59,7 +59,7 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
             current_page = 0;
         }
         if (!is_append) {
-            $('.goods-section').empty().height(0);
+            $('.goods-section').empty();
         }
 
         if (current_page < last_page) {
@@ -74,7 +74,9 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
             is_load = true;
             $('#goods-loading').show();
             $('#goods-complete').hide();
-
+            if(current_page > 1){
+                return false;
+            }
             $.ajax({
                 url: '/api/goods2?page=' + parseInt(current_page + 1),
                 type: 'GET',
@@ -100,7 +102,7 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
                     }
 
                     if (current_page == 1) {
-                        $('.goods-section').height(0);
+                        //$('.goods-section').height(0);
                     }
 
                     $('.goods-section .hide').removeClass('hide');
