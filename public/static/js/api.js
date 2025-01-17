@@ -100,7 +100,7 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
 
 
 
-                    //$newItems.imagesLoaded(function () {
+                    $newItems.imagesLoaded(function () {
                         $('.goods-section .hide').removeClass('hide');
                         is_load = false;
                         $('#goods-loading').hide();
@@ -118,11 +118,12 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
 
                         setTimeout(function () {
                             lazyload()
-                        },200)
+
+                        },100)
 
 
 
-                    //});
+                    });
 
 
 
@@ -591,6 +592,13 @@ function lazyload() {
         //img.style.visibility = 'hidden'; // 隐藏图片
         observer.observe(img); // 观察图片
         img.removeAttribute('data-lazyload'); // 移除 data-lazyload 属性
+    });
+
+    document.querySelectorAll('.g-video').forEach(function(video) {
+
+        if(video.dataset.src){
+            video.src = video.dataset.src; // 将真正的图片地址赋值
+        }
     });
 }
 
