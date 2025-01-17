@@ -492,10 +492,11 @@ $(document).ready(function(){
         if(typeof is_disable_scroll == 'undefined' || !is_disable_scroll){
             $(window).scroll(function(){
 
-                var scrollTop = $(this).scrollTop(); //获取当前页面滚动距离
+                var scrollTop = $(this).scrollTop()+400; //获取当前页面滚动距离
                 var scrollHeight = $(document).height(); //获取页面总高度
                 var windowHeight = $(this).height(); //获取当前窗口高度
-                if(scrollTop + windowHeight >= scrollHeight - 400){ //判断是否到达页面底部
+                console.log(scrollTop + windowHeight,scrollHeight);
+                if(scrollTop + windowHeight >= scrollHeight - 1000){ //判断是否到达页面底部
                     if(is_product){
                         getGoods2(true,true);
                     }else{
