@@ -515,6 +515,8 @@ header{
                 padding: 0 12px;
             }
         }
+
+        /* --num: calc((@count + 1) * 2); */
         .goods-section{
             width: 100%;
             padding: 0 80px 0 12px;
@@ -525,14 +527,19 @@ header{
             max-width: 960px;
             //flex: 3;
             @media screen and (max-width: 768px) {
-                display: flex;
-                padding: 0;
+                /*  display: flex;
+                 padding: 0; */
                 /*padding: 0 12px;*/
                 //grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
                 /*gap: 12px;*/
-                gap:0;
+                /* gap:0;
                 flex-wrap: wrap;
-                justify-content: space-between;
+                justify-content: space-between; */
+
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                padding: 0;
             }
 
             .goods{
@@ -541,14 +548,57 @@ header{
                 margin-bottom: 50px;
 
                 @media screen and (max-width: 768px) {
-                    width: calc(50% - 6px);
-                    margin-bottom: 24px;
+                    /* width: calc(50% - 6px); */
+                    width: 100%;
+                    margin-bottom: 0;
+                    &:first-child {
+                        margin-top: 0 !important;
+                    }
+                    &:nth-child(2n+1) {
+                        margin-top: 10px;
+                    }
+
+
+
+                    /* .even-transform(@n) when (@n > 0) {
+                        &:nth-child(@{n}n) {
+                            transform: translateY((@n - 1) * @P);
+                        }
+                        .even-transform(@n - 2);
+                    }
+
+                    .even-transform(@count);
+
+                    &:nth-child(n + var(--num)) :nth-child(2n) {
+                        transform: translateY((@count - 1) * @P);
+                    } */
+                    @P: 10px;
+                    @count: 14;
+                    @rest: @count * 2 + 2;
+                    .loop(@i) when (@i <= @count) {
+                        @child: @i * 2;
+                        &:nth-child(@{child}) {
+                            transform: translateY((@i - 1) * @P);
+                        }
+                        .loop(@i + 1);
+                    }
+
+                    .loop(0);
+
+
+                    &:nth-child(n + @{rest}):nth-child(2n) {
+                        transform: translateY((@count - 1) * @P);
+
+                    }
+
+
                 }
+
                 &.hide{
                     display: none;
                 }
-                &::after{
-                    /*content: "";
+                /* &::after{
+                    content: "";
                     position: absolute;
                     top: 9%;
                     left: 0;
@@ -558,8 +608,8 @@ header{
                     width: 100%;
                     transform: scale(0.8);
                     -webkit-filter: blur(14px);
-                    background-color: #ccc;*/
-                }
+                    background-color: #ccc;
+                } */
                 &::before{
                     content: "";
                     display: block;
@@ -674,16 +724,10 @@ header{
                     img{
                         transition: all 0.3s ease-in-out;
                         width: 100%;
-
-                    }
-                    .goods-img{
-                        /*min-height: 405px;
-                        @media screen and (max-width: 768px) {
-                            min-height: 201px;
-                        }*/
                     }
                     video{
                         transition: all 0.3s ease-in-out;
+                        height: 100%;
                     }
                 }
                 .message{
@@ -762,11 +806,11 @@ header{
 
                         img{
                             transform: scale(1.1);
-                       }
-                       video{
+                        }
+                        video{
 
                             transform: scale(1.2);
-                       }
+                        }
                     }
 
                 }

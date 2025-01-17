@@ -480,6 +480,9 @@ header .wrapper-top {
     padding: 10px 12px;
   }
 }
+.pc .goodpart {
+  /* --num: calc((@count + 1) * 2); */
+}
 @media screen and (min-width: 768px) {
   .pc .goodpart {
     display: flex;
@@ -502,31 +505,25 @@ header .wrapper-top {
 }
 @media screen and (max-width: 768px) {
   .pc .goodpart .goods-section {
-    display: flex;
-    padding: 0;
+    /*  display: flex;
+                 padding: 0; */
     /*padding: 0 12px;*/
     /*gap: 12px;*/
-    gap: 0;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    /* gap:0;
+                flex-wrap: wrap;
+                justify-content: space-between; */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 0;
   }
 }
 .pc .goodpart .goods-section .goods {
   position: relative;
   width: calc(50% - 100px);
   margin-bottom: 50px;
-}
-@media screen and (max-width: 768px) {
-  .pc .goodpart .goods-section .goods {
-    width: calc(50% - 6px);
-    margin-bottom: 24px;
-  }
-}
-.pc .goodpart .goods-section .goods.hide {
-  display: none;
-}
-.pc .goodpart .goods-section .goods::after {
-  /*content: "";
+  /* &::after{
+                    content: "";
                     position: absolute;
                     top: 9%;
                     left: 0;
@@ -536,7 +533,84 @@ header .wrapper-top {
                     width: 100%;
                     transform: scale(0.8);
                     -webkit-filter: blur(14px);
-                    background-color: #ccc;*/
+                    background-color: #ccc;
+                } */
+}
+@media screen and (max-width: 768px) {
+  .pc .goodpart .goods-section .goods {
+    /* width: calc(50% - 6px); */
+    width: 100%;
+    margin-bottom: 0;
+    /* .even-transform(@n) when (@n > 0) {
+                        &:nth-child(@{n}n) {
+                            transform: translateY((@n - 1) * @P);
+                        }
+                        .even-transform(@n - 2);
+                    }
+
+                    .even-transform(@count);
+
+                    &:nth-child(n + var(--num)) :nth-child(2n) {
+                        transform: translateY((@count - 1) * @P);
+                    } */
+  }
+  .pc .goodpart .goods-section .goods:first-child {
+    margin-top: 0 !important;
+  }
+  .pc .goodpart .goods-section .goods:nth-child(2n+1) {
+    margin-top: 10px;
+  }
+  .pc .goodpart .goods-section .goods:nth-child(0) {
+    transform: translateY(-10px);
+  }
+  .pc .goodpart .goods-section .goods:nth-child(2) {
+    transform: translateY(0px);
+  }
+  .pc .goodpart .goods-section .goods:nth-child(4) {
+    transform: translateY(10px);
+  }
+  .pc .goodpart .goods-section .goods:nth-child(6) {
+    transform: translateY(20px);
+  }
+  .pc .goodpart .goods-section .goods:nth-child(8) {
+    transform: translateY(30px);
+  }
+  .pc .goodpart .goods-section .goods:nth-child(10) {
+    transform: translateY(40px);
+  }
+  .pc .goodpart .goods-section .goods:nth-child(12) {
+    transform: translateY(50px);
+  }
+  .pc .goodpart .goods-section .goods:nth-child(14) {
+    transform: translateY(60px);
+  }
+  .pc .goodpart .goods-section .goods:nth-child(16) {
+    transform: translateY(70px);
+  }
+  .pc .goodpart .goods-section .goods:nth-child(18) {
+    transform: translateY(80px);
+  }
+  .pc .goodpart .goods-section .goods:nth-child(20) {
+    transform: translateY(90px);
+  }
+  .pc .goodpart .goods-section .goods:nth-child(22) {
+    transform: translateY(100px);
+  }
+  .pc .goodpart .goods-section .goods:nth-child(24) {
+    transform: translateY(110px);
+  }
+  .pc .goodpart .goods-section .goods:nth-child(26) {
+    transform: translateY(120px);
+  }
+  .pc .goodpart .goods-section .goods:nth-child(28) {
+    transform: translateY(130px);
+  }
+  .pc .goodpart .goods-section .goods:nth-child(n + 30):nth-child(2n) {
+    transform: translateY(130px);
+  }
+}
+.pc .goodpart .goods-section .goods.hide {
+  display: none;
 }
 .pc .goodpart .goods-section .goods::before {
   content: "";
@@ -664,14 +738,9 @@ header .wrapper-top {
   transition: all 0.3s ease-in-out;
   width: 100%;
 }
-.pc .goodpart .goods-section .goods .cover .goods-img {
-  /*min-height: 405px;
-                        @media screen and (max-width: 768px) {
-                            min-height: 201px;
-                        }*/
-}
 .pc .goodpart .goods-section .goods .cover video {
   transition: all 0.3s ease-in-out;
+  height: 100%;
 }
 .pc .goodpart .goods-section .goods .message {
   padding: 8px;
