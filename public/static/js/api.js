@@ -573,7 +573,7 @@ function lazyload() {
 
     $('img[data-lazyload]').each(function () {
         observer.observe(this); // 使用原生 DOM 元素
-        $(img).removeAttr('data-lazyload');
+        $(this).removeAttr('data-lazyload');
 
     });
 }
