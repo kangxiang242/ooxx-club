@@ -30,11 +30,11 @@
             </p>
             <div class="master {{ $current_count%7==0?"have-video":"" }}" >
                 <img class="goods-img" src="{{ asset_upload($goods->thumbnail('small','cover')) }}" data-lazyload data-src="{{ asset_upload($goods->cover) }}" alt="{{ $goods->name }}">
-                @if($current_count%7==0)
+                {{--@if($current_count%7==0)
                     <video style="object-fit:cover;" autoplay poster="{{ asset_upload($goods->video_cover) }}" loop="" muted="" width="100%" playsinline="" >
                         <source src="{{ asset_upload($goods->video) }}" type="video/mp4">
                     </video>
-                @endif
+                @endif--}}
             </div>
         </div>
         <div class="message">
