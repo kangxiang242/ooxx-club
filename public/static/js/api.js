@@ -559,9 +559,22 @@ $('#filter .group input[data-equ]').click(function () {
 
 })
 
-function lazyload(){
+function lazyload() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src; // 将真正的图片地址赋值
+                observer.unobserve(img); // 停止观察
+
+            }
+        });
+    });
+
     $('img[data-lazyload]').each(function () {
-        $(this).attr('src',$(this).attr('data-src'));
-        $(this).removeAttr('data-lazyload')
-    })
+        observer.observe(this); // 使用原生 DOM 元素
+        $(img).removeAttr('data-lazyload');
+
+    });
 }
+
