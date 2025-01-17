@@ -1885,8 +1885,7 @@ header .factorbox .factor .factorclose {
 }
 @media screen and (max-width: 768px) {
   .pc .goodpart .goods-section .goods {
-    width: calc(50% - 6px);
-    margin-bottom: 24px;
+    width: 100%;
   }
 }
 .pc .goodpart .goods-section .goods.hide {
