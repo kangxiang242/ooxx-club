@@ -88,7 +88,7 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
 
 
                     // 使用 Masonry v4.x 添加新的项并更新布局
-                    //var $newItems = $(result.render);
+                    var $newItems = $(result.render);
                     /*$grid.masonry('appended', $newItems);
                     if (is_append) {
                         $grid.append($newItems).masonry('appended', $newItems);
@@ -96,43 +96,22 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
                         $grid.html($newItems).masonry('reloadItems').masonry('layout');
                     }*/
                     if(is_append){
-                        $grid.append(result.render)
+                        $grid.append($newItems)
                     }else{
-                        $grid.html(result.render)
+                        $grid.html($newItems)
                     }
 
-                    if (current_page == 1) {
-                        //$('.goods-section').height(0);
-                    }
-
-                    $('.goods-section .hide').removeClass('hide');
-                    is_load = false;
-                    $('#goods-loading').hide();
 
 
-                    // Masonry v4.x 需要使用 reloadItems 和 layout 来更新
-                    //$grid.masonry('reloadItems');
-                    //$grid.masonry('layout');
-
-
-
-                    if (current_page == last_page) {
-                        $('#goods-complete').show();
-                    }
-
-                    setTimeout(function () {
-                        lazyload()
-                    },400)
-
-                    /*$newItems.imagesLoaded(function () {
+                    $newItems.imagesLoaded(function () {
                         $('.goods-section .hide').removeClass('hide');
                         is_load = false;
                         $('#goods-loading').hide();
 
 
                         // Masonry v4.x 需要使用 reloadItems 和 layout 来更新
-                        $grid.masonry('reloadItems');
-                        $grid.masonry('layout');
+                        //$grid.masonry('reloadItems');
+                        //$grid.masonry('layout');
 
 
 
@@ -146,7 +125,7 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
 
 
 
-                    });*/
+                    });
 
 
 
