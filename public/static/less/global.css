@@ -1411,7 +1411,7 @@ footer .copyright {
   display: none;
 }
 .goods-section .goods .cover .have-video video {
-  height: 560px;
+  height: 100%;
   display: block;
 }
 @media screen and (max-width: 768px) {
