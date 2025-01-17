@@ -138,59 +138,7 @@
         }
         EquClickCallback(filter_count);
     </script>
-    @if(app()->environment() !== 'local')
-    <script>
 
-        const imageUrls = [
-            @foreach($covers as $cover)
-                '{{ asset_upload($cover) }}',
-            @endforeach
-        ];
-        function preloadImage(url) {
-            url = url.replace(/(.*\/)(.*)(\.[a-zA-Z0-9]+)$/, '$1$2-small$3');
-            if (url.includes('/watermark')) {
-                url = url.replace('/watermark', '');
-            }
-            return new Promise((resolve, reject) => {
-                const img = new Image();
-                img.src = url;
-
-                img.onload = () => resolve(img); // 加载成功
-                img.onerror = () => reject(new Error(`Failed to load image: ${url}`)); // 加载失败
-            });
-        }
-
-        async function preloadImagesNonBlocking(urls, batchSize = 5, delay = 50) {
-            let loadedImages = [];
-
-            // 分批加载图片
-            for (let i = 0; i < urls.length; i += batchSize) {
-                const batch = urls.slice(i, i + batchSize);
-
-                const batchPromises = batch.map(preloadImage);
-                try {
-                    const batchResults = await Promise.all(batchPromises); // 加载当前批次图片
-                    loadedImages.push(...batchResults);
-                    console.log(`Batch ${Math.ceil(i / batchSize) + 1} loaded.`);
-                } catch (error) {
-                    console.error(error.message); // 忽略加载失败的图片
-                }
-
-                // 暂停主线程，释放渲染时间
-                await new Promise((resolve) => setTimeout(resolve, delay));
-            }
-
-            return loadedImages; // 返回所有成功加载的图片
-        }
-
-
-        preloadImagesNonBlocking(imageUrls, 3, 100).then((images) => {
-            console.log('All images preloaded:', images);
-        }).catch((error) => {
-            console.error('Error preloading images:', error);
-        });
-    </script>
-    @endif
 @stop
 
 

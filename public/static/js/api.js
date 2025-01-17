@@ -100,7 +100,7 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
 
 
 
-                    $newItems.imagesLoaded(function () {
+                    //$newItems.imagesLoaded(function () {
                         $('.goods-section .hide').removeClass('hide');
                         is_load = false;
                         $('#goods-loading').hide();
@@ -118,11 +118,11 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
 
                         setTimeout(function () {
                             lazyload()
-                        },500)
+                        },200)
 
 
 
-                    });
+                    //});
 
 
 
@@ -570,11 +570,11 @@ function lazyload() {
                     img.src = img.dataset.src; // 将真正的图片地址赋值
                 }
                 img.removeAttribute('data-src')
-                img.style.visibility = 'visible'; // 显示图片
-
+                //img.style.visibility = 'visible'; // 显示图片
+                observer.unobserve(img);//停止监察
             } else {
                 // 图片离开视口，隐藏图片
-                img.style.visibility = 'hidden'; // 隐藏图片
+                //img.style.visibility = 'hidden'; // 隐藏图片
 
 
             }
@@ -588,7 +588,7 @@ function lazyload() {
     // 遍历所有带有 lazyload 属性的图片
     document.querySelectorAll('img[data-lazyload]').forEach(function(img) {
         // 初始化时设置占位符样式
-        img.style.visibility = 'hidden'; // 隐藏图片
+        //img.style.visibility = 'hidden'; // 隐藏图片
         observer.observe(img); // 观察图片
         img.removeAttribute('data-lazyload'); // 移除 data-lazyload 属性
     });
