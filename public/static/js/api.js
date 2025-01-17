@@ -558,23 +558,34 @@ $('#filter .group input[data-equ]').click(function () {
     }
 
 })
-
 function lazyload() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src; // 将真正的图片地址赋值
-                observer.unobserve(img); // 停止观察
+            const img = entry.target;
 
+            if (entry.isIntersecting) {
+                // 图片进入视口，开始加载
+                img.src = img.dataset.src; // 将真正的图片地址赋值
+                img.style.visibility = 'visible'; // 显示图片
+                observer.unobserve(img); // 停止观察
+            } else {
+                // 图片不在视口，隐藏它，保持占位
+                img.style.visibility = 'hidden'; // 隐藏图片
             }
         });
+    }, {
+        rootMargin: '100px', // 提前加载 100px 范围内的图片
+        threshold: 0.1 // 图片至少 10% 进入视口时触发加载
     });
 
-    $('img[data-lazyload]').each(function () {
-        observer.observe(this); // 使用原生 DOM 元素
-        $(this).removeAttr('data-lazyload');
-
+    // 遍历所有带有 lazyload 属性的图片
+    document.querySelectorAll('img[data-lazyload]').forEach(function(img) {
+        // 初始化时设置占位符样式
+        img.style.visibility = 'hidden'; // 隐藏图片
+        observer.observe(img); // 观察图片
+        img.removeAttribute('data-lazyload'); // 移除 data-lazyload 属性
     });
 }
+
+
 
