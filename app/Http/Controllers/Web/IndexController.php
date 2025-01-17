@@ -12,7 +12,8 @@ class IndexController extends Controller
 {
     public function index(QuickRepository $quickRepository){
         $quick = $quickRepository->all();
-        return view('web.index',compact('quick'));
+        $covers = Product::orderBy('sort')->pluck('cover');
+        return view('web.index',compact('quick','covers'));
     }
 
 
