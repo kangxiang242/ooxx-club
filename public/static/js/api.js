@@ -566,7 +566,10 @@ function lazyload() {
 
             if (entry.isIntersecting) {
                 // 图片进入视口，开始加载
-                img.src = img.dataset.src; // 将真正的图片地址赋值
+                if(img.dataset.src){
+                    img.src = img.dataset.src; // 将真正的图片地址赋值
+                }
+                img.removeAttribute('data-src')
                 img.style.visibility = 'visible'; // 显示图片
 
             } else {
