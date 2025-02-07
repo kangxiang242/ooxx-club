@@ -50,7 +50,7 @@ var gutter = window.matchMedia('(max-width: 768px)').matches ? 12 : 50;
 var current_page = 0;
 var last_page = 1;
 var is_load = false;
-
+var random = false;
 
 function getGoods2(filter = false, is_append = true, data = {}, reset_page = false) {
     if (!is_load) {
@@ -68,6 +68,9 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
                 if (filter_data) {
                     filter_data = JSON.parse(filter_data);
                     data = Object.assign(data, filter_data);
+                    if(random){
+                        data.random = 1;
+                    }
                 }
             }
 
@@ -113,7 +116,12 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
 
 
                         if (current_page == last_page) {
-                            $('#goods-complete').show();
+                            //$('#goods-complete').show();
+                            current_page = 0;
+                            random = true;
+                            if(result.total < 20){
+                                getGoods2();
+                            }
                         }
 
                         setTimeout(function () {
@@ -495,7 +503,7 @@ $(document).ready(function(){
                 var scrollTop = $(this).scrollTop()+400; //获取当前页面滚动距离
                 var scrollHeight = $(document).height(); //获取页面总高度
                 var windowHeight = $(this).height(); //获取当前窗口高度
-                console.log(scrollTop + windowHeight,scrollHeight);
+
                 if(scrollTop + windowHeight >= scrollHeight - 1000){ //判断是否到达页面底部
                     if(is_product){
                         getGoods2(true,true);
