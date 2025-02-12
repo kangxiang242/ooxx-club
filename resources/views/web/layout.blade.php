@@ -10,7 +10,7 @@
     @else
         <title>@yield('title')</title>
     @endif
-
+    <meta property="og:site_name" content="全台最大外送茶定點茶">
     @hasSection('keywords')
     <meta name="keywords" content="@yield('keywords')"/>
     @else
