@@ -704,13 +704,25 @@ header{
             @media screen and (max-width: 768px) {
                 padding: 0 16px;
             }
-            .title{
-                font-size: 18px;
-                font-weight: 700;
-                margin: 12px 0 8px;
-                @media screen and (min-width: 768px) {
-                    font-size: 24px;
-                    margin: 24px 0 16px;
+            .title-box{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .title{
+                    font-size: 18px;
+                    font-weight: 700;
+                    margin: 12px 0 8px;
+                    flex-shrink: 0;
+                    @media screen and (min-width: 768px) {
+                        font-size: 24px;
+                        margin: 24px 0 16px;
+                    }
+                }
+                img{
+                    height: 30px;
+                    @media screen and (min-width: 768px) {
+                        height: 100%;
+                    }
                 }
             }
             .pricelist{

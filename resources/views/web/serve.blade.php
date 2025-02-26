@@ -267,7 +267,7 @@
 
         </ul>
         <div class="pricebox">
-            <p class="title">基礎消費</p>
+            <div class="title-box"><p class="title">基礎消費</p><img src="/static/img/cash.webp" alt="現金交易"></div>
             <ul class="pricelist">
                 @foreach($product->prices as $item)
                     @if($item->status == 1)
