@@ -110,7 +110,7 @@
                             <img src="{{ asset_upload($news->img) }}" alt="{{ $news->title }}" style="width: 100%;">
                             <div class="contact-wrap">
                                 @if(liaison_get('line_qrcode'))<div class="qrcode-box"><img src="{{ '/uploads/'.liaison_get('line_qrcode') }}" alt="line"></div>@endif
-                                @if(liaison_get('line_id'))<p class="line">LINE：{{ liaison_get('line_id') }}</p>@endif
+                                @if(liaison_get('line_id'))<p class="line">LINE:{{ liaison_get('line_id') }}</p>@endif
                             </div>
                         </div>
                         <h1 class="news-title">{{ $news->title }}</h1>
