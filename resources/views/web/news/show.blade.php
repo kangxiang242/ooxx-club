@@ -64,7 +64,7 @@
                         <img src="/static/img/mclogo2.png" alt="" style="width:100%;">
                     </div>
                     <p class="phone" id="phone">
-                        喝茶加LINE：<span style="font-size: 19px;">{{ app('cache.config')->get('customer_phone') }}</span>
+                        喝茶加LINE：<span style="font-size: 19px;">{{ liaison_get('line_id') }}</span>
                     </p>
                 </a>
             </div>
