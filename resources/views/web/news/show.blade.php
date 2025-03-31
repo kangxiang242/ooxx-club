@@ -38,6 +38,10 @@
             });
         })
 
+
+    </script>
+    @if(liaison_get('line_id'))
+    <script>
         $('article img').each(function() {
             $(this).unwrap('p').wrap('<div class="line-image-box"></div>');
         });
@@ -45,7 +49,7 @@
         var line_id_str = "{{ liaison_get('line_id') }}";
         $('.line-image-box').append('<img class="line_qrcode" src="'+line_qrcode_str+'"><p class="line_id">LINE:'+line_id_str+'</p>')
     </script>
-
+    @endif
 @stop
 
 
@@ -105,8 +109,8 @@
                         <div class="img-wrap">
                             <img src="{{ asset_upload($news->img) }}" alt="{{ $news->title }}" style="width: 100%;">
                             <div class="contact-wrap">
-                                <div class="qrcode-box"><img src="{{ '/uploads/'.liaison_get('line_qrcode') }}" alt="line"></div>
-                                <p class="line">LINE:{{ liaison_get('line_id') }}</p>
+                                @if(liaison_get('line_qrcode'))<div class="qrcode-box"><img src="{{ '/uploads/'.liaison_get('line_qrcode') }}" alt="line"></div>@endif
+                                @if(liaison_get('line_id'))<p class="line">LINE：{{ liaison_get('line_id') }}</p>@endif
                             </div>
                         </div>
                         <h1 class="news-title">{{ $news->title }}</h1>
@@ -144,8 +148,8 @@
                                                 <div class="img-wrap">
                                                     <img src="{{ asset_upload($item->img) }}" alt="{{ $news->title }}">
                                                     <div class="contact-wrap">
-                                                        <div class="qrcode-box"><img src="{{ '/uploads/'.liaison_get('line_qrcode') }}" alt="line"></div>
-                                                        <p class="line">LINE:{{ liaison_get('line_id') }}</p>
+                                                        @if(liaison_get('line_qrcode'))<div class="qrcode-box"><img src="{{ '/uploads/'.liaison_get('line_qrcode') }}" alt="line"></div>@endif
+                                                        @if(liaison_get('line_id'))<p class="line">LINE：{{ liaison_get('line_id') }}</p>@endif
                                                     </div>
                                                 </div>
                                                 <p class="hot-news-title">{{ $item->title }}</p>
