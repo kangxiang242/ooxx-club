@@ -497,8 +497,8 @@ header .wrapper .m-nav .contect .text .lineicon {
 @media screen and (max-width: 768px) {
   .container .news-main .news-box .left .content article .line-image-box .line_id {
     font-size: 20px;
-    bottom: 11px;
-    right: 50px;
+    bottom: 13px;
+    right: 56px;
   }
 }
 .container .news-main .news-box .left .content table {
