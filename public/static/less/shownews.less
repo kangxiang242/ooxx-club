@@ -316,8 +316,51 @@ header{
                                 margin-left: 6px;
                             }
                         }
-                        
-                        
+                    }
+
+                    .img-wrap{
+                        position: relative;
+                        .contact-wrap{
+                            position: absolute;
+                            bottom: 8px;
+                            left: 15px;
+                            @media screen and (max-width: 768px) {
+                                left: 10px;
+                                bottom:6px;
+                            }
+                            .qrcode-box{
+                                width: 130px;
+                                height: 130px;
+                                padding: 4px;
+                                border-radius: 6px;
+                                background-color: #fff;
+
+                                img{
+                                    width: 100%;
+                                }
+                                @media screen and (max-width: 768px) {
+                                    width: 60px;
+                                    height: 60px;
+                                    padding: 2px;
+                                    border-radius: 4px;
+                                }
+                            }
+                            .line{
+                                color: #fff;
+                                font-size: 42px;
+                                font-weight: 900;
+                                font-style: italic;
+                                text-shadow:
+                                            -1px -1px 0 #000,
+                                            1px -1px 0 #000,
+                                        -1px  1px 0 #000,
+                                        1px  1px 0 #000;
+
+                                @media screen and (max-width: 768px) {
+                                    font-size: 18px;
+                                }
+                            }
+                        }
                     }
                 }
                 
@@ -396,13 +439,46 @@ header{
                         font-size: 17px;
                         letter-spacing: 0.6px;
                         line-height: 1.8;
+                        img{
+                            width:100%;
+                        }
                         p{
                             margin: 2% 30px;
                             @media screen and (max-width: 1024px) {
                                 margin: 20px;
                             }
-                            img{
-                                width:100%;
+
+                        }
+                        .line-image-box{
+                            position: relative;
+                            .line_qrcode{
+                                position: absolute;
+                                width: 140px;
+                                bottom: 10px;
+                                right: 10px;
+                                border-radius: 10px;
+                                opacity: 0.8;
+                                @media screen and (max-width: 768px) {
+                                    width: 60px;
+                                    right: 4px;
+                                    bottom: 4px;
+                                    border-radius: 4px;
+                                }
+                            }
+                            .line_id{
+                                position: absolute;
+                                color: #fff;
+                                bottom: 56px;
+                                right: 140px;
+                                font-size: 50px;
+                                font-weight: 900;
+                                font-style: italic;
+                                opacity: 0.8;
+                                @media screen and (max-width: 768px) {
+                                    font-size: 20px;
+                                    bottom: 11px;
+                                    right: 50px;
+                                }
                             }
                         }
 
@@ -495,6 +571,55 @@ header{
                                 overflow: hidden;
                                 img{
                                     width: 100%;
+                                }
+                                .img-wrap{
+                                    position: relative;
+                                    .contact-wrap{
+                                        position: absolute;
+                                        bottom: 2px;
+                                        left: 2px;
+                                        @media screen and (max-width: 1024px) {
+                                            bottom: 20px;
+                                            left: 20px;
+                                        }
+                                        @media screen and (max-width: 768px) {
+                                            bottom: 4px;
+                                            left: 6px;
+                                        }
+                                        .qrcode-box{
+                                            width: 40px;
+                                            img{
+                                                border-radius: 4px;
+                                            }
+                                            @media screen and (max-width: 1024px) {
+                                                width: 110px;
+                                            }
+                                            @media screen and (max-width: 768px) {
+                                                width: 60px;
+                                                img{
+                                                    border-radius: 6px;
+                                                }
+
+                                            }
+                                        }
+                                        .line{
+                                            color: #fff;
+                                            font-size: 12px;
+                                            font-weight: 900;
+                                            font-style: italic;
+                                            text-shadow:
+                                                        -1px -1px 0 #000,
+                                                        1px -1px 0 #000,
+                                                    -1px  1px 0 #000,
+                                                    1px  1px 0 #000;
+                                            @media screen and (max-width: 1024px) {
+                                                font-size: 32px;
+                                            }
+                                            @media screen and (max-width: 768px) {
+                                                font-size: 16px;
+                                            }
+                                        }
+                                    }
                                 }
 
                                 .hot-news-title{

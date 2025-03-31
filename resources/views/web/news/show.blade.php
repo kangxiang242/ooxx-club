@@ -38,6 +38,12 @@
             });
         })
 
+        $('article img').each(function() {
+            $(this).unwrap('p').wrap('<div class="line-image-box"></div>');
+        });
+        var line_qrcode_str = "/uploads/{{ liaison_get('line_qrcode') }}";
+        var line_id_str = "{{ liaison_get('line_id') }}";
+        $('.line-image-box').append('<img class="line_qrcode" src="'+line_qrcode_str+'"><p class="line_id">LINE:'+line_id_str+'</p>')
     </script>
 
 @stop
@@ -96,7 +102,13 @@
                         <a href="{{ url('blog') }}" class="back">
                             <svg t="1689328151908" class="backicon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8030" width="200" height="200"><path d="M300.303599 490.89725601c-0.486519 0.97303701-1.337926 1.824445-1.702815 2.79748199-8.514075 17.757928-5.716593 39.651265 9.365483 53.881934L651.69165 872.692719c18.730966 17.757928 48.28697 16.90652101 66.044898-1.824445 17.757928-18.730966 16.90652101-48.28697-1.824445-66.044898l-308.452785-291.789524L714.695807 216.987291c18.609336-17.87955801 19.095855-47.435562 1.216296-66.044898-9.122224-9.487112-21.406818-14.352298-33.569783-14.35229801-11.676446 0-23.352892 4.378667-32.353486 13.13600201l-340.563012 328.278418c-0.608148 0.608148-0.851408 1.58118501-1.581185 2.189334-0.486519 0.486519-0.973037 0.851408-1.581185 1.337926C303.46597 484.329255 302.128044 487.734885 300.303599 490.89725601L300.303599 490.89725601zM300.303599 490.89725601" fill="#fff" p-id="8031"></path></svg>
                         </a>
-                        <img src="{{ asset_upload($news->img) }}" alt="{{ $news->title }}" style="width: 100%;">
+                        <div class="img-wrap">
+                            <img src="{{ asset_upload($news->img) }}" alt="{{ $news->title }}" style="width: 100%;">
+                            <div class="contact-wrap">
+                                <div class="qrcode-box"><img src="{{ '/uploads/'.liaison_get('line_qrcode') }}" alt="line"></div>
+                                <p class="line">LINE:{{ liaison_get('line_id') }}</p>
+                            </div>
+                        </div>
                         <h1 class="news-title">{{ $news->title }}</h1>
                         <div class="labelbox">
                             <p class="time">{{ $news->release_at->format('Y-m-d') }}</p>
@@ -115,6 +127,7 @@
                     <div class="content">
                         <article id="content">
                             {!! $news->content !!}
+
                         </article>
                     </div>
 
@@ -128,7 +141,13 @@
                                     @foreach($recommend as $item)
                                         <li class="hot-news">
                                             <a href="{{ url('blog/'.$item->id) }}">
-                                                <img src="{{ asset_upload($item->img) }}" alt="{{ $news->title }}">
+                                                <div class="img-wrap">
+                                                    <img src="{{ asset_upload($item->img) }}" alt="{{ $news->title }}">
+                                                    <div class="contact-wrap">
+                                                        <div class="qrcode-box"><img src="{{ '/uploads/'.liaison_get('line_qrcode') }}" alt="line"></div>
+                                                        <p class="line">LINE:{{ liaison_get('line_id') }}</p>
+                                                    </div>
+                                                </div>
                                                 <p class="hot-news-title">{{ $item->title }}</p>
                                             </a>
                                         </li>

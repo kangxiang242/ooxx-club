@@ -66,6 +66,10 @@
                                     <div class="sim">
                                         <div class="img-wrap">
                                             <img src="{{ asset_upload($item->img) }}" alt="{{ $item->title }}">
+                                            <div class="contact-wrap">
+                                                <div class="qrcode-box"><img src="{{ '/uploads/'.liaison_get('line_qrcode') }}" alt="line"></div>
+                                                <p class="line">LINE：{{ liaison_get('line_id') }}</p>
+                                            </div>
                                         </div>
                                         <div class="info-wrap">
                                             @if( $item->sub_title)

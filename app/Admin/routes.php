@@ -50,6 +50,7 @@ Route::group([
 
     $router->resource('inquiry','InquiryController');
 
+    $router->resource('liaison','LiaisonController');
 
     $router->get('site/{model}', 'SiteController@index');
 

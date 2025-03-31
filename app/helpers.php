@@ -1,7 +1,7 @@
 <?php
-
+use Illuminate\Support\Facades\Cache;
 function asset_upload($path='',$default=null){
-    //return "https://www.special-fun.com/uploads/".$path;
+    return "https://www.special-fun.com/uploads/".$path;
     return asset('uploads/'.$path);
 
 }
@@ -97,6 +97,25 @@ if (! function_exists('template')) {
 
         return view($device.'.'.$view,$data,$mergeData);
     }
+}
+
+/**
+ * 获取客服
+ *
+ * @param $key
+ * @param null $default
+ * @return mixed
+ */
+function liaison_get($key=null,$default=null){
+    $liaison = Cache::rememberForever('liaison', function () {
+        return \App\Models\Liaison::where('status',1)->first();
+    });
+
+    if($key && $liaison){
+        return array_get($liaison->toArray(),$key,$default);
+    }
+
+    return $liaison;
 }
 
 function is_mobile(){

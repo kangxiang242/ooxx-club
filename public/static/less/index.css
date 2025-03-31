@@ -300,6 +300,48 @@ header .wrapper-top {
 .banner-section .homebanner .banner img {
   width: 100%;
 }
+.banner-section .homebanner .banner .contact {
+  position: absolute;
+  z-index: 2;
+  bottom: 10px;
+  left: 10px;
+}
+@media screen and (max-width: 768px) {
+  .banner-section .homebanner .banner .contact {
+    bottom: 2px;
+    left: 6px;
+  }
+}
+.banner-section .homebanner .banner .contact .qrcode-box {
+  width: 90px;
+  height: 90px;
+  padding: 4px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+.banner-section .homebanner .banner .contact .qrcode-box img {
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .banner-section .homebanner .banner .contact .qrcode-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    padding: 2px;
+  }
+}
+.banner-section .homebanner .banner .contact .line {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 900;
+  font-style: italic;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+@media screen and (max-width: 768px) {
+  .banner-section .homebanner .banner .contact .line {
+    font-size: 16px;
+  }
+}
 .quicklink-section {
   width: 100%;
   max-width: 1280px;

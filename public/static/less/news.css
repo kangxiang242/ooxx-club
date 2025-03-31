@@ -521,10 +521,46 @@ header .wrapper .m-nav .contect .text .lineicon {
   overflow: hidden;
   margin: 0 auto;
   border-radius: 12px 12px 0 0;
+  position: relative;
 }
 .case-main .case .present .news .sim .img-wrap img {
   width: 100%;
   transition: all 0.3s 0.25s ease-in-out;
+}
+.case-main .case .present .news .sim .img-wrap .contact-wrap {
+  position: absolute;
+  bottom: 4px;
+  left: 6px;
+}
+.case-main .case .present .news .sim .img-wrap .contact-wrap .qrcode-box {
+  width: 60px;
+  height: 60px;
+  padding: 4px;
+  border-radius: 6px;
+  background-color: #fff;
+}
+.case-main .case .present .news .sim .img-wrap .contact-wrap .qrcode-box img {
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .case-main .case .present .news .sim .img-wrap .contact-wrap .qrcode-box {
+    width: 50px;
+    height: 50px;
+    padding: 2px;
+    border-radius: 4px;
+  }
+}
+.case-main .case .present .news .sim .img-wrap .contact-wrap .line {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 900;
+  font-style: italic;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+@media screen and (max-width: 768px) {
+  .case-main .case .present .news .sim .img-wrap .contact-wrap .line {
+    font-size: 16px;
+  }
 }
 .case-main .case .present .news .sim .info-wrap {
   position: relative;

@@ -213,6 +213,10 @@
                 @else
                     <img src="{{ asset_upload(array_get($banner,'image')) }}" alt="{{ array_get($banner,'alt') }}">
                 @endif
+                <div class="contact">
+                    <div class="qrcode-box"><img src="{{ '/uploads/'.liaison_get('line_qrcode') }}" alt="line"></div>
+                    <p class="line">LINE:{{ liaison_get('line_id') }}</p>
+                </div>
             </div>
             @endforeach
         </div>
