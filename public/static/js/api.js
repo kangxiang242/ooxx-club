@@ -569,6 +569,9 @@ $('#filter .group input[data-equ]').click(function () {
 
 })
 
+// 创建 Web Worker 实例
+const worker = new Worker('imageWorker.js');
+
 function lazyload() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -576,40 +579,50 @@ function lazyload() {
 
             if (entry.isIntersecting) {
                 // 图片进入视口，开始加载
-                if(img.dataset.src){
-                    img.src = img.dataset.src; // 将真正的图片地址赋值
+                if (img.dataset.src) {
+                    const highResSrc = img.dataset.src; // 真实的高清图片地址
+                    const id = img.getAttribute('data-cover-id'); // 每张图片的唯一标识
+
+                    // 发送图片加载任务到 Web Worker
+                    worker.postMessage({ src: highResSrc, id });
+
+                    // 监听 Worker 返回消息
+                    worker.onmessage = function(e) {
+                        const { id, src } = e.data;
+                        const imgElement = document.querySelector(`img[data-cover-id="${id}"]`);
+                        if (imgElement) {
+                            imgElement.src = src; // 替换为高清图
+                        }
+                    };
                 }
-                img.removeAttribute('data-src')
-                //img.style.visibility = 'visible'; // 显示图片
-                observer.unobserve(img);//停止监察
-            } else {
-                // 图片离开视口，隐藏图片
-                //img.style.visibility = 'hidden'; // 隐藏图片
 
-
+                img.removeAttribute('data-src'); // 图片加载完成后移除 `data-src`
+                observer.unobserve(img); // 停止观察当前图片
             }
         });
     }, {
         root: null, // 监听整个视口
-        rootMargin: '400px 0px', // 提前 100px 加载图片
-        threshold: 0 // 图片至少 10% 进入视口时触发加载
+        rootMargin: '400px 0px', // 提前 400px 加载图片
+        threshold: 0 // 至少 0% 进入视口时触发加载
     });
 
-    // 遍历所有带有 lazyload 属性的图片
+    // 遍历所有带有 `data-lazyload` 属性的图片
     document.querySelectorAll('img[data-lazyload]').forEach(function(img) {
-        // 初始化时设置占位符样式
-        //img.style.visibility = 'hidden'; // 隐藏图片
-        observer.observe(img); // 观察图片
-        img.removeAttribute('data-lazyload'); // 移除 data-lazyload 属性
+        observer.observe(img); // 开始观察图片
+        img.removeAttribute('data-lazyload'); // 移除 `data-lazyload` 属性
     });
 
+    // 处理视频懒加载（如果有的话）
     document.querySelectorAll('.g-video').forEach(function(video) {
+        setTimeout(function () {
+            if (video.dataset.src) {
+                video.src = video.dataset.src; // 加载视频的真实地址
+            }
+        },300)
 
-        if(video.dataset.src){
-            video.src = video.dataset.src; // 将真正的图片地址赋值
-        }
     });
 }
+
 
 
 
