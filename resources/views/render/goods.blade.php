@@ -29,7 +29,7 @@
                 <span class="cup">{{ $goods->cup }}杯</span>
             </p>
             <div class="master {{ $current_count%7==0?"have-video222":"" }}" >
-                <img class="goods-img" fetchpriority="low" src="{{ asset_upload($goods->thumbnail('small','cover')) }}" data-lazyload data-src="{{ asset_upload($goods->cover) }}" data-cover-id="{{ $goods->id }}" alt="{{ $goods->name }}">
+                <img class="goods-img" fetchpriority="low" src="{{ imageToBase64('/uploads/'.$goods->thumbnail('small','cover')) }}" data-lazyload data-src="{{ asset_upload($goods->cover) }}" data-cover-id="{{ $goods->id }}" alt="{{ $goods->name }}">
                 {{--@if($current_count%7==0)
                     <video preload="metadata" class="g-video" style="object-fit:cover;" data-src="{{ asset_upload($goods->video) }}" autoplay poster="{{ asset_upload($goods->video_cover) }}" loop="" muted="" width="100%" playsinline="" >
                     </video>
