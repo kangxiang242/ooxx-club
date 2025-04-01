@@ -571,7 +571,7 @@ $('#filter .group input[data-equ]').click(function () {
 
 
 // 创建 Web Worker 实例
-const worker = new Worker('/static/js/imageWorker.js');
+const worker = new Worker('/static/js/imageWorker.js?v1.0.0');
 
 function lazyload() {
     const observer = new IntersectionObserver((entries) => {
