@@ -1407,6 +1407,10 @@ footer .copyright {
   font-weight: 500;
   color: #999;
 }
+.goods-section .goods .cover .master {
+  position: relative;
+  z-index: 0;
+}
 .goods-section .goods .cover .have-video {
   /*img{
                     display: none;
@@ -1414,6 +1418,12 @@ footer .copyright {
 }
 .goods-section .goods .cover .have-video video {
   height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
 }
 @media screen and (max-width: 768px) {
   .goods-section .goods .cover .have-video video {
