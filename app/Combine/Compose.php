@@ -123,22 +123,12 @@ class Compose
         $price_tags[3] = collect(explode(',',app(ConfigService::class)->get('price_tag3',null,false)));
         $price_tags[4] = collect(explode(',',app(ConfigService::class)->get('price_tag4',null,false)));
 
-
-        $wat_path = public_path('uploads/watermark');
-
-        if (File::exists($wat_path)) {
-            File::deleteDirectory($wat_path);
-        }
-
-        if (!File::isDirectory($wat_path)) {
-            File::makeDirectory($wat_path, 0755, true, true);
-            File::makeDirectory($wat_path . '/images', 0755, true, true);
-            File::makeDirectory($wat_path . '/comment', 0755, true, true);
-        }
-
+        $liaison_watermark = Cache::get('liaison_watermark');
 
         //给水印图片加上line
         $this->watermarkToLine();
+
+
 
         foreach($this->picture as $picture){
 
@@ -161,11 +151,11 @@ class Compose
                 $extension = array_get($path,'extension');
                 if($extension){
                     $new_name = array_get($path,'filename').'.'.$extension;
-                    if(file_exists(public_path('uploads/watermark/images/'.$new_name))){
-                        @unlink(public_path('uploads/watermark/images/'.$new_name));
+                    if(!file_exists(public_path('uploads/watermark/images/'.$new_name)) || !$liaison_watermark){
+                        $this->addWatermark(public_path('uploads/'.$v),'watermark/images/'.$new_name,$extension);
                     }
-                    $new_name = md5($new_name.rand(10000,99999999)).'.'.$extension;
-                    $this->addWatermark(public_path('uploads/'.$v),'watermark/images/'.$new_name,$extension);
+
+
                     $images[] = 'watermark/images/'.$new_name;
                 }
             }
@@ -196,11 +186,9 @@ class Compose
                 $extension = array_get($path_comment,'extension');
                 if($extension){
                     $new_name = array_get($path_comment,'filename').'.'.$extension;
-                    if(file_exists(public_path('uploads/watermark/comment/'.$new_name))){
-                        @unlink(public_path('uploads/watermark/comment/'.$new_name));
+                    if(!file_exists(public_path('uploads/watermark/comment/'.$new_name))  || !$liaison_watermark){
+                        $this->addWatermark(public_path('uploads/'.$temp_image),'watermark/comment/'.$new_name,$extension);
                     }
-                    $new_name = md5($new_name.rand(10000,99999999)).'.'.$extension;
-                    $this->addWatermark(public_path('uploads/'.$temp_image),'watermark/comment/'.$new_name,$extension);
                     $comment_picture[] = 'watermark/comment/'.$new_name;
                 }
             }
@@ -401,7 +389,7 @@ class Compose
             }
             ProductCategory::insert($product_category_insert);
 
-
+            Cache::forever('liaison_watermark', date('Y-m-d'));
         }
 
 

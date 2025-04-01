@@ -70,6 +70,7 @@ class LiaisonController extends AdminController
             $form->switch('status')->default(1);
             $form->saved(function (Form $form, $result) {
                 Cache::forget('liaison');
+                Cache::forget('liaison_watermark');
             });
 
 

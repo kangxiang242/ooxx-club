@@ -7,6 +7,7 @@ use Dcat\Admin\Form;
 use Dcat\Admin\Grid;
 use Dcat\Admin\Show;
 use Dcat\Admin\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Cache;
 
 class InquiryController extends AdminController
 {
@@ -69,15 +70,13 @@ class InquiryController extends AdminController
     protected function form()
     {
         return Form::make(new Inquiry(), function (Form $form) {
-            $form->display('id');
+
             $form->text('type');
             $form->text('referer');
             $form->text('position');
             $form->text('user_agent');
             $form->text('ip');
 
-            $form->display('created_at');
-            $form->display('updated_at');
         });
     }
 }
