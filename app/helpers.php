@@ -123,4 +123,10 @@ function is_mobile(){
     return preg_match("/(Android|webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini)/i", $user_agent);
 }
 
+function imageToBase64($filePath) {
+    $type = pathinfo($filePath, PATHINFO_EXTENSION);
+    $data = file_get_contents($filePath);
+    return 'data:image/' . $type . ';base64,' . base64_encode($data);
+}
+
 

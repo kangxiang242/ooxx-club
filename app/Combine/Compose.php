@@ -122,6 +122,9 @@ class Compose
         $price_tags[3] = collect(explode(',',app(ConfigService::class)->get('price_tag3',null,false)));
         $price_tags[4] = collect(explode(',',app(ConfigService::class)->get('price_tag4',null,false)));
 
+        //给水印图片加上line
+        $this->watermarkToLine();
+
         foreach($this->picture as $picture){
 
             /*if($this->picture->count()<=0){ //图片使用完 不再生成
@@ -780,9 +783,38 @@ class Compose
     public function addWatermark($image,$savePath,$encode='jpg')
     {
         // 生成新的图片并添加水印
-        $img = Image::make($image)->insert(public_path('/static/img/fun.png'), 'top-left', 0, 0)->encode($encode);
+        $img = Image::make($image)->insert(public_path('uploads/watermarked.png'), 'top-left', 0, 0)->encode($encode);
         // 将图片保存到存储位置
         Storage::disk('admin')->put($savePath, $img);
+    }
+
+    protected function watermarkToLine(){
+        $imagePath = public_path('static/img/fun_2.png'); // 原始图片路径
+        $outputPath = public_path('uploads/watermarked.png'); // 输出图片路径
+        $image = Image::make($imagePath);
+
+        $water_position = [
+            ['x'=>100,'y'=>175],
+            ['x'=>480,'y'=>175],
+            ['x'=>100,'y'=>475],
+            ['x'=>480,'y'=>475],
+            ['x'=>100,'y'=>775],
+            ['x'=>480,'y'=>775],
+        ];
+        foreach ($water_position as $v){
+            $image->text('LINE:'.liaison_get('line_id'),
+                $v['x'],  // X 轴（右下角）
+                $v['y'], // Y 轴（右下角）
+                function ($font) {
+                    $font->file(public_path('/static/font/NotoSans-Bold.ttf')); // 字体文件
+                    $font->size(20);  // 字体大小
+                    $font->color([255, 255, 255, 0.35]); // 白色 + 50% 透明度
+                }
+            );
+        }
+
+        // 保存图片
+        $image->save($outputPath);
     }
 
 }
