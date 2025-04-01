@@ -192,7 +192,7 @@
         <ul class="spec-list" style="z-index: 2">
             @foreach(explode(',',$product->picture) as $key=>$item)
                 <li class="list-pic {{ $key==0?"chosen":"" }}">
-                    <img src="{{ asset_upload($product->thumbnail('small',$item)) }}" data-lazyload data-src="{{ asset_upload($item) }}" alt="{{ $product->name }}">
+                    <img src="{{ asset_upload($item) }}" alt="{{ $product->name }}">
                 </li>
             @endforeach
                 <li class="list-vedio">
@@ -321,7 +321,7 @@
                 <ul class="reviewlist">
                     @foreach(explode(',',$product->comment_picture) as $item)
                     <li class="reviewitem">
-                        <img src="" data-src="{{ asset_upload($item) }}" data-lazyload alt="客評截圖">
+                        <img src="{{ asset_upload($item) }}" alt="客評截圖">
                     </li>
                     @endforeach
                 </ul>
