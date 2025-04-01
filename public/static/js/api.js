@@ -613,11 +613,11 @@ function lazyload() {
     });
 
     // 处理视频懒加载（如果有的话）
-    document.querySelectorAll('.g-video').forEach(function (video) {
+    /*document.querySelectorAll('.g-video').forEach(function (video) {
         if (video.dataset.src) {
             video.src = video.dataset.src; // 加载视频的真实地址
         }
-    });
+    });*/
 }
 
 

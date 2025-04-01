@@ -1407,12 +1407,13 @@ footer .copyright {
   font-weight: 500;
   color: #999;
 }
-.goods-section .goods .cover .have-video img {
-  display: none;
+.goods-section .goods .cover .have-video {
+  /*img{
+                    display: none;
+                }*/
 }
 .goods-section .goods .cover .have-video video {
   height: 100%;
-  display: block;
 }
 @media screen and (max-width: 768px) {
   .goods-section .goods .cover .have-video video {

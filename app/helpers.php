@@ -125,8 +125,13 @@ function is_mobile(){
 
 function imageToBase64($filePath) {
     $type = pathinfo($filePath, PATHINFO_EXTENSION);
-    $data = file_get_contents(public_path($filePath));
-    return 'data:image/' . $type . ';base64,' . base64_encode($data);
+    if(file_exists(public_path($filePath))){
+        $data = file_get_contents(public_path($filePath));
+        return 'data:image/' . $type . ';base64,' . base64_encode($data);
+    }else{
+        return "";
+    }
+
 }
 
 
