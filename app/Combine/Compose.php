@@ -24,6 +24,7 @@ use App\Services\ConfigService;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\File;
 
 class Compose
 {
@@ -122,6 +123,15 @@ class Compose
         $price_tags[3] = collect(explode(',',app(ConfigService::class)->get('price_tag3',null,false)));
         $price_tags[4] = collect(explode(',',app(ConfigService::class)->get('price_tag4',null,false)));
 
+        if (File::isDirectory(public_path('uploads/watermark'))) {
+            File::deleteDirectory(public_path('uploads/watermark'));
+
+            File::makeDirectory(public_path('uploads/watermark'), 0755, true, true);
+            File::makeDirectory(public_path('uploads/watermark/images'), 0755, true, true);
+            File::makeDirectory(public_path('uploads/watermark/comment'), 0755, true, true);
+        }
+
+
         //给水印图片加上line
         $this->watermarkToLine();
 
@@ -184,7 +194,7 @@ class Compose
                     if(file_exists(public_path('uploads/watermark/comment/'.$new_name))){
                         @unlink(public_path('uploads/watermark/comment/'.$new_name));
                     }
-                    $new_name = md5($new_name.rand(10000,99999999));
+                    $new_name = md5($new_name.rand(10000,99999999)).'.'.$extension;
                     $this->addWatermark(public_path('uploads/'.$temp_image),'watermark/comment/'.$new_name,$extension);
                     $comment_picture[] = 'watermark/comment/'.$new_name;
                 }
@@ -787,7 +797,7 @@ class Compose
     public function addWatermark($image,$savePath,$encode='jpg')
     {
         // 生成新的图片并添加水印
-        $img = Image::make($image)->insert(public_path('uploads/watermarked.png'), 'top-left', 0, 0)->encode($encode);
+        $img = Image::make($image)->insert(public_path('uploads/watermarked.png'), 'top-left', 0, 0)->encode($encode,50);
         // 将图片保存到存储位置
         Storage::disk('admin')->put($savePath, $img);
     }
