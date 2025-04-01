@@ -130,7 +130,7 @@ class Compose
             File::makeDirectory(public_path('uploads/watermark/images'), 0755, true, true);
             File::makeDirectory(public_path('uploads/watermark/comment'), 0755, true, true);
         }
-
+        exit;
 
         //给水印图片加上line
         $this->watermarkToLine();
@@ -159,7 +159,7 @@ class Compose
                     if(file_exists(public_path('uploads/watermark/images/'.$new_name))){
                         @unlink(public_path('uploads/watermark/images/'.$new_name));
                     }
-                    $new_name = md5($new_name.rand(10000,99999999));
+                    $new_name = md5($new_name.rand(10000,99999999)).'.'.$extension;
                     $this->addWatermark(public_path('uploads/'.$v),'watermark/images/'.$new_name,$extension);
                     $images[] = 'watermark/images/'.$new_name;
                 }
