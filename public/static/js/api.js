@@ -579,33 +579,31 @@ function lazyload() {
             const img = entry.target;
 
             if (entry.isIntersecting) {
-                // 图片进入视口，开始加载
                 if (img.dataset.src) {
-                    const highResSrc = img.dataset.src; // 真实的高清图片地址
-                    const id = img.getAttribute('data-cover-id'); // 每张图片的唯一标识
+                    const highResSrc = img.dataset.src;
+                    const id = img.getAttribute('data-cover-id');
 
-                    // 发送图片加载任务到 Web Worker
+                    // 发送加载任务给 Worker
                     worker.postMessage({ src: highResSrc, id });
 
-                    // 监听 Worker 返回消息
+                    // 监听 Worker 处理完成的消息
                     worker.onmessage = function (e) {
                         const { id, src } = e.data;
                         const imgElement = document.querySelector(`img[data-cover-id="${id}"]`);
-
                         if (imgElement) {
-                            imgElement.src = src; // 替换为高清图
+                            imgElement.src = src; // 更新图片
                         }
                     };
                 }
 
-                img.removeAttribute('data-src'); // 图片加载完成后移除 `data-src`
-                observer.unobserve(img); // 停止观察当前图片
+                img.removeAttribute('data-src');
+                observer.unobserve(img);
             }
         });
     }, {
-        root: null, // 监听整个视口
-        rootMargin: '400px 0px', // 提前 400px 加载图片
-        threshold: 0 // 至少 0% 进入视口时触发加载
+        root: null,
+        rootMargin: '400px 0px',
+        threshold: 0
     });
 
     // 遍历所有带有 `data-lazyload` 属性的图片

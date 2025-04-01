@@ -1,12 +1,14 @@
-// imageWorker.js
-self.onmessage = function (e) {
+self.onmessage = async function (e) {
     const { src, id } = e.data;
-    const img = new Image(); // 创建新的 Image 对象
 
-    img.onload = function () {
-        // 图片加载完成后通知主线程
-        self.postMessage({ id, src });
-    };
+    try {
+        const response = await fetch(src);
+        const blob = await response.blob();
+        const objectURL = URL.createObjectURL(blob);
 
-    img.src = src; // 启动图片加载
+        // 发送已加载的图片 URL 给主线程
+        self.postMessage({ id, src: objectURL });
+    } catch (error) {
+        console.error('Worker image fetch error:', error);
+    }
 };
