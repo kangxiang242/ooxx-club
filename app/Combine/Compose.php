@@ -123,12 +123,17 @@ class Compose
         $price_tags[3] = collect(explode(',',app(ConfigService::class)->get('price_tag3',null,false)));
         $price_tags[4] = collect(explode(',',app(ConfigService::class)->get('price_tag4',null,false)));
 
-        if (File::isDirectory(public_path('uploads/watermark'))) {
-            File::deleteDirectory(public_path('uploads/watermark'));
 
-            File::makeDirectory(public_path('uploads/watermark'), 0755, true, true);
-            File::makeDirectory(public_path('uploads/watermark/images'), 0755, true, true);
-            File::makeDirectory(public_path('uploads/watermark/comment'), 0755, true, true);
+        $wat_path = public_path('uploads/watermark');
+
+        if (File::exists($wat_path)) {
+            File::deleteDirectory($wat_path);
+        }
+
+        if (!File::isDirectory($wat_path)) {
+            File::makeDirectory($wat_path, 0755, true, true);
+            File::makeDirectory($wat_path . '/images', 0755, true, true);
+            File::makeDirectory($wat_path . '/comment', 0755, true, true);
         }
 
 
