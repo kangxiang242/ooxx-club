@@ -571,7 +571,7 @@ $('#filter .group input[data-equ]').click(function () {
 
 
 // 创建 Web Worker 实例
-const worker = new Worker('imageWorker.js');
+const worker = new Worker('/static/js/imageWorker.js');
 
 function lazyload() {
     const observer = new IntersectionObserver((entries) => {
@@ -586,7 +586,7 @@ function lazyload() {
 
                     // 发送图片加载任务到 Web Worker
                     worker.postMessage({ src: highResSrc, id });
-                    console.log(worker);
+
                     // 监听 Worker 返回消息
                     worker.onmessage = function (e) {
                         const { id, src } = e.data;
