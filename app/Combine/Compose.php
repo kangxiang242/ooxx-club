@@ -146,9 +146,11 @@ class Compose
                 $extension = array_get($path,'extension');
                 if($extension){
                     $new_name = array_get($path,'filename').'.'.$extension;
-                    if(!file_exists(public_path('uploads/watermark/images/'.$new_name))){
-                        $this->addWatermark(public_path('uploads/'.$v),'watermark/images/'.$new_name,$extension);
+                    if(file_exists(public_path('uploads/watermark/images/'.$new_name))){
+                        @unlink(public_path('uploads/watermark/images/'.$new_name));
                     }
+                    $new_name = md5($new_name.rand(10000,99999999));
+                    $this->addWatermark(public_path('uploads/'.$v),'watermark/images/'.$new_name,$extension);
                     $images[] = 'watermark/images/'.$new_name;
                 }
             }
@@ -179,9 +181,11 @@ class Compose
                 $extension = array_get($path_comment,'extension');
                 if($extension){
                     $new_name = array_get($path_comment,'filename').'.'.$extension;
-                    if(!file_exists(public_path('uploads/watermark/comment/'.$new_name))){
-                        $this->addWatermark(public_path('uploads/'.$temp_image),'watermark/comment/'.$new_name,$extension);
+                    if(file_exists(public_path('uploads/watermark/comment/'.$new_name))){
+                        @unlink(public_path('uploads/watermark/comment/'.$new_name));
                     }
+                    $new_name = md5($new_name.rand(10000,99999999));
+                    $this->addWatermark(public_path('uploads/'.$temp_image),'watermark/comment/'.$new_name,$extension);
                     $comment_picture[] = 'watermark/comment/'.$new_name;
                 }
             }
