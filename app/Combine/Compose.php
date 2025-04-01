@@ -130,7 +130,7 @@ class Compose
             File::makeDirectory(public_path('uploads/watermark/images'), 0755, true, true);
             File::makeDirectory(public_path('uploads/watermark/comment'), 0755, true, true);
         }
-        exit;
+
 
         //给水印图片加上line
         $this->watermarkToLine();
