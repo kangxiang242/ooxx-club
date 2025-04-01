@@ -1407,6 +1407,11 @@ footer .copyright {
   font-weight: 500;
   color: #999;
 }
+.goods-section .goods .cover .serve,
+.goods-section .goods .cover .flag,
+.goods-section .goods .cover .wh {
+  z-index: 1;
+}
 .goods-section .goods .cover .master {
   position: relative;
   z-index: 0;
