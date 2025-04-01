@@ -569,6 +569,7 @@ $('#filter .group input[data-equ]').click(function () {
 
 })
 
+
 // 创建 Web Worker 实例
 const worker = new Worker('imageWorker.js');
 
@@ -587,9 +588,10 @@ function lazyload() {
                     worker.postMessage({ src: highResSrc, id });
 
                     // 监听 Worker 返回消息
-                    worker.onmessage = function(e) {
+                    worker.onmessage = function (e) {
                         const { id, src } = e.data;
                         const imgElement = document.querySelector(`img[data-cover-id="${id}"]`);
+                        console.log(123);
                         if (imgElement) {
                             imgElement.src = src; // 替换为高清图
                         }
@@ -607,21 +609,19 @@ function lazyload() {
     });
 
     // 遍历所有带有 `data-lazyload` 属性的图片
-    document.querySelectorAll('img[data-lazyload]').forEach(function(img) {
+    document.querySelectorAll('img[data-lazyload]').forEach(function (img) {
         observer.observe(img); // 开始观察图片
         img.removeAttribute('data-lazyload'); // 移除 `data-lazyload` 属性
     });
 
     // 处理视频懒加载（如果有的话）
-    document.querySelectorAll('.g-video').forEach(function(video) {
-        setTimeout(function () {
-            if (video.dataset.src) {
-                video.src = video.dataset.src; // 加载视频的真实地址
-            }
-        },300)
-
+    document.querySelectorAll('.g-video').forEach(function (video) {
+        if (video.dataset.src) {
+            video.src = video.dataset.src; // 加载视频的真实地址
+        }
     });
 }
+
 
 
 
