@@ -23,9 +23,11 @@ class ProductController extends Controller
 
     public function show($id,FaqRepository $faqRepository,ProductAddedServeRepository $productAddedServeRepository){
 
-        $product = Cache::rememberForever('goods-'.$id, function () use ($id) {
+        /*$product = Cache::rememberForever('goods-'.$id, function () use ($id) {
             return Product::with(['birthplace','prices','withServes','city','county'])->find($id);
-        });
+        });*/
+
+        $product = Product::with(['birthplace','prices','withServes','city','county'])->find($id);
 
 
         //$added = ProductAddedServe::where('product_id',$id)->get();
