@@ -28,8 +28,6 @@ class ProductController extends Controller
         });*/
 
         $product = Product::with(['birthplace','prices','withServes','city','county'])->find($id);
-
-
         //$added = ProductAddedServe::where('product_id',$id)->get();
         $added = $productAddedServeRepository->getByProductId($id);
 
