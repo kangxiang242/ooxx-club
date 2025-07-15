@@ -127,7 +127,7 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
-    'disable_contact' => env('DISABLE_CONTACT','false'),
+    'disable_contact' => env('DISABLE_CONTACT',false),
 
     /*
     |--------------------------------------------------------------------------
