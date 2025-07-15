@@ -40,7 +40,7 @@
 
 
     </script>
-    @if(liaison_get('line_id'))
+    @if(config('app.disable_contact'))
     <script>
         $('article img').each(function() {
             $(this).unwrap('p').wrap('<div class="line-image-box"></div>');
