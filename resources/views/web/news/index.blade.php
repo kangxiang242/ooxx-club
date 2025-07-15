@@ -66,10 +66,12 @@
                                     <div class="sim">
                                         <div class="img-wrap">
                                             <img src="{{ asset_upload($item->img) }}" alt="{{ $item->title }}">
+                                            @if(config('app.disable_contact'))
                                             <div class="contact-wrap">
                                                 @if(liaison_get('line_qrcode'))<div class="qrcode-box"><img src="{{ '/uploads/'.liaison_get('line_qrcode') }}" alt="line"></div>@endif
                                                 @if(liaison_get('line_id'))<p class="line">LINE:{{ liaison_get('line_id') }}</p>@endif
                                             </div>
+                                            @endif
                                         </div>
                                         <div class="info-wrap">
                                             @if( $item->sub_title)

@@ -213,10 +213,12 @@
                 @else
                     <img src="{{ asset_upload(array_get($banner,'image')) }}" alt="{{ array_get($banner,'alt') }}">
                 @endif
+                @if(config('app.disable_contact'))
                 <div class="contact">
                     @if(liaison_get('line_qrcode'))<div class="qrcode-box"><img src="{{ '/uploads/'.liaison_get('line_qrcode') }}" alt="line"></div>@endif
                     @if(liaison_get('line_id'))<p class="line">LINE:{{ liaison_get('line_id') }}</p>@endif
                 </div>
+                @endif
             </div>
             @endforeach
         </div>

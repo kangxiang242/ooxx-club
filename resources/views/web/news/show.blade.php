@@ -108,10 +108,12 @@
                         </a>
                         <div class="img-wrap">
                             <img src="{{ asset_upload($news->img) }}" alt="{{ $news->title }}" style="width: 100%;">
+                            @if(config('app.disable_contact'))
                             <div class="contact-wrap">
                                 @if(liaison_get('line_qrcode'))<div class="qrcode-box"><img src="{{ '/uploads/'.liaison_get('line_qrcode') }}" alt="line"></div>@endif
                                 @if(liaison_get('line_id'))<p class="line">LINE:{{ liaison_get('line_id') }}</p>@endif
                             </div>
+                            @endif
                         </div>
                         <h1 class="news-title">{{ $news->title }}</h1>
                         <div class="labelbox">
@@ -147,10 +149,12 @@
                                             <a href="{{ url('blog/'.$item->id) }}">
                                                 <div class="img-wrap">
                                                     <img src="{{ asset_upload($item->img) }}" alt="{{ $news->title }}">
+                                                    @if(config('app.disable_contact'))
                                                     <div class="contact-wrap">
                                                         @if(liaison_get('line_qrcode'))<div class="qrcode-box"><img src="{{ '/uploads/'.liaison_get('line_qrcode') }}" alt="line"></div>@endif
                                                         @if(liaison_get('line_id'))<p class="line">LINE:{{ liaison_get('line_id') }}</p>@endif
                                                     </div>
+                                                    @endif
                                                 </div>
                                                 <p class="hot-news-title">{{ $item->title }}</p>
                                             </a>
