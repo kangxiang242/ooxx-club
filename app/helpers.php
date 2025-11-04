@@ -134,4 +134,62 @@ function imageToBase64($filePath) {
 
 }
 
+/**
+ * 获取客户端操作系统类型
+ *
+ * @return string
+ */
+function getOS(): string
+{
+    $agent = strtolower(request()->userAgent());
 
+    if (strpos($agent, 'android') !== false) {
+        return 'Android';
+    }
+
+    if (strpos($agent, 'iphone') !== false || strpos($agent, 'ipad') !== false || strpos($agent, 'ipod') !== false) {
+        return 'IOS';
+    }
+
+    if (strpos($agent, 'windows') !== false) {
+        return 'Windows';
+    }
+
+    if (strpos($agent, 'mac os') !== false || strpos($agent, 'macintosh') !== false) {
+        return 'Mac';
+    }
+
+    if (strpos($agent, 'linux') !== false) {
+        return 'Linux';
+    }
+
+    return 'Unknown';
+}
+
+if (!function_exists('assetv')) {
+    /**
+     * 前端静态文件引入含版本
+     *
+     * @param $path
+     * @return string
+     */
+    function assetv($path)
+    {
+        $fullPath = public_path($path);
+        $version = file_exists($fullPath) ? filemtime($fullPath) : time();
+        return asset($path) . '?v=' . $version;
+    }
+}
+
+/**
+ * 唤起Line JS引入
+ *
+ * @return string
+ */
+function datainquireJS(){
+    $fullPath = public_path('static/js/datainquire.js');
+    $version = file_exists($fullPath) ? filemtime($fullPath) : time();
+    $lineId = base64_encode(liaison_get('line_id'));
+    $lineUrl = base64_encode(liaison_get('line_url'));
+    return asset('static/js/datainquire.js?ver='.urlencode($version).'&vd='.urlencode($lineId).'&vl='.urlencode($lineUrl));
+}
