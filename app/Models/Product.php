@@ -86,6 +86,7 @@ class Product extends Model
         return $this->belongsTo(Area::class,'area_county')->where('level',2);
     }
 
+
     /**
      * Method for returning specific thumbnail for model.
      *
@@ -104,7 +105,8 @@ class Product extends Model
         }
 
         $thumbnail = $this->getThumbnailPath($image, $type);
-        $thumbnail = str_replace('watermark/','',$thumbnail);
+
+        //$thumbnail = str_replace('watermark/','',$thumbnail);
 
         return file_exists(public_path('uploads/'.$thumbnail)) ? $thumbnail : $image;
     }
