@@ -42,7 +42,7 @@ class ProductController extends Controller
 
         $product_ids = collect();
 
-        if(!$request->has('random')){
+        /*if(!$request->has('random')){
 
             if($request->category){
                 $category = $request->category;
@@ -150,7 +150,7 @@ class ProductController extends Controller
             if($tab == 1 || $tab == 2){
                 $product = $tab==1?$product->where('outgoing',1):$product->where('fixation',1);
             }
-        }
+        }*/
 
         $product = $product->orderBy('sort')->paginate($request->get('limit',20));
 
