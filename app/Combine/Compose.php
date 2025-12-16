@@ -21,6 +21,7 @@ use App\Models\Quick;
 use App\Models\Serve;
 use App\Models\Video;
 use App\Services\ConfigService;
+use App\Services\ImageService;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -128,7 +129,7 @@ class Compose
         //给水印图片加上line
         $this->watermarkToLine();
 
-
+        $imageService = new ImageService();
 
         foreach($this->picture as $picture){
 
@@ -151,15 +152,26 @@ class Compose
                 $extension = array_get($path,'extension');
                 if($extension){
                     $new_name = array_get($path,'filename').'.'.$extension;
-                    if(!file_exists(public_path('uploads/watermark/images/'.$new_name)) || !$liaison_watermark){
-                        $this->addWatermark(public_path('uploads/'.$v),'watermark/images/'.$new_name,$extension);
+                    $watermark_path = 'cps/images/'.$new_name;
+                    if(!file_exists(public_path('uploads/cps/images/'.$new_name)) || !$liaison_watermark){
+                        $this->addWatermark(public_path('uploads/'.$v),'cps/images/'.$new_name,$extension);
+
+
+                        $info = pathinfo($watermark_path);
+                        $newPath = $info['dirname'] . '/' . $info['filename'] . '-450.' . $info['extension'];
+                        if(!file_exists(public_path('uploads/'.$newPath))){ //不存在则重新压缩图片
+                            $imageService->resize(public_path('uploads/'.$watermark_path),450,'450',60);
+                        }
+
                     }
 
 
-                    $images[] = 'watermark/images/'.$new_name;
+                    $images[] = $watermark_path;
                 }
             }
             $images = collect($images);
+
+            $imageService->resize(public_path('uploads/'.$images->first()),20,'small',60);
 
             $birthplace = $this->findBirthplaceById($picture->birthplace_id);
 
@@ -186,10 +198,10 @@ class Compose
                 $extension = array_get($path_comment,'extension');
                 if($extension){
                     $new_name = array_get($path_comment,'filename').'.'.$extension;
-                    if(!file_exists(public_path('uploads/watermark/comment/'.$new_name))  || !$liaison_watermark){
-                        $this->addWatermark(public_path('uploads/'.$temp_image),'watermark/comment/'.$new_name,$extension);
+                    if(!file_exists(public_path('uploads/cps/comment/'.$new_name))  || !$liaison_watermark){
+                        $this->addWatermark(public_path('uploads/'.$temp_image),'cps/comment/'.$new_name,$extension);
                     }
-                    $comment_picture[] = 'watermark/comment/'.$new_name;
+                    $comment_picture[] = 'cps/comment/'.$new_name;
                 }
             }
 

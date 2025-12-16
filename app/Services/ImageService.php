@@ -8,16 +8,16 @@ use \Image;
 class ImageService
 {
 
-    public function resize($path,$size){
+    public function resize($path,$size,$type='small',$quality=null){
         if(is_file($path)){
             try {
                 $img = Image::make($path)->resize($size, null, function ($constraint) {
                     $constraint->aspectRatio();
                 });
 
-                $saveName = $img->filename.'-small.'.$img->extension;
+                $saveName = $img->filename.'-'.$type.'.'.$img->extension;
 
-                $img->save($img->dirname.'/'.$saveName);
+                $img->save($img->dirname.'/'.$saveName,$quality);
             }catch (\Exception $exception){
 
             }
@@ -25,18 +25,6 @@ class ImageService
         }
     }
 
-    public function picture(){
-        $pictures = Picture::get();
-        foreach($pictures as $pic){
-            $images = explode(',',$pic->image);
-            foreach($images as $item){
-                $path = public_path('uploads/'.ltrim($item,'/'));
-                if(file_exists($path)){
-                    $this->resize($path,40);
-                }
-            }
-            usleep(300000);
-        }
-    }
+
 
 }
