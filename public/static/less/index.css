@@ -783,6 +783,9 @@ header .wrapper-top {
   position: relative;
   z-index: 0;
 }
+.pc .goodpart .goods-section .goods .cover img.blur {
+  filter: blur(5px);
+}
 .pc .goodpart .goods-section .goods .cover video {
   transition: all 0.3s ease-in-out;
   height: 100%;

@@ -2013,6 +2013,9 @@ header .factorbox .factor .factorclose {
 .pc .goodpart .goods-section .goods .cover img {
   width: 100%;
 }
+.pc .goodpart .goods-section .goods .cover img.blur {
+  filter: blur(5px);
+}
 .pc .goodpart .goods-section .goods .message {
   padding: 8px;
   background-color: #FFF;

@@ -572,7 +572,6 @@ $('#filter .group input[data-equ]').click(function () {
 
 // 创建 Web Worker 实例
 const worker = new Worker('/static/js/imageWorker.js?v1.0.0');
-
 function lazyload() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -581,18 +580,21 @@ function lazyload() {
             if (entry.isIntersecting) {
                 if (img.dataset.src) {
                     const highResSrc = img.dataset.src;
+
+                    //img.src = highResSrc;
+                    //img.classList.remove('blur');
+
+
+                    //用work请求图片
                     const id = img.getAttribute('data-cover-id');
-
-                    // 发送加载任务给 Worker
                     worker.postMessage({ src: highResSrc, id });
-
-                    // 监听 Worker 处理完成的消息
                     worker.onmessage = function (e) {
                         const { id, src } = e.data;
-                        const imgElement = document.querySelector(`img[data-cover-id="${id}"]`);
-                        if (imgElement) {
-                            imgElement.src = src; // 更新图片
-                        }
+                        const imgElements = document.querySelectorAll(`img[data-cover-id="${id}"]`);
+                        imgElements.forEach(img => {
+                            img.src = src;
+                            img.classList.remove('blur');
+                        });
                     };
                 }
 
@@ -602,24 +604,44 @@ function lazyload() {
         });
     }, {
         root: null,
-        rootMargin: '400px 0px',
+        rootMargin: '150px 0px',
         threshold: 0
     });
 
     // 遍历所有带有 `data-lazyload` 属性的图片
     document.querySelectorAll('img[data-lazyload]').forEach(function (img) {
         observer.observe(img); // 开始观察图片
+
         img.removeAttribute('data-lazyload'); // 移除 `data-lazyload` 属性
     });
 
-    // 处理视频懒加载（如果有的话）
-    /*document.querySelectorAll('.g-video').forEach(function (video) {
-        if (video.dataset.src) {
-            video.src = video.dataset.src; // 加载视频的真实地址
-        }
-    });*/
-}
 
+
+    const observer2 = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            const video = entry.target;
+
+            if (entry.isIntersecting) {
+                if (video.dataset.src) {
+                    const highResSrc = video.dataset.src;
+                    video.src = highResSrc;
+                }
+
+                video.removeAttribute('data-src');
+                observer2.unobserve(video);
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '100px 0px',
+        threshold: 0
+    });
+    // 处理视频懒加载（如果有的话）
+    document.querySelectorAll('.g-video').forEach(function (video) {
+        observer2.observe(video); // 开始观察图片
+        video.removeAttribute('data-lazyload'); // 移除 `data-lazyload` 属性
+    });
+}
 
 
 
