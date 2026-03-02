@@ -17,8 +17,21 @@ use Illuminate\Support\Facades\Cache;
 class ProductController extends Controller
 {
     public function index(Request $request){
+        $factorbox = true;
+        $tab = 0;
+        return view('web.product',compact('factorbox','tab'));
+    }
 
-        return view('web.product');
+    public function goOut(Request $request){
+        $factorbox = false;
+        $tab = 1;
+        return view('web.product',compact('factorbox','tab'));
+    }
+
+    public function fixation(Request $request){
+        $factorbox = false;
+        $tab = 2;
+        return view('web.product',compact('factorbox','tab'));
     }
 
     public function show($id,FaqRepository $faqRepository,ProductAddedServeRepository $productAddedServeRepository){

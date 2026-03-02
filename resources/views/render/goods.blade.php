@@ -41,10 +41,10 @@
                 <p class="goodname">{{ $goods->name }}<span class="age">{{ $goods->age }}</span></p>
                 <div class="mode">
                     @if($goods->fixation)
-                    <p class="type">定點</p>
+                    <p class="type">定點茶</p>
                     @endif
                     @if($goods->outgoing)
-                    <p class="type">外送</p>
+                    <p class="type">外送茶</p>
                     @endif
                 </div>
             </div>

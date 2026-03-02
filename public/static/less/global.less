@@ -19,6 +19,194 @@ body::-webkit-scrollbar-track {
 html{
     scroll-behavior: smooth;
 }
+.only-mobile{
+    @media screen and (min-width: 769px){
+        display: none!important;
+    }
+}
+
+.only-pc{
+    @media screen and (max-width: 769px){
+        display: none!important;
+    }
+
+}
+
+.main-header{
+    width: 100%;
+    position: fixed;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 12px 12px 6px;
+    gap: 10px 0;
+    @media screen and (min-width: 1025px) {
+        justify-content: center;
+        gap: 30px;
+    }
+
+    @media screen and (max-width: 1024px) {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .logo-sec{
+
+        .logo{
+            display: block;
+            width: 100%;
+            height: 32px;
+            img{
+                width: auto;
+                height: 100%;
+            }
+            @media screen and (max-width: 1024px) {
+                height: 28px;
+            }
+        }
+        .slogan2{
+            font-size: 12px;
+            color: #000;
+            font-weight: 500;
+            letter-spacing: 0;
+        }
+
+    }
+
+    .base{
+        position: relative;
+        width: 100%;
+        max-width: 1024px;
+        .base-box{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transition: all 0.3s;
+            @media screen and (min-width: 1025px) {
+                justify-content: end;
+                gap: 0 60px;
+            }
+            .base-item{
+                .base-link{
+                    position: relative;
+                    text-align: center;
+                    color: #000;
+                    font-size: 14px;
+                    font-weight: 500;
+                    @media screen and (min-width: 1025px) {
+                        font-size: 16px;
+                    }
+                }
+                &:hover{
+                    color: #000;
+                }
+                &.activate{
+                    color: #000;
+                }
+            }
+        }
+    }
+
+    .contect{
+        position: relative;
+        height: 40px;
+        width: fit-content;
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        place-content: center;
+        gap: 0 6px;
+        background-color: #000;
+        border-radius: 99px;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.75, -1.62, 0.47, 2.27);
+        font-size: 15px;
+        line-height: 1;
+        font-weight: 700;
+        color: #ffcb00;
+        z-index: 1;
+        .lineicon{
+            width: 28px;
+            height: 28px;
+            fill: #ffcb00;
+            grid-row: 1 / span 2;
+            @media screen and (max-width: 768px) {
+                width: 24px;
+                height: 24px;
+            }
+        }
+        .line-text-box{
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            height: 12px;
+            overflow: hidden;
+            .line-text{
+                font-size: 0.7em;
+                line-height: 1;
+                height: 12px;
+                animation: line-text-box 5s linear infinite;
+            }
+            @keyframes line-text-box {
+                0% {
+                    transform: translateY(0);
+                }
+                5% {
+                    transform: translateY(-12px);
+                }
+                55% {
+                    transform: translateY(-12px);
+                }
+                60% {
+                    transform: translateY(0);
+                }
+                100% {
+                    transform: translateY(0);
+                }
+            }
+        }
+        @media screen and (max-width: 1024px) {
+            padding: 0 16px;
+        }
+        @media screen and (min-width: 1025px) {
+            padding: 0 30px;
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+        &:after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(-75deg, #000000, #979797, #000000);
+            animation: shinning 5s linear infinite;
+            z-index: -1;
+            @keyframes shinning {
+                0% {
+                    transform: translateX(-100%);
+                }
+                75% {
+                    transform: translateX(-100%);
+                }
+                90% {
+                    transform: translateX(100%);
+                }
+                100% {
+                    transform: translateX(100%);
+                }
+            }
+        }
+    }
+
+}
+
 body{
     text-rendering: optimizeLegibility;
     background-color: #f7f7f7;

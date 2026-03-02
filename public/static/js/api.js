@@ -65,9 +65,11 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
         if (current_page < last_page) {
             if (filter) {
                 var filter_data = localStorage.getItem(filter_key);
+
                 if (filter_data) {
                     filter_data = JSON.parse(filter_data);
-                    data = Object.assign(data, filter_data);
+                    data = Object.assign(filter_data,data);
+
                     if(random){
                         data.random = 1;
                     }
