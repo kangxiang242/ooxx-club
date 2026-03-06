@@ -507,10 +507,11 @@ $(document).ready(function(){
                 var windowHeight = $(this).height(); //获取当前窗口高度
 
                 if(scrollTop + windowHeight >= scrollHeight - 1000){ //判断是否到达页面底部
+
                     if(is_product){
-                        getGoods2(true,true);
+                        getGoods2(true,true,{tab:tab});
                     }else{
-                        getGoods2(false,true);
+                        getGoods2(false,true,{tab:tab});
                     }
                 }
             });

@@ -11,7 +11,7 @@
     <script src="{{ asset('static/js/sweetalert2.js') }}"></script>
 
     <script>
-
+        var tab = parseInt("{{ $tab }}");
         var beforeCallback = function(){
             //获取产品前加载loading
             $('.goods-section').html($('#loading-template').html());
@@ -23,7 +23,7 @@
             $('.goods-section').html(html);
         }
         window.addEventListener('load', function () {
-            var tab = parseInt("{{ $tab  }}");
+
             getGoods2(true,false,{tab:tab});
         });
     </script>
@@ -149,7 +149,9 @@
                 </p>
             </div>
             @endif
-
+            <div class="hreo" style="margin: 20px 0px">
+                <h1>{{ $title }}</h1>
+            </div>
             <div class="goods-container">
                 <section class="goods-section" >
                     {{-- 產品數據輸出 --}}

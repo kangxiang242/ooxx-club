@@ -19,19 +19,22 @@ class ProductController extends Controller
     public function index(Request $request){
         $factorbox = true;
         $tab = 0;
-        return view('web.product',compact('factorbox','tab'));
+        $title = '';
+        return view('web.product',compact('factorbox','tab','title'));
     }
 
     public function goOut(Request $request){
         $factorbox = false;
         $tab = 1;
-        return view('web.product',compact('factorbox','tab'));
+        $title = '外送茶推薦';
+        return view('web.product',compact('factorbox','tab','title'));
     }
 
     public function fixation(Request $request){
         $factorbox = false;
         $tab = 2;
-        return view('web.product',compact('factorbox','tab'));
+        $title = '定點茶推薦';
+        return view('web.product',compact('factorbox','tab','title'));
     }
 
     public function show($id,FaqRepository $faqRepository,ProductAddedServeRepository $productAddedServeRepository){

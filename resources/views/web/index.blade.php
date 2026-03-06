@@ -187,7 +187,7 @@
     </section>
 
     <section class="pc">
-        <p class="goodtitle">今日推薦</p>
+        <p class="goodtitle">今日外送茶推薦</p>
 
         <div class="cityboxindex">
             <div class="city">
