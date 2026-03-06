@@ -1,4 +1,4 @@
-var filter_key = 'filter';
+var filter_key = 'filter2';
 var filter_count_key = 'filter_count';
 var area_key = 'area';
 
@@ -226,7 +226,12 @@ $('#filter .conform').click(function () {
     filter['county'] = county;
     localStorage.setItem(filter_key,JSON.stringify(filter));
     localStorage.setItem(filter_count_key,filter_count);
-    window.location.href="/product";
+    if(tab == 1){
+        window.location.href="/outgoing";
+    }else{
+        window.location.href="/fixation";
+    }
+
 });
 
 function addFilterFind(equ,id){
