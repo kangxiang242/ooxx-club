@@ -149,7 +149,7 @@
                 </p>
             </div>
             @endif
-            <div class="hreo" style="margin: 20px 0px">
+            <div class="hero">
                 <h1>{{ $title }}</h1>
             </div>
             <div class="goods-container">

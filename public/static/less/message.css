@@ -1011,6 +1011,16 @@ header .factorbox .factor .factorclose {
 /* .header-top{
     top: 0;
 } */
+.hero {
+  margin: 60px auto;
+}
+@media screen and (max-width: 768px) {
+  .hero {
+    margin-top: 120px;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+}
 .pc {
   width: 100%;
 }
@@ -2057,6 +2067,11 @@ header .factorbox .factor .factorclose {
 }
 .pc .goodpart .goods-section .goods .message .namebox .mode {
   display: flex;
+}
+@media screen and (max-width: 768px) {
+  .pc .goodpart .goods-section .goods .message .namebox .mode {
+    display: none;
+  }
 }
 .pc .goodpart .goods-section .goods .message .namebox .mode .type {
   font-size: 12px;
