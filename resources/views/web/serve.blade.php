@@ -1,5 +1,5 @@
 @extends('web.layout')
-@section('title', mb_substr($product->city->name,0,2)."外送茶 ".$product->name)
+@section('title', $product->name)
 @section('style')
     @parent
     <link rel="stylesheet" type="text/css" href="{{ asset('static/less/team.css') }}?v={{ app('cache.config')->get('asset_version') }}"/>
