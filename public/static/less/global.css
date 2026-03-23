@@ -117,6 +117,12 @@ html {
 .main-header .base .base-box .base-item .dropdown-menu > li {
   padding: 4px 0;
 }
+@media screen and (max-width: 768px) {
+  .main-header .base .base-box .base-item .dropdown-menu {
+    font-size: 13px;
+    padding-top: 10px;
+  }
+}
 .main-header .base .base-box .base-item:hover .dropdown-menu {
   display: block;
 }

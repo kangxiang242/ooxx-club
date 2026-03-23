@@ -75,17 +75,18 @@
                     <a href="{{ url('/') }}" class="base-link">首頁</a>
                 </li>
                 <li class="base-item">
-                    <a href="{{ url('outgoing') }}" class="base-link">外送茶</a>
+                    <a href="javascript:;" class="base-link">外送茶</a>
                     <ul class="dropdown-menu">
-
+                        <li><a href="{{ url('outgoing') }}">全部外送茶</a></li>
                         @foreach($areas as $area)
                             <li><a href="{{ url($area->name.'外送茶') }}">{{ $area->name }}外送茶</a></li>
                         @endforeach
                     </ul>
                 </li>
                 <li class="base-item">
-                    <a href="{{ url('fixation') }}" class="base-link">定點茶</a>
+                    <a href="javascript:;" class="base-link">定點茶</a>
                     <ul class="dropdown-menu">
+                        <li><a href="{{ url('fixation') }}">全部定點茶</a></li>
                         @foreach($areas as $area)
                             <li><a href="{{ url($area->name.'定點茶') }}">{{ $area->name }}定點茶</a></li>
                         @endforeach
