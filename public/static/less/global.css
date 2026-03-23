@@ -113,6 +113,7 @@ html {
   padding-top: 20px;
   font-size: 15px;
   display: none;
+  font-weight: 400;
 }
 .main-header .base .base-box .base-item .dropdown-menu > li {
   padding: 4px 0;
