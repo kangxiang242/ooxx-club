@@ -35,7 +35,7 @@ class ProductController extends AdminController
             $grid->column('birthplace.name','茶籍');
 
             $grid->column('area_city','地區')->display(function(){
-                return $this->city->name.$this->county->name;
+                return $this->city->name;
             });
 
             $grid->column('outgoing','外送/定點')->display(function (){
@@ -118,7 +118,7 @@ STYLE
                 ])->required();
                 $form->select('birthplace_id')->options(Birthplace::pluck('name','id'))->required();
                 $form->select('area_city','市')->options('/api/get-city')->load('area_county','/api/get-county')->required();
-                $form->select('area_county','區')->required();
+                //$form->select('area_county','區')->required();
 
                 $form->tree('category','分類')
                     ->nodes(Category::get()->toArray())
