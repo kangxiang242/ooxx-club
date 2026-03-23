@@ -12,6 +12,7 @@
 
     <script>
         var tab = parseInt("{{ $tab }}");
+        var area_city = parseInt("{{ isset($area_city)?$area_city:0 }}");
         var beforeCallback = function(){
             //获取产品前加载loading
             $('.goods-section').html($('#loading-template').html());
@@ -24,7 +25,7 @@
         }
         window.addEventListener('load', function () {
 
-            getGoods2(true,false,{tab:tab});
+            getGoods2(true,false,{tab:tab,area_city:area_city});
         });
     </script>
 

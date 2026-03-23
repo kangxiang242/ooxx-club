@@ -3,6 +3,7 @@
 
 namespace App\Http\Composers;
 
+use App\Repositories\AreaRepository;
 use App\Repositories\SeoRepository2;
 use App\Services\ConfigService;
 
@@ -33,6 +34,9 @@ class LayoutComposer
 
 
         $this->view->with('layout',$this->data);
+
+        $areas = app(AreaRepository::class)->all();
+        $this->view->with('areas',$areas);
     }
 
     /**

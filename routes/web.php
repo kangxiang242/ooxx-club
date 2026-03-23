@@ -30,6 +30,10 @@ Route::group(['namespace'=>'Web','middleware'=>['googlebot.checked']],function (
 
     Route::get('/fixation', "ProductController@fixation");
 
+    Route::get('{area}外送茶', "ProductController@areaGoOut");
+
+    Route::get('{area}定點茶', "ProductController@areaFixation");
+
     Route::get('/blog', "NewsController@index");
 
     Route::get('/blog/{id}', "NewsController@show");

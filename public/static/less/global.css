@@ -90,7 +90,11 @@ html {
     gap: 0 60px;
   }
 }
+.main-header .base .base-box .base-item {
+  padding: 0 10px;
+}
 .main-header .base .base-box .base-item .base-link {
+  padding: 0 10px;
   position: relative;
   text-align: center;
   color: #000;
@@ -102,11 +106,19 @@ html {
     font-size: 16px;
   }
 }
-.main-header .base .base-box .base-item:hover {
-  color: #000;
+.main-header .base .base-box .base-item .dropdown-menu {
+  position: absolute;
+  background-color: #fff;
+  padding: 0 10px;
+  padding-top: 20px;
+  font-size: 15px;
+  display: none;
 }
-.main-header .base .base-box .base-item.activate {
-  color: #000;
+.main-header .base .base-box .base-item .dropdown-menu > li {
+  padding: 4px 0;
+}
+.main-header .base .base-box .base-item:hover .dropdown-menu {
+  display: block;
 }
 .main-header .contect {
   position: relative;

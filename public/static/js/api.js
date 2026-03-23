@@ -118,7 +118,7 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
 
 
                         if (current_page == last_page) {
-                            //$('#goods-complete').show();
+
                             current_page = 0;
                             random = true;
                             if(result.total < 20){

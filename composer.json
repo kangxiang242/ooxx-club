@@ -22,7 +22,6 @@
         "laravel/ui": "^3.0",
         "maatwebsite/excel": "^3.1",
         "mews/captcha": "^3.2",
-        "range3231/loader": "^1.0",
         "rizhou/laravel-control": "^2.1",
         "rizhou/page-cache": "^1.0",
         "spatie/eloquent-sortable": "^3.11",

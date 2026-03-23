@@ -19,7 +19,7 @@
     </div>
     <div class="parttwo-show parttwo-hide" id="parttwo-show">
         <div class="choose-box">
-            <div class="choose-sec" id="choose-sec">
+            {{--<div class="choose-sec" id="choose-sec">
                 <p class="title">喝茶方式</p>
                 <div class="modebox" >
                     <div class="tabs">
@@ -38,24 +38,15 @@
                         <div class="arrowicon">
                             <input type="checkbox" id="city" name="city">
                             <label class="area" for="city">
-                                {{--<p class="itemname">台北</p>--}}
+                                --}}{{--<p class="itemname">台北</p>--}}{{--
                                 <select name="city" id="fit-city" data-abolish="true"></select>
                                 <div class="arrow"></div>
                             </label>
                         </div>
                     </div>
-                    {{--<div class="city county-box">
-                        <div class="arrowicon">
-                            <input type="checkbox" id="area" name="area">
-                            <label class="area" for="area">
 
-                                <select name="county" id="fit-county" data-abolish="true"></select>
-                                <div class="arrow"></div>
-                            </label>
-                        </div>
-                    </div>--}}
                 </div>
-            </div>
+            </div>--}}
             <div class="choose-sec" id="choose-sec">
                 <p class="title">類型</p>
                 <div class="bodychoose">

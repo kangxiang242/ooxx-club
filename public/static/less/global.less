@@ -91,7 +91,10 @@ html{
                 gap: 0 60px;
             }
             .base-item{
+                padding: 0 10px;
+
                 .base-link{
+                    padding: 0 10px;
                     position: relative;
                     text-align: center;
                     color: #000;
@@ -101,12 +104,29 @@ html{
                         font-size: 16px;
                     }
                 }
+
+                .dropdown-menu{
+                    position: absolute;
+                    background-color: #fff;
+                    padding: 0 10px;
+                    padding-top: 20px;
+                    font-size: 15px;
+                    display: none;
+                    >li{
+                        padding: 4px 0;
+                    }
+                }
+
                 &:hover{
-                    color: #000;
+                    .dropdown-menu{
+                        display: block;
+                    }
                 }
                 &.activate{
-                    color: #000;
+
                 }
+
+
             }
         }
     }

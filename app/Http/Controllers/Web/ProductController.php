@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductQuick;
 use App\Models\ProductWithServe;
+use App\Repositories\AreaRepository;
 use App\Repositories\FaqRepository;
 use App\Repositories\ProductAddedServeRepository;
 use Illuminate\Http\Request;
@@ -35,6 +36,24 @@ class ProductController extends Controller
         $tab = 2;
         $title = '定點茶推薦';
         return view('web.product',compact('factorbox','tab','title'));
+    }
+
+    public function areaGoOut($area){
+        $factorbox = false;
+        $tab = 1;
+        $title = $area.'外送茶';
+        $area = app(AreaRepository::class)->all()->where('name',$area)->first();
+        $area_city = $area->id;
+        return view('web.product',compact('factorbox','tab','title','area_city'));
+    }
+
+    public function areaFixation($area){
+        $factorbox = false;
+        $tab = 2;
+        $title = $area.'定點茶';
+        $area = app(AreaRepository::class)->all()->where('name',$area)->first();
+        $area_city = $area->id;
+        return view('web.product',compact('factorbox','tab','title','area_city'));
     }
 
     public function show($id,FaqRepository $faqRepository,ProductAddedServeRepository $productAddedServeRepository){
