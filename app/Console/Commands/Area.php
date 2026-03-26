@@ -43,7 +43,7 @@ class Area extends Command
     public function handle()
     {
         $products = Product::get();
-        $areas = \App\Models\Area::where('parent_id', 0)->get();
+        $areas = \App\Models\Area::where('parent_id', 0)->where('status',1)->get();
 
         $areaCount = $areas->count();
 
@@ -55,10 +55,17 @@ class Area extends Command
             $name = end($names);
             $name = str_replace('約砲', '', $name);
             $name = str_replace('外送茶', '', $name);
+            $name = str_replace('定點茶', '', $name);
             $name = str_replace('外約', '', $name);
             $name = str_replace('個工', '', $name);
+            $name = str_replace('基隆', '', $name);
+            $name = str_replace('臺北', '', $name);
+            $name = str_replace('新北', '', $name);
+            $name = str_replace('桃園', '', $name);
+            $name = str_replace('新竹', '', $name);
             $name = str_replace('嘉義', '', $name);
             $name = str_replace('花蓮', '', $name);
+            $name = str_replace('南投', '', $name);
 
             $product->name = $area->name.'約砲 '.$name;
 
