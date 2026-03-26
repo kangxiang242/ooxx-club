@@ -24,7 +24,7 @@ class LayoutComposer
 
         $this->view = $view;
 
-        $this->path = request()->path();
+        $this->path = urldecode(request()->path());
 
         if(request()->route()){
             $this->uri = request()->route()->uri();
