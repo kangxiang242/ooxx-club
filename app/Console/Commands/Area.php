@@ -54,7 +54,7 @@ class Area extends Command
             $names = explode(' ', $product->name);
             $name = end($names);
 
-            $product->name = $area.'約砲 '.$name;
+            $product->name = $area->name.'約砲 '.$name;
             dd($product->name);
 
             // 取对应的 area（循环）
