@@ -11,7 +11,7 @@
     <script src="{{ asset('static/js/sweetalert2.js') }}"></script>
 
     <script>
-        var tab = parseInt("{{ $tab }}");
+        var tab = 0;
         var area_city = parseInt("{{ isset($area_city)?$area_city:0 }}");
         var beforeCallback = function(){
             //获取产品前加载loading

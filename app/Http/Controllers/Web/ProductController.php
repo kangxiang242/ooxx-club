@@ -40,7 +40,7 @@ class ProductController extends Controller
 
     public function areaGoOut($area){
         $factorbox = false;
-        $tab = 1;
+        $tab = 0;
         $title = $area.'外送茶';
         $area = app(AreaRepository::class)->all()->where('name',$area)->first();
         $area_city = $area->id;
