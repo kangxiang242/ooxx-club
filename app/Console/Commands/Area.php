@@ -53,6 +53,12 @@ class Area extends Command
 
             $names = explode(' ', $product->name);
             $name = end($names);
+            $name = str_replace('約砲', '', $name);
+            $name = str_replace('外送茶', '', $name);
+            $name = str_replace('外約', '', $name);
+            $name = str_replace('個工', '', $name);
+            $name = str_replace('嘉義', '', $name);
+            $name = str_replace('花蓮', '', $name);
 
             $product->name = $area->name.'約砲 '.$name;
 
