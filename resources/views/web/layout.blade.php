@@ -76,7 +76,7 @@
                 </li>
                 <li class="base-item">
                     <a href="javascript:;" class="base-link">選擇地區</a>
-                    <ul class="dropdown-menu" style="padding: 0 30px">
+                    <ul class="dropdown-menu" style="padding: 20px 30px">
                         @php
                             $site_keyword = app('cache.config')->get('site_keyword');
                         @endphp
