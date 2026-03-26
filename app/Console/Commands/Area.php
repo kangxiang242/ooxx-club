@@ -55,7 +55,7 @@ class Area extends Command
             $name = end($names);
 
             $product->name = $area->name.'約砲 '.$name;
-            dd($product->name);
+
 
             // 取对应的 area（循环）
 
