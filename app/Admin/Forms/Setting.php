@@ -13,6 +13,7 @@ class Setting extends Config
     {
 
         $this->text('site_name','網站名稱');
+        $this->text('site_keyword','關鍵詞');
         $this->image('site_logo','LOGO')->autoUpload()->uniqueName();
         $this->file('favicon','favicon')->autoUpload()->uniqueName();
         //$this->image('loading', 'loading')->autoUpload()->uniqueName();

@@ -10,7 +10,7 @@
     @else
         <title>@yield('title')</title>
     @endif
-    <meta property="og:site_name" content="全台最大外送茶定點茶">
+    <meta property="og:site_name" content="{{ app('cache.config')->get('site_name') }}">
     @hasSection('keywords')
     <meta name="keywords" content="@yield('keywords')"/>
     @else
@@ -56,9 +56,9 @@
     <header class="main-header">
         <div class="logo-sec">
             <a class="logo" href="{{ url('/') }}">
-                <img src="/static/img/mclogo2.png" alt="24h歡樂送LOGO">
+                <img src="/static/img/mclogo2.png" alt="{{ app('cache.config')->get('site_name') }}">
             </a>
-            <p class="slogan2">給你全台最好的外送茶&定點茶</p>
+            <p class="slogan2">{{ app('cache.config')->get('site_name') }}</p>
 
         </div>
         <a href="{{ liaison_get('line_url') }}" class="contect">
@@ -75,15 +75,17 @@
                     <a href="{{ url('/') }}" class="base-link">首頁</a>
                 </li>
                 <li class="base-item">
-                    <a href="javascript:;" class="base-link">外送茶</a>
+                    <a href="javascript:;" class="base-link">選擇地區</a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ url('outgoing') }}">全部外送茶</a></li>
+                        @php
+                            $site_keyword = app('cache.config')->get('site_keyword');
+                        @endphp
                         @foreach($areas as $area)
-                            <li><a href="{{ url($area->name.'外送茶') }}">{{ $area->name }}外送茶</a></li>
+                            <li><a href="{{ url($area->name.$site_keyword) }}">{{ $area->name }}{{ $site_keyword }}</a></li>
                         @endforeach
                     </ul>
                 </li>
-                <li class="base-item">
+                {{--<li class="base-item">
                     <a href="javascript:;" class="base-link">定點茶</a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ url('fixation') }}">全部定點茶</a></li>
@@ -91,7 +93,7 @@
                             <li><a href="{{ url($area->name.'定點茶') }}">{{ $area->name }}定點茶</a></li>
                         @endforeach
                     </ul>
-                </li>
+                </li>--}}
                 <li class="base-item">
                     <a href="{{ url('blog') }}" class="base-link">最新消息</a>
                 </li>

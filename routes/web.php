@@ -26,13 +26,13 @@ Route::group(['namespace'=>'Web'],function (){
 Route::group(['namespace'=>'Web','middleware'=>['googlebot.checked']],function (){
     Route::get('/', "IndexController@index");
 
-    Route::get('/outgoing', "ProductController@goOut");
+    //Route::get('/outgoing', "ProductController@goOut");
 
-    Route::get('/fixation', "ProductController@fixation");
+    //Route::get('/fixation', "ProductController@fixation");
 
-    Route::get('{area}外送茶', "ProductController@areaGoOut");
+    Route::get('{area}'.app('cache.config')->get('site_keyword'), "ProductController@areaGoOut");
 
-    Route::get('{area}定點茶', "ProductController@areaFixation");
+    //Route::get('{area}定點茶', "ProductController@areaFixation");
 
     Route::get('/blog', "NewsController@index");
 
