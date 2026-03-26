@@ -187,7 +187,7 @@
     </section>
 
     <section class="pc">
-        <p class="goodtitle">今日{{ app('cache.config')->get('site_keyword') }}推薦</p>
+        <h1 class="goodtitle">今日{{ app('cache.config')->get('site_keyword') }}推薦</h1>
 
         <div class="cityboxindex">
             <div class="city">
