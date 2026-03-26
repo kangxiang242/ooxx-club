@@ -48,8 +48,16 @@ class Area extends Command
         $areaCount = $areas->count();
 
         foreach ($products as $index => $product) {
-            // 取对应的 area（循环）
             $area = $areas[$index % $areaCount];
+
+
+            $names = explode(' ', $product->name);
+            $name = end($names);
+
+            $product->name = $area.'約砲 '.$name;
+            dd($product->name);
+
+            // 取对应的 area（循环）
 
             $product->area_city = $area->id;
             $product->area_county = 0;
