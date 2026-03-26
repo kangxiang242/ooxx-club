@@ -24,37 +24,22 @@ class ProductController extends Controller
         return view('web.product',compact('factorbox','tab','title'));
     }
 
-    public function goOut(Request $request){
-        $factorbox = false;
-        $tab = 1;
-        $title = '外送茶推薦';
-        return view('web.product',compact('factorbox','tab','title'));
-    }
-
-    public function fixation(Request $request){
-        $factorbox = false;
-        $tab = 2;
-        $title = '定點茶推薦';
-        return view('web.product',compact('factorbox','tab','title'));
-    }
-
     public function areaGoOut($area){
+        $keyword = app('cache.config')->get('site_keyword');
+        if (substr($area, -strlen($keyword)) === $keyword) {
+            $area_name = substr($area, 0, -strlen($keyword));
+        } else {
+            $area_name = $area; // 防止 URL 异常
+        }
         $factorbox = false;
         $tab = 0;
-        $title = $area.'外送茶';
-        $area = app(AreaRepository::class)->all()->where('name',$area)->first();
+        $title = $keyword;
+        $area = app(AreaRepository::class)->all()->where('name',$area_name)->first();
+
         $area_city = $area->id;
         return view('web.product',compact('factorbox','tab','title','area_city'));
     }
 
-    public function areaFixation($area){
-        $factorbox = false;
-        $tab = 2;
-        $title = $area.'定點茶';
-        $area = app(AreaRepository::class)->all()->where('name',$area)->first();
-        $area_city = $area->id;
-        return view('web.product',compact('factorbox','tab','title','area_city'));
-    }
 
     public function show($id,FaqRepository $faqRepository,ProductAddedServeRepository $productAddedServeRepository){
 
