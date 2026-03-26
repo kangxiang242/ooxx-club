@@ -43,7 +43,7 @@ class Area extends Command
     public function handle()
     {
         $products = Product::get();
-        $areas = Area::where('parent_id', 0)->get();
+        $areas = \App\Models\Area::where('parent_id', 0)->get();
 
         $areaCount = $areas->count();
 
