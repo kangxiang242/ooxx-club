@@ -33,7 +33,7 @@ class ProductController extends Controller
         }
         $factorbox = false;
         $tab = 0;
-        $title = $keyword;
+        $title = $area_name.$keyword;
         $area = app(AreaRepository::class)->all()->where('name',$area_name)->first();
 
         $area_city = $area->id;
