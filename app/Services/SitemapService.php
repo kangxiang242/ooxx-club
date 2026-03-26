@@ -25,7 +25,7 @@ class SitemapService
         $this->header();
         $this->startUrlSet();
         $this->home();
-        $this->article();
+        //$this->article();
         $this->product();
         //$this->page();
         $this->endUrlSet();
