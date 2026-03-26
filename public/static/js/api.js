@@ -231,9 +231,9 @@ $('#filter .conform').click(function () {
     localStorage.setItem(filter_key,JSON.stringify(filter));
     localStorage.setItem(filter_count_key,filter_count);
     if(tab == 1){
-        window.location.href="/outgoing";
+        window.location.href="";
     }else{
-        window.location.href="/fixation";
+        window.location.href="";
     }
 
 });
