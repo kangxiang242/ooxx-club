@@ -165,7 +165,7 @@
     <div class="info" style="z-index:3">
         <div class="namebox">
             <div class="name">
-                <span>{{ $product->name }}</span>
+                <h1 class="name">{{ $product->name }}</h1>
                 <div class="flag">
                     <img src="{{ asset_upload($product->birthplace->icon) }}" alt="{{ $product->birthplace->name }}">
                 </div>
