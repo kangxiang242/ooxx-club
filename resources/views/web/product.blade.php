@@ -25,7 +25,7 @@
         }
         window.addEventListener('load', function () {
 
-            getGoods2(true,false,{tab:tab,area_city:area_city});
+            getGoods2(true,false,{city:area_city});
         });
     </script>
 

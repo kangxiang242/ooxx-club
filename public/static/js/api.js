@@ -51,6 +51,7 @@ var current_page = 0;
 var last_page = 1;
 var is_load = false;
 var random = false;
+var area_city = 0;
 
 function getGoods2(filter = false, is_append = true, data = {}, reset_page = false) {
     if (!is_load) {
@@ -60,6 +61,9 @@ function getGoods2(filter = false, is_append = true, data = {}, reset_page = fal
         }
         if (!is_append) {
             $('.goods-section').empty();
+        }
+        if(data.city){
+            area_city = data.city;
         }
 
         if (current_page < last_page) {
@@ -163,9 +167,9 @@ $(document).ready(function(){
             var windowHeight = $(this).height(); //获取当前窗口高度
             if(scrollTop + windowHeight >= scrollHeight - 400){ //判断是否到达页面底部
                 if(is_product){
-                    getGoods2(true,true);
+                    getGoods2(true,true,{city:area_city});
                 }else{
-                    getGoods2(false,true);
+                    getGoods2(false,true,{city:area_city});
                 }
             }
         });
