@@ -4,6 +4,7 @@
 namespace App\Services;
 
 
+use App\Models\Area;
 use App\Models\ArticleCate;
 use App\Models\Product;
 use App\Models\Topic;
@@ -26,6 +27,7 @@ class SitemapService
         $this->startUrlSet();
         $this->home();
         //$this->article();
+        $this->cate();
         $this->product();
         //$this->page();
         $this->endUrlSet();
@@ -103,6 +105,19 @@ class SitemapService
             $this->xml[] = "  </url>";
         }
 
+    }
+
+    public function cate(){
+        $areas = Area::where('parent_id',0)->where('status',1)->get();
+        $site_keyword = app('cache.config')->get('site_keyword');
+        foreach($areas as $item){
+            $this->xml[] = '  <url>';
+            $this->xml[] = "    <loc>".url($item->name.$site_keyword)."</loc>";
+            $this->xml[] = "    <lastmod>{$this->last_mod}</lastmod>";
+            $this->xml[] = "    <changefreq>daily</changefreq>";
+            $this->xml[] = '    <priority>0.8</priority>';
+            $this->xml[] = "  </url>";
+        }
     }
 
     /**
